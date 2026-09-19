@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-const [owner = '', repository = ''] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
+const [, repository = ''] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 const isRootPage = repository.endsWith('.github.io');
 const base = process.env.ASTRO_BASE ?? (isGitHubActions && repository && !isRootPage ? `/${repository}` : '/');
