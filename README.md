@@ -1,31 +1,54 @@
-# Awesome Jev
+<p align="center">
+  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev — 433 verified open-source projects across 10 categories" width="100%"></a>
+</p>
 
-> A verified, community-maintained catalog of **433 open-source projects** built with [Jev](https://typesafe.ai/), TypeSafe AI's System One model for typed decisions inside software.
+<p align="center">
+  <img src="https://img.shields.io/badge/verified_projects-433-1e63ff?style=flat-square" alt="433 verified projects">
+  <img src="https://img.shields.io/badge/categories-10-111111?style=flat-square" alt="10 categories">
+  <img src="https://img.shields.io/badge/languages-23-676767?style=flat-square" alt="23 languages">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/catalog_license-CC0_1.0-1e63ff?style=flat-square" alt="Catalog license: CC0 1.0"></a>
+</p>
 
-**Website: [jevbest.com](https://jevbest.com)**
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-Hans.md">简体中文</a>
+</p>
 
-**[简体中文](README.zh-Hans.md)**
+<p align="center">
+  🌐 <a href="https://jevbest.com"><strong>Explore the website</strong></a>
+  &nbsp;·&nbsp;
+  ➕ <a href="https://github.com/heyjunpenn/awesome-jev/issues/new?title=%5BSubmission%5D%20"><strong>Submit a project</strong></a>
+</p>
 
-This list records what each project asks Jev to decide and links to the strongest public evidence available. It is an independent community project, not affiliated with or endorsed by TypeSafe AI.
+## About Awesome Jev
 
-## Featured projects
+Awesome Jev is an independent, community-maintained catalog of **433 open-source projects** built with [Jev](https://typesafe.ai/), TypeSafe AI's System One model for typed decisions inside software. It is not affiliated with or endorsed by TypeSafe AI.
+
+> **What makes this catalog useful?**
+>
+> Every entry identifies the concrete decision Jev makes and links to the strongest public evidence available—so you can evaluate real implementations, not just project claims.
+
+## Contents
+
+- ✅ [Official](#official-4) — **4**
+- 📦 [SDKs & clients](#sdks--clients-41) — **41**
+- 🧩 [Frameworks & integrations](#frameworks--integrations-24) — **24**
+- 🤖 [Agent tooling](#agent-tooling-99) — **99**
+- 🖥️ [Browser & computer use](#browser--computer-use-35) — **35**
+- 🪟 [Applications](#applications-46) — **46**
+- 🎮 [Games & simulations](#games--simulations-45) — **45**
+- 🧪 [Demos & playgrounds](#demos--playgrounds-44) — **44**
+- 📊 [Benchmarks & research](#benchmarks--research-88) — **88**
+- 📚 [Other lists](#other-lists-7) — **7**
+
+This README is a dated snapshot of **433 unique public GitHub repositories**. Entries are sorted by Stars within each category. Stars were captured on **2026-09-18** for discovery, not ranking; verify current behavior, activity, and licensing upstream.
+
+## Featured project
 
 Featured projects have a verified call site, a concrete decision description, public source or an accessible demo, current review metadata, and sources for every displayed metric.
 
 | Project | Stars | Language | Description |
 |---|---:|---|---|
 | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | ★ 4,799 | Python | Selects the next browser operation and target element from the visible page state. [Call site verified](https://github.com/browser-use/jev-ultrafast/blob/main/jev_ultrafast/agent.py) · Maintainer runbook · Metrics author-reported. |
-
-## Browse projects
-
-This README contains a dated snapshot of **433 unique public GitHub repositories** across ten categories. Entries are sorted by Stars within each category.
-
-Stars were captured on **2026-09-18** for discovery, not ranking. Counts change continuously. Descriptions and language labels come from public project metadata and documentation; verify behavior, activity, and licensing upstream.
-
-### Browse by category
-
-| [![Official · 4](https://img.shields.io/badge/Official-4-0969da?style=flat-square)](#official-4) | [![SDKs & clients · 41](https://img.shields.io/badge/SDKs_%26_clients-41-0969da?style=flat-square)](#sdks--clients-41) | [![Frameworks & integrations · 24](https://img.shields.io/badge/Frameworks_%26_integrations-24-0969da?style=flat-square)](#frameworks--integrations-24) | [![Agent tooling · 99](https://img.shields.io/badge/Agent_tooling-99-0969da?style=flat-square)](#agent-tooling-99) | [![Browser & computer use · 35](https://img.shields.io/badge/Browser_%26_computer_use-35-0969da?style=flat-square)](#browser--computer-use-35) | [![Applications · 46](https://img.shields.io/badge/Applications-46-0969da?style=flat-square)](#applications-46) | [![Games & simulations · 45](https://img.shields.io/badge/Games_%26_simulations-45-0969da?style=flat-square)](#games--simulations-45) | [![Demos & playgrounds · 44](https://img.shields.io/badge/Demos_%26_playgrounds-44-0969da?style=flat-square)](#demos--playgrounds-44) | [![Benchmarks & research · 88](https://img.shields.io/badge/Benchmarks_%26_research-88-0969da?style=flat-square)](#benchmarks--research-88) | [![Other lists · 7](https://img.shields.io/badge/Other_lists-7-0969da?style=flat-square)](#other-lists-7) |
-|---|---|---|---|---|---|---|---|---|---|
 
 ### Official (4)
 

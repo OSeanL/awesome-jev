@@ -1,12 +1,46 @@
-# Awesome Jev
+<p align="center">
+  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev：10 个分类、433 个经过核验的开源项目" width="100%"></a>
+</p>
 
-> 收录 **433 个经过核验的 Jev 开源项目**，由社区持续维护。Jev 是 TypeSafe AI 的 System One 模型，专门处理软件中的类型化决策。
+<p align="center">
+  <img src="https://img.shields.io/badge/verified_projects-433-1e63ff?style=flat-square" alt="433 个经过核验的项目">
+  <img src="https://img.shields.io/badge/categories-10-111111?style=flat-square" alt="10 个分类">
+  <img src="https://img.shields.io/badge/languages-23-676767?style=flat-square" alt="23 种语言">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/catalog_license-CC0_1.0-1e63ff?style=flat-square" alt="目录许可证：CC0 1.0"></a>
+</p>
 
-**在线浏览：[jevbest.com](https://jevbest.com)**
+<p align="center">
+  <a href="README.md">English</a> · <strong>简体中文</strong>
+</p>
 
-**[English](README.md)**
+<p align="center">
+  🌐 <a href="https://jevbest.com"><strong>浏览在线目录</strong></a>
+  &nbsp;·&nbsp;
+  ➕ <a href="https://github.com/heyjunpenn/awesome-jev/issues/new?title=%5BSubmission%5D%20"><strong>提交项目</strong></a>
+</p>
 
-这份列表记录了每个项目让 Jev 处理什么决策，并附上目前能找到的可靠公开依据。本项目由社区独立维护，与 TypeSafe AI 没有隶属或背书关系。
+## 关于 Awesome Jev
+
+Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目目录，收录了 **433 个使用 [Jev](https://typesafe.ai/) 构建的开源项目**。Jev 是 TypeSafe AI 面向软件类型化决策的 System One 模型。本项目与 TypeSafe AI 无隶属关系，也未获得其官方背书。
+
+> **这份目录有什么不同？**
+>
+> 我们不只记录项目名称，还会说明 Jev 在其中负责哪项具体决策，并链接到目前可获得的可靠公开依据，帮助你判断真实实现，而不只看项目自述。
+
+## 目录
+
+- ✅ [官方项目](#官方项目4) — **4**
+- 📦 [SDK 与客户端](#sdk-与客户端41) — **41**
+- 🧩 [框架与集成](#框架与集成24) — **24**
+- 🤖 [Agent 工具](#agent-工具99) — **99**
+- 🖥️ [浏览器与计算机操作](#浏览器与计算机操作35) — **35**
+- 🪟 [应用](#应用46) — **46**
+- 🎮 [游戏与模拟](#游戏与模拟45) — **45**
+- 🧪 [演示与试验场](#演示与试验场44) — **44**
+- 📊 [基准测试与研究](#基准测试与研究88) — **88**
+- 📚 [其他列表](#其他列表7) — **7**
+
+本 README 是一份带日期的完整快照，收录 **433 个公开 GitHub 仓库**，每个分类均按 Star 数排序。Star 数采集于 **2026 年 9 月 18 日**，仅用于帮助发现项目，不代表质量排名；使用前请到原仓库确认实际行为、活跃度和许可证。
 
 ## 精选项目
 
@@ -15,17 +49,6 @@
 | 项目名 | Stars | 语言 | 描述 |
 |---|---:|---|---|
 | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | ★ 4,799 | Python | 根据可见页面状态选择下一步浏览器操作和目标元素。[调用点已核验](https://github.com/browser-use/jev-ultrafast/blob/main/jev_ultrafast/agent.py) · 维护者运行手册 · 作者报告指标。 |
-
-## 浏览项目
-
-本 README 收录了十个分类下的 **433 个公开 GitHub 仓库**。这是一个带日期的完整快照，每个分类都按 Star 数排序。
-
-Star 数采集于 **2026 年 9 月 18 日**，只用于帮助发现项目，不代表质量排名，数据也会不断变化。项目说明和编程语言取自公开元数据与文档；使用前请到原仓库确认实际行为、活跃度和许可证。
-
-### 按分类浏览
-
-| [![官方项目 · 4](https://img.shields.io/badge/官方项目-4-0969da?style=flat-square)](#官方项目4) | [![SDK 与客户端 · 41](https://img.shields.io/badge/SDK_与客户端-41-0969da?style=flat-square)](#sdk-与客户端41) | [![框架与集成 · 24](https://img.shields.io/badge/框架与集成-24-0969da?style=flat-square)](#框架与集成24) | [![Agent 工具 · 99](https://img.shields.io/badge/Agent_工具-99-0969da?style=flat-square)](#agent-工具99) | [![浏览器与计算机操作 · 35](https://img.shields.io/badge/浏览器与计算机操作-35-0969da?style=flat-square)](#浏览器与计算机操作35) | [![应用 · 46](https://img.shields.io/badge/应用-46-0969da?style=flat-square)](#应用46) | [![游戏与模拟 · 45](https://img.shields.io/badge/游戏与模拟-45-0969da?style=flat-square)](#游戏与模拟45) | [![演示与试验场 · 44](https://img.shields.io/badge/演示与试验场-44-0969da?style=flat-square)](#演示与试验场44) | [![基准测试与研究 · 88](https://img.shields.io/badge/基准测试与研究-88-0969da?style=flat-square)](#基准测试与研究88) | [![其他列表 · 7](https://img.shields.io/badge/其他列表-7-0969da?style=flat-square)](#其他列表7) |
-|---|---|---|---|---|---|---|---|---|---|
 
 ### 官方项目（4）
 
