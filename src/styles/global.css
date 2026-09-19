@@ -79,7 +79,7 @@ main { margin-left: var(--sidebar); overflow: clip; }
 .hero { min-height: 352px; display: grid; grid-template-columns: minmax(380px, .8fr) minmax(520px, 1.2fr); border-bottom: 1px solid var(--line); background: var(--panel); }
 .hero-copy { position: relative; padding: 34px clamp(34px, 4vw, 58px) 32px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); }
 .eyebrow, .board-top, .board-foot, .section-label { display: flex; justify-content: space-between; gap: 18px; font: .68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; color: #777; letter-spacing: .07em; }
-.hero h1 { margin: 22px 0 15px; max-width: 480px; font-size: clamp(3.35rem, 4.5vw, 4.75rem); line-height: .88; letter-spacing: -.07em; font-weight: 650; text-wrap: balance; }
+.hero h1 { margin: 22px 0 15px; max-width: 480px; font-size: clamp(3.35rem, 4.5vw, 4.75rem); line-height: .94; letter-spacing: -.045em; font-weight: 650; text-wrap: balance; }
 .hero-copy > p { max-width: 460px; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.55; }
 .primary-action { width: fit-content; min-height: 50px; margin-top: 23px; display: inline-flex; align-items: center; gap: 42px; padding: 0 17px; border: 1px solid var(--ink); background: var(--ink); color: #fff; text-decoration: none; font-weight: 660; transition: background .18s ease, border-color .18s ease, transform .18s ease; }
 .primary-action:hover { border-color: var(--blue); background: var(--blue); transform: translateY(-2px); }
@@ -222,7 +222,7 @@ html[data-language="zh"] .zh-copy { display: revert !important; }
   .nav-scrim { position: fixed; inset: 0; z-index: 29; display: block; border: 0; background: rgba(17,17,17,.34); opacity: 0; pointer-events: none; transition: opacity .2s ease; }
   body.menu-open .nav-scrim { opacity: 1; pointer-events: auto; }
   .hero-copy { min-height: 320px; padding: 30px 22px; }
-  .hero h1 { font-size: clamp(3.15rem, 14vw, 4.4rem); line-height: .89; }
+  .hero h1 { font-size: clamp(3.15rem, 14vw, 4.4rem); line-height: .96; }
   .category-board { min-height: auto; padding: 12px; }
   .hero-category-grid { grid-template-columns: 1fr; }
   .hero-category-grid button { border-right: 0; }
