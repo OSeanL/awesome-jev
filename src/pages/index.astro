@@ -34,6 +34,71 @@ const languages = [...new Set(projects.map((project) => project.language).filter
   .sort((a, b) => a.localeCompare(b));
 const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
 const navigationCategories = categories.map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }));
+const siteUrl = 'https://jevbest.com/';
+const pageTitle = `${catalogStats.projects} Jev AI Projects, SDKs & Tools | Awesome Jev`;
+const pageDescription = `Explore ${catalogStats.projects} open-source projects, SDKs, agents, integrations, benchmarks, and tools built around Jev, TypeSafe AI's System One model.`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'Awesome Jev',
+      description: pageDescription,
+      inLanguage: ['en', 'zh-Hans'],
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${siteUrl}#webpage`,
+      url: siteUrl,
+      name: 'Awesome Jev Open-Source Project Catalog',
+      alternateName: 'Awesome Jev 开源项目目录',
+      description: pageDescription,
+      isAccessibleForFree: true,
+      inLanguage: ['en', 'zh-Hans'],
+      dateModified: '2026-09-19',
+      isPartOf: { '@id': `${siteUrl}#website` },
+      keywords: ['Jev', 'TypeSafe AI', 'System One model', 'Jev SDK', 'Jev tools', 'Jev agents', 'open-source AI'],
+      about: {
+        '@type': 'SoftwareApplication',
+        name: 'Jev',
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Cloud API',
+        url: 'https://typesafe.ai/',
+      },
+      mainEntity: { '@id': `${siteUrl}#projects` },
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${siteUrl}#projects`,
+      name: 'Awesome Jev Project Dataset',
+      description: `Machine-readable metadata for ${catalogStats.projects} public repositories built around Jev.`,
+      url: `${siteUrl}catalog.json`,
+      isAccessibleForFree: true,
+      inLanguage: ['en', 'zh-Hans'],
+      dateModified: '2026-09-19',
+      version: '2026-09-19',
+      includedInDataCatalog: { '@id': `${siteUrl}#website` },
+      distribution: {
+        '@type': 'DataDownload',
+        encodingFormat: 'application/json',
+        contentUrl: `${siteUrl}catalog.json`,
+      },
+      hasPart: {
+        '@type': 'ItemList',
+        numberOfItems: catalogStats.projects,
+        itemListElement: projects.slice(0, 20).map((project, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: project.name,
+          url: project.url,
+        })),
+      },
+    },
+  ],
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -42,8 +107,23 @@ const navigationCategories = categories.map((category, index) => ({ ...category,
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#f7f7f5" />
-    <meta name="description" content="Browse 433 open-source projects built with Jev, TypeSafe AI's System One model for typed decisions." />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Awesome Jev community" />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="alternate" type="application/json" title="Awesome Jev project catalog" href={`${siteUrl}catalog.json`} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Awesome Jev" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HV69G90WGD"></script>
     <script is:inline>
@@ -52,7 +132,7 @@ const navigationCategories = categories.map((category, index) => ({ ...category,
       gtag('js', new Date());
       gtag('config', 'G-HV69G90WGD');
     </script>
-    <title>Awesome Jev</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <div class="app-shell">
@@ -135,7 +215,7 @@ const navigationCategories = categories.map((category, index) => ({ ...category,
         <section class="hero" id="overview">
           <div class="hero-copy">
             <div class="eyebrow"><span>OPEN SOURCE CATALOG</span><span>JEV / SYSTEM ONE</span></div>
-            <h1 data-en="Explore Jev." data-zh="发现更多 Jev 项目">Explore Jev.</h1>
+            <h1 data-en="Explore the Jev ecosystem." data-zh="发现更多 Jev 项目">Explore the Jev ecosystem.</h1>
             <p data-en="Discover public tools, agents, experiments, and research built around typed decisions." data-zh="这里收录了使用 Jev 构建的开源工具、Agent、实验项目和研究成果。">Discover public tools, agents, experiments, and research built around typed decisions.</p>
             <a class="primary-action" href="#projects"><span data-en="Browse 433 projects" data-zh="查看 433 个项目">Browse 433 projects</span><b>→</b></a>
           </div>
