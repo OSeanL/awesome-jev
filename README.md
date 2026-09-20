@@ -42,13 +42,23 @@ Awesome Jev is an independent, community-maintained catalog of **485 open-source
 
 This README is a dated snapshot of **485 unique public GitHub repositories**. Stars were captured on **2026-09-18–20** for discovery, not ranking; verify current behavior, activity, and licensing upstream.
 
-## Featured project
+## Added today
 
-Featured projects have a verified call site, a concrete decision description, public source or an accessible demo, current review metadata, and sources for every displayed metric.
+<details open>
+<summary><strong>52 projects added on September 20, 2026</strong></summary>
 
-| Project | Stars | Language | Description |
-|---|---:|---|---|
-| [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | ★ 4,799 | Python | Selects the next browser operation and target element from the visible page state. [Call site verified](https://github.com/browser-use/jev-ultrafast/blob/main/jev_ultrafast/agent.py) · Maintainer runbook · Metrics author-reported. |
+- **Official (2):** [TypeSafe Daggerverse](https://github.com/typesafe-ai/daggerverse), [TypeSafe Overwatch](https://github.com/typesafe-ai/Overwatch)
+- **SDKs & clients (1):** [jev-cli](https://github.com/lhotwll217/jev-cli)
+- **Frameworks & integrations (4):** [jevql](https://github.com/kylemclaren/jevql), [ground-zero](https://github.com/zavocc/ground-zero), [hiep-paseo-plugin](https://github.com/HiepPP/hiep-paseo-plugin), [jev-connector](https://github.com/adhamelhayek-lab/jev-connector)
+- **Agent tooling (13):** [tenet](https://github.com/zoidsh/tenet), [jev-belay](https://github.com/valentynkit/jev-belay), [jev-commit](https://github.com/valentynkit/jev-commit), [pi-fast-jev-compaction](https://github.com/QuentinDanblon/pi-fast-jev-compaction), [jev-flash-router](https://github.com/Ravinder82/jev-flash-router), [pi-jev](https://github.com/iefnaf/pi-jev), [pi-jev-helm](https://github.com/Z761293629/pi-jev-helm), [stepwarden](https://github.com/getexcited/stepwarden), [AskJev-MCP](https://github.com/cbruyndoncx/AskJev-MCP), [jev-compaction](https://github.com/picaye/jev-compaction), [jev-plugins](https://github.com/Pinutss/jev-plugins), [jevkeep](https://github.com/hatt-io/jevkeep), [pi-jev-router](https://github.com/gloridifice/pi-jev-router)
+- **Browser & computer use (6):** [jev-social](https://github.com/socai-io/jev-social), [jev-skip](https://github.com/valentynkit/jev-skip), [jevarena](https://github.com/raihankhan-rk/jevarena), [jev-browser-pilot](https://github.com/aidil2105/jev-browser-pilot), [jevlens](https://github.com/knowlet/jevlens), [jev-orb](https://github.com/bottlebrushes/jev-orb)
+- **Applications (7):** [jev.nvim](https://github.com/valentynkit/jev.nvim), [github-star-organizer-jev](https://github.com/yutkat/github-star-organizer-jev), [jev](https://github.com/haibt163/jev), [JevSysUno](https://github.com/Dujaydis/JevSysUno), [jev-trader](https://github.com/renatosousa/jev-trader), [newsscore](https://github.com/mahynotch/newsscore), [trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)
+- **Games & simulations (8):** [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red), [jev-royal](https://github.com/Amrit-Nigam/jev-royal), [beat-jev](https://github.com/ojusave/beat-jev), [f1](https://github.com/MartinPuli/f1), [jev-atari-lab](https://github.com/memorysaver/jev-atari-lab), [jev-plays-pokemon](https://github.com/zbloss/jev-plays-pokemon), [JevArena](https://github.com/rolki-png/JevArena), [naimono-lab](https://github.com/mocchalera/naimono-lab)
+- **Demos & playgrounds (2):** [forma-system1-experiment](https://github.com/LamplighterPaul/forma-system1-experiment), [tiny-jev](https://github.com/karimatayuta/tiny-jev)
+- **Benchmarks & research (4):** [openjev](https://github.com/DECRUX9812/openjev), [paper-package](https://github.com/CompleteDotTech/paper-package), [jev-vs-luna](https://github.com/mameli/jev-vs-luna), [typed-decisions](https://github.com/kotoba-lang/typed-decisions)
+- **Other lists (5):** [awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe), [awesome-jev](https://github.com/hellogumbo/awesome-jev), [awesome-jev-typesafe](https://github.com/valentynkit/awesome-jev-typesafe), [jevusecases](https://github.com/theSekyi/jevusecases), [Jev-Case](https://github.com/Hiwoniu/Jev-Case)
+
+</details>
 
 ### Official (6)
 
@@ -688,7 +698,7 @@ Please include:
 - Metric sources and measurement method
 - Optional localized summaries
 
-Submissions without a public call site may enter the review queue, but they are not eligible for Featured until the implementation is verified.
+Submissions without a public call site may enter the review queue and can be added after the implementation is verified.
 
 To edit catalog data, verification metadata, translations, or repository tooling, read [CONTRIBUTING.md](CONTRIBUTING.md). It contains the schema, editorial rules, evidence requirements, localization workflow, and validation commands.
 

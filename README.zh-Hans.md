@@ -42,13 +42,23 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 
 本 README 是一份带日期的完整快照，收录 **485 个公开 GitHub 仓库**。Star 数采集于 **2026 年 9 月 18–20 日**，仅用于帮助发现项目，不代表质量排名；使用前请到原仓库确认实际行为、活跃度和许可证。
 
-## 精选项目
+## 今日新增
 
-入选项目需要满足几项基本条件：能找到并核验 Jev 的实际调用位置，决策用途明确，有公开源码或可访问的演示，审阅信息仍然有效，页面上的指标也都有出处。
+<details open>
+<summary><strong>2026 年 9 月 20 日新增 52 个项目</strong></summary>
 
-| 项目名 | Stars | 语言 | 描述 |
-|---|---:|---|---|
-| [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | ★ 4,799 | Python | 根据可见页面状态选择下一步浏览器操作和目标元素。[调用点已核验](https://github.com/browser-use/jev-ultrafast/blob/main/jev_ultrafast/agent.py) · 维护者运行手册 · 作者报告指标。 |
+- **官方项目（2）：** [TypeSafe Daggerverse](https://github.com/typesafe-ai/daggerverse)、[TypeSafe Overwatch](https://github.com/typesafe-ai/Overwatch)
+- **SDK 与客户端（1）：** [jev-cli](https://github.com/lhotwll217/jev-cli)
+- **框架与集成（4）：** [jevql](https://github.com/kylemclaren/jevql)、[ground-zero](https://github.com/zavocc/ground-zero)、[hiep-paseo-plugin](https://github.com/HiepPP/hiep-paseo-plugin)、[jev-connector](https://github.com/adhamelhayek-lab/jev-connector)
+- **Agent 工具（13）：** [tenet](https://github.com/zoidsh/tenet)、[jev-belay](https://github.com/valentynkit/jev-belay)、[jev-commit](https://github.com/valentynkit/jev-commit)、[pi-fast-jev-compaction](https://github.com/QuentinDanblon/pi-fast-jev-compaction)、[jev-flash-router](https://github.com/Ravinder82/jev-flash-router)、[pi-jev](https://github.com/iefnaf/pi-jev)、[pi-jev-helm](https://github.com/Z761293629/pi-jev-helm)、[stepwarden](https://github.com/getexcited/stepwarden)、[AskJev-MCP](https://github.com/cbruyndoncx/AskJev-MCP)、[jev-compaction](https://github.com/picaye/jev-compaction)、[jev-plugins](https://github.com/Pinutss/jev-plugins)、[jevkeep](https://github.com/hatt-io/jevkeep)、[pi-jev-router](https://github.com/gloridifice/pi-jev-router)
+- **浏览器与计算机操作（6）：** [jev-social](https://github.com/socai-io/jev-social)、[jev-skip](https://github.com/valentynkit/jev-skip)、[jevarena](https://github.com/raihankhan-rk/jevarena)、[jev-browser-pilot](https://github.com/aidil2105/jev-browser-pilot)、[jevlens](https://github.com/knowlet/jevlens)、[jev-orb](https://github.com/bottlebrushes/jev-orb)
+- **应用（7）：** [jev.nvim](https://github.com/valentynkit/jev.nvim)、[github-star-organizer-jev](https://github.com/yutkat/github-star-organizer-jev)、[jev](https://github.com/haibt163/jev)、[JevSysUno](https://github.com/Dujaydis/JevSysUno)、[jev-trader](https://github.com/renatosousa/jev-trader)、[newsscore](https://github.com/mahynotch/newsscore)、[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)
+- **游戏与模拟（8）：** [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red)、[jev-royal](https://github.com/Amrit-Nigam/jev-royal)、[beat-jev](https://github.com/ojusave/beat-jev)、[f1](https://github.com/MartinPuli/f1)、[jev-atari-lab](https://github.com/memorysaver/jev-atari-lab)、[jev-plays-pokemon](https://github.com/zbloss/jev-plays-pokemon)、[JevArena](https://github.com/rolki-png/JevArena)、[naimono-lab](https://github.com/mocchalera/naimono-lab)
+- **演示与试验场（2）：** [forma-system1-experiment](https://github.com/LamplighterPaul/forma-system1-experiment)、[tiny-jev](https://github.com/karimatayuta/tiny-jev)
+- **基准测试与研究（4）：** [openjev](https://github.com/DECRUX9812/openjev)、[paper-package](https://github.com/CompleteDotTech/paper-package)、[jev-vs-luna](https://github.com/mameli/jev-vs-luna)、[typed-decisions](https://github.com/kotoba-lang/typed-decisions)
+- **其他列表（5）：** [awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe)、[awesome-jev](https://github.com/hellogumbo/awesome-jev)、[awesome-jev-typesafe](https://github.com/valentynkit/awesome-jev-typesafe)、[jevusecases](https://github.com/theSekyi/jevusecases)、[Jev-Case](https://github.com/Hiwoniu/Jev-Case)
+
+</details>
 
 ### 官方项目（6）
 
@@ -688,7 +698,7 @@ Jev 接收一个**状态（state）**以及一个或多个类型化**问题（qu
 - 指标来源和测量方法
 - 可选的本地化摘要
 
-没有公开调用点的提交可以进入审阅队列，但在实现得到核验之前不能成为精选项目。
+没有公开调用点的提交可以进入审阅队列，待实现得到核验后再正式收录。
 
 如需编辑目录数据、核验元数据、翻译或仓库工具，请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。其中包含数据结构、编辑规则、证据要求、本地化流程和验证命令。
 
