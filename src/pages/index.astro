@@ -4,14 +4,12 @@ import { catalogStats, categories, projects } from '../lib/catalog';
 import {
   AppWindow,
   ArrowDown,
-  AtSign,
   BadgeCheck,
   Blocks,
   Bot,
   ChartNoAxesCombined,
   Check,
   ChevronDown,
-  CirclePlus,
   FlaskConical,
   Gamepad2,
   House,
@@ -19,7 +17,6 @@ import {
   Languages,
   LayoutGrid,
   ListTree,
-  Mail,
   Menu,
   MonitorSmartphone,
   Search,
@@ -35,7 +32,6 @@ const t = (english: string, chinese: string) => isZh ? chinese : english;
 const repositoryUrl = process.env.GITHUB_REPOSITORY
   ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
   : 'https://github.com/heyjunpenn/awesome-jev';
-const submissionUrl = `${repositoryUrl}/issues/new?title=${encodeURIComponent('[Submission] ')}`;
 const languages = [...new Set(projects.map((project) => project.language).filter((language) => language !== '—'))]
   .sort((a, b) => a.localeCompare(b));
 const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
@@ -236,27 +232,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 <small>{category.count}</small>
               </a>
             ))}
-          </nav>
-
-          <div class="collaboration-nav-head">
-            <span>{t('Submit & collaborate', '提交与合作')}</span>
-          </div>
-          <nav class="collaboration-nav" aria-label={t('Submit and collaborate', '提交与合作')}>
-            <a href={submissionUrl} target="_blank" rel="noreferrer">
-              <CirclePlus class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{t('Submit', '提交')}</span>
-              <small>GitHub issue</small>
-            </a>
-            <a href="https://x.com/heyjunpenn" target="_blank" rel="noreferrer">
-              <AtSign class="nav-icon" size={16} stroke-width={1.75} />
-              <span>X</span>
-              <small>@heyjunpenn</small>
-            </a>
-            <a href="mailto:someuxyz@gmail.com">
-              <Mail class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{t('Email', '邮件')}</span>
-              <small>someuxyz@gmail.com</small>
-            </a>
           </nav>
 
           <div class="collaboration-placement">
