@@ -54,6 +54,17 @@ const en = {
     repositories: 'Public GitHub repositories', repositoriesSuffix: ' for implementation evidence and metadata.',
     catalogData: 'Machine-readable catalog data', catalogDataSuffix: ' for reproducible project records.',
   },
+  submission: {
+    eyebrow: 'Contribute',
+    title: 'How to submit a new project',
+    intro: 'Know a public project that uses Jev? Send us its repository and the evidence needed to verify it. Submissions are reviewed before they appear in the catalog.',
+    shortCta: 'Submit', cta: 'Submit a project', ctaHint: 'Opens a pre-filled GitHub issue.',
+    steps: [
+      { title: 'Share the repository', description: 'Provide the public GitHub URL and a concise description of what the project does.' },
+      { title: 'Show how it uses Jev', description: 'Link to code, documentation, a demo, or another public source that makes the Jev integration verifiable.' },
+      { title: 'We review and publish', description: 'We verify the evidence, choose the right category, and add accepted projects in a future catalog update.' },
+    ],
+  },
   footer: { label: 'Site information', about: 'About', contact: 'Contact', privacy: 'Privacy', terms: 'Terms', docs: 'Jev docs' },
 } as const;
 

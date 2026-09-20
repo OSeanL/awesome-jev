@@ -50,6 +50,17 @@ const zh: Messages = {
     officialDocs: 'Jev 官方文档', officialDocsSuffix: '，用于核对产品概念和基础能力。', repositories: '公开 GitHub 仓库',
     repositoriesSuffix: '，用于确认实现方式和项目数据。', catalogData: '可机读目录数据', catalogDataSuffix: '，用于复核每条项目记录。',
   },
+  submission: {
+    eyebrow: '参与贡献',
+    title: '如何提交新项目？',
+    intro: '如果你发现了使用 Jev 的公开项目，请把仓库和可核验的依据发给我们。所有项目通过人工核验后才会加入目录。',
+    shortCta: '提交项目', cta: '提交新项目', ctaHint: '将打开预填好的 GitHub Issue。',
+    steps: [
+      { title: '提供项目仓库', description: '填写公开的 GitHub 仓库地址，并用一句话说明项目解决什么问题。' },
+      { title: '说明如何使用 Jev', description: '附上代码、文档、演示或其他公开链接，让 Jev 的实际集成方式可以被核验。' },
+      { title: '等待核验与收录', description: '我们会核对依据、选择合适分类，并在后续目录更新中加入符合条件的项目。' },
+    ],
+  },
   footer: { label: '网站信息', about: '关于', contact: '联系', privacy: '隐私', terms: '条款', docs: 'Jev 文档' },
 };
 

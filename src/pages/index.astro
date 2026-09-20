@@ -18,8 +18,6 @@ import {
   CirclePlus,
   FlaskConical,
   Gamepad2,
-  House,
-  Info,
   LayoutGrid,
   ListTree,
   Mail,
@@ -38,7 +36,16 @@ const { categories, projects } = getCatalog(locale);
 const repositoryUrl = process.env.GITHUB_REPOSITORY
   ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
   : 'https://github.com/heyjunpenn/awesome-jev';
-const submissionUrl = `${repositoryUrl}/issues/new?title=${encodeURIComponent('[Submission] ')}`;
+const submissionIssueBody = [
+  '## Project',
+  '- Repository URL:',
+  '- Short description:',
+  '',
+  '## Jev usage',
+  '- Evidence link (code, docs, or demo):',
+  '- How does this project use Jev?',
+].join('\n');
+const submissionUrl = `${repositoryUrl}/issues/new?title=${encodeURIComponent('[Submission] Project name')}&body=${encodeURIComponent(submissionIssueBody)}`;
 const languages = [...new Set(projects.map((project) => project.language).filter((language) => language !== '—'))]
   .sort((a, b) => a.localeCompare(b));
 const sortedProjects = [...projects].sort((a, b) => {
@@ -232,9 +239,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
         <div class="sidebar-primary">
           <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
-            <a class="active" href="#overview"><House class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.overview}</span></a>
-            <a href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
-            <a href="#about-bestjev"><Info class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutBestjev}</span></a>
+            <a class="active" href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
             <a href="#about"><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
             <a href={repositoryUrl} target="_blank" rel="noreferrer">
               <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -354,6 +359,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   <input id="project-search" type="search" placeholder={messages.hero.searchPlaceholder} autocomplete="off" />
                   <kbd>/</kbd>
                 </label>
+                <a class="submit-project-shortcut" href={submissionUrl} target="_blank" rel="noreferrer">
+                  <CirclePlus size={17} stroke-width={1.9} aria-hidden="true" />
+                  <span>{messages.submission.shortCta}</span>
+                </a>
               </div>
             </div>
 
@@ -453,6 +462,28 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <li><a href={`${siteUrl}catalog.json`}>{messages.methodology.catalogData}</a>{messages.methodology.catalogDataSuffix}</li>
             </ul>
           </div>
+        </section>
+
+        <section class="submission" id="submit-project">
+          <div class="submission-heading">
+            <span>{messages.submission.eyebrow}</span>
+            <h2>{messages.submission.title}</h2>
+            <p>{messages.submission.intro}</p>
+            <a class="submission-cta" href={submissionUrl} target="_blank" rel="noreferrer">
+              <CirclePlus size={18} stroke-width={1.9} aria-hidden="true" />
+              <span>{messages.submission.cta}</span>
+              <ArrowUpRight size={16} stroke-width={1.9} aria-hidden="true" />
+            </a>
+            <small>{messages.submission.ctaHint}</small>
+          </div>
+          <ol class="submission-steps">
+            {messages.submission.steps.map((step, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div><h3>{step.title}</h3><p>{step.description}</p></div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <footer>
