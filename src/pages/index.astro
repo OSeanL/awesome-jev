@@ -151,6 +151,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <style is:inline>@media (max-width: 1080px) { .sidebar { visibility: hidden; transform: translateX(-102%); } body.menu-open .sidebar { visibility: visible; transform: translateX(0); } }</style>
     <meta name="theme-color" content="#f7f7f5" />
     <meta name="description" content={pageDescription} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -200,7 +201,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <button class="sidebar-close" type="button" aria-label={t('Close navigation', '关闭导航')}><X size={18} stroke-width={1.8} /></button>
         </div>
 
-        <div class="sidebar-scroll">
+        <div class="sidebar-primary">
           <nav class="side-nav primary-nav" aria-label={t('Primary navigation', '主导航')}>
             <a class="active" href="#overview"><House class="nav-icon" size={17} stroke-width={1.8} /><span>{t('Overview', '概览')}</span></a>
             <a href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{t('All projects', '全部项目')}</span><small>{catalogStats.projects}</small></a>
@@ -219,7 +220,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <p>{t('Promote your project', '推广你的项目')}</p>
             <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">someuxyz@gmail.com</a>
           </div>
+        </div>
 
+        <div class="sidebar-scroll">
           <div class="category-nav-head">
             <span>{t('Categories', '项目分类')}</span>
           </div>
