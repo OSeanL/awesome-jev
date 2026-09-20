@@ -49,9 +49,9 @@ a { color: inherit; }
 .sidebar-primary { flex: 0 0 auto; padding-right: 2px; }
 .sidebar-primary .side-nav { margin-top: 6px; }
 .sidebar-scroll { min-height: 0; flex: 1 1 auto; overflow-y: auto; margin: 6px -4px 0 0; padding-right: 6px; scrollbar-color: #c2c2bd transparent; scrollbar-width: thin; }
-.side-nav { display: grid; gap: 1px; }
+.side-nav { display: grid; gap: 3px; }
 .side-nav a, .category-nav a { position: relative; display: flex; align-items: center; gap: 11px; border: 1px solid transparent; border-radius: 5px; color: #5b5b57; text-decoration: none; transition: color .16s ease, background-color .16s ease, border-color .16s ease, box-shadow .16s ease; }
-.side-nav a { min-height: 34px; padding: 0 10px; font-size: .875rem; font-weight: 600; }
+.side-nav a { min-height: 37px; padding: 0 10px; font-size: .875rem; font-weight: 600; }
 .side-nav a.active { color: var(--ink); border-color: transparent; background: #e9e9e5; box-shadow: none; }
 .side-nav small, .category-nav small { margin-left: auto; color: #83837e; font: var(--text-label)/1 var(--font-mono); font-variant-numeric: tabular-nums lining-nums; }
 .side-nav small, .category-nav small { padding: 3px 5px; border-radius: 3px; transition: color .16s ease, background-color .16s ease; }
@@ -62,8 +62,8 @@ a { color: inherit; }
 .side-nav a:active, .category-nav a:active { color: var(--ink); border-color: transparent; background: #e4e4df; box-shadow: none; }
 .side-nav a:focus-visible, .category-nav a:focus-visible { outline-offset: 1px; }
 .category-nav-head { margin: 10px 9px 4px; color: #787873; font: 650 var(--text-label)/1 var(--font-mono); letter-spacing: .075em; text-transform: uppercase; }
-.category-nav { display: grid; gap: 1px; }
-.category-nav a { min-height: 29px; padding: 0 9px; font-size: .8125rem; line-height: 1.2; }
+.category-nav { display: grid; gap: 3px; }
+.category-nav a { min-height: 32px; padding: 0 9px; font-size: .8125rem; line-height: 1.2; }
 .category-nav a.selected { color: var(--ink); border-color: transparent; background: #e9e9e5; box-shadow: none; }
 .category-nav a.selected small { color: #4f6088; }
 .collaboration-placement { margin: 8px 4px 4px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 9px 10px; border: 1px dashed #aaa9a2; border-radius: 5px; background: rgba(255,255,255,.52); color: var(--ink); }
