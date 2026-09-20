@@ -2,13 +2,13 @@ import type { Messages } from './en';
 
 const zh: Messages = {
   seo: {
-    title: (projects) => `${projects} 个 Jev AI 开源项目、SDK 与工具 | Awesome Jev`,
+    title: (projects) => `${projects} 个 Jev AI 开源项目、SDK 与工具 | bestjev`,
     description: (projects) => `收录 ${projects} 个使用 TypeSafe AI System One 模型 Jev 的开源项目，包括 SDK、Agent、集成工具和基准测试。`,
-    catalogName: 'Awesome Jev 开源项目目录', alternateName: 'Awesome Jev 开源项目目录',
+    catalogName: 'bestjev 开源项目目录', alternateName: 'Awesome Jev 开源项目目录',
     imageAlt: (projects, categories) => `${projects} 个经过核验的 Jev 开源项目，覆盖 ${categories} 个分类`,
   },
   nav: {
-    close: '关闭导航', primary: '主导航', overview: '概览', allProjects: '全部项目', aboutJev: '关于 Jev', categories: '项目分类',
+    close: '关闭导航', primary: '主导航', overview: '概览', allProjects: '全部项目', aboutBestjev: '关于 bestjev', aboutJev: '关于 Jev', categories: '项目分类',
     projectCategories: '项目分类', collaborate: '提交与合作', collaborateLabel: '提交与合作', submit: '提交', email: '邮件', promote: '推广你的项目',
     open: '打开导航', language: '语言',
   },
@@ -20,6 +20,15 @@ const zh: Messages = {
   catalog: {
     all: '全部', project: '项目', stars: 'Star', language: '语言', description: '简介', projectsLabel: 'Jev 项目', sortAscending: '按 Star 升序排列',
     sortDescending: '按 Star 降序排列', noMatches: '没有符合条件的项目', noMatchesHint: '换个关键词或分类试试。', showMore: '查看更多',
+  },
+  siteIntro: {
+    eyebrow: '关于目录',
+    title: 'bestjev 是什么？',
+    paragraphs: [
+      'bestjev 是一个独立、由社区维护的 Jev 开源项目目录。Jev 是 TypeSafe AI 面向软件类型化决策的 System One 模型。',
+      '每个条目都链接到原始仓库，并记录分类、主要开发语言、GitHub Star 快照和本地化简介，帮助开发者查找可核验的 Jev SDK、Agent、集成、应用、研究和工具。',
+      'bestjev 与 TypeSafe AI 无隶属关系，也未获得其官方背书。',
+    ],
   },
   about: {
     title: 'Jev 是什么？',

@@ -3,16 +3,17 @@ import en, { type Messages } from './en';
 const ja: Messages = {
   ...en,
   seo: {
-    title: (n) => `${n}件のJev AIプロジェクト、SDK、ツール | Awesome Jev`,
+    title: (n) => `${n}件のJev AIプロジェクト、SDK、ツール | bestjev`,
     description: (n) => `TypeSafe AIのSystem OneモデルJevを活用した${n}件のオープンソースプロジェクト、SDK、エージェント、統合、ベンチマーク、ツールを検索できます。`,
-    catalogName: 'Awesome Jev オープンソースプロジェクトカタログ', alternateName: 'Awesome Jev プロジェクトカタログ',
+    catalogName: 'bestjev オープンソースプロジェクトカタログ', alternateName: 'Awesome Jev プロジェクトカタログ',
     imageAlt: (p, c) => `${c}カテゴリーにわたる${p}件の検証済みJevオープンソースプロジェクト`,
   },
-  nav: { close: 'ナビゲーションを閉じる', primary: 'メインナビゲーション', overview: '概要', allProjects: 'すべてのプロジェクト', aboutJev: 'Jevについて', categories: 'カテゴリー', projectCategories: 'プロジェクトカテゴリー', collaborate: '投稿とコラボレーション', collaborateLabel: '投稿とコラボレーション', submit: '投稿', email: 'メール', promote: 'プロジェクトを宣伝', open: 'ナビゲーションを開く', language: '言語' },
+  nav: { close: 'ナビゲーションを閉じる', primary: 'メインナビゲーション', overview: '概要', allProjects: 'すべてのプロジェクト', aboutBestjev: 'bestjevについて', aboutJev: 'Jevについて', categories: 'カテゴリー', projectCategories: 'プロジェクトカテゴリー', collaborate: '投稿とコラボレーション', collaborateLabel: '投稿とコラボレーション', submit: '投稿', email: 'メール', promote: 'プロジェクトを宣伝', open: 'ナビゲーションを開く', language: '言語' },
   hero: { title: '最高のJevプロジェクト', summary: (p, c, l) => `${p}件の検証済みリポジトリを、${c}カテゴリー・${l}言語から検索できます。`, lastUpdated: '最終更新', updatedDate: '2026年9月20日', filterLanguage: '言語で絞り込む', allLanguages: 'すべての言語', languages: '言語', searchPlaceholder: 'プロジェクト、言語、判断を検索', imageAlt: '構造化入力がJevを通じて確率的な判断に変換される' },
   catalog: { all: 'すべて', project: 'プロジェクト', stars: 'スター', language: '言語', description: '説明', projectsLabel: 'Jevプロジェクト', sortAscending: 'スターの昇順で並べ替え', sortDescending: 'スターの降順で並べ替え', noMatches: '一致するプロジェクトがありません', noMatchesHint: '別のキーワードまたはカテゴリーをお試しください。', showMore: 'さらに表示' },
+  siteIntro: { eyebrow: 'カタログについて', title: 'bestjevとは？', paragraphs: ['bestjevは、TypeSafe AIの型付き意思決定向けSystem Oneモデル「Jev」を中心とした、独立運営・コミュニティ管理のオープンソースプロジェクト集です。', '各項目は元のリポジトリへリンクし、カテゴリー、主要言語、GitHubスターのスナップショット、ローカライズされた説明を記録しています。検証可能なJev SDK、エージェント、統合、アプリ、研究、ツールを探せます。', 'bestjevはTypeSafe AIとの提携関係になく、同社の承認を受けたものではありません。'] },
   about: { title: 'Jevとは？', paragraphs: ['Jevは、ソフトウェアが直接利用できる判断のためのTypeSafe AI System Oneモデルです。自由形式の文章ではなく、状態と型付きの質問を受け取り、調整済み確率を含む構造化された回答を返します。', '選択肢や評価基準が事前に分かっている、エージェントのルーティング、ツール呼び出しの検証、候補のランク付け、ポリシーチェックなどに適しています。'], advantage: '運用上の利点', advantageText: 'アプリケーションはしきい値を設定し、不確実性を確認し、低信頼度のケースを人または大規模モデルに送れます。', primitives: [{ code: 'CHOICE', title: '選択肢を一つ選ぶ', description: '既知の選択肢から選び、信頼度付きの確率を返します。' }, { code: 'SCORE', title: '基準で評価', description: '順序付きスケール上で入力を評価し、分布全体を返します。' }, { code: 'NOUL', title: '真実性を推定', description: '文が真である確率を0から1で返します。' }] },
-  methodology: { title: 'このカタログはどのように検証されますか？', intro: '各項目は、上流リポジトリ、プロジェクトの文書、Jevの使用実績などの公開証拠と照合しています。スター数は特定日のスナップショットであり、品質ランキングではありません。', curatedBy: '編集', quote: '「Jevは、非構造化状態を入力し、型付き確率的判断を出力する、最前線の知性を持つ関数呼び出しと考えられます。」', quoteSource: 'TypeSafe AI、Jevの紹介', sourcesTitle: 'Awesome Jevはどの情報源を使いますか？', officialDocs: 'Jev公式ドキュメント', officialDocsSuffix: '：製品概念と基本機能の確認。', repositories: '公開GitHubリポジトリ', repositoriesSuffix: '：実装の証拠とメタデータ。', catalogData: '機械可読カタログデータ', catalogDataSuffix: '：再現可能なプロジェクト記録。' },
+  methodology: { title: 'このカタログはどのように検証されますか？', intro: '各項目は、上流リポジトリ、プロジェクトの文書、Jevの使用実績などの公開証拠と照合しています。スター数は特定日のスナップショットであり、品質ランキングではありません。', curatedBy: '編集', quote: '「Jevは、非構造化状態を入力し、型付き確率的判断を出力する、最前線の知性を持つ関数呼び出しと考えられます。」', quoteSource: 'TypeSafe AI、Jevの紹介', sourcesTitle: 'bestjevはどの情報源を使いますか？', officialDocs: 'Jev公式ドキュメント', officialDocsSuffix: '：製品概念と基本機能の確認。', repositories: '公開GitHubリポジトリ', repositoriesSuffix: '：実装の証拠とメタデータ。', catalogData: '機械可読カタログデータ', catalogDataSuffix: '：再現可能なプロジェクト記録。' },
   footer: { label: 'サイト情報', about: '概要', contact: 'お問い合わせ', privacy: 'プライバシー', terms: '利用規約', docs: 'Jevドキュメント' },
 };
 
