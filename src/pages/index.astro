@@ -3,11 +3,14 @@ import '../styles/global.css';
 import { catalogStats, categories, projects } from '../lib/catalog';
 import {
   AppWindow,
+  ArrowDown,
   AtSign,
   BadgeCheck,
   Blocks,
   Bot,
   ChartNoAxesCombined,
+  Check,
+  ChevronDown,
   CirclePlus,
   FlaskConical,
   Gamepad2,
@@ -20,6 +23,7 @@ import {
   Menu,
   MonitorSmartphone,
   Search,
+  Star,
   Workflow,
   X,
 } from '@lucide/astro';
@@ -36,6 +40,14 @@ const languages = [...new Set(projects.map((project) => project.language).filter
   .sort((a, b) => a.localeCompare(b));
 const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
 const navigationCategories = categories.map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }));
+const repositorySlug = (url: string) => {
+  try {
+    const [owner, repository] = new URL(url).pathname.split('/').filter(Boolean);
+    return owner && repository ? `${owner}/${repository.replace(/\.git$/, '')}` : url;
+  } catch {
+    return url;
+  }
+};
 const siteUrl = 'https://jevbest.com/';
 const pageUrl = isZh ? `${siteUrl}zh/` : siteUrl;
 const socialImageUrl = `${siteUrl}readme/awesome-jev-hero.png`;
@@ -203,7 +215,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
           <div class="category-nav-head">
             <span>{t('Categories', '项目分类')}</span>
-            <span>{catalogStats.categories}</span>
           </div>
           <nav class="category-nav" aria-label={t('Project categories', '项目分类')}>
             {navigationCategories.map(({ Icon, ...category }) => (
@@ -236,6 +247,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <small>someuxyz@gmail.com</small>
             </a>
           </nav>
+
+          <div class="sidebar-ad">
+            <span class="ad-badge">AD</span>
+            <strong>Claim this placement</strong>
+            <p>{t('Promote your project', '推广你的项目')}</p>
+            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">someuxyz@gmail.com</a>
+          </div>
         </div>
 
         <div class="sidebar-foot">
@@ -257,48 +275,42 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <section class="hero" id="overview">
           <div class="hero-shell">
             <div class="hero-copy">
-              <h1>{t('Find the right Jev project', '找到你需要的 Jev 项目')}</h1>
+              <h1>Best Jav Projects</h1>
               <p>{t(`Search ${catalogStats.projects} verified repositories across ${catalogStats.categories} categories and ${catalogStats.languages} languages.`, `从 ${catalogStats.projects} 个已核验仓库中搜索，也可以按 ${catalogStats.categories} 个分类和 ${catalogStats.languages} 种语言筛选。`)}</p>
+              <div class="hero-updated"><span>{t('Last updated', '最近更新')}</span><time datetime="2026-09-20">{t('September 20, 2026', '2026 年 9 月 20 日')}</time></div>
+              <div class="filter-panel filter-dock">
+                <div class="language-picker" data-language-picker>
+                  <button class="language-trigger" id="language-filter" type="button" aria-label={t('Filter by language', '按语言筛选')} aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options">
+                    <span data-language-label>{t('All languages', '全部语言')}</span>
+                    <ChevronDown class="language-chevron" size={15} stroke-width={1.8} aria-hidden="true" />
+                  </button>
+                  <div class="language-menu" id="language-options" role="listbox" aria-label={t('Languages', '语言')} hidden>
+                    <button class="language-option" type="button" role="option" data-language-value="all" aria-selected="true">
+                      <span>{t('All languages', '全部语言')}</span><Check class="option-check" size={14} stroke-width={2} aria-hidden="true" />
+                    </button>
+                    {languages.map((language) => (
+                      <button class="language-option" type="button" role="option" data-language-value={language} aria-selected="false">
+                        <span>{language}</span><Check class="option-check" size={14} stroke-width={2} aria-hidden="true" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <label class="search-box">
+                  <span aria-hidden="true"><Search size={18} stroke-width={1.8} /></span>
+                  <input id="project-search" type="search" placeholder={t('Search projects, languages, or decisions', '搜索项目、语言或决策')} autocomplete="off" />
+                  <kbd>/</kbd>
+                </label>
+              </div>
             </div>
 
-            <aside class="featured-ad-slot" id="featured" aria-label={t('Featured placement', '推广位')}>
-              <div class="featured-ad">
-                <span class="featured-ad-label">{t('Featured placement', '推广位')}</span>
-                <span class="featured-ad-project">{t('No promotion running', '暂无推广内容')}</span>
-                <span class="featured-ad-description">{t('Reserved for projects and tools serving the Jev ecosystem.', '这个位置将用于展示 Jev 生态项目或工具。')}</span>
-                <span class="featured-ad-footer">
-                  <span>{t('Currently vacant', '当前空置')}</span>
-                  <span class="featured-ad-action">{t('Reserved', '预留中')}</span>
-                </span>
-              </div>
-            </aside>
+            <figure class="hero-illustration">
+              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={t('Structured inputs flow through Jev into probabilistic decisions', '结构化输入经过 Jev，转化为概率决策')} />
+            </figure>
           </div>
         </section>
 
         <div class="catalog-region">
-          <div class="filter-panel filter-dock">
-            <label class="search-box">
-              <span aria-hidden="true"><Search size={18} stroke-width={1.8} /></span>
-              <input id="project-search" type="search" placeholder={t('Search projects, languages, or decisions', '搜索项目、语言或决策')} autocomplete="off" />
-              <kbd>/</kbd>
-            </label>
-            <label class="select-wrap">
-              <span>{t('Language', '语言')}</span>
-              <select id="language-filter">
-                <option value="all">{t('All languages', '全部语言')}</option>
-                {languages.map((language) => <option value={language}>{language}</option>)}
-              </select>
-            </label>
-          </div>
-
           <section class="catalog" id="projects">
-            <div class="catalog-head">
-              <div>
-                <h2 id="projects-heading">{t('Which Jev projects can you explore?', 'Jev 项目一览')}</h2>
-              </div>
-              <div class="result-count"><strong id="result-count">{projects.length}</strong><span>{t('results', '个项目')}</span></div>
-            </div>
-
             <div class="category-strip" role="group" aria-label={t('Project categories', '项目分类')}>
               <button class="category-button selected" type="button" data-category="all"><span>{t('All', '全部')}</span><b>{projects.length}</b></button>
               {categories.map((category) => (
@@ -310,12 +322,27 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               ))}
             </div>
 
-            <div class="table-heading" aria-hidden="true"><span>{t('Project', '项目')}</span><span>{t('Stars', 'Star')}</span><span>{t('Language', '语言')}</span><span>{t('Description', '简介')}</span></div>
-            <ol class="project-table" id="project-table" aria-labelledby="projects-heading">
+            <div class="table-heading" role="row">
+              <span role="columnheader">{t('Project', '项目')}</span>
+              <span class="star-heading" role="columnheader" aria-sort="descending">
+                <button
+                  class="sort-button"
+                  id="star-sort"
+                  type="button"
+                  data-direction="desc"
+                  data-label-ascending={t('Sort by stars ascending', '按 Star 升序排列')}
+                  data-label-descending={t('Sort by stars descending', '按 Star 降序排列')}
+                  aria-label={t('Sort by stars ascending', '按 Star 升序排列')}
+                >{t('Stars', 'Star')}<ArrowDown size={13} stroke-width={1.9} aria-hidden="true" /></button>
+              </span>
+              <span role="columnheader">{t('Language', '语言')}</span>
+              <span role="columnheader">{t('Description', '简介')}</span>
+            </div>
+            <ol class="project-table" id="project-table" aria-label={t('Jev projects', 'Jev 项目')}>
               {projects.map((project) => (
-                <li class="project-row" data-project data-category={project.categoryId} data-language={project.language} data-search={`${project.name} ${project.language} ${project.descriptionEn} ${project.descriptionZh}`.toLowerCase()}>
-                  <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{project.name}</h3><small class="localized en-copy">{project.categoryEn}</small><small class="localized zh-copy">{project.categoryZh}</small></a>
-                  <span class="stars">★ {project.starsLabel}</span>
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={`${project.name} ${repositorySlug(project.url)} ${project.language} ${project.descriptionEn} ${project.descriptionZh}`.toLowerCase()}>
+                  <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small class="localized en-copy">{project.categoryEn}</small><small class="localized zh-copy">{project.categoryZh}</small></a>
+                  <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
                   <p class="localized en-copy">{project.descriptionEn}</p>
                   <p class="localized zh-copy">{project.descriptionZh}</p>
@@ -357,7 +384,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <div class="methodology-copy">
             <p class="localized en-copy">Each entry is checked against public evidence: the upstream repository, project-authored documentation, and visible Jev usage. Stars are a dated discovery snapshot, not a quality ranking.</p>
             <p class="localized zh-copy">我们会检查每个条目的公开依据，包括上游仓库、项目文档以及可以确认的 Jev 用法。Star 数记录的是核验当天的快照，只供参考，不代表项目质量。</p>
-            <p class="catalog-byline"><span>{t('Curated by', '整理：')}</span> <a href="https://github.com/heyjunpenn" rel="author">heyjunpenn</a> · <time datetime="2026-09-20">{t('Reviewed September 20, 2026', '最近核验：2026 年 9 月 20 日')}</time></p>
+            <p class="catalog-byline"><span>{t('Curated by', '整理：')}</span> <a href="https://github.com/heyjunpenn" rel="author">heyjunpenn</a></p>
             <blockquote cite="https://typesafe.ai/blog/introducing-system-one-models-and-jev">
               <span class="localized en-copy">“Think of Jev as a frontier-intelligence function call: unstructured state in, typed probabilistic decisions out.”</span>
               <span class="localized zh-copy">“可以把 Jev 看成一次前沿智能函数调用：输入非结构化状态，输出带类型的概率决策。”</span>
@@ -391,8 +418,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <script>
       const rows = [...document.querySelectorAll<HTMLElement>('[data-project]')];
       const search = document.querySelector<HTMLInputElement>('#project-search');
-      const languageFilter = document.querySelector<HTMLSelectElement>('#language-filter');
-      const resultCount = document.querySelector('#result-count');
+      const languagePicker = document.querySelector<HTMLElement>('[data-language-picker]');
+      const languageFilter = document.querySelector<HTMLButtonElement>('#language-filter');
+      const languageMenu = document.querySelector<HTMLElement>('#language-options');
+      const languageLabel = document.querySelector<HTMLElement>('[data-language-label]');
+      const languageOptions = [...document.querySelectorAll<HTMLButtonElement>('[data-language-value]')];
+      const projectTable = document.querySelector<HTMLOListElement>('#project-table');
+      const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
+      const starHeading = document.querySelector<HTMLElement>('.star-heading');
       const loadMore = document.querySelector('#load-more');
       const emptyState = document.querySelector('#empty-state');
       const menuButton = document.querySelector('.menu-button');
@@ -402,11 +435,30 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const compactLayout = window.matchMedia('(max-width: 1080px)');
       const getPageSize = () => compactLayout.matches ? 16 : 36;
       let activeCategory = 'all';
+      let selectedLanguage = 'all';
+      let starSortDirection: 'asc' | 'desc' = 'desc';
       let visibleLimit = getPageSize();
+
+      const sortRowsByStars = () => {
+        rows.sort((a, b) => {
+          const difference = Number(a.dataset.stars ?? 0) - Number(b.dataset.stars ?? 0);
+          if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
+          const aName = a.querySelector('h3')?.textContent ?? '';
+          const bName = b.querySelector('h3')?.textContent ?? '';
+          return aName.localeCompare(bName);
+        });
+        rows.forEach((row) => projectTable?.append(row));
+        starSort?.setAttribute('data-direction', starSortDirection);
+        starHeading?.setAttribute('aria-sort', starSortDirection === 'desc' ? 'descending' : 'ascending');
+        if (starSort) {
+          starSort.setAttribute('aria-label', starSortDirection === 'desc'
+            ? starSort.dataset.labelAscending ?? ''
+            : starSort.dataset.labelDescending ?? '');
+        }
+      };
 
       const render = () => {
         const query = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : '';
-        const selectedLanguage = languageFilter instanceof HTMLSelectElement ? languageFilter.value : 'all';
         const matches = rows.filter((row) => {
           const categoryMatch = activeCategory === 'all' || row.dataset.category === activeCategory;
           const languageMatch = selectedLanguage === 'all' || row.dataset.language === selectedLanguage;
@@ -416,9 +468,27 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
         rows.forEach((row) => row.setAttribute('hidden', ''));
         matches.slice(0, visibleLimit).forEach((row) => row.removeAttribute('hidden'));
-        if (resultCount) resultCount.textContent = String(matches.length);
         if (loadMore instanceof HTMLButtonElement) loadMore.hidden = matches.length <= visibleLimit;
         if (emptyState instanceof HTMLElement) emptyState.hidden = matches.length !== 0;
+      };
+
+      const setLanguageMenuOpen = (open: boolean, focusOption = false) => {
+        if (!(languageFilter instanceof HTMLButtonElement) || !(languageMenu instanceof HTMLElement)) return;
+        languageFilter.setAttribute('aria-expanded', String(open));
+        languageMenu.hidden = !open;
+        if (open && focusOption) {
+          (languageOptions.find((option) => option.getAttribute('aria-selected') === 'true') ?? languageOptions[0])?.focus();
+        }
+      };
+
+      const selectLanguage = (option: HTMLButtonElement) => {
+        selectedLanguage = option.dataset.languageValue ?? 'all';
+        if (languageLabel) languageLabel.textContent = option.querySelector('span')?.textContent ?? option.textContent?.trim() ?? '';
+        languageOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+        visibleLimit = getPageSize();
+        setLanguageMenuOpen(false);
+        render();
+        languageFilter?.focus();
       };
 
       document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]').forEach((button) => button.addEventListener('click', () => {
@@ -431,11 +501,47 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           if (selected) item.setAttribute('aria-current', 'true');
           else item.removeAttribute('aria-current');
         });
-        button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         render();
       }));
       search?.addEventListener('input', () => { visibleLimit = getPageSize(); render(); });
-      languageFilter?.addEventListener('change', () => { visibleLimit = getPageSize(); render(); });
+      starSort?.addEventListener('click', () => {
+        starSortDirection = starSortDirection === 'desc' ? 'asc' : 'desc';
+        visibleLimit = getPageSize();
+        sortRowsByStars();
+        render();
+      });
+      languageFilter?.addEventListener('click', () => setLanguageMenuOpen(languageFilter.getAttribute('aria-expanded') !== 'true'));
+      languageFilter?.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          setLanguageMenuOpen(true, true);
+        } else if (event.key === 'Escape') {
+          setLanguageMenuOpen(false);
+        }
+      });
+      languageOptions.forEach((option, index) => {
+        option.addEventListener('click', () => selectLanguage(option));
+        option.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            const offset = event.key === 'ArrowDown' ? 1 : -1;
+            languageOptions[(index + offset + languageOptions.length) % languageOptions.length]?.focus();
+          } else if (event.key === 'Home' || event.key === 'End') {
+            event.preventDefault();
+            languageOptions[event.key === 'Home' ? 0 : languageOptions.length - 1]?.focus();
+          } else if (event.key === 'Escape') {
+            event.preventDefault();
+            setLanguageMenuOpen(false);
+            languageFilter?.focus();
+          }
+        });
+      });
+      document.addEventListener('pointerdown', (event) => {
+        if (languagePicker && !languagePicker.contains(event.target as Node)) setLanguageMenuOpen(false);
+      });
+      languagePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
+        if (languagePicker && !languagePicker.contains(document.activeElement)) setLanguageMenuOpen(false);
+      }));
       loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); render(); });
       const syncSidebarAccess = () => {
         const hidden = compactLayout.matches && !document.body.classList.contains('menu-open');
@@ -494,6 +600,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       });
 
       syncSidebarAccess();
+      sortRowsByStars();
       render();
     </script>
   </body>

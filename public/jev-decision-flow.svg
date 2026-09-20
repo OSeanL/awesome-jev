@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" role="img" aria-labelledby="title description">
+  <title id="title">Jev decision flow</title>
+  <desc id="description">Structured inputs move through the Jev decision core and become typed probability outputs.</desc>
+  <style>
+    :root { color-scheme: light; }
+    * { vector-effect: non-scaling-stroke; }
+    .line { fill: none; stroke: #202124; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .guide { fill: none; stroke: #b8b8b2; stroke-width: 1; stroke-dasharray: 4 7; }
+    .panel { fill: #fff; stroke: #202124; stroke-width: 2; }
+    .soft { fill: #d9d9d5; }
+    .ink { fill: #202124; }
+    .blue { fill: #3157ff; }
+    .port { fill: #fff; stroke: #202124; stroke-width: 2; }
+    .orbit { transform-origin: 360px 250px; animation: orbit 24s linear infinite; }
+    .core-pulse { transform-box: fill-box; transform-origin: center; animation: core 2.8s ease-in-out infinite; }
+    .input-accent { animation: accent 3.2s ease-in-out infinite; }
+    .meter-fill { transform-box: fill-box; transform-origin: left center; animation: meter 3.6s ease-in-out infinite; }
+    .meter-b { animation-delay: -.9s; }
+    .meter-c { animation-delay: -1.8s; }
+    .signal { fill: #3157ff; filter: url(#signal-glow); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes core { 0%, 100% { transform: scale(.88); opacity: .82; } 50% { transform: scale(1); opacity: 1; } }
+    @keyframes accent { 0%, 100% { opacity: .48; } 50% { opacity: 1; } }
+    @keyframes meter { 0%, 100% { transform: scaleX(.62); } 50% { transform: scaleX(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .orbit, .core-pulse, .input-accent, .meter-fill { animation: none; }
+      .signal { display: none; }
+    }
+  </style>
+  <defs>
+    <filter id="signal-glow" x="-200%" y="-200%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="2.2" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <path id="in-a" d="M164 82H205C248 82 238 190 298 232" />
+    <path id="in-b" d="M164 192H210L298 241" />
+    <path id="in-c" d="M164 302H210L298 259" />
+    <path id="in-d" d="M164 412H205C248 412 238 310 298 268" />
+    <path id="out-a" d="M422 232H492C522 232 516 130 552 130" />
+    <path id="out-b" d="M432 250H552" />
+    <path id="out-c" d="M422 268H492C522 268 516 370 552 370" />
+  </defs>
+
+  <g aria-hidden="true">
+    <circle class="guide orbit" cx="360" cy="250" r="132" />
+    <path class="guide" d="M360 24V112M360 388V476M246 250H206M514 250H474" />
+    <circle class="ink" cx="360" cy="24" r="3"/><circle class="ink" cx="360" cy="476" r="3"/>
+
+    <use href="#in-a" class="line"/><use href="#in-b" class="line"/><use href="#in-c" class="line"/><use href="#in-d" class="line"/>
+    <use href="#out-a" class="line"/><use href="#out-b" class="line"/><use href="#out-c" class="line"/>
+
+    <g>
+      <rect class="panel" x="24" y="40" width="130" height="84" rx="2"/>
+      <circle class="soft" cx="58" cy="69" r="7"/><circle class="soft" cx="89" cy="69" r="7"/><circle class="blue input-accent" cx="120" cy="69" r="7"/>
+      <circle class="ink" cx="58" cy="96" r="7"/><circle class="soft" cx="89" cy="96" r="7"/><circle class="soft" cx="120" cy="96" r="7"/>
+      <circle class="port" cx="164" cy="82" r="8"/>
+    </g>
+    <g>
+      <rect class="panel" x="24" y="150" width="130" height="84" rx="2"/>
+      <rect class="soft" x="48" y="172" width="48" height="8" rx="4"/>
+      <rect class="soft" x="48" y="188" width="78" height="8" rx="4"/>
+      <rect class="blue input-accent" x="48" y="204" width="62" height="8" rx="4"/>
+      <circle class="port" cx="164" cy="192" r="8"/>
+    </g>
+    <g>
+      <rect class="panel" x="24" y="260" width="130" height="84" rx="2"/>
+      <rect class="soft" x="50" y="280" width="28" height="22"/><rect class="soft" x="86" y="280" width="28" height="22"/>
+      <rect class="soft" x="50" y="310" width="28" height="18"/><rect class="blue input-accent" x="86" y="310" width="28" height="18"/>
+      <circle class="port" cx="164" cy="302" r="8"/>
+    </g>
+    <g>
+      <rect class="panel" x="24" y="370" width="130" height="84" rx="2"/>
+      <rect class="soft" x="48" y="416" width="13" height="19"/><rect class="soft" x="69" y="400" width="13" height="35"/>
+      <rect class="ink" x="90" y="386" width="13" height="49"/><rect class="blue input-accent" x="111" y="376" width="13" height="59"/>
+      <circle class="port" cx="164" cy="412" r="8"/>
+    </g>
+
+    <g>
+      <path class="panel" d="M360 168 442 250 360 332 278 250Z"/>
+      <path fill="#f8f8f7" stroke="#202124" stroke-width="1.5" d="M360 194 416 250 360 306 304 250Z"/>
+      <path class="blue core-pulse" d="M360 228 382 250 360 272 338 250Z"/>
+      <circle class="ink" cx="292" cy="231" r="5"/><circle class="ink" cx="292" cy="269" r="5"/>
+    </g>
+
+    <g>
+      <circle class="port" cx="552" cy="130" r="8"/><rect class="panel" x="560" y="110" width="176" height="40" rx="2"/>
+      <rect class="soft" x="574" y="123" width="144" height="14"/><rect class="blue meter-fill" x="574" y="123" width="102" height="14"/>
+    </g>
+    <g>
+      <circle class="port" cx="552" cy="250" r="8"/><rect class="panel" x="560" y="230" width="176" height="40" rx="2"/>
+      <rect class="soft" x="574" y="243" width="144" height="14"/><rect class="ink meter-fill meter-b" x="574" y="243" width="84" height="14"/>
+    </g>
+    <g>
+      <circle class="port" cx="552" cy="370" r="8"/><rect class="panel" x="560" y="350" width="176" height="40" rx="2"/>
+      <rect class="soft" x="574" y="363" width="144" height="14"/><rect class="blue meter-fill meter-c" x="574" y="363" width="56" height="14"/>
+    </g>
+
+    <circle class="signal" r="4"><animateMotion dur="3.8s" repeatCount="indefinite"><mpath href="#in-a"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="3.4s" begin="-.9s" repeatCount="indefinite"><mpath href="#in-b"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="3.6s" begin="-1.8s" repeatCount="indefinite"><mpath href="#in-c"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="4s" begin="-2.5s" repeatCount="indefinite"><mpath href="#in-d"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="3.2s" begin="-.5s" repeatCount="indefinite"><mpath href="#out-a"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="3s" begin="-1.4s" repeatCount="indefinite"><mpath href="#out-b"/></animateMotion></circle>
+    <circle class="signal" r="4"><animateMotion dur="3.5s" begin="-2.2s" repeatCount="indefinite"><mpath href="#out-c"/></animateMotion></circle>
+  </g>
+</svg>
