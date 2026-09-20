@@ -702,6 +702,10 @@ Submissions without a public call site may enter the review queue and can be add
 
 To edit catalog data, verification metadata, translations, or repository tooling, read [CONTRIBUTING.md](CONTRIBUTING.md). It contains the schema, editorial rules, evidence requirements, localization workflow, and validation commands.
 
+## Friendly Links
+
+[LINUX DO](https://linux.do/)
+
 ## Disclaimer
 
 Awesome Jev is an independent community resource. It is not affiliated with or endorsed by TypeSafe AI. TypeSafe, Jev, and System One are names or marks of their respective owner.

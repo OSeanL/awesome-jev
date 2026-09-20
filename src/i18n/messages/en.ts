@@ -9,7 +9,9 @@ const en = {
   nav: {
     close: 'Close navigation', primary: 'Primary navigation', overview: 'Overview', allProjects: 'All projects', aboutBestjev: 'About bestjev', aboutJev: 'About Jev',
     categories: 'Categories', projectCategories: 'Project categories', collaborate: 'Submit & collaborate', collaborateLabel: 'Submit and collaborate',
-    submit: 'Submit', email: 'Email', promote: 'Promote your project', open: 'Open navigation', language: 'Language',
+    submit: 'Submit', email: 'Email', promote: 'Promote your project', open: 'Open navigation', language: 'Language', home: 'bestjev home',
+    logoAlt: 'bestjev logo', flagAlt: (language: string) => `${language} language flag`, githubRepository: 'Open the bestjev repository on GitHub',
+    xProfile: 'Follow the bestjev maintainer on X', emailMaintainer: 'Email the bestjev maintainer', promoteEmail: 'Email bestjev about project promotion',
   },
   hero: {
     title: 'Best Jev Projects',
@@ -58,14 +60,14 @@ const en = {
     eyebrow: 'Contribute',
     title: 'How to submit a new project',
     intro: 'Know a public project that uses Jev? Send us its repository and the evidence needed to verify it. Submissions are reviewed before they appear in the catalog.',
-    shortCta: 'Submit', cta: 'Submit a project', ctaHint: 'Opens a pre-filled GitHub issue.',
+    shortCta: 'Submit project', cta: 'Submit a project', ctaHint: 'Opens a pre-filled GitHub issue.',
     steps: [
       { title: 'Share the repository', description: 'Provide the public GitHub URL and a concise description of what the project does.' },
       { title: 'Show how it uses Jev', description: 'Link to code, documentation, a demo, or another public source that makes the Jev integration verifiable.' },
       { title: 'We review and publish', description: 'We verify the evidence, choose the right category, and add accepted projects in a future catalog update.' },
     ],
   },
-  footer: { label: 'Site information', about: 'About', contact: 'Contact', privacy: 'Privacy', terms: 'Terms', docs: 'Jev docs' },
+  footer: { label: 'Site information', about: 'About bestjev', contact: 'Contact bestjev', privacy: 'Privacy policy', terms: 'Terms of use', docs: 'Jev documentation' },
 } as const;
 
 type DeepWiden<T> = T extends (...args: infer Args) => infer Result

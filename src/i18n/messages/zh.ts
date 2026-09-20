@@ -10,7 +10,8 @@ const zh: Messages = {
   nav: {
     close: '关闭导航', primary: '主导航', overview: '概览', allProjects: '全部项目', aboutBestjev: '关于 bestjev', aboutJev: '关于 Jev', categories: '项目分类',
     projectCategories: '项目分类', collaborate: '提交与合作', collaborateLabel: '提交与合作', submit: '提交', email: '邮件', promote: '推广你的项目',
-    open: '打开导航', language: '语言',
+    open: '打开导航', language: '语言', home: 'bestjev 首页', logoAlt: 'bestjev 标志', flagAlt: (language) => `${language}语言旗帜`,
+    githubRepository: '在 GitHub 打开 bestjev 仓库', xProfile: '在 X 上关注 bestjev 维护者', emailMaintainer: '给 bestjev 维护者发送邮件', promoteEmail: '通过邮件联系 bestjev 推广项目',
   },
   hero: {
     title: '最佳 Jev 项目', summary: (projects, categories, languages) => `从 ${projects} 个已核验仓库中搜索，也可以按 ${categories} 个分类和 ${languages} 种语言筛选。`,
@@ -61,7 +62,7 @@ const zh: Messages = {
       { title: '等待核验与收录', description: '我们会核对依据、选择合适分类，并在后续目录更新中加入符合条件的项目。' },
     ],
   },
-  footer: { label: '网站信息', about: '关于', contact: '联系', privacy: '隐私', terms: '条款', docs: 'Jev 文档' },
+  footer: { label: '网站信息', about: '关于 bestjev', contact: '联系 bestjev', privacy: '隐私政策', terms: '使用条款', docs: 'Jev 官方文档' },
 };
 
 export default zh;

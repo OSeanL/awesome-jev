@@ -52,6 +52,10 @@ const sortedProjects = [...projects].sort((a, b) => {
   const starDifference = b.stars - a.stars;
   return starDifference || a.url.localeCompare(b.url, 'en');
 });
+const initialProjects = sortedProjects.slice(0, 16);
+const localizedCatalogUrl = `${base}catalog/${locale}.json`;
+const localizedSearchText = (project: (typeof projects)[number]) =>
+  [project.name, project.url, project.language, project.description].join(' ').toLowerCase();
 const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
 const navigationCategories = categories.map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }));
 const repositorySlug = (url: string) => {
@@ -210,20 +214,33 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="twitter:image" content={socialImageUrl} />
     <meta name="twitter:image:alt" content={messages.seo.imageAlt(catalogStats.projects, catalogStats.categories)} />
     <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HV69G90WGD"></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HV69G90WGD');
-    </script>
-    <script
-      is:inline
-      defer
-      data-website-id="dfid_lVw0uw28br7SqwvICIeFq"
-      data-domain="jevbest.com"
-      src="https://datafa.st/js/script.js">
+      (() => {
+        const events = ['pointerdown', 'keydown', 'touchstart'];
+        const loadAnalytics = () => {
+          events.forEach((event) => window.removeEventListener(event, loadAnalytics));
+          if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-HV69G90WGD');
+
+          const googleTag = document.createElement('script');
+          googleTag.async = true;
+          googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-HV69G90WGD';
+          document.head.append(googleTag);
+
+          const dataFast = document.createElement('script');
+          dataFast.defer = true;
+          dataFast.dataset.websiteId = 'dfid_lVw0uw28br7SqwvICIeFq';
+          dataFast.dataset.domain = 'jevbest.com';
+          dataFast.src = 'https://datafa.st/js/script.js';
+          document.head.append(dataFast);
+        };
+
+        events.forEach((event) => window.addEventListener(event, loadAnalytics, { once: true, passive: true }));
+      })();
     </script>
     <title>{pageTitle}</title>
   </head>
@@ -231,8 +248,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
-          <a class="brand" href="#overview" aria-label="bestjev home">
-            <img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt="" width="136" height="34" />
+          <a class="brand" href="#overview" aria-label={messages.nav.home}>
+            <img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" />
           </a>
           <button class="sidebar-close" type="button" aria-label={messages.nav.close}><X size={18} stroke-width={1.8} /></button>
         </div>
@@ -241,7 +258,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
             <a class="active" href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
             <a href="#about"><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
-            <a href={repositoryUrl} target="_blank" rel="noreferrer">
+            <a href={repositoryUrl} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
               <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.1c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
               </svg>
@@ -269,17 +286,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>{messages.nav.collaborate}</span>
           </div>
           <nav class="collaboration-nav" aria-label={messages.nav.collaborateLabel}>
-            <a href={submissionUrl} target="_blank" rel="noreferrer">
+            <a href={submissionUrl} target="_blank" rel="noreferrer" aria-label={messages.submission.cta}>
               <CirclePlus class="nav-icon" size={16} stroke-width={1.75} />
               <span>{messages.nav.submit}</span>
               <small>GitHub issue</small>
             </a>
-            <a href="https://x.com/heyjunpenn" target="_blank" rel="noreferrer">
+            <a href="https://x.com/heyjunpenn" target="_blank" rel="noreferrer" aria-label={messages.nav.xProfile}>
               <AtSign class="nav-icon" size={16} stroke-width={1.75} />
               <span>X</span>
               <small>@heyjunpenn</small>
             </a>
-            <a href="mailto:someuxyz@gmail.com">
+            <a href="mailto:someuxyz@gmail.com" aria-label={messages.nav.emailMaintainer}>
               <Mail class="nav-icon" size={16} stroke-width={1.75} />
               <span>{messages.nav.email}</span>
               <small>someuxyz@gmail.com</small>
@@ -288,7 +305,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
           <div class="collaboration-placement">
             <strong>{messages.nav.promote}</strong>
-            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">
+            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement" aria-label={messages.nav.promoteEmail}>
               <span>someuxyz@gmail.com</span>
               <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
             </a>
@@ -299,7 +316,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="sidebar-foot">
           <div class="locale-picker" data-locale-picker>
             <button class="locale-trigger" type="button" aria-label={messages.nav.language} aria-haspopup="listbox" aria-expanded="false" aria-controls="locale-options">
-              <img src={`${base}flags/${localeConfig[locale].flag}.svg`} alt="" width="28" height="20" />
+              <img src={`${base}flags/${localeConfig[locale].flag}.svg`} alt={messages.nav.flagAlt(localeConfig[locale].label)} aria-hidden="true" width="28" height="20" />
               <span>{localeConfig[locale].label}</span>
               <ChevronDown size={15} stroke-width={1.8} aria-hidden="true" />
             </button>
@@ -314,7 +331,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   aria-selected={candidate === locale ? 'true' : 'false'}
                   aria-current={candidate === locale ? 'page' : undefined}
                 >
-                  <img src={`${base}flags/${localeConfig[candidate].flag}.svg`} alt="" width="28" height="20" />
+                  <img src={`${base}flags/${localeConfig[candidate].flag}.svg`} alt={messages.nav.flagAlt(localeConfig[candidate].label)} aria-hidden="true" width="28" height="20" />
                   <span>{localeConfig[candidate].label}</span>
                   <Check size={14} stroke-width={2} aria-hidden="true" />
                 </a>
@@ -326,7 +343,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       <main>
         <header class="mobile-header">
-          <a class="brand" href="#overview" aria-label="bestjev home"><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt="" width="136" height="34" /></a>
+          <a class="brand" href="#overview" aria-label={messages.nav.home}><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" /></a>
           <button class="menu-button" type="button" aria-label={messages.nav.open} aria-controls="sidebar" aria-expanded="false"><Menu size={19} stroke-width={1.8} /></button>
         </header>
         <button class="nav-scrim" type="button" aria-label={messages.nav.close} tabindex="-1"></button>
@@ -367,7 +384,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </div>
 
             <figure class="hero-illustration">
-              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={messages.hero.imageAlt} />
+              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={messages.hero.imageAlt} fetchpriority="high" />
             </figure>
           </div>
         </section>
@@ -386,9 +403,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               ))}
             </div>
 
-            <div class="table-heading" role="row">
-              <span role="columnheader">{messages.catalog.project}</span>
-              <span class="star-heading" role="columnheader" aria-sort="descending">
+            <div class="table-heading">
+              <span>{messages.catalog.project}</span>
+              <span class="star-heading">
                 <button
                   class="sort-button"
                   id="star-sort"
@@ -399,12 +416,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   aria-label={messages.catalog.sortAscending}
                 >{messages.catalog.stars}<ArrowDown size={13} stroke-width={1.9} aria-hidden="true" /></button>
               </span>
-              <span role="columnheader">{messages.catalog.language}</span>
-              <span role="columnheader">{messages.catalog.description}</span>
+              <span>{messages.catalog.language}</span>
+              <span>{messages.catalog.description}</span>
             </div>
-            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel}>
-              {sortedProjects.map((project) => (
-                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={project.searchText}>
+            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel} data-catalog-url={localizedCatalogUrl}>
+              {initialProjects.map((project) => (
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)}>
                   <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
@@ -412,6 +429,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 </li>
               ))}
             </ol>
+            <template id="project-row-template">
+              <li class="project-row" data-project>
+                <a class="project-name" target="_blank" rel="noreferrer"><h3></h3><small></small></a>
+                <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" /><span data-project-stars></span></span>
+                <span class="project-language"></span>
+                <p></p>
+              </li>
+            </template>
 
             <div class="empty-state" id="empty-state" hidden><strong>{messages.catalog.noMatches}</strong><span>{messages.catalog.noMatchesHint}</span></div>
             <button class="load-more" id="load-more" type="button"><span>{messages.catalog.showMore}</span><b>↓</b></button>
@@ -500,7 +525,18 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     </div>
 
     <script>
-      const rows = [...document.querySelectorAll<HTMLElement>('[data-project]')];
+      type ProjectRecord = {
+        name: string;
+        url: string;
+        stars: number;
+        starsLabel: string;
+        language: string;
+        description: string;
+        categoryId: string;
+        category: string;
+        searchText: string;
+      };
+
       const search = document.querySelector<HTMLInputElement>('#project-search');
       const languagePicker = document.querySelector<HTMLElement>('[data-language-picker]');
       const languageFilter = document.querySelector<HTMLButtonElement>('#language-filter');
@@ -512,8 +548,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const localeMenu = localePicker?.querySelector<HTMLElement>('.locale-menu');
       const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
       const projectTable = document.querySelector<HTMLOListElement>('#project-table');
+      const projectRowTemplate = document.querySelector<HTMLTemplateElement>('#project-row-template');
       const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
-      const starHeading = document.querySelector<HTMLElement>('.star-heading');
       const loadMore = document.querySelector('#load-more');
       const emptyState = document.querySelector('#empty-state');
       const menuButton = document.querySelector('.menu-button');
@@ -527,17 +563,39 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       let starSortDirection: 'asc' | 'desc' = 'desc';
       let visibleLimit = getPageSize();
 
-      const sortRowsByStars = () => {
-        rows.sort((a, b) => {
-          const difference = Number(a.dataset.stars ?? 0) - Number(b.dataset.stars ?? 0);
-          if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
-          const aName = a.querySelector('h3')?.textContent ?? '';
-          const bName = b.querySelector('h3')?.textContent ?? '';
-          return aName.localeCompare(bName, 'en');
-        });
-        rows.forEach((row) => projectTable?.append(row));
+      const initialProjects = [...document.querySelectorAll<HTMLElement>('[data-project]')].map((row): ProjectRecord => ({
+        name: row.querySelector('h3')?.textContent ?? '',
+        url: row.querySelector<HTMLAnchorElement>('.project-name')?.href ?? '',
+        stars: Number(row.dataset.stars ?? 0),
+        starsLabel: row.querySelector('.stars')?.textContent?.trim() ?? '0',
+        language: row.dataset.language ?? '—',
+        description: row.querySelector('p')?.textContent ?? '',
+        categoryId: row.dataset.category ?? '',
+        category: row.querySelector('.project-name small')?.textContent ?? '',
+        searchText: row.dataset.search ?? '',
+      }));
+      let projectRecords = initialProjects;
+      let catalogPromise: Promise<ProjectRecord[]> | undefined;
+
+      const loadCatalog = () => {
+        if (catalogPromise) return catalogPromise;
+        const url = projectTable?.dataset.catalogUrl;
+        if (!url) return Promise.resolve(projectRecords);
+        catalogPromise = fetch(url)
+          .then((response) => {
+            if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
+            return response.json() as Promise<{ projects: ProjectRecord[] }>;
+          })
+          .then((payload) => {
+            projectRecords = payload.projects;
+            return projectRecords;
+          })
+          .catch(() => projectRecords);
+        return catalogPromise;
+      };
+
+      const updateSortState = () => {
         starSort?.setAttribute('data-direction', starSortDirection);
-        starHeading?.setAttribute('aria-sort', starSortDirection === 'desc' ? 'descending' : 'ascending');
         if (starSort) {
           starSort.setAttribute('aria-label', starSortDirection === 'desc'
             ? starSort.dataset.labelAscending ?? ''
@@ -545,20 +603,56 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         }
       };
 
+      const createProjectRow = (project: ProjectRecord) => {
+        const fragment = projectRowTemplate?.content.cloneNode(true);
+        const row = fragment instanceof DocumentFragment
+          ? fragment.querySelector<HTMLElement>('[data-project]')
+          : null;
+        if (!row) return null;
+
+        row.dataset.stars = String(project.stars);
+        row.dataset.category = project.categoryId;
+        row.dataset.language = project.language;
+        row.dataset.search = project.searchText;
+        const link = row.querySelector<HTMLAnchorElement>('.project-name');
+        if (link) link.href = project.url;
+        const name = row.querySelector('h3');
+        const category = row.querySelector('.project-name small');
+        const stars = row.querySelector('[data-project-stars]');
+        const language = row.querySelector('.project-language');
+        const description = row.querySelector('p');
+        if (name) name.textContent = project.name;
+        if (category) category.textContent = project.category;
+        if (stars) stars.textContent = project.starsLabel;
+        if (language) language.textContent = project.language;
+        if (description) description.textContent = project.description;
+        return row;
+      };
+
       const render = () => {
         const query = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : '';
-        const matches = rows.filter((row) => {
-          const categoryMatch = activeCategory === 'all' || row.dataset.category === activeCategory;
-          const languageMatch = selectedLanguage === 'all' || row.dataset.language === selectedLanguage;
-          const searchMatch = !query || (row.dataset.search ?? '').includes(query);
+        const matches = [...projectRecords].sort((a, b) => {
+          const difference = a.stars - b.stars;
+          if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
+          return a.name.localeCompare(b.name, 'en');
+        }).filter((project) => {
+          const categoryMatch = activeCategory === 'all' || project.categoryId === activeCategory;
+          const languageMatch = selectedLanguage === 'all' || project.language === selectedLanguage;
+          const searchMatch = !query || project.searchText.includes(query);
           return categoryMatch && languageMatch && searchMatch;
         });
 
-        rows.forEach((row) => row.setAttribute('hidden', ''));
-        matches.slice(0, visibleLimit).forEach((row) => row.removeAttribute('hidden'));
+        const fragment = document.createDocumentFragment();
+        matches.slice(0, visibleLimit).forEach((project) => {
+          const row = createProjectRow(project);
+          if (row) fragment.append(row);
+        });
+        projectTable?.replaceChildren(fragment);
         if (loadMore instanceof HTMLButtonElement) loadMore.hidden = matches.length <= visibleLimit;
         if (emptyState instanceof HTMLElement) emptyState.hidden = matches.length !== 0;
       };
+
+      const loadAndRender = () => { void loadCatalog().then(render); };
 
       const setLanguageMenuOpen = (open: boolean, focusOption = false) => {
         if (!(languageFilter instanceof HTMLButtonElement) || !(languageMenu instanceof HTMLElement)) return;
@@ -575,7 +669,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         languageOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
         visibleLimit = getPageSize();
         setLanguageMenuOpen(false);
-        render();
+        loadAndRender();
         languageFilter?.focus();
       };
 
@@ -598,14 +692,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           if (selected) item.setAttribute('aria-current', 'true');
           else item.removeAttribute('aria-current');
         });
-        render();
+        loadAndRender();
       }));
-      search?.addEventListener('input', () => { visibleLimit = getPageSize(); render(); });
+      search?.addEventListener('input', () => { visibleLimit = getPageSize(); loadAndRender(); });
       starSort?.addEventListener('click', () => {
         starSortDirection = starSortDirection === 'desc' ? 'asc' : 'desc';
         visibleLimit = getPageSize();
-        sortRowsByStars();
-        render();
+        updateSortState();
+        loadAndRender();
       });
       languageFilter?.addEventListener('click', () => setLanguageMenuOpen(languageFilter.getAttribute('aria-expanded') !== 'true'));
       languageFilter?.addEventListener('keydown', (event) => {
@@ -666,7 +760,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       localePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
         if (localePicker && !localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
       }));
-      loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); render(); });
+      loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); loadAndRender(); });
       const syncSidebarAccess = () => {
         const hidden = compactLayout.matches && !document.body.classList.contains('menu-open');
         if (sidebar instanceof HTMLElement) {
@@ -725,8 +819,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       });
 
       syncSidebarAccess();
-      sortRowsByStars();
-      render();
+      updateSortState();
+      window.addEventListener('load', () => {
+        void loadCatalog().then(() => {
+          if (!compactLayout.matches) render();
+        });
+      }, { once: true });
     </script>
   </body>
 </html>
