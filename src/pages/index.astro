@@ -20,7 +20,6 @@ import {
   Menu,
   MonitorSmartphone,
   Search,
-  Sparkles,
   Workflow,
   X,
 } from '@lucide/astro';
@@ -192,7 +191,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="sidebar-scroll">
           <nav class="side-nav primary-nav" aria-label={t('Primary navigation', '主导航')}>
             <a class="active" href="#overview"><House class="nav-icon" size={17} stroke-width={1.8} /><span>{t('Overview', '概览')}</span></a>
-            <a href="#featured"><Sparkles class="nav-icon" size={17} stroke-width={1.8} /><span>{t('Placement', '推广位')}</span></a>
             <a href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{t('All projects', '全部项目')}</span><small>{catalogStats.projects}</small></a>
             <a href="#about"><Info class="nav-icon" size={17} stroke-width={1.8} /><span>{t('About Jev', '关于 Jev')}</span></a>
             <a href={repositoryUrl} target="_blank" rel="noreferrer">
