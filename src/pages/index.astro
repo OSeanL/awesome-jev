@@ -35,6 +35,10 @@ const repositoryUrl = process.env.GITHUB_REPOSITORY
   : 'https://github.com/heyjunpenn/awesome-jev';
 const languages = [...new Set(projects.map((project) => project.language).filter((language) => language !== '—'))]
   .sort((a, b) => a.localeCompare(b));
+const sortedProjects = [...projects].sort((a, b) => {
+  const starDifference = b.stars - a.stars;
+  return starDifference || a.url.localeCompare(b.url, 'en');
+});
 const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
 const navigationCategories = categories.map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }));
 const repositorySlug = (url: string) => {
@@ -130,7 +134,7 @@ const structuredData = {
       hasPart: {
         '@type': 'ItemList',
         numberOfItems: catalogStats.projects,
-        itemListElement: projects.slice(0, 20).map((project, index) => ({
+        itemListElement: sortedProjects.slice(0, 20).map((project, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           name: project.name,
@@ -329,7 +333,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <span role="columnheader">{t('Description', '简介')}</span>
             </div>
             <ol class="project-table" id="project-table" aria-label={t('Jev projects', 'Jev 项目')}>
-              {projects.map((project) => (
+              {sortedProjects.map((project) => (
                 <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={`${project.name} ${repositorySlug(project.url)} ${project.language} ${project.descriptionEn} ${project.descriptionZh}`.toLowerCase()}>
                   <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small class="localized en-copy">{project.categoryEn}</small><small class="localized zh-copy">{project.categoryZh}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
@@ -435,7 +439,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
           const aName = a.querySelector('h3')?.textContent ?? '';
           const bName = b.querySelector('h3')?.textContent ?? '';
-          return aName.localeCompare(bName);
+          return aName.localeCompare(bName, 'en');
         });
         rows.forEach((row) => projectTable?.append(row));
         starSort?.setAttribute('data-direction', starSortDirection);
