@@ -4,6 +4,7 @@ import { catalogStats, categories, projects } from '../lib/catalog';
 import {
   AppWindow,
   ArrowDown,
+  ArrowUpRight,
   BadgeCheck,
   Blocks,
   Bot,
@@ -236,9 +237,11 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
           <div class="collaboration-placement">
             <span class="placement-label">AD</span>
-            <strong>Claim this placement</strong>
-            <p>{t('Promote your project', '推广你的项目')}</p>
-            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">someuxyz@gmail.com</a>
+            <strong>{t('Promote your project', '推广你的项目')}</strong>
+            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">
+              <span>someuxyz@gmail.com</span>
+              <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
+            </a>
           </div>
 
         </div>
