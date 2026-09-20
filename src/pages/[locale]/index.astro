@@ -1,0 +1,12 @@
+---
+import CatalogPage from '../index.astro';
+import { defaultLocale, locales } from '../../i18n';
+
+export const getStaticPaths = () => locales
+  .filter((locale) => locale !== defaultLocale)
+  .map((locale) => ({ params: { locale }, props: { locale } }));
+
+const { locale } = Astro.props;
+---
+
+<CatalogPage locale={locale} />

@@ -1,6 +1,6 @@
 # Awesome Jev site
 
-Astro static site for the Awesome Jev catalog. Project data is read from the repository-root `README.md` and `README.zh-Hans.md` during the build, so the website stays aligned with the GitHub lists.
+Astro static site for the Awesome Jev catalog. The interface and project catalog support English, Simplified Chinese, Japanese, Korean, Spanish, and Brazilian Portuguese. Project data is read from the locale-specific README configured in `src/i18n/config.ts`.
 
 ## Local development
 

@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
-import { catalogStats, categories, projects } from '../lib/catalog';
+import { catalogStats, getCatalog } from '../lib/catalog';
+import { getLocale, getMessages, localeConfig, locales } from '../i18n';
+import { getLocalePath } from '../i18n/config';
 import {
   AppWindow,
   ArrowDown,
@@ -17,7 +19,6 @@ import {
   Gamepad2,
   House,
   Info,
-  Languages,
   LayoutGrid,
   ListTree,
   Mail,
@@ -30,9 +31,9 @@ import {
 } from '@lucide/astro';
 
 const base = import.meta.env.BASE_URL;
-const locale = Astro.props.locale === 'zh' ? 'zh' : 'en';
-const isZh = locale === 'zh';
-const t = (english: string, chinese: string) => isZh ? chinese : english;
+const locale = getLocale(Astro.props.locale ?? Astro.currentLocale);
+const messages = getMessages(locale);
+const { categories, projects } = getCatalog(locale);
 const repositoryUrl = process.env.GITHUB_REPOSITORY
   ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
   : 'https://github.com/heyjunpenn/awesome-jev';
@@ -54,18 +55,13 @@ const repositorySlug = (url: string) => {
   }
 };
 const siteUrl = 'https://jevbest.com/';
-const pageUrl = isZh ? `${siteUrl}zh/` : siteUrl;
+const pageUrl = `${siteUrl}${getLocalePath(locale)}`;
 const socialImageUrl = `${siteUrl}readme/awesome-jev-hero.png`;
 const authorId = `${siteUrl}#author`;
 const publisherId = `${siteUrl}#organization`;
-const pageTitle = t(
-  `${catalogStats.projects} Jev AI Projects, SDKs & Tools | Awesome Jev`,
-  `${catalogStats.projects} 个 Jev AI 开源项目、SDK 与工具 | Awesome Jev`,
-);
-const pageDescription = t(
-  `Search ${catalogStats.projects} open-source projects, SDKs, agents, integrations, benchmarks, and tools built around Jev, TypeSafe AI's System One model.`,
-  `收录 ${catalogStats.projects} 个使用 TypeSafe AI System One 模型 Jev 的开源项目，包括 SDK、Agent、集成工具和基准测试。`,
-);
+const pageTitle = messages.seo.title(catalogStats.projects);
+const pageDescription = messages.seo.description(catalogStats.projects);
+const alternateLocales = locales.filter((candidate) => candidate !== locale);
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -89,18 +85,18 @@ const structuredData = {
       url: siteUrl,
       name: 'Awesome Jev',
       description: pageDescription,
-      inLanguage: ['en', 'zh-Hans'],
+      inLanguage: locales.map((candidate) => localeConfig[candidate].languageTag),
       publisher: { '@id': publisherId },
     },
     {
       '@type': 'CollectionPage',
       '@id': `${pageUrl}#webpage`,
       url: pageUrl,
-      name: t('Awesome Jev Open-Source Project Catalog', 'Awesome Jev 开源项目目录'),
-      alternateName: 'Awesome Jev 开源项目目录',
+      name: messages.seo.catalogName,
+      alternateName: messages.seo.alternateName,
       description: pageDescription,
       isAccessibleForFree: true,
-      inLanguage: isZh ? 'zh-Hans' : 'en',
+      inLanguage: localeConfig[locale].languageTag,
       dateModified: '2026-09-20',
       datePublished: '2026-09-19',
       author: { '@id': authorId },
@@ -123,7 +119,7 @@ const structuredData = {
       description: `Machine-readable metadata for ${catalogStats.projects} public repositories built around Jev.`,
       url: `${siteUrl}catalog.json`,
       isAccessibleForFree: true,
-      inLanguage: ['en', 'zh-Hans'],
+      inLanguage: locales.map((candidate) => localeConfig[candidate].languageTag),
       dateModified: '2026-09-20',
       datePublished: '2026-09-19',
       creator: { '@id': authorId },
@@ -152,7 +148,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 ---
 
 <!doctype html>
-<html lang={isZh ? 'zh-Hans' : 'en'} data-language={locale}>
+<html lang={localeConfig[locale].languageTag} data-language={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -162,8 +158,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="heyjunpenn" />
     <link rel="canonical" href={pageUrl} />
-    <link rel="alternate" hreflang="en" href={siteUrl} />
-    <link rel="alternate" hreflang="zh-Hans" href={`${siteUrl}zh/`} />
+    {locales.map((candidate) => <link rel="alternate" hreflang={localeConfig[candidate].languageTag} href={`${siteUrl}${getLocalePath(candidate)}`} />)}
     <link rel="alternate" hreflang="x-default" href={siteUrl} />
     <link rel="alternate" type="application/json" title="Awesome Jev project catalog" href={`${siteUrl}catalog.json`} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
@@ -172,18 +167,18 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={pageUrl} />
-    <meta property="og:locale" content={isZh ? 'zh_CN' : 'en_US'} />
-    <meta property="og:locale:alternate" content={isZh ? 'en_US' : 'zh_CN'} />
+    <meta property="og:locale" content={localeConfig[locale].openGraphLocale} />
+    {alternateLocales.map((candidate) => <meta property="og:locale:alternate" content={localeConfig[candidate].openGraphLocale} />)}
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:width" content="1983" />
     <meta property="og:image:height" content="793" />
-    <meta property="og:image:alt" content={`${catalogStats.projects} verified open-source Jev projects across ${catalogStats.categories} categories`} />
+    <meta property="og:image:alt" content={messages.seo.imageAlt(catalogStats.projects, catalogStats.categories)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@heyjunpenn" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={socialImageUrl} />
-    <meta name="twitter:image:alt" content={`${catalogStats.projects} verified open-source Jev projects across ${catalogStats.categories} categories`} />
+    <meta name="twitter:image:alt" content={messages.seo.imageAlt(catalogStats.projects, catalogStats.categories)} />
     <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HV69G90WGD"></script>
@@ -206,18 +201,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
-          <a class="brand" href="#overview" aria-label="Awesome Jev home">
-            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span>AWESOME JEV</span>
+          <a class="brand" href="#overview" aria-label="bestjev home">
+            <img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt="" width="136" height="34" />
           </a>
-          <button class="sidebar-close" type="button" aria-label={t('Close navigation', '关闭导航')}><X size={18} stroke-width={1.8} /></button>
+          <button class="sidebar-close" type="button" aria-label={messages.nav.close}><X size={18} stroke-width={1.8} /></button>
         </div>
 
         <div class="sidebar-primary">
-          <nav class="side-nav primary-nav" aria-label={t('Primary navigation', '主导航')}>
-            <a class="active" href="#overview"><House class="nav-icon" size={17} stroke-width={1.8} /><span>{t('Overview', '概览')}</span></a>
-            <a href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{t('All projects', '全部项目')}</span><small>{catalogStats.projects}</small></a>
-            <a href="#about"><Info class="nav-icon" size={17} stroke-width={1.8} /><span>{t('About Jev', '关于 Jev')}</span></a>
+          <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
+            <a class="active" href="#overview"><House class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.overview}</span></a>
+            <a href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
+            <a href="#about"><Info class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
             <a href={repositoryUrl} target="_blank" rel="noreferrer">
               <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.1c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
@@ -230,26 +224,25 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
         <div class="sidebar-scroll">
           <div class="category-nav-head">
-            <span>{t('Categories', '项目分类')}</span>
+            <span>{messages.nav.categories}</span>
           </div>
-          <nav class="category-nav" aria-label={t('Project categories', '项目分类')}>
+          <nav class="category-nav" aria-label={messages.nav.projectCategories}>
             {navigationCategories.map(({ Icon, ...category }) => (
               <a href="#projects" data-category-nav={category.id}>
                 <Icon class="nav-icon" size={16} stroke-width={1.75} />
-                <span class="localized en-copy">{category.nameEn}</span>
-                <span class="localized zh-copy">{category.nameZh}</span>
+                <span>{category.name}</span>
                 <small>{category.count}</small>
               </a>
             ))}
           </nav>
 
           <div class="collaboration-nav-head">
-            <span>{t('Submit & collaborate', '提交与合作')}</span>
+            <span>{messages.nav.collaborate}</span>
           </div>
-          <nav class="collaboration-nav" aria-label={t('Submit and collaborate', '提交与合作')}>
+          <nav class="collaboration-nav" aria-label={messages.nav.collaborateLabel}>
             <a href={submissionUrl} target="_blank" rel="noreferrer">
               <CirclePlus class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{t('Submit', '提交')}</span>
+              <span>{messages.nav.submit}</span>
               <small>GitHub issue</small>
             </a>
             <a href="https://x.com/heyjunpenn" target="_blank" rel="noreferrer">
@@ -259,13 +252,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             </a>
             <a href="mailto:someuxyz@gmail.com">
               <Mail class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{t('Email', '邮件')}</span>
+              <span>{messages.nav.email}</span>
               <small>someuxyz@gmail.com</small>
             </a>
           </nav>
 
           <div class="collaboration-placement">
-            <strong>{t('Promote your project', '推广你的项目')}</strong>
+            <strong>{messages.nav.promote}</strong>
             <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement">
               <span>someuxyz@gmail.com</span>
               <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
@@ -275,36 +268,55 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </div>
 
         <div class="sidebar-foot">
-          <nav class="language-switch" aria-label="Language">
-            <span aria-hidden="true"><Languages size={15} stroke-width={1.8} /></span>
-            <a class:list={[!isZh && 'selected']} href={base} lang="en" hreflang="en" aria-current={!isZh ? 'page' : undefined}>EN</a>
-            <a class:list={[isZh && 'selected']} href={`${base}zh/`} lang="zh-Hans" hreflang="zh-Hans" aria-current={isZh ? 'page' : undefined}>中文</a>
-          </nav>
+          <div class="locale-picker" data-locale-picker>
+            <button class="locale-trigger" type="button" aria-label={messages.nav.language} aria-haspopup="listbox" aria-expanded="false" aria-controls="locale-options">
+              <img src={`${base}flags/${localeConfig[locale].flag}.svg`} alt="" width="28" height="20" />
+              <span>{localeConfig[locale].label}</span>
+              <ChevronDown size={15} stroke-width={1.8} aria-hidden="true" />
+            </button>
+            <div class="locale-menu" id="locale-options" role="listbox" aria-label={messages.nav.language} hidden>
+              {locales.map((candidate) => (
+                <a
+                  class:list={['locale-option', candidate === locale && 'selected']}
+                  href={`${base}${getLocalePath(candidate)}`}
+                  lang={localeConfig[candidate].languageTag}
+                  hreflang={localeConfig[candidate].languageTag}
+                  role="option"
+                  aria-selected={candidate === locale ? 'true' : 'false'}
+                  aria-current={candidate === locale ? 'page' : undefined}
+                >
+                  <img src={`${base}flags/${localeConfig[candidate].flag}.svg`} alt="" width="28" height="20" />
+                  <span>{localeConfig[candidate].label}</span>
+                  <Check size={14} stroke-width={2} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </aside>
 
       <main>
         <header class="mobile-header">
-          <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>AWESOME JEV</span></a>
-          <button class="menu-button" type="button" aria-label={t('Open navigation', '打开导航')} aria-controls="sidebar" aria-expanded="false"><Menu size={19} stroke-width={1.8} /></button>
+          <a class="brand" href="#overview" aria-label="bestjev home"><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt="" width="136" height="34" /></a>
+          <button class="menu-button" type="button" aria-label={messages.nav.open} aria-controls="sidebar" aria-expanded="false"><Menu size={19} stroke-width={1.8} /></button>
         </header>
-        <button class="nav-scrim" type="button" aria-label={t('Close navigation', '关闭导航')} tabindex="-1"></button>
+        <button class="nav-scrim" type="button" aria-label={messages.nav.close} tabindex="-1"></button>
 
         <section class="hero" id="overview">
           <div class="hero-shell">
             <div class="hero-copy">
-              <h1>Best Jav Projects</h1>
-              <p>{t(`Search ${catalogStats.projects} verified repositories across ${catalogStats.categories} categories and ${catalogStats.languages} languages.`, `从 ${catalogStats.projects} 个已核验仓库中搜索，也可以按 ${catalogStats.categories} 个分类和 ${catalogStats.languages} 种语言筛选。`)}</p>
-              <div class="hero-updated"><span>{t('Last updated', '最近更新')}</span><time datetime="2026-09-20">{t('September 20, 2026', '2026 年 9 月 20 日')}</time></div>
+              <h1>{messages.hero.title}</h1>
+              <p>{messages.hero.summary(catalogStats.projects, catalogStats.categories, catalogStats.languages)}</p>
+              <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-20">{messages.hero.updatedDate}</time></div>
               <div class="filter-panel filter-dock">
                 <div class="language-picker" data-language-picker>
-                  <button class="language-trigger" id="language-filter" type="button" aria-label={t('Filter by language', '按语言筛选')} aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options">
-                    <span data-language-label>{t('All languages', '全部语言')}</span>
+                  <button class="language-trigger" id="language-filter" type="button" aria-label={messages.hero.filterLanguage} aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options">
+                    <span data-language-label>{messages.hero.allLanguages}</span>
                     <ChevronDown class="language-chevron" size={15} stroke-width={1.8} aria-hidden="true" />
                   </button>
-                  <div class="language-menu" id="language-options" role="listbox" aria-label={t('Languages', '语言')} hidden>
+                  <div class="language-menu" id="language-options" role="listbox" aria-label={messages.hero.languages} hidden>
                     <button class="language-option" type="button" role="option" data-language-value="all" aria-selected="true">
-                      <span>{t('All languages', '全部语言')}</span><Check class="option-check" size={14} stroke-width={2} aria-hidden="true" />
+                      <span>{messages.hero.allLanguages}</span><Check class="option-check" size={14} stroke-width={2} aria-hidden="true" />
                     </button>
                     {languages.map((language) => (
                       <button class="language-option" type="button" role="option" data-language-value={language} aria-selected="false">
@@ -315,119 +327,108 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 </div>
                 <label class="search-box">
                   <span aria-hidden="true"><Search size={18} stroke-width={1.8} /></span>
-                  <input id="project-search" type="search" placeholder={t('Search projects, languages, or decisions', '搜索项目、语言或决策')} autocomplete="off" />
+                  <input id="project-search" type="search" placeholder={messages.hero.searchPlaceholder} autocomplete="off" />
                   <kbd>/</kbd>
                 </label>
               </div>
             </div>
 
             <figure class="hero-illustration">
-              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={t('Structured inputs flow through Jev into probabilistic decisions', '结构化输入经过 Jev，转化为概率决策')} />
+              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={messages.hero.imageAlt} />
             </figure>
           </div>
         </section>
 
         <div class="catalog-region">
           <section class="catalog" id="projects">
-            <div class="category-strip" role="group" aria-label={t('Project categories', '项目分类')}>
-              <button class="category-button selected" type="button" data-category="all"><span>{t('All', '全部')}</span><b>{projects.length}</b></button>
+            <div class="category-strip" role="group" aria-label={messages.nav.projectCategories}>
+              <h2 class="category-heading">
+                <button class="category-button selected" type="button" data-category="all"><span>{messages.catalog.all}</span><b>{projects.length}</b></button>
+              </h2>
               {categories.map((category) => (
                 <button class="category-button" type="button" data-category={category.id}>
-                  <span class="localized en-copy">{category.nameEn}</span>
-                  <span class="localized zh-copy">{category.nameZh}</span>
+                  <span>{category.name}</span>
                   <b>{category.count}</b>
                 </button>
               ))}
             </div>
 
             <div class="table-heading" role="row">
-              <span role="columnheader">{t('Project', '项目')}</span>
+              <span role="columnheader">{messages.catalog.project}</span>
               <span class="star-heading" role="columnheader" aria-sort="descending">
                 <button
                   class="sort-button"
                   id="star-sort"
                   type="button"
                   data-direction="desc"
-                  data-label-ascending={t('Sort by stars ascending', '按 Star 升序排列')}
-                  data-label-descending={t('Sort by stars descending', '按 Star 降序排列')}
-                  aria-label={t('Sort by stars ascending', '按 Star 升序排列')}
-                >{t('Stars', 'Star')}<ArrowDown size={13} stroke-width={1.9} aria-hidden="true" /></button>
+                  data-label-ascending={messages.catalog.sortAscending}
+                  data-label-descending={messages.catalog.sortDescending}
+                  aria-label={messages.catalog.sortAscending}
+                >{messages.catalog.stars}<ArrowDown size={13} stroke-width={1.9} aria-hidden="true" /></button>
               </span>
-              <span role="columnheader">{t('Language', '语言')}</span>
-              <span role="columnheader">{t('Description', '简介')}</span>
+              <span role="columnheader">{messages.catalog.language}</span>
+              <span role="columnheader">{messages.catalog.description}</span>
             </div>
-            <ol class="project-table" id="project-table" aria-label={t('Jev projects', 'Jev 项目')}>
+            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel}>
               {sortedProjects.map((project) => (
-                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={`${project.name} ${repositorySlug(project.url)} ${project.language} ${project.descriptionEn} ${project.descriptionZh}`.toLowerCase()}>
-                  <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small class="localized en-copy">{project.categoryEn}</small><small class="localized zh-copy">{project.categoryZh}</small></a>
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={project.searchText}>
+                  <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
-                  <p class="localized en-copy">{project.descriptionEn}</p>
-                  <p class="localized zh-copy">{project.descriptionZh}</p>
+                  <p>{project.description}</p>
                 </li>
               ))}
             </ol>
 
-            <div class="empty-state" id="empty-state" hidden><strong>{t('No matching projects', '没有符合条件的项目')}</strong><span>{t('Try another keyword or category.', '换个关键词或分类试试。')}</span></div>
-            <button class="load-more" id="load-more" type="button"><span>{t('Show more projects', '查看更多')}</span><b>↓</b></button>
+            <div class="empty-state" id="empty-state" hidden><strong>{messages.catalog.noMatches}</strong><span>{messages.catalog.noMatchesHint}</span></div>
+            <button class="load-more" id="load-more" type="button"><span>{messages.catalog.showMore}</span><b>↓</b></button>
           </section>
         </div>
 
         <section class="about" id="about">
           <div class="about-intro">
-            <h2>{t('What is Jev?', 'Jev 是什么？')}</h2>
+            <h2>{messages.about.title}</h2>
             <div class="about-copy">
-              <p class="localized en-copy">Jev is TypeSafe AI's System One model for decisions that software needs to consume. Instead of generating free-form prose, it accepts a state and one or more typed questions, then returns structured answers with calibrated probabilities.</p>
-              <p class="localized zh-copy">Jev 是 TypeSafe AI 推出的 System One 模型，供软件直接调用来做判断。它接收状态信息和一个或多个类型化问题，不生成自由文本，直接返回结构化答案和校准后的概率。</p>
-              <p class="localized en-copy">It fits workflows where the option space or scoring rubric is known in advance: routing an agent, validating a tool call, ranking candidates, checking a policy, or deciding whether an action should proceed.</p>
-              <p class="localized zh-copy">当选项范围或评分规则已经明确，Jev 可以给 Agent 分流、校验工具调用、排列候选项、检查策略，也可以判断一次操作是否该继续。</p>
+              {messages.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
             </div>
             <div class="about-note">
-              <span>{t('Operational advantage', '工程优势')}</span>
-              <p class="localized en-copy">Applications can set deterministic thresholds, inspect uncertainty, and route low-confidence cases to a person or a larger model.</p>
-              <p class="localized zh-copy">开发者可以在代码里设定阈值，直接查看结果有多大把握。置信度不足时，再交给人工或更大的模型处理。</p>
+              <span>{messages.about.advantage}</span>
+              <p>{messages.about.advantageText}</p>
             </div>
           </div>
           <div class="primitive-grid">
-            <article><span>CHOICE</span><h3>{t('Pick one option', '做单项选择')}</h3><p>{t('Select from a known set and return probabilities with confidence.', '从给定选项中选出一个，并给出每个选项的概率。')}</p></article>
-            <article><span>SCORE</span><h3>{t('Rate on a rubric', '按量表打分')}</h3><p>{t('Place an input on an ordered scale with a full distribution.', '把输入放到有序量表上，并返回各档位的概率。')}</p></article>
-            <article><span>NOUL</span><h3>{t('Estimate truth', '判断真假')}</h3><p>{t('Return the probability that a statement is true, from zero to one.', '判断一段陈述为真的可能性，返回 0 到 1 的概率。')}</p></article>
+            {messages.about.primitives.map((primitive) => <article><span>{primitive.code}</span><h3>{primitive.title}</h3><p>{primitive.description}</p></article>)}
           </div>
         </section>
 
         <section class="methodology" id="methodology">
           <div>
-            <h2>{t('How is this catalog verified?', '这份目录如何核验？')}</h2>
+            <h2>{messages.methodology.title}</h2>
           </div>
           <div class="methodology-copy">
-            <p class="localized en-copy">Each entry is checked against public evidence: the upstream repository, project-authored documentation, and visible Jev usage. Stars are a dated discovery snapshot, not a quality ranking.</p>
-            <p class="localized zh-copy">我们会检查每个条目的公开依据，包括上游仓库、项目文档以及可以确认的 Jev 用法。Star 数记录的是核验当天的快照，只供参考，不代表项目质量。</p>
-            <p class="catalog-byline"><span>{t('Curated by', '整理：')}</span> <a href="https://github.com/heyjunpenn" rel="author">heyjunpenn</a></p>
+            <p>{messages.methodology.intro}</p>
+            <p class="catalog-byline"><span>{messages.methodology.curatedBy}</span> <a href="https://github.com/heyjunpenn" rel="author">heyjunpenn</a></p>
             <blockquote cite="https://typesafe.ai/blog/introducing-system-one-models-and-jev">
-              <span class="localized en-copy">“Think of Jev as a frontier-intelligence function call: unstructured state in, typed probabilistic decisions out.”</span>
-              <span class="localized zh-copy">“可以把 Jev 看成一次前沿智能函数调用：输入非结构化状态，输出带类型的概率决策。”</span>
-              <cite>— <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noreferrer"><span class="localized en-copy">TypeSafe AI, introducing Jev</span><span class="localized zh-copy">TypeSafe AI，《Introducing System One Models and Jev》</span></a></cite>
+              <span>{messages.methodology.quote}</span>
+              <cite>— <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noreferrer">{messages.methodology.quoteSource}</a></cite>
             </blockquote>
-            <h3>{t('Which sources does Awesome Jev use?', '核验时看哪些资料？')}</h3>
+            <h3>{messages.methodology.sourcesTitle}</h3>
             <ul>
-              <li class="localized en-copy"><a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer">Official Jev documentation</a> for product concepts and primitives.</li>
-              <li class="localized zh-copy"><a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer">Jev 官方文档</a>，用于核对产品概念和基础能力。</li>
-              <li class="localized en-copy"><a href={repositoryUrl} target="_blank" rel="noreferrer">Public GitHub repositories</a> for implementation evidence and metadata.</li>
-              <li class="localized zh-copy"><a href={repositoryUrl} target="_blank" rel="noreferrer">公开 GitHub 仓库</a>，用于确认实现方式和项目数据。</li>
-              <li class="localized en-copy"><a href={`${siteUrl}catalog.json`}>Machine-readable catalog data</a> for reproducible project records.</li>
-              <li class="localized zh-copy"><a href={`${siteUrl}catalog.json`}>可机读目录数据</a>，用于复核每条项目记录。</li>
+              <li><a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer">{messages.methodology.officialDocs}</a>{messages.methodology.officialDocsSuffix}</li>
+              <li><a href={repositoryUrl} target="_blank" rel="noreferrer">{messages.methodology.repositories}</a>{messages.methodology.repositoriesSuffix}</li>
+              <li><a href={`${siteUrl}catalog.json`}>{messages.methodology.catalogData}</a>{messages.methodology.catalogDataSuffix}</li>
             </ul>
           </div>
         </section>
 
         <footer>
           <span>AWESOME JEV / 2026</span>
-          <nav aria-label={t('Site information', '网站信息')}>
-            <a href="#about">{t('About', '关于')}</a>
-            <a href="mailto:someuxyz@gmail.com">{t('Contact', '联系')}</a>
-            <a href={`${base}privacy/`}>{t('Privacy', '隐私')}</a>
-            <a href={`${base}terms/`}>{t('Terms', '条款')}</a>
-            <a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer"><span>{t('Jev docs', 'Jev 文档')}</span> ↗</a>
+          <nav aria-label={messages.footer.label}>
+            <a href="#about">{messages.footer.about}</a>
+            <a href="mailto:someuxyz@gmail.com">{messages.footer.contact}</a>
+            <a href={`${base}privacy/`}>{messages.footer.privacy}</a>
+            <a href={`${base}terms/`}>{messages.footer.terms}</a>
+            <a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer"><span>{messages.footer.docs}</span> ↗</a>
           </nav>
         </footer>
       </main>
@@ -441,6 +442,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const languageMenu = document.querySelector<HTMLElement>('#language-options');
       const languageLabel = document.querySelector<HTMLElement>('[data-language-label]');
       const languageOptions = [...document.querySelectorAll<HTMLButtonElement>('[data-language-value]')];
+      const localePicker = document.querySelector<HTMLElement>('[data-locale-picker]');
+      const localeTrigger = localePicker?.querySelector<HTMLButtonElement>('.locale-trigger');
+      const localeMenu = localePicker?.querySelector<HTMLElement>('.locale-menu');
+      const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
       const projectTable = document.querySelector<HTMLOListElement>('#project-table');
       const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
       const starHeading = document.querySelector<HTMLElement>('.star-heading');
@@ -509,6 +514,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         languageFilter?.focus();
       };
 
+      const setLocaleMenuOpen = (open: boolean, focusOption = false) => {
+        if (!(localeTrigger instanceof HTMLButtonElement) || !(localeMenu instanceof HTMLElement)) return;
+        localeTrigger.setAttribute('aria-expanded', String(open));
+        localeMenu.hidden = !open;
+        if (open && focusOption) {
+          (localeOptions.find((option) => option.getAttribute('aria-selected') === 'true') ?? localeOptions[0])?.focus();
+        }
+      };
+
       document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]').forEach((button) => button.addEventListener('click', () => {
         activeCategory = button.dataset.category ?? 'all';
         visibleLimit = getPageSize();
@@ -554,11 +568,38 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           }
         });
       });
+      localeTrigger?.addEventListener('click', () => setLocaleMenuOpen(localeTrigger.getAttribute('aria-expanded') !== 'true'));
+      localeTrigger?.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          setLocaleMenuOpen(true, true);
+        } else if (event.key === 'Escape') {
+          setLocaleMenuOpen(false);
+        }
+      });
+      localeOptions.forEach((option, index) => option.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          const offset = event.key === 'ArrowDown' ? 1 : -1;
+          localeOptions[(index + offset + localeOptions.length) % localeOptions.length]?.focus();
+        } else if (event.key === 'Home' || event.key === 'End') {
+          event.preventDefault();
+          localeOptions[event.key === 'Home' ? 0 : localeOptions.length - 1]?.focus();
+        } else if (event.key === 'Escape') {
+          event.preventDefault();
+          setLocaleMenuOpen(false);
+          localeTrigger?.focus();
+        }
+      }));
       document.addEventListener('pointerdown', (event) => {
         if (languagePicker && !languagePicker.contains(event.target as Node)) setLanguageMenuOpen(false);
+        if (localePicker && !localePicker.contains(event.target as Node)) setLocaleMenuOpen(false);
       });
       languagePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
         if (languagePicker && !languagePicker.contains(document.activeElement)) setLanguageMenuOpen(false);
+      }));
+      localePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
+        if (localePicker && !localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
       }));
       loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); render(); });
       const syncSidebarAccess = () => {
@@ -576,6 +617,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           sidebar.removeAttribute('aria-hidden');
         }
         document.body.classList.toggle('menu-open', shouldOpen);
+        if (!shouldOpen) setLocaleMenuOpen(false);
         menuButton?.setAttribute('aria-expanded', String(shouldOpen));
         syncSidebarAccess();
         if (shouldOpen && sidebarClose instanceof HTMLButtonElement) requestAnimationFrame(() => sidebarClose.focus());

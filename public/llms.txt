@@ -2,13 +2,13 @@
 
 > A verified, community-maintained catalog of 485 open-source projects built around Jev, TypeSafe AI's System One model for typed decisions inside software.
 
-Awesome Jev is an independent community project. It catalogs public Jev SDKs, clients, integrations, agent tools, browser and computer-use projects, applications, games, demos, benchmarks, research, and related lists. The catalog is available in English and Simplified Chinese.
+Awesome Jev is an independent community project. It catalogs public Jev SDKs, clients, integrations, agent tools, browser and computer-use projects, applications, games, demos, benchmarks, research, and related lists. The website and catalog are available in English, Simplified Chinese, Japanese, Korean, Spanish, and Brazilian Portuguese.
 
 ## Key facts
 
 - 485 unique public GitHub repositories across 10 categories
 - 25 implementation languages
-- Each entry includes a project link, category, language, GitHub star snapshot, and bilingual description
+- Each entry includes a project link, category, language, GitHub star snapshot, and localized description
 - Jev itself is a hosted TypeSafe AI model; this directory catalogs projects built around it and does not imply that Jev's model weights are open source
 - Independent community project; not affiliated with or endorsed by TypeSafe AI
 
@@ -18,6 +18,10 @@ Awesome Jev is an independent community project. It catalogs public Jev SDKs, cl
 - [Machine-readable catalog](https://jevbest.com/catalog.json)
 - [English catalog source](https://github.com/heyjunpenn/awesome-jev/blob/main/README.md)
 - [简体中文目录](https://github.com/heyjunpenn/awesome-jev/blob/main/README.zh-Hans.md)
+- [日本語カタログ](https://github.com/heyjunpenn/awesome-jev/blob/main/README.ja.md)
+- [한국어 카탈로그](https://github.com/heyjunpenn/awesome-jev/blob/main/README.ko.md)
+- [Catálogo en español](https://github.com/heyjunpenn/awesome-jev/blob/main/README.es.md)
+- [Catálogo em português](https://github.com/heyjunpenn/awesome-jev/blob/main/README.pt-BR.md)
 - [Submit a project](https://github.com/heyjunpenn/awesome-jev/issues/new?title=%5BSubmission%5D%20)
 - [Official Jev documentation](https://docs.typesafe.ai/)
 - [TypeSafe AI](https://typesafe.ai/)

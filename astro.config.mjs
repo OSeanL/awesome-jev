@@ -11,4 +11,11 @@ export default defineConfig({
   base,
   output: 'static',
   trailingSlash: 'always',
+  i18n: {
+    locales: ['en', 'zh', 'ja', 'ko', 'es', 'pt-br'],
+    defaultLocale: 'en',
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });
