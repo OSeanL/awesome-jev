@@ -8,7 +8,7 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
   description: "A verified, community-maintained catalog of open-source projects built around Jev, TypeSafe AI's System One model.",
   url: 'https://jevbest.com/',
   repository: 'https://github.com/heyjunpenn/awesome-jev',
-  updated: '2026-09-19',
+  updated: '2026-09-20',
   stats: catalogStats,
   categories,
   projects: projects.map(({ starsLabel, ...project }) => project),

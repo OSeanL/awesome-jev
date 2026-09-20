@@ -1,13 +1,13 @@
 # Awesome Jev
 
-> A verified, community-maintained catalog of 433 open-source projects built around Jev, TypeSafe AI's System One model for typed decisions inside software.
+> A verified, community-maintained catalog of 485 open-source projects built around Jev, TypeSafe AI's System One model for typed decisions inside software.
 
 Awesome Jev is an independent community project. It catalogs public Jev SDKs, clients, integrations, agent tools, browser and computer-use projects, applications, games, demos, benchmarks, research, and related lists. The catalog is available in English and Simplified Chinese.
 
 ## Key facts
 
-- 433 unique public GitHub repositories across 10 categories
-- 23 implementation languages
+- 485 unique public GitHub repositories across 10 categories
+- 25 implementation languages
 - Each entry includes a project link, category, language, GitHub star snapshot, and bilingual description
 - Jev itself is a hosted TypeSafe AI model; this directory catalogs projects built around it and does not imply that Jev's model weights are open source
 - Independent community project; not affiliated with or endorsed by TypeSafe AI
