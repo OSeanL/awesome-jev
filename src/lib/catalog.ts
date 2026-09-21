@@ -33,9 +33,12 @@ function parse(markdown: string): ParsedCategory[] {
       .map((line) => {
         const cells = line.slice(1, -1).split('|').map((cell) => cell.trim());
         const link = cells[0]?.match(/^\[([^\]]+)\]\((https:\/\/github\.com\/[^)]+)\)$/);
-        if (!link || cells.length !== 4) throw new Error(`Unable to parse catalog row: ${line}`);
+        if (!link || cells.length !== 5) throw new Error(`Unable to parse catalog row: ${line}`);
+        const expectedAddedAt = inclusionDates[normalizeUrl(link[2])];
+        if (!expectedAddedAt) throw new Error(`Missing inclusion timestamp for catalog project: ${link[2]}`);
+        if (cells[3] !== expectedAddedAt.slice(0, 10)) throw new Error(`README inclusion date mismatch for ${link[2]}: expected ${expectedAddedAt.slice(0, 10)}, received ${cells[3]}`);
         const starsLabel = cells[1].replace(/^★\s*/, '');
-        return { name: link[1], url: link[2], starsLabel, stars: Number(starsLabel.replace(/,/g, '')) || 0, language: cells[2], description: plainText(cells[3]) };
+        return { name: link[1], url: link[2], starsLabel, stars: Number(starsLabel.replace(/,/g, '')) || 0, language: cells[2], description: plainText(cells[4]) };
       });
     return { name: heading[1], count: Number(heading[2] ?? heading[3]), rows };
   });
