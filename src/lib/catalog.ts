@@ -1,14 +1,16 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defaultLocale, localeConfig, locales, type Locale } from '../i18n/config';
+import addedAtByUrl from '../data/catalog-added-at.json';
 
 export type Category = { id: string; name: string; count: number };
 export type Project = {
   name: string; url: string; stars: number; starsLabel: string; language: string;
   description: string; categoryId: string; category: string; searchText: string;
+  addedAt: string; addedDate: string;
 };
 
-type ParsedProject = Omit<Project, 'categoryId' | 'category' | 'searchText'>;
+type ParsedProject = Omit<Project, 'categoryId' | 'category' | 'searchText' | 'addedAt' | 'addedDate'>;
 type ParsedCategory = { name: string; count: number; rows: ParsedProject[] };
 type LocalizedCatalog = { categories: Category[]; projects: Project[] };
 
@@ -16,6 +18,8 @@ const currentRoot = process.cwd();
 const repositoryRoot = existsSync(resolve(currentRoot, 'README.md')) ? currentRoot : resolve(currentRoot, '..');
 const slugify = (value: string) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plainText = (value: string) => value.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/`([^`]+)`/g, '$1').replace(/\*\*/g, '').trim();
+const normalizeUrl = (url: string) => url.toLowerCase().replace(/\.git\/?$/, '').replace(/\/$/, '');
+const inclusionDates = addedAtByUrl as Record<string, string>;
 
 function parse(markdown: string): ParsedCategory[] {
   const headings = [...markdown.matchAll(/^### (.+?)(?: \((\d+)\)|（(\d+)）)$/gm)];
@@ -66,7 +70,9 @@ const catalogs = Object.fromEntries(locales.map((locale) => {
     return sourceCategory.rows.map((sourceProject, projectIndex) => {
       const localizedProject = localizedCategory.rows[projectIndex];
       const descriptions = locales.map((candidate) => parsedByLocale[candidate][categoryIndex].rows[projectIndex].description);
-      return { ...sourceProject, description: localizedProject.description, categoryId: slugify(sourceCategory.name), category: localizedCategory.name, searchText: [sourceProject.name, sourceProject.url, sourceProject.language, ...descriptions].join(' ').toLowerCase() };
+      const addedAt = inclusionDates[normalizeUrl(sourceProject.url)];
+      if (!addedAt) throw new Error(`Missing inclusion timestamp for catalog project: ${sourceProject.url}`);
+      return { ...sourceProject, description: localizedProject.description, categoryId: slugify(sourceCategory.name), category: localizedCategory.name, searchText: [sourceProject.name, sourceProject.url, sourceProject.language, ...descriptions].join(' ').toLowerCase(), addedAt, addedDate: addedAt.slice(0, 10) };
     });
   });
   return [locale, { categories, projects }];
@@ -74,9 +80,20 @@ const catalogs = Object.fromEntries(locales.map((locale) => {
 
 export const getCatalog = (locale: Locale): LocalizedCatalog => catalogs[locale];
 const sourceProjects = getCatalog(defaultLocale).projects;
+const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+const startOfWeek = (() => {
+  const date = new Date(`${localDate}T12:00:00+08:00`);
+  const day = date.getUTCDay();
+  date.setUTCDate(date.getUTCDate() - (day === 0 ? 6 : day - 1));
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+})();
 export const catalogStats = {
   projects: sourceProjects.length,
   categories: sourceCategories.length,
   languages: new Set(sourceProjects.map((project) => project.language).filter((language) => language !== '—')).size,
   stars: sourceProjects.reduce((total, project) => total + project.stars, 0),
+  addedToday: sourceProjects.filter((project) => project.addedDate === localDate).length,
+  addedThisWeek: sourceProjects.filter((project) => project.addedDate >= startOfWeek && project.addedDate <= localDate).length,
+  today: localDate,
+  weekStartsOn: startOfWeek,
 };

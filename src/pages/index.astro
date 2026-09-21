@@ -33,6 +33,8 @@ const base = import.meta.env.BASE_URL;
 const locale = getLocale(Astro.props.locale ?? Astro.currentLocale);
 const messages = getMessages(locale);
 const { categories, projects } = getCatalog(locale);
+const addedDateFormatter = new Intl.DateTimeFormat(localeConfig[locale].languageTag, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Taipei' });
+const formatAddedDate = (date: string) => addedDateFormatter.format(new Date(`${date}T00:00:00+08:00`));
 const repositoryUrl = process.env.GITHUB_REPOSITORY
   ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
   : 'https://github.com/heyjunpenn/awesome-jev';
@@ -353,7 +355,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <div class="hero-copy">
               <h1>{messages.hero.title}</h1>
               <p>{messages.hero.summary(catalogStats.projects, catalogStats.categories, catalogStats.languages)}</p>
-              <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-20">{messages.hero.updatedDate}</time></div>
+              <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-21">{messages.hero.updatedDate}</time></div>
+              <div class="recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
+                <button type="button" data-recency="today" aria-pressed="false" aria-controls="project-table">
+                  <span>{messages.hero.addedToday}</span><strong>+{catalogStats.addedToday}</strong>
+                </button>
+                <button type="button" data-recency="week" aria-pressed="false" aria-controls="project-table">
+                  <span>{messages.hero.addedThisWeek}</span><strong>+{catalogStats.addedThisWeek}</strong>
+                </button>
+              </div>
               <div class="filter-panel filter-dock">
                 <div class="language-picker" data-language-picker>
                   <button class="language-trigger" id="language-filter" type="button" aria-label={messages.hero.filterLanguage} aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options">
@@ -395,6 +405,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <h2 class="category-heading">
                 <button class="category-button selected" type="button" data-category="all"><span>{messages.catalog.all}</span><b>{projects.length}</b></button>
               </h2>
+              <span class="filter-divider" aria-hidden="true"></span>
+              <div class="recency-filters catalog-recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
+                <button type="button" data-recency="today" aria-pressed="false" aria-controls="project-table">
+                  <span>{messages.hero.addedToday}</span><strong>+{catalogStats.addedToday}</strong>
+                </button>
+                <button type="button" data-recency="week" aria-pressed="false" aria-controls="project-table">
+                  <span>{messages.hero.addedThisWeek}</span><strong>+{catalogStats.addedThisWeek}</strong>
+                </button>
+              </div>
+              <span class="filter-divider" aria-hidden="true"></span>
               {categories.map((category) => (
                 <button class="category-button" type="button" data-category={category.id}>
                   <span>{category.name}</span>
@@ -417,14 +437,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 >{messages.catalog.stars}<ArrowDown size={13} stroke-width={1.9} aria-hidden="true" /></button>
               </span>
               <span>{messages.catalog.language}</span>
+              <span>{messages.catalog.addedAt}</span>
               <span>{messages.catalog.description}</span>
             </div>
             <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel} data-catalog-url={localizedCatalogUrl}>
               {initialProjects.map((project) => (
-                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)}>
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)} data-added-date={project.addedDate}>
                   <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
+                  <time class="project-added-date" datetime={project.addedDate}>{formatAddedDate(project.addedDate)}</time>
                   <p>{project.description}</p>
                 </li>
               ))}
@@ -434,6 +456,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 <a class="project-name" target="_blank" rel="noreferrer"><h3></h3><small></small></a>
                 <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" /><span data-project-stars></span></span>
                 <span class="project-language"></span>
+                <time class="project-added-date"></time>
                 <p></p>
               </li>
             </template>
@@ -535,6 +558,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         categoryId: string;
         category: string;
         searchText: string;
+        addedAt: string;
+        addedDate: string;
       };
 
       const search = document.querySelector<HTMLInputElement>('#project-search');
@@ -549,7 +574,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
       const projectTable = document.querySelector<HTMLOListElement>('#project-table');
       const projectRowTemplate = document.querySelector<HTMLTemplateElement>('#project-row-template');
+      const addedDateFormatter = new Intl.DateTimeFormat(document.documentElement.lang || 'en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Taipei' });
       const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
+      const recencyFilters = document.querySelector<HTMLElement>('.recency-filters');
+      const recencyButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-recency]')];
       const loadMore = document.querySelector('#load-more');
       const emptyState = document.querySelector('#empty-state');
       const menuButton = document.querySelector('.menu-button');
@@ -560,6 +588,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const getPageSize = () => compactLayout.matches ? 16 : 36;
       let activeCategory = 'all';
       let selectedLanguage = 'all';
+      let selectedRecency: 'all' | 'today' | 'week' = 'all';
       let starSortDirection: 'asc' | 'desc' = 'desc';
       let visibleLimit = getPageSize();
 
@@ -573,6 +602,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         categoryId: row.dataset.category ?? '',
         category: row.querySelector('.project-name small')?.textContent ?? '',
         searchText: row.dataset.search ?? '',
+        addedAt: '',
+        addedDate: row.dataset.addedDate ?? '',
       }));
       let projectRecords = initialProjects;
       let catalogPromise: Promise<ProjectRecord[]> | undefined;
@@ -614,17 +645,23 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         row.dataset.category = project.categoryId;
         row.dataset.language = project.language;
         row.dataset.search = project.searchText;
+        row.dataset.addedDate = project.addedDate;
         const link = row.querySelector<HTMLAnchorElement>('.project-name');
         if (link) link.href = project.url;
         const name = row.querySelector('h3');
         const category = row.querySelector('.project-name small');
         const stars = row.querySelector('[data-project-stars]');
         const language = row.querySelector('.project-language');
+        const addedDate = row.querySelector<HTMLTimeElement>('.project-added-date');
         const description = row.querySelector('p');
         if (name) name.textContent = project.name;
         if (category) category.textContent = project.category;
         if (stars) stars.textContent = project.starsLabel;
         if (language) language.textContent = project.language;
+        if (addedDate) {
+          addedDate.dateTime = project.addedDate;
+          addedDate.textContent = addedDateFormatter.format(new Date(`${project.addedDate}T00:00:00+08:00`));
+        }
         if (description) description.textContent = project.description;
         return row;
       };
@@ -638,8 +675,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         }).filter((project) => {
           const categoryMatch = activeCategory === 'all' || project.categoryId === activeCategory;
           const languageMatch = selectedLanguage === 'all' || project.language === selectedLanguage;
+          const today = recencyFilters?.dataset.today ?? '';
+          const weekStart = recencyFilters?.dataset.weekStart ?? '';
+          const recencyMatch = selectedRecency === 'all'
+            || (selectedRecency === 'today' && project.addedDate === today)
+            || (selectedRecency === 'week' && project.addedDate >= weekStart && project.addedDate <= today);
           const searchMatch = !query || project.searchText.includes(query);
-          return categoryMatch && languageMatch && searchMatch;
+          return categoryMatch && languageMatch && recencyMatch && searchMatch;
         });
 
         const fragment = document.createDocumentFragment();
@@ -695,6 +737,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         loadAndRender();
       }));
       search?.addEventListener('input', () => { visibleLimit = getPageSize(); loadAndRender(); });
+      const selectRecency = (value: 'today' | 'week') => {
+        selectedRecency = selectedRecency === value ? 'all' : value;
+        recencyButtons.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.recency === selectedRecency)));
+        visibleLimit = getPageSize();
+        loadAndRender();
+      };
+      recencyButtons.forEach((button) => button.addEventListener('click', () => {
+        selectRecency(button.dataset.recency === 'today' ? 'today' : 'week');
+      }));
       starSort?.addEventListener('click', () => {
         starSortDirection = starSortDirection === 'desc' ? 'asc' : 'desc';
         visibleLimit = getPageSize();

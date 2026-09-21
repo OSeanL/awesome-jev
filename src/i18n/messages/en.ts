@@ -16,11 +16,12 @@ const en = {
   hero: {
     title: 'Best Jev Projects',
     summary: (projects: number, categories: number, languages: number) => `Search ${projects} verified repositories across ${categories} categories and ${languages} languages.`,
-    lastUpdated: 'Last updated', updatedDate: 'September 20, 2026', filterLanguage: 'Filter by language', allLanguages: 'All languages', languages: 'Languages',
+    lastUpdated: 'Last updated', updatedDate: 'September 21, 2026', filterLanguage: 'Filter by language', allLanguages: 'All languages', languages: 'Languages',
+    addedToday: 'Today', addedThisWeek: 'This week', clearRecency: 'Show all dates',
     searchPlaceholder: 'Search projects, languages, or decisions', imageAlt: 'Structured inputs flow through Jev into probabilistic decisions',
   },
   catalog: {
-    all: 'All', project: 'Project', stars: 'Stars', language: 'Language', description: 'Description', projectsLabel: 'Jev projects',
+    all: 'All', project: 'Project', stars: 'Stars', language: 'Language', addedAt: 'Added', description: 'Description', projectsLabel: 'Jev projects',
     sortAscending: 'Sort by stars ascending', sortDescending: 'Sort by stars descending', noMatches: 'No matching projects',
     noMatchesHint: 'Try another keyword or category.', showMore: 'Show more projects',
   },

@@ -29,6 +29,8 @@ export const GET: APIRoute = ({ params }) => {
       description: project.description,
       categoryId: project.categoryId,
       category: project.category,
+      addedAt: project.addedAt,
+      addedDate: project.addedDate,
       searchText: [project.name, project.url, project.language, project.description].join(' ').toLowerCase(),
     }));
 

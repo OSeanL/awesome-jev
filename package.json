@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "sync:dates": "node scripts/sync-added-at.mjs",
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview"
