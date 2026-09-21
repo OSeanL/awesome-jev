@@ -10,6 +10,7 @@ import {
   AtSign,
   BadgeCheck,
   Blocks,
+  BrainCircuit,
   Bot,
   ChartNoAxesCombined,
   Check,
@@ -55,11 +56,16 @@ const sortedProjects = [...projects].sort((a, b) => {
   return starDifference || a.url.localeCompare(b.url, 'en');
 });
 const initialProjects = sortedProjects.slice(0, 16);
-const localizedCatalogUrl = `${base}catalog/${locale}.json`;
+const localizedCatalogUrl = `${base}catalog/${locale}.json?v=2026-09-22`;
 const localizedSearchText = (project: (typeof projects)[number]) =>
   [project.name, project.url, project.language, project.description].join(' ').toLowerCase();
-const categoryIcons = [BadgeCheck, Blocks, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
-const navigationCategories = categories.map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }));
+const categoryIcons = [BadgeCheck, Blocks, BrainCircuit, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
+const jevLikeCategoryId = 'jev-like-models';
+const jevLikeCategory = categories.find((category) => category.id === jevLikeCategoryId);
+const navigationCategories = categories
+  .map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }))
+  .filter((category) => category.id !== jevLikeCategoryId);
+const filterCategories = categories.filter((category) => category.id !== jevLikeCategoryId);
 const repositorySlug = (url: string) => {
   try {
     const [owner, repository] = new URL(url).pathname.split('/').filter(Boolean);
@@ -258,7 +264,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
         <div class="sidebar-primary">
           <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
-            <a class="active" href="#projects" data-category-nav="all"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
+            <a class="selected" href="#projects" data-category-nav="all" aria-current="true"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
             <a href="#about"><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
             <a href={repositoryUrl} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
               <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -266,6 +272,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               </svg>
               <span>GitHub</span>
             </a>
+            {jevLikeCategory && (
+              <a href="#projects" data-category-nav={jevLikeCategory.id}>
+                <BrainCircuit class="nav-icon" size={17} stroke-width={1.8} />
+                <span>{jevLikeCategory.name}</span>
+                <small>{jevLikeCategory.count}</small>
+              </a>
+            )}
           </nav>
 
         </div>
@@ -355,8 +368,13 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <div class="hero-copy">
               <h1>{messages.hero.title}</h1>
               <p>{messages.hero.summary(catalogStats.projects, catalogStats.categories, catalogStats.languages)}</p>
-              <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-21">{messages.hero.updatedDate}</time></div>
+              <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-22">{messages.hero.updatedDate}</time></div>
               <div class="recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
+                {jevLikeCategory && (
+                  <button type="button" data-hero-category={jevLikeCategory.id} aria-pressed="false" aria-controls="project-table">
+                    <span>{jevLikeCategory.name}</span><strong>{jevLikeCategory.count}</strong>
+                  </button>
+                )}
                 <button type="button" data-recency="today" aria-pressed="false" aria-controls="project-table">
                   <span>{messages.hero.addedToday}</span><strong>+{catalogStats.addedToday}</strong>
                 </button>
@@ -402,8 +420,14 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <div class="catalog-region">
           <section class="catalog" id="projects">
             <div class="category-strip" role="group" aria-label={messages.nav.projectCategories}>
-              <h2 class="category-heading">
+              <h2 class="category-heading category-primary-filters">
                 <button class="category-button selected" type="button" data-category="all"><span>{messages.catalog.all}</span><b>{projects.length}</b></button>
+                {jevLikeCategory && (
+                  <button class="category-button" type="button" data-category={jevLikeCategory.id}>
+                    <span>{jevLikeCategory.name}</span>
+                    <b>{jevLikeCategory.count}</b>
+                  </button>
+                )}
               </h2>
               <span class="filter-divider" aria-hidden="true"></span>
               <div class="recency-filters catalog-recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
@@ -415,7 +439,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 </button>
               </div>
               <span class="filter-divider" aria-hidden="true"></span>
-              {categories.map((category) => (
+              {filterCategories.map((category) => (
                 <button class="category-button" type="button" data-category={category.id}>
                   <span>{category.name}</span>
                   <b>{category.count}</b>
@@ -578,6 +602,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
       const recencyFilters = document.querySelector<HTMLElement>('.recency-filters');
       const recencyButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-recency]')];
+      const heroCategoryButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-hero-category]')];
+      const categoryButtons = [...document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]')];
+      const categoryNavLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-category-nav]')];
       const loadMore = document.querySelector('#load-more');
       const emptyState = document.querySelector('#empty-state');
       const menuButton = document.querySelector('.menu-button');
@@ -724,17 +751,25 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         }
       };
 
-      document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]').forEach((button) => button.addEventListener('click', () => {
-        activeCategory = button.dataset.category ?? 'all';
+      const selectCategory = (category: string) => {
+        activeCategory = category;
         visibleLimit = getPageSize();
-        document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]').forEach((item) => item.classList.toggle('selected', item === button));
-        document.querySelectorAll<HTMLAnchorElement>('.category-nav [data-category-nav]').forEach((item) => {
+        categoryButtons.forEach((item) => item.classList.toggle('selected', item.dataset.category === activeCategory));
+        categoryNavLinks.forEach((item) => {
           const selected = item.dataset.categoryNav === activeCategory;
           item.classList.toggle('selected', selected);
           if (selected) item.setAttribute('aria-current', 'true');
           else item.removeAttribute('aria-current');
         });
+        heroCategoryButtons.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.heroCategory === activeCategory)));
         loadAndRender();
+      };
+      categoryButtons.forEach((button) => button.addEventListener('click', () => {
+        selectCategory(button.dataset.category ?? 'all');
+      }));
+      heroCategoryButtons.forEach((button) => button.addEventListener('click', () => {
+        const category = button.dataset.heroCategory ?? 'all';
+        selectCategory(activeCategory === category ? 'all' : category);
       }));
       search?.addEventListener('input', () => { visibleLimit = getPageSize(); loadAndRender(); });
       const selectRecency = (value: 'today' | 'week') => {
@@ -836,13 +871,11 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       menuButton?.addEventListener('click', () => setMenuOpen(!document.body.classList.contains('menu-open')));
       sidebarClose?.addEventListener('click', () => setMenuOpen(false, true));
       navScrim?.addEventListener('click', () => setMenuOpen(false, true));
-      const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('.primary-nav a[href^="#"]')];
+      const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('.primary-nav a[href^="#"]:not([data-category-nav])')];
       sectionLinks.forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
-      document.querySelectorAll<HTMLAnchorElement>('[data-category-nav]').forEach((link) => link.addEventListener('click', () => {
+      categoryNavLinks.forEach((link) => link.addEventListener('click', () => {
         const category = link.dataset.categoryNav ?? 'all';
-        const target = [...document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]')]
-          .find((item) => item.dataset.category === category);
-        target?.click();
+        selectCategory(category);
         setMenuOpen(false);
       }));
       document.addEventListener('keydown', (event) => {

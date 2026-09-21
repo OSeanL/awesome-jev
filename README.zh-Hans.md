@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/verified_projects-530-1e63ff?style=flat-square" alt="530 个经过核验的项目">
-  <img src="https://img.shields.io/badge/categories-10-111111?style=flat-square" alt="10 个分类">
+  <img src="https://img.shields.io/badge/categories-11-111111?style=flat-square" alt="11 个分类">
   <img src="https://img.shields.io/badge/languages-25-676767?style=flat-square" alt="25 种语言">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1e63ff?style=flat-square" alt="许可证：MIT"></a>
 </p>
@@ -15,6 +15,8 @@
 
 <p align="center">
   🌐 <a href="https://jevbest.com"><strong>浏览在线目录</strong></a>
+  &nbsp;·&nbsp;
+  🧠 <a href="#jev-like-models"><strong>Jev-like 模型</strong></a>
   &nbsp;·&nbsp;
   ➕ <a href="https://github.com/heyjunpenn/awesome-jev/issues/new?title=%5BSubmission%5D%20"><strong>提交项目</strong></a>
 </p>
@@ -30,14 +32,15 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 ## 目录
 
 - ✅ [官方项目](#官方项目6) — **6**
-- 📦 [SDK 与客户端](#sdk-与客户端47) — **47**
+- 📦 [SDK 与客户端](#sdk-与客户端45) — **45**
+- 🧠 [Jev-like 模型](#jev-like-models) — **12**
 - 🧩 [框架与集成](#框架与集成33) — **33**
 - 🤖 [Agent 工具](#agent-工具127) — **127**
 - 🖥️ [浏览器与计算机操作](#浏览器与计算机操作45) — **45**
 - 🪟 [应用](#应用61) — **61**
 - 🎮 [游戏与模拟](#游戏与模拟54) — **54**
 - 🧪 [演示与试验场](#演示与试验场46) — **46**
-- 📊 [基准测试与研究](#基准测试与研究99) — **99**
+- 📊 [基准测试与研究](#基准测试与研究89) — **89**
 - 📚 [其他列表](#其他列表12) — **12**
 
 本 README 是一份带日期的完整快照，收录 **530 个公开 GitHub 仓库**。Star 数采集于 **2026 年 9 月 18–21 日**，仅用于帮助发现项目，不代表质量排名；使用前请到原仓库确认实际行为、活跃度和许可证。
@@ -45,19 +48,13 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 ## 今日新增
 
 <details open>
-<summary><strong>2026 年 9 月 21 日新增 45 个项目</strong></summary>
+<summary><strong>2026 年 9 月 22 日新增 0 个项目</strong></summary>
 
-- **SDK 与客户端 (5):** [LocalJev](https://github.com/githubnext/localjev), [openjev-sglang](https://github.com/ekzhang/openjev-sglang), [pi-typesafe](https://github.com/DevMortimer/pi-typesafe), [TypeSafe Swift SDK](https://github.com/krzyzanowskim/TypeSafe), [typesafe-ai-go](https://github.com/kisshan13/typesafe-ai-go)
-- **框架与集成 (5):** [NeuroLink](https://github.com/juspay/neurolink), [Jevbridge](https://github.com/tacticocc/Jevbridge), [jevalyn](https://github.com/Ray-Hughes/jevalyn), [J++](https://github.com/Towow-ai/jpp), [jevals](https://github.com/openlayer-ai/jevals)
-- **Agent 工具 (15):** [hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills), [jev-pruner](https://github.com/tamaratran/jev-pruner), [grok-bot-jev](https://github.com/Bodila51/grok-bot-jev), [agent-router](https://github.com/nidhi-singh02/agent-router), [jegrep](https://github.com/can1357/jegrep), [jev-lint](https://github.com/mizchi/jev-lint), [jev-rules](https://github.com/EliaAlberti/jev-rules), [jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision), [jevgrep](https://github.com/nassim-arifette/jevgrep), [pi-jev-router (philippdubach)](https://github.com/philippdubach/pi-jev-router), [jcr](https://github.com/NiazMorshed2007/jcr), [jev-architect](https://github.com/karanb192/jev-architect), [jev-spec](https://github.com/nozomi-koborinai/jev-spec), [jev-tool-router](https://github.com/jackbarunz/jev-tool-router), [open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)
-- **浏览器与计算机操作 (4):** [Jev macOS Loop](https://github.com/jcpsimmons/jev-macos-loop), [x-scanner](https://github.com/oso95/x-scanner), [sift](https://github.com/bohutang/sift), [playjev](https://github.com/filedcom/playjev)
-- **应用 (8):** [tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier), [formanator](https://github.com/timrogers/formanator), [jev-reviewer](https://github.com/choxos/jev-reviewer), [jevmail](https://github.com/fazlerocks/jevmail), [jsort](https://github.com/keltokhy/jsort), [jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier), [jselect](https://github.com/keltokhy/jselect), [jlink](https://github.com/keltokhy/jlink)
-- **游戏与模拟 (1):** [jev-libero](https://github.com/Dimweaker/jev-libero)
-- **基准测试与研究 (7):** [kev](https://github.com/jaredpalmer/kev), [Simple Jev](https://github.com/featherless-ai/simple-jev), [jeff](https://github.com/logan-markewich/jeff), [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev), [OpenDecision](https://github.com/deepanwadhwa/OpenDecision), [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone), [open-spark-jev](https://github.com/abhishek085/open-spark-jev)
+今日暂无新增项目。
 
 </details>
 
-### 官方项目（6）
+### 官方项目 （6）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -68,12 +65,10 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [TypeSafe Daggerverse](https://github.com/typesafe-ai/daggerverse) | ★ 12 | Python | 2026-09-20 | TypeSafe AI 官方 Dagger 模块集合，用于复用 TypeSafe AI 与 System One 工作流。 |
 | [TypeSafe Overwatch](https://github.com/typesafe-ai/Overwatch) | ★ 4 | Python | 2026-09-20 | 用于观测和评估 System One 工作流的官方工具。 |
 
-### SDK 与客户端（47）
+### SDK 与客户端 （45）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
-| [LocalJev](https://github.com/githubnext/localjev) | ★ 662 | TypeScript | 2026-09-21 | 本地 Jev 兼容 System One API，把类型化问题转换为 DiffusionGemma 分类提示与概率。 |
-| [openjev-sglang](https://github.com/ekzhang/openjev-sglang) | ★ 245 | Python | 2026-09-21 | 基于开放模型和 SGLang 的 Jev 兼容 API 服务，使用仅预填充推理提供类型化决策端点。 |
 | [advocaat](https://github.com/pithings/advocaat) | ★ 85 | TypeScript | 2026-09-19 | 基于 TypeSafe Jev 的轻量类型安全客户端，可针对数据提出 AI 问题。 |
 | [pi-typesafe](https://github.com/DevMortimer/pi-typesafe) | ★ 26 | TypeScript | 2026-09-21 | Pi 扩展，提供批量 Jev 评估工具、终端试验场和供其他扩展使用的类型化 API。 |
 | [TypeSafe Swift SDK](https://github.com/krzyzanowskim/TypeSafe) | ★ 24 | Swift | 2026-09-21 | TypeSafe System One API 的 SwiftPM 客户端，支持类型化的 Noul、Choice 和 Score 问题。 |
@@ -120,7 +115,26 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [typesafe-sdk-go](https://github.com/valksor/typesafe-sdk-go) | ★ 0 | Go | 2026-09-19 | 非官方 Go SDK，与 TypeSafe AI System One 官方 JS 和 Python SDK 保持 1:1 功能对应；非 TypeSafe AI 官方项目。 |
 | [typesafe-sdk-php](https://github.com/valksor/typesafe-sdk-php) | ★ 0 | PHP | 2026-09-19 | 非官方 PHP SDK，与 TypeSafe AI System One 官方 JS 和 Python SDK 保持 1:1 功能对应；非 TypeSafe AI 官方项目。 |
 
-### 框架与集成（33）
+<a id="jev-like-models"></a>
+
+### Jev-like 模型 （12）
+
+| 项目名 | Stars | 语言 | 收录时间 | 描述 |
+|---|---:|---|---|---|
+| [SemIf](https://github.com/TheoLeeCJ/SemIf) | ★ 2,023 | Python | 2026-09-19 | 在家用 RTX 3090 上通过开源模型实现语义 If；独立项目，与 Jev 或 TypeSafe 无隶属关系。 |
+| [kev](https://github.com/jaredpalmer/kev) | ★ 1,558 | Python | 2026-09-21 | 基于 Qwen 的小型可训练 Jev 类决策模型系列，提供类型化原语、数据集、评测工具和本地推理。 |
+| [LocalJev](https://github.com/githubnext/localjev) | ★ 662 | TypeScript | 2026-09-21 | 本地 Jev 兼容 System One API，把类型化问题转换为 DiffusionGemma 分类提示与概率。 |
+| [Simple Jev](https://github.com/featherless-ai/simple-jev) | ★ 429 | Python | 2026-09-21 | 开放模型 Jev 类服务，通过读取下一 Token 的 Logit 返回类型化选择、评分和真假判断。 |
+| [openjev-sglang](https://github.com/ekzhang/openjev-sglang) | ★ 245 | Python | 2026-09-21 | 基于开放模型和 SGLang 的 Jev 兼容 API 服务，使用仅预填充推理提供类型化决策端点。 |
+| [jeff](https://github.com/logan-markewich/jeff) | ★ 189 | Python | 2026-09-21 | 基于 GLiNER 系列模型的自托管 Jev 兼容 System One 服务，支持批处理和类型化问题。 |
+| [openjev](https://github.com/razorback16/openjev) | ★ 142 | Python | 2026-09-19 | 基于 DiffusionGemma 的开放 Jev 兼容 System One 决策服务器。 |
+| [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev) | ★ 114 | Python | 2026-09-21 | 把本地语言模型转换为 Jev 类 Choice、Score 和 Noul 决策引擎，并返回类型化概率。 |
+| [OpenDecision](https://github.com/deepanwadhwa/OpenDecision) | ★ 45 | Python | 2026-09-21 | 开放语义决策引擎，实现 Choice、Noul 和 Score 原语，并提供 TypeSafe 对比工具。 |
+| [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone) | ★ 29 | Python | 2026-09-21 | 开放的泰英双语 System One 模型，提供 Choice 推理、校准、评测脚本和 Jev 对比套件。 |
+| [open-jev (JoshuaSP)](https://github.com/JoshuaSP/open-jev) | ★ 17 | Python | 2026-09-19 | 使用 DiffusionGemma 进行类型化 JSON 推理，并提供 Every 与 Jev 基准结果。 |
+| [open-spark-jev](https://github.com/abhishek085/open-spark-jev) | ★ 5 | Python | 2026-09-21 | Open local System One implementation for NVIDIA DGX Spark with a Jev-compatible API. |
+
+### 框架与集成 （33）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -158,7 +172,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [Jev4Mellea](https://github.com/SoundBlaster/Jev4Mellea) | ★ 0 | Python | 2026-09-19 | 连接 Jev 与 Mellea 的适配器。 |
 | [ground-zero](https://github.com/zavocc/ground-zero) | ★ 0 | Python | 2026-09-20 | 使用 Jev 检测 AI 幻觉与指令遵循失败的评估框架。 |
 
-### Agent 工具（127）
+### Agent 工具 （127）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -290,7 +304,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [zcode-jev](https://github.com/Zahrannnn/zcode-jev) | ★ 0 | TypeScript | 2026-09-19 | 面向编程 Agent 的类型化判断层，从 PRD 到发布全程设置门控；支持 Jev 且不绑定提供商。 |
 | [agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate) | ★ 0 | Python | 2026-09-19 | 面向证据感知 Agent 交接的实验协议，在结果到达主 Agent 前使用 Jev 辅助审查。 |
 
-### 浏览器与计算机操作（45）
+### 浏览器与计算机操作 （45）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -340,7 +354,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension) | ★ 0 | JavaScript | 2026-09-19 | 开源 Chrome 扩展，使用 Jev 过滤 AI 生成文本和广告。 |
 | [sift](https://github.com/tylergibbs1/sift) | ★ 0 | TypeScript | 2026-09-19 | Chrome 扩展，使用 TypeSafe Jev 重排 Google 搜索结果并折叠销售页面与 SEO 填充内容。 |
 
-### 应用（61）
+### 应用 （61）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -406,7 +420,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [JevSlop](https://github.com/TKY-27/JevSlop) | ★ 0 | TypeScript | 2026-09-19 | 从八个 Jev 维度评估公开 note.com 文章，并生成可检查的 AI 低质内容评分。 |
 | [github-star-organizer-jev](https://github.com/yutkat/github-star-organizer-jev) | ★ 0 | Python | 2026-09-20 | 使用 Jev 分类和整理 GitHub Star。 |
 
-### 游戏与模拟（54）
+### 游戏与模拟 （54）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -465,7 +479,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [Agent-JEV-Tetris](https://github.com/Yasserbhb/Agent-JEV-Tetris) | ★ 0 | HTML | 2026-09-19 | 使用新模型 Jev 游玩俄罗斯方块。 |
 | [jev-plays-pokemon](https://github.com/zbloss/jev-plays-pokemon) | ★ 0 | Python | 2026-09-20 | 由 Jev 选择动作的宝可梦游戏实验。 |
 
-### 演示与试验场（46）
+### 演示与试验场 （46）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
@@ -516,33 +530,24 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion) | ★ 0 | HTML | 2026-09-19 | 从分类器生成扩散风格像素画：并行提出 256 个逐像素 Jev 问题并执行多轮细化。 |
 | [jev-playground (wustep)](https://github.com/wustep/jev-playground) | ★ 0 | TypeScript | 2026-09-19 | 探索 System One 模型能否指挥音乐：Jev 只用枚举选择方案，代码生成乐谱、音频和 MIDI。 |
 
-### 基准测试与研究（99）
+### 基准测试与研究 （89）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|
-| [SemIf](https://github.com/TheoLeeCJ/SemIf) | ★ 2,023 | Python | 2026-09-19 | 在家用 RTX 3090 上通过开源模型实现语义 If；独立项目，与 Jev 或 TypeSafe 无隶属关系。 |
-| [kev](https://github.com/jaredpalmer/kev) | ★ 1,558 | Python | 2026-09-21 | 基于 Qwen 的小型可训练 Jev 类决策模型系列，提供类型化原语、数据集、评测工具和本地推理。 |
 | [NanoJev](https://github.com/TianyuCodings/NanoJev) | ★ 1,074 | Python | 2026-09-19 | 开放的 0.6B 参数 Jev 复刻，支持并行决策、完整概率分布，并提供训练管道、权重、数据集和在线演示。 |
 | [jevlike](https://github.com/vinnylarouge/jevlike) | ★ 1,008 | Python | 2026-09-19 | 训练小模型，从动态文本选项列表中单次前向输出每个选项的概率；包含 Doom、国际象棋和 Wikispeedia 演示。 |
-| [Simple Jev](https://github.com/featherless-ai/simple-jev) | ★ 429 | Python | 2026-09-21 | 开放模型 Jev 类服务，通过读取下一 Token 的 Logit 返回类型化选择、评分和真假判断。 |
-| [jeff](https://github.com/logan-markewich/jeff) | ★ 189 | Python | 2026-09-21 | 基于 GLiNER 系列模型的自托管 Jev 兼容 System One 服务，支持批处理和类型化问题。 |
 | [jev-visual](https://github.com/hr98w/jev-visual) | ★ 150 | Python | 2026-09-19 | Apple Silicon 上用于教学的 Jev 风格视觉推理实验，采用共享上下文、直接候选评分和本地视觉演示。 |
-| [openjev](https://github.com/razorback16/openjev) | ★ 142 | Python | 2026-09-19 | 基于 DiffusionGemma 的开放 Jev 兼容 System One 决策服务器。 |
-| [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev) | ★ 114 | Python | 2026-09-21 | 把本地语言模型转换为 Jev 类 Choice、Score 和 Noul 决策引擎，并返回类型化概率。 |
 | [decider](https://github.com/Mapika/decider) | ★ 99 | Python | 2026-09-19 | 从 Qwen3.5-2B 微调的 System One 风格模型，单次完成类型化决策并返回校准概率。 |
 | [jev-eval-agent](https://github.com/vinilana/jev-eval-agent) | ★ 95 | HTML | 2026-09-19 | 基于 Vercel eve 的个人助理 Agent，配置 100 个模拟工具，对比由 Jev 和 LLM 选工具时所需步骤。 |
 | [reflex](https://github.com/kshetrajna12/reflex) | ★ 79 | Python | 2026-09-19 | 小型开源决策模型：输入状态与类型化问题，输出校准概率；基于 Qwen3.5 复刻 Jev/System One。 |
 | [WindTunnel](https://github.com/nekuda-ai/WindTunnel) | ★ 69 | TypeScript | 2026-09-19 | 用于比较浏览器 Agent 接口的 WebMCP 基准，将 Jev 作为被评测配置之一。 |
 | [open-jev (daseinlabs)](https://github.com/daseinlabs/open-jev) | ★ 56 | Python | 2026-09-19 | 受 jevlike 启发，在 Apple Silicon 上通过 MLX 使用本地 Gemma 3 4B 单次评分选项，并附 Doom 演示。 |
-| [OpenDecision](https://github.com/deepanwadhwa/OpenDecision) | ★ 45 | Python | 2026-09-21 | 开放语义决策引擎，实现 Choice、Noul 和 Score 原语，并提供 TypeSafe 对比工具。 |
 | [jevmlx](https://github.com/bnsd55/jevmlx) | ★ 40 | Python | 2026-09-19 | 让任意 MLX 模型在 Apple Silicon 上执行 Jev 风格并行约束决策，单次前向输出类型化、符合 Schema 的 JSON。 |
 | [typesafe-ai-benchmark](https://github.com/iammrduncan/typesafe-ai-benchmark) | ★ 32 | TypeScript | 2026-09-19 | 模拟 TypeSafe AI 结构化输出的 LLM Gateway，相当于一个“仿冒 Jev”。 |
-| [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone) | ★ 29 | Python | 2026-09-21 | 开放的泰英双语 System One 模型，提供 Choice 推理、校准、评测脚本和 Jev 对比套件。 |
 | [Verdict-open-jev](https://github.com/Heman10x-NGU/Verdict-open-jev) | ★ 28 | Python | 2026-09-19 | 基于 ModernBERT（151M）的非自回归决策引擎，提供校准不确定性、TypeSafe Jev 基准审计和浏览器 WebGPU 游乐场。 |
 | [mini-jev](https://github.com/r-ms/mini-jev) | ★ 24 | Python | 2026-09-19 | 展示冻结 Qwen3-4B 上 Jev 风格类型化决策接口的 Mini-Jev：读取选项字母 Logits 而非生成 JSON，提供预注册实验、结果和教学基准。 |
 | [LitJev](https://github.com/zhengxuyu/litjev) | ★ 21 | Python | 2026-09-19 | Jev 复现方案，无需训练即可将任意 Qwen 模型变为快速决策模型，提供相同 `/v1/systemone` Schema 且不生成答案文本。 |
 | [jev-on-a-laptop](https://github.com/rorshopping/jev-on-a-laptop) | ★ 18 | Python | 2026-09-19 | 非官方研究：在 Apple Silicon 笔记本的原生 1.5B–8B 模型上执行 Jev 风格并行类型化决策，附基准、研究笔记和 Hugging Face Space 演示。 |
-| [open-jev (JoshuaSP)](https://github.com/JoshuaSP/open-jev) | ★ 17 | Python | 2026-09-19 | 使用 DiffusionGemma 进行类型化 JSON 推理，并提供 Every 与 Jev 基准结果。 |
 | [jev-column-race](https://github.com/goodrahstar/jev-column-race) | ★ 16 | JavaScript | 2026-09-19 | Jev 与 Gemini 3.8 Flash 对比：标注 1,000 条应用评论，报告速度快 4.1 倍、成本低 7 倍。 |
 | [open-alternative-jev](https://github.com/ikermoel/open-alternative-jev) | ★ 16 | Python | 2026-09-19 | Jev 的开放替代方案，让任意开放权重 LLM 单次前向完成类型化校准决策，支持 Hugging Face、vLLM 和基准测试。 |
 | [openjev (zhihz)](https://github.com/zhihz/openjev) | ★ 16 | Python | 2026-09-19 | 根据上下文、问题和候选答案执行本地双语概率决策；受 Jev 启发的独立研究预览。 |
@@ -562,7 +567,6 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [LegalForecastBench](https://github.com/johnhughes3/LegalForecastBench) | ★ 5 | Python | 2026-09-19 | LegalForecast-MTD 法律预测基准 Alpha 版及官方评测工作流。 |
 | [jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark) | ★ 5 | Python | 2026-09-19 | 针对 Jev 韩语理解和医疗文本能力的可复现早期访问评测，包含运行时间与成本证据。 |
 | [jev-lm](https://github.com/y0usaf/jev-lm) | ★ 5 | TypeScript | 2026-09-19 | 输出层采用 Jev 的词级语言模型，包含 n-gram 草稿器、Noul 分块验证和每 Token 比特评测。 |
-| [open-spark-jev](https://github.com/abhishek085/open-spark-jev) | ★ 5 | Python | 2026-09-21 | Open local System One implementation for NVIDIA DGX Spark with a Jev-compatible API. |
 | [daf-jev](https://github.com/docxology/daf-jev) | ★ 4 | Python | 2026-09-19 | 面向 TypeSafe Jev API 的可组合 Python 工具包，包含问题构建器、置信度门控、评测器、校准、CLI、MCP 服务器和 Agent 技能。 |
 | [jev-little-airways](https://github.com/lbotinelly/jev-little-airways) | ★ 4 | HTML | 2026-09-19 | TypeSafe System One 决策模型 Jev 的展示型能力研究。 |
 | [jev-search-rerank-eval](https://github.com/zhuyansen/jev-search-rerank-eval) | ★ 4 | Python | 2026-09-19 | 评测 Jev 重排序是否优于向量搜索：在 Agent Skills Hub 目录上使用 9,831 个相关性对和 164 个中英文查询，并测量裁判循环偏差。 |
@@ -620,7 +624,7 @@ Awesome Jev 是一份由社区独立维护、以公开依据为基础的项目�
 | [jev-pick-and-place-study](https://github.com/tryaksh/jev-pick-and-place-study) | ★ 0 | Python | 2026-09-19 | 可复现的小型 MuJoCo 先导研究，对比 Jev、Claude Haiku 和反应式规则在抓取放置任务中的表现。 |
 | [thaiexam-jev-charts](https://github.com/vehas/thaiexam-jev-charts) | ★ 0 | HTML | 2026-09-19 | 图表：在泰国标准化考试上评估 TypeSafe Jev，并与其他 110 个模型比较。 |
 
-### 其他列表（12）
+### 其他列表 （12）
 
 | 项目名 | Stars | 语言 | 收录时间 | 描述 |
 |---|---:|---|---|---|

@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev — 530 verified open-source projects across 10 categories" width="100%"></a>
+  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev — 530 verified open-source projects across 11 categories" width="100%"></a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/verified_projects-530-1e63ff?style=flat-square" alt="530 verified projects">
-  <img src="https://img.shields.io/badge/categories-10-111111?style=flat-square" alt="10 categories">
+  <img src="https://img.shields.io/badge/categories-11-111111?style=flat-square" alt="11 categories">
   <img src="https://img.shields.io/badge/languages-25-676767?style=flat-square" alt="25 languages">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1e63ff?style=flat-square" alt="License: MIT"></a>
 </p>
@@ -15,6 +15,8 @@
 
 <p align="center">
   · <a href="https://jevbest.com"><strong>웹 사이트 탐색</strong></a>
+  &nbsp;·&nbsp;
+  🧠 <a href="#jev-like-models"><strong>Jev-like 모델</strong></a>
   &nbsp;·&nbsp;
   · <a href="https://github.com/heyjunpenn/awesome-jev/issues/new?title=%5BSubmission%5D%20"><strong>프로젝트 제출</strong></a>
 </p>
@@ -30,14 +32,15 @@
 ## 이름 *
 
 · [- 한국어](#official-6) — — **6개**
-- 📦 [SDK 및 클라이언트](#sdks--clients-47) — **47**
+- 📦 [SDK 및 클라이언트](#sdks--clients-45) — **45**
+- 🧠 [Jev-like 모델](#jev-like-models) — **12**
 - 🧩 [Frameworks 및 통합](#frameworks--integrations-33) — **33**
 - 🤖 [에이전트 툴링](#agent-tooling-127) — **127**
 - 🖥️ [브라우저 및 컴퓨터 사용](#browser--computer-use-45) — **45**
 - 🪟 [이름 *](#applications-61) — **61**
 · [게임 및 시뮬레이션](#games--simulations-54) — — **54**
 · [데모 및 놀이터](#demos--playgrounds-46) — — **46명**
-- 📊 [벤치 마크 & 연구](#benchmarks--research-99) — **99**
+- 📊 [벤치 마크 & 연구](#benchmarks--research-89) — **89**
 ₢ 킹 [기타 목록](#other-lists-12) — — **12 월**
 
 이 README는 날짜 스냅 샷입니다. **530 고유의 공개 GitHub 저장소**· 별이 캡처되었습니다. **2026-09-18–21** 발견을 위해, 순위가 아닙니다; 현재 행동, 활동 및 라이센스 업스트림을 확인합니다.
@@ -45,15 +48,9 @@
 ## 오늘 추가
 
 <details open>
-<summary><strong>2026년 9월 21일에 추가된 프로젝트 45개</strong></summary>
+<summary><strong>2026년 9월 22일에 추가된 프로젝트 0개</strong></summary>
 
-- **SDK 및 클라이언트 (5):** [LocalJev](https://github.com/githubnext/localjev), [openjev-sglang](https://github.com/ekzhang/openjev-sglang), [pi-typesafe](https://github.com/DevMortimer/pi-typesafe), [TypeSafe Swift SDK](https://github.com/krzyzanowskim/TypeSafe), [typesafe-ai-go](https://github.com/kisshan13/typesafe-ai-go)
-- **Frameworks 및 통합 (5):** [NeuroLink](https://github.com/juspay/neurolink), [Jevbridge](https://github.com/tacticocc/Jevbridge), [jevalyn](https://github.com/Ray-Hughes/jevalyn), [J++](https://github.com/Towow-ai/jpp), [jevals](https://github.com/openlayer-ai/jevals)
-- **에이전트 툴링 (15):** [hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills), [jev-pruner](https://github.com/tamaratran/jev-pruner), [grok-bot-jev](https://github.com/Bodila51/grok-bot-jev), [agent-router](https://github.com/nidhi-singh02/agent-router), [jegrep](https://github.com/can1357/jegrep), [jev-lint](https://github.com/mizchi/jev-lint), [jev-rules](https://github.com/EliaAlberti/jev-rules), [jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision), [jevgrep](https://github.com/nassim-arifette/jevgrep), [pi-jev-router (philippdubach)](https://github.com/philippdubach/pi-jev-router), [jcr](https://github.com/NiazMorshed2007/jcr), [jev-architect](https://github.com/karanb192/jev-architect), [jev-spec](https://github.com/nozomi-koborinai/jev-spec), [jev-tool-router](https://github.com/jackbarunz/jev-tool-router), [open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)
-- **브라우저 및 컴퓨터 사용 (4):** [Jev macOS Loop](https://github.com/jcpsimmons/jev-macos-loop), [x-scanner](https://github.com/oso95/x-scanner), [sift](https://github.com/bohutang/sift), [playjev](https://github.com/filedcom/playjev)
-- **이름 * (8):** [tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier), [formanator](https://github.com/timrogers/formanator), [jev-reviewer](https://github.com/choxos/jev-reviewer), [jevmail](https://github.com/fazlerocks/jevmail), [jsort](https://github.com/keltokhy/jsort), [jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier), [jselect](https://github.com/keltokhy/jselect), [jlink](https://github.com/keltokhy/jlink)
-- **게임 및 시뮬레이션 (1):** [jev-libero](https://github.com/Dimweaker/jev-libero)
-- **벤치 마크 & 연구 (7):** [kev](https://github.com/jaredpalmer/kev), [Simple Jev](https://github.com/featherless-ai/simple-jev), [jeff](https://github.com/logan-markewich/jeff), [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev), [OpenDecision](https://github.com/deepanwadhwa/OpenDecision), [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone), [open-spark-jev](https://github.com/abhishek085/open-spark-jev)
+오늘 추가된 프로젝트가 없습니다.
 
 </details>
 
@@ -68,12 +65,10 @@
 | [TypeSafe Daggerverse](https://github.com/typesafe-ai/daggerverse) | ★ 12 | Python | 2026-09-20 | TypeSafe AI 및 System One 워크플로우를 위한 재사용 가능한 Dagger 모듈의 공식 컬렉션. |
 | [TypeSafe Overwatch](https://github.com/typesafe-ai/Overwatch) | ★ 4 | Python | 2026-09-20 | 관찰 및 평가 시스템 One 워크플로우에 대한 공식 툴링. |
 
-### SDK 및 클라이언트 (47)
+### SDK 및 클라이언트 (45)
 
 | 프로젝트 | Stars | 언어 | 등록일 | 설명 |
 |---|---:|---|---|---|
-| [LocalJev](https://github.com/githubnext/localjev) | ★ 662 | TypeScript | 2026-09-21 | 타입 질문을 DiffusionGemma 분류 프롬프트와 확률로 변환하는 로컬 Jev 호환 System One API입니다. |
-| [openjev-sglang](https://github.com/ekzhang/openjev-sglang) | ★ 245 | Python | 2026-09-21 | 오픈 모델과 SGLang으로 구축한 Jev 호환 API 서버로, prefill-only 추론과 타입 기반 의사결정 엔드포인트를 제공합니다. |
 | [advocaat](https://github.com/pithings/advocaat) | ★ 85 | TypeScript | 2026-09-19 | TypeSafe Jev에 의해 구동되는 데이터에 대한 AI 질문에 대한 작은 유형 안전 클라이언트. |
 | [pi-typesafe](https://github.com/DevMortimer/pi-typesafe) | ★ 26 | TypeScript | 2026-09-21 | 일괄 Jev 평가 도구, 터미널 플레이그라운드, 다른 확장용 타입 API를 제공하는 Pi 확장입니다. |
 | [TypeSafe Swift SDK](https://github.com/krzyzanowskim/TypeSafe) | ★ 24 | Swift | 2026-09-21 | 타입 기반 Noul, Choice, Score 질문을 지원하는 TypeSafe System One API용 SwiftPM 클라이언트입니다. |
@@ -119,6 +114,25 @@
 | [typesafe_ai (typesend)](https://github.com/typesend/typesafe_ai) | ★ 0 | Elixir | 2026-09-19 | TypeSafe AI API를 위한 Unofficial Elixir SDK. |
 | [typesafe-sdk-go](https://github.com/valksor/typesafe-sdk-go) | ★ 0 | Go | 2026-09-19 | TypeSafe AI 시스템을 위한 Unofficial Go SDK 1개의 API — 공식 JS와 Python SDK를 가진 1:1 동정. TypeSafe AI와 제휴하지 않습니다. |
 | [typesafe-sdk-php](https://github.com/valksor/typesafe-sdk-php) | ★ 0 | PHP | 2026-09-19 | TypeSafe AI 시스템의 Unofficial PHP SDK 1개의 API — 공식 JS와 Python SDK를 가진 1:1 동정. TypeSafe AI와 제휴하지 않습니다. |
+
+<a id="jev-like-models"></a>
+
+### Jev-like 모델 (12)
+
+| 프로젝트 | Stars | 언어 | 등록일 | 설명 |
+|---|---:|---|---|---|
+| [SemIf](https://github.com/TheoLeeCJ/SemIf) | ★ 2,023 | Python | 2026-09-19 | 오픈 모델의 경우, 집에서 3090에. 독립적 인; Jev 또는 TypeSafe와 제휴하지 않습니다. |
+| [kev](https://github.com/jaredpalmer/kev) | ★ 1,558 | Python | 2026-09-21 | Qwen 기반의 소형 학습형 Jev 유사 의사결정 모델 제품군으로, 타입 기반 프리미티브와 데이터셋, 평가 도구, 로컬 추론을 제공합니다. |
+| [LocalJev](https://github.com/githubnext/localjev) | ★ 662 | TypeScript | 2026-09-21 | 타입 질문을 DiffusionGemma 분류 프롬프트와 확률로 변환하는 로컬 Jev 호환 System One API입니다. |
+| [Simple Jev](https://github.com/featherless-ai/simple-jev) | ★ 429 | Python | 2026-09-21 | 다음 토큰 로짓을 읽어 타입 선택, 기준 점수, 진실성 판단을 반환하는 오픈 모델 기반 Jev형 서버입니다. |
+| [openjev-sglang](https://github.com/ekzhang/openjev-sglang) | ★ 245 | Python | 2026-09-21 | 오픈 모델과 SGLang으로 구축한 Jev 호환 API 서버로, prefill-only 추론과 타입 기반 의사결정 엔드포인트를 제공합니다. |
+| [jeff](https://github.com/logan-markewich/jeff) | ★ 189 | Python | 2026-09-21 | GLiNER 계열 모델 기반의 자체 호스팅 Jev 호환 System One 서버로 배치 처리와 타입 질문을 지원합니다. |
+| [openjev](https://github.com/razorback16/openjev) | ★ 142 | Python | 2026-09-19 | 오픈, Jev 호환 시스템 DiffusionGemma에 대한 하나의 결정 서버. |
+| [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev) | ★ 114 | Python | 2026-09-21 | 로컬 언어 모델을 타입 확률을 반환하는 Jev형 Choice, Score, Noul 의사결정 엔진으로 바꾸는 어댑터입니다. |
+| [OpenDecision](https://github.com/deepanwadhwa/OpenDecision) | ★ 45 | Python | 2026-09-21 | Choice, Noul, Score 프리미티브와 TypeSafe 비교 하니스를 제공하는 오픈 시맨틱 의사결정 엔진입니다. |
+| [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone) | ★ 29 | Python | 2026-09-21 | Choice 추론, 보정, 평가 스크립트와 Jev 비교 도구를 제공하는 태국어·영어 오픈 System One 모델입니다. |
+| [open-jev (JoshuaSP)](https://github.com/JoshuaSP/open-jev) | ★ 17 | Python | 2026-09-19 | DiffusionGemma와 함께 JSON inference를 입력하고, 모든 Jev 벤치 마크 결과. |
+| [open-spark-jev](https://github.com/abhishek085/open-spark-jev) | ★ 5 | Python | 2026-09-21 | Open local System One implementation for NVIDIA DGX Spark with a Jev-compatible API. |
 
 ### Frameworks 및 통합 (33)
 
@@ -516,33 +530,24 @@
 | [typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion) | ★ 0 | HTML | 2026-09-19 | 정수기 밖으로 Diffusion-style 화소 예술: 256 평행한 per-pixel Jev 질문 플러스 정제 패스. |
 | [jev-playground (wustep)](https://github.com/wustep/jev-playground) | ★ 0 | TypeScript | 2026-09-19 | 시스템 하나의 모델 스티어 음악? Jev는 계획 (enums만); 코드 렌더링 시트, 오디오 및 MIDI. |
 
-### 벤치 마크 & 연구 (99)
+### 벤치 마크 & 연구 (89)
 
 | 프로젝트 | Stars | 언어 | 등록일 | 설명 |
 |---|---:|---|---|---|
-| [SemIf](https://github.com/TheoLeeCJ/SemIf) | ★ 2,023 | Python | 2026-09-19 | 오픈 모델의 경우, 집에서 3090에. 독립적 인; Jev 또는 TypeSafe와 제휴하지 않습니다. |
-| [kev](https://github.com/jaredpalmer/kev) | ★ 1,558 | Python | 2026-09-21 | Qwen 기반의 소형 학습형 Jev 유사 의사결정 모델 제품군으로, 타입 기반 프리미티브와 데이터셋, 평가 도구, 로컬 추론을 제공합니다. |
 | [NanoJev](https://github.com/TianyuCodings/NanoJev) | ★ 1,074 | Python | 2026-09-19 | 개방 0.6B 평행한 결정, 완전한 확률 분배, 훈련 파이프라인, 무게, dataset 및 살아있는 데모를 가진 Jev 복제. |
 | [jevlike](https://github.com/vinnylarouge/jevlike) | ★ 1,008 | Python | 2026-09-19 | 텍스트 옵션의 변경 목록 중에서 선택할 수있는 작은 모델을 기차, 단일 패스의 옵션 당 하나의 확률. Doom, 체스와 Wikispeedia 데모를 포함합니다. |
-| [Simple Jev](https://github.com/featherless-ai/simple-jev) | ★ 429 | Python | 2026-09-21 | 다음 토큰 로짓을 읽어 타입 선택, 기준 점수, 진실성 판단을 반환하는 오픈 모델 기반 Jev형 서버입니다. |
-| [jeff](https://github.com/logan-markewich/jeff) | ★ 189 | Python | 2026-09-21 | GLiNER 계열 모델 기반의 자체 호스팅 Jev 호환 System One 서버로 배치 처리와 타입 질문을 지원합니다. |
 | [jev-visual](https://github.com/hr98w/jev-visual) | ★ 150 | Python | 2026-09-19 | Apple Silicon의 교육 Jev-like 시각적 인 의도 실험 : 공유 컨텍스트, 직접 후보 득점 및 현지 시각 데모. |
-| [openjev](https://github.com/razorback16/openjev) | ★ 142 | Python | 2026-09-19 | 오픈, Jev 호환 시스템 DiffusionGemma에 대한 하나의 결정 서버. |
-| [LLM2Jev](https://github.com/Yinsongxu/LLM2Jev) | ★ 114 | Python | 2026-09-21 | 로컬 언어 모델을 타입 확률을 반환하는 Jev형 Choice, Score, Noul 의사결정 엔진으로 바꾸는 어댑터입니다. |
 | [decider](https://github.com/Mapika/decider) | ★ 99 | Python | 2026-09-19 | Qwen3.5-2B에서 미세 조정 된 확률 (System One Style model)과 하나의 패스 유형 결정. |
 | [jev-eval-agent](https://github.com/vinilana/jev-eval-agent) | ★ 95 | HTML | 2026-09-19 | Vercel의 eve에 내장 된 개인 정당화 에이전트 100 모의 도구, Jev가 LLM을 versus 할 때 걸리는 많은 단계를 측정. |
 | [reflex](https://github.com/kshetrajna12/reflex) | ★ 79 | Python | 2026-09-19 | 작은 열린 결정 모델 : 국가 + 유형 질문 -> 계산 확률. Jev / 시스템 Qwen3.5에서 1개의 재조절. |
 | [WindTunnel](https://github.com/nekuda-ai/WindTunnel) | ★ 69 | TypeScript | 2026-09-19 | WebMCP 벤치 마크는 브라우저 시약 인터페이스를 비교하여 Jev가 평가 된 구성 중 하나로 포함되었습니다. |
 | [open-jev (daseinlabs)](https://github.com/daseinlabs/open-jev) | ★ 56 | Python | 2026-09-19 | One-pass 옵션은 MLX를 통해 Apple Silicon의 Local Gemma 3 4B를 사용하여 Doom 데모와 함께 jevlike에서 영감을 얻었습니다. |
-| [OpenDecision](https://github.com/deepanwadhwa/OpenDecision) | ★ 45 | Python | 2026-09-21 | Choice, Noul, Score 프리미티브와 TypeSafe 비교 하니스를 제공하는 오픈 시맨틱 의사결정 엔진입니다. |
 | [jevmlx](https://github.com/bnsd55/jevmlx) | ★ 40 | Python | 2026-09-19 | Apple Silicon의 MLX 모델에 대한 Jev-style 병렬 제약 결정. 입력, schema-valid JSON 한 전달 패스. |
 | [typesafe-ai-benchmark](https://github.com/iammrduncan/typesafe-ai-benchmark) | ★ 32 | TypeScript | 2026-09-19 | 이 LLM 게이트웨이는 mimics typesafe ai 구조화 출력입니다. 감옥 Jev처럼. |
-| [OpenThai-SystemOne](https://github.com/iapp-technology/openthai-systemone) | ★ 29 | Python | 2026-09-21 | Choice 추론, 보정, 평가 스크립트와 Jev 비교 도구를 제공하는 태국어·영어 오픈 System One 모델입니다. |
 | [Verdict-open-jev](https://github.com/Heman10x-NGU/Verdict-open-jev) | ★ 28 | Python | 2026-09-19 | 현대BERT (151M)에 비 자동적인 결정 엔진은 불확실성 (RLCD), TypeSafe AI를 측정합니다 Jev 벤치 마크 감사 및 in-browser WebGPU 놀이터. |
 | [mini-jev](https://github.com/r-ms/mini-jev) | ★ 24 | Python | 2026-09-19 | Mini-Jev: Jev-style typed-decision 인터페이스가 언 Qwen3-4B와 같이 보입니다. JSON 생성 대신 옵션 문자 로그를 읽습니다. Preregistered 실험, 결과, 교육 벤치. |
 | [LitJev](https://github.com/zhengxuyu/litjev) | ★ 21 | Python | 2026-09-19 | 어떤 Qwen 모델을 빠른 결정 모델로 바꾸는 Jev의 재생산, 같은 /v1/systemone schema (Choice, Score, Noul) 훈련 및 생성 된 대답 텍스트를 제공. |
 | [jev-on-a-laptop](https://github.com/rorshopping/jev-on-a-laptop) | ★ 18 | Python | 2026-09-19 | Unofficial 학문: 애플 실리콘 노트북에 주식 1.5B-8B 모형에 Jev 작풍 평행한 유형의 결정. 벤치 마크, 연구 노트 및 Hugging Face Space 데모. |
-| [open-jev (JoshuaSP)](https://github.com/JoshuaSP/open-jev) | ★ 17 | Python | 2026-09-19 | DiffusionGemma와 함께 JSON inference를 입력하고, 모든 Jev 벤치 마크 결과. |
 | [jev-column-race](https://github.com/goodrahstar/jev-column-race) | ★ 16 | JavaScript | 2026-09-19 | Jev vs Gemini 3.8 플래시 : 라벨링 1,000 앱 리뷰, 4.1 × 빠르고 7 × 저렴합니다. |
 | [open-alternative-jev](https://github.com/ikermoel/open-alternative-jev) | ★ 16 | Python | 2026-09-19 | Jev에 대한 대안을 엽니 다: 유형, 벤치 마크와 함께 하나의 전달 패스 (HF + vLLM)에서 개방 중량 LLM에서 측정 결정. |
 | [openjev (zhihz)](https://github.com/zhihz/openjev) | ★ 16 | Python | 2026-09-19 | Local bilingual probability decisions from context, 질문 및 후보 답변. TypeSafe Jev에서 영감을 얻은 독립적 인 연구 미리보기. |
@@ -562,7 +567,6 @@
 | [LegalForecastBench](https://github.com/johnhughes3/LegalForecastBench) | ★ 5 | Python | 2026-09-19 | LegalForecast-MTD 벤치 마크 알파 및 공식 평가 워크플로우. |
 | [jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark) | ★ 5 | Python | 2026-09-19 | 한국 이해 및 의료 텍스트에 Jev의 초기 액세스 평가, 런타임 및 비용 증거와 함께. |
 | [jev-lm](https://github.com/y0usaf/jev-lm) | ★ 5 | TypeScript | 2026-09-19 | 출력 레이어가 Jev : n-gram 초안자, Noul chunk 검증, bits-per-token eval 인 단어 레벨 언어 모델. |
-| [open-spark-jev](https://github.com/abhishek085/open-spark-jev) | ★ 5 | Python | 2026-09-21 | Open local System One implementation for NVIDIA DGX Spark with a Jev-compatible API. |
 | [daf-jev](https://github.com/docxology/daf-jev) | ★ 4 | Python | 2026-09-19 | Daf-jev : 작곡 가능 TypeSafe의 Jev (System One) 결정 API 용 Python 툴킷 - 질문 빌더, 신뢰 게이트, 증발기, 보정, CLI, MCP 서버, 에이전트 기술. |
 | [jev-little-airways](https://github.com/lbotinelly/jev-little-airways) | ★ 4 | HTML | 2026-09-19 | Jev, TypeSafe의 시스템을위한 쇼 및 독 기능 연구 1개의 결정 모형. |
 | [jev-search-rerank-eval](https://github.com/zhuyansen/jev-search-rerank-eval) | ★ 4 | Python | 2026-09-19 | TypeSafe는 Jev rerank beat embedding 검색? 등급을 매긴 relevance eval (9,831 쌍, 164 zh/en 쿼리) 에이전트 스킬 허브 카탈로그, 판사 관성 bias 측정. |

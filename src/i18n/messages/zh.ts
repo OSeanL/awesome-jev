@@ -15,7 +15,7 @@ const zh: Messages = {
   },
   hero: {
     title: '最佳 Jev 项目', summary: (projects, categories, languages) => `从 ${projects} 个已核验仓库中搜索，也可以按 ${categories} 个分类和 ${languages} 种语言筛选。`,
-    lastUpdated: '最近更新', updatedDate: '2026 年 9 月 21 日', filterLanguage: '按语言筛选', allLanguages: '全部语言', languages: '语言',
+    lastUpdated: '最近更新', updatedDate: '2026 年 9 月 22 日', filterLanguage: '按语言筛选', allLanguages: '全部语言', languages: '语言',
     addedToday: '今天新增', addedThisWeek: '本周新增', clearRecency: '显示全部日期',
     searchPlaceholder: '搜索项目、语言或决策', imageAlt: '结构化输入经过 Jev，转化为概率决策',
   },
