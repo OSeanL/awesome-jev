@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 44" role="img" aria-labelledby="title desc">
+  <title id="title">bestjev logo</title>
+  <desc id="desc">A compact black geometric icon followed by the lowercase word bestjev.</desc>
+  <g id="symbol" fill="#151513" transform="translate(2 7)">
+    <path d="m10 0 8 4-4 8-8-4z"/>
+    <path d="m20 5 8 4-4 8-8-4z"/>
+    <path d="m5 10 8 4-4 8-8-4z"/>
+    <path d="m15 15 8 4-4 8-8-4z"/>
+  </g>
+  <g id="wordmark" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="-1.2">
+    <text x="39" y="32" fill="#151513">best</text>
+    <text x="96" y="32" fill="#315ee8">jev</text>
+  </g>
+</svg>

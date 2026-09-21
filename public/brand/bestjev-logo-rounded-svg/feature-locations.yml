@@ -1,0 +1,14 @@
+# Bounding boxes measured from original.png.
+# Format: [x, y, width, height] in source-image pixels.
+
+image: original.png
+dimensions: [2172, 724]
+
+features:
+  icon:
+    box: [350, 230, 225, 275]
+    description: "two-piece rounded abstract symbol with surrounding transparent margin"
+
+  wordmark:
+    box: [530, 161, 1330, 428]
+    description: "complete lowercase bestjev wordmark with transparent margin; adjacent icon is masked in the reference crop"

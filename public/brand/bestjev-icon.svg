@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
+  <title id="title">bestjev icon</title>
+  <desc id="desc">A compact black geometric mark made from four connected tiles.</desc>
+  <g fill="#151513" transform="translate(1 1)">
+    <path d="m10 0 8 4-4 8-8-4z"/>
+    <path d="m20 5 8 4-4 8-8-4z"/>
+    <path d="m5 10 8 4-4 8-8-4z"/>
+    <path d="m15 15 8 4-4 8-8-4z"/>
+  </g>
+</svg>

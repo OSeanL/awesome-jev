@@ -1,0 +1,53 @@
+canvas:
+  width: 2172
+  height: 724
+  viewBox: "0 0 2172 724"
+  background: transparent
+
+subject:
+  brief: "A compact, friendly technology-catalog logo with a restrained two-piece symbol and a confident lowercase wordmark. The character comes from very heavy, softly rounded geometry rather than decoration."
+  bbox: [383, 207, 1408, 334]
+  center: [1087, 374]
+
+proportion_anchors:
+  subject_left: 0.176
+  subject_right: 0.825
+  subject_top: 0.286
+  subject_bottom: 0.747
+  icon_center_y_ratio_of_subject: 0.479
+  wordmark_center_y_ratio_of_subject: 0.497
+
+features:
+  icon:
+    bbox: [386, 267, 151, 200]
+    crop_bbox: [350, 230, 225, 275]
+    z: 1
+    source: refs/icon.png
+    output: parts/icon.svg
+    expression_critical: true
+    color: "#000000"
+    alpha: "opaque center with antialiased edge"
+    notes:
+      - "Two independent rounded slanted blocks, both rising toward the right."
+      - "Lower block is offset 42 px right and 75 px down from the upper block."
+
+  wordmark:
+    bbox: [599, 211, 1189, 328]
+    crop_bbox: [530, 161, 1330, 428]
+    z: 2
+    source: refs/wordmark.png
+    output: parts/wordmark.svg
+    expression_critical: true
+    color: "#000000"
+    alpha: "opaque center with antialiased edge"
+    notes:
+      - "Exact lowercase text shape: bestjev. Convert all letters to filled paths; never use an SVG text element."
+      - "Baseline body approximately y=292..482; b ascender and j dot reach y=211; j descender reaches y=539."
+      - "Preserve rounded terminals, counters, letter spacing, and the separate j dot."
+
+relationships:
+  - "Visible gap from icon to wordmark is approximately 62 px."
+  - "Icon height is 60.98% of wordmark height."
+  - "Icon width is 12.70% of wordmark width."
+  - "Icon and wordmark visual centers share the same horizontal band."
+  - "All geometry is pure black with no stroke, gradient, shadow, or texture."
