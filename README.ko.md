@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev — 485 verified open-source projects across 10 categories" width="100%"></a>
+  <a href="https://jevbest.com"><img src="public/readme/awesome-jev-hero.png" alt="Awesome Jev — 503 verified open-source projects across 10 categories" width="100%"></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/verified_projects-485-1e63ff?style=flat-square" alt="485 verified projects">
+  <img src="https://img.shields.io/badge/verified_projects-503-1e63ff?style=flat-square" alt="503 verified projects">
   <img src="https://img.shields.io/badge/categories-10-111111?style=flat-square" alt="10 categories">
   <img src="https://img.shields.io/badge/languages-25-676767?style=flat-square" alt="25 languages">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1e63ff?style=flat-square" alt="License: MIT"></a>
@@ -21,7 +21,7 @@
 
 ## 최고 Jev
 
-최고 Jev는 독립적 인 커뮤니티 기반 카탈로그입니다. **485 오픈 소스 프로젝트** 내장형 [뚱 베어](https://typesafe.ai/)TypeSafe AI 시스템 소프트웨어 내부 결정을위한 하나의 모델. TypeSafe AI에 의해 제휴 또는 승인되지 않습니다.
+최고 Jev는 독립적 인 커뮤니티 기반 카탈로그입니다. **503 오픈 소스 프로젝트** 내장형 [뚱 베어](https://typesafe.ai/)TypeSafe AI 시스템 소프트웨어 내부 결정을위한 하나의 모델. TypeSafe AI에 의해 제휴 또는 승인되지 않습니다.
 
 > **이 카탈로그는 유용합니까?**
 >
@@ -30,22 +30,22 @@
 ## 이름 *
 
 · [- 한국어](#official-6) — — **6개**
-- · [SDK 및 클라이언트](#sdks--clients-42) — — **42명**
-· [Frameworks 및 통합](#frameworks--integrations-28) — — **285,000원**
-₢ 킹 [에이전트 툴링](#agent-tooling-112) — — **112 ·**
-칫 [브라우저 및 컴퓨터 사용](#browser--computer-use-41) — — **415,000원**
-· [이름 *](#applications-53) — — **53 · 53**
+- 📦 [SDK 및 클라이언트](#sdks--clients-43) — **43**
+- 🧩 [Frameworks 및 통합](#frameworks--integrations-31) — **31**
+- 🤖 [에이전트 툴링](#agent-tooling-120) — **120**
+- 🖥️ [브라우저 및 컴퓨터 사용](#browser--computer-use-42) — **42**
+- 🪟 [이름 *](#applications-57) — **57**
 · [게임 및 시뮬레이션](#games--simulations-53) — — **53 · 53**
 · [데모 및 놀이터](#demos--playgrounds-46) — — **46명**
-· [벤치 마크 & 연구](#benchmarks--research-92) — — **92,900원**
+- 📊 [벤치 마크 & 연구](#benchmarks--research-93) — **93**
 ₢ 킹 [기타 목록](#other-lists-12) — — **12 월**
 
-이 README는 날짜 스냅 샷입니다. **485 고유의 공개 GitHub 저장소**· 별이 캡처되었습니다. **2026-09-18–20** 발견을 위해, 순위가 아닙니다; 현재 행동, 활동 및 라이센스 업스트림을 확인합니다.
+이 README는 날짜 스냅 샷입니다. **503 고유의 공개 GitHub 저장소**· 별이 캡처되었습니다. **2026-09-18–21** 발견을 위해, 순위가 아닙니다; 현재 행동, 활동 및 라이센스 업스트림을 확인합니다.
 
 ## 오늘 추가
 
 <details open>
-<summary><strong>52 projects added on September 20, 2026</strong></summary>
+<summary><strong>70 projects added on September 20, 2026</strong></summary>
 
 - - - **공식 (2):** [TypeSafe 배설물](https://github.com/typesafe-ai/daggerverse)· [TypeSafe 오버워치](https://github.com/typesafe-ai/Overwatch)
 - - - **SDK 및 클라이언트 (1):** [아프리카](https://github.com/lhotwll217/jev-cli)
@@ -57,6 +57,8 @@
 - - - **데모 및 놀이터 (2) :** [forma-system1 실험](https://github.com/LamplighterPaul/forma-system1-experiment)· [작은 Jev](https://github.com/karimatayuta/tiny-jev)
 - - - **벤치 마크 및 연구 (4) :** [팟캐스트](https://github.com/DECRUX9812/openjev)· [종이 포장](https://github.com/CompleteDotTech/paper-package)· [아프리카](https://github.com/mameli/jev-vs-luna)· [관련 제품](https://github.com/kotoba-lang/typed-decisions)
 - - - **다른 목록 (5):** [멋진-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe)· [최고 기쁨](https://github.com/hellogumbo/awesome-jev)· [멋진-jev-typesafe](https://github.com/valentynkit/awesome-jev-typesafe)· [사이트맵](https://github.com/theSekyi/jevusecases)· [제프-카세](https://github.com/Hiwoniu/Jev-Case)
+
+- **추가 검증 프로젝트 (18):** [typesafe-ai-go](https://github.com/kisshan13/typesafe-ai-go), [jevalyn](https://github.com/Ray-Hughes/jevalyn), [J++](https://github.com/Towow-ai/jpp), [jevals](https://github.com/openlayer-ai/jevals), [jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision), [jevgrep](https://github.com/nassim-arifette/jevgrep), [pi-jev-router](https://github.com/philippdubach/pi-jev-router), [jcr](https://github.com/NiazMorshed2007/jcr), [jev-architect](https://github.com/karanb192/jev-architect), [jev-spec](https://github.com/nozomi-koborinai/jev-spec), [jev-tool-router](https://github.com/jackbarunz/jev-tool-router), [open-jev-approvals](https://github.com/alexj11324/open-jev-approvals), [playjev](https://github.com/filedcom/playjev), [jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier), [open-spark-jev](https://github.com/abhishek085/open-spark-jev), [jsort](https://github.com/keltokhy/jsort), [jselect](https://github.com/keltokhy/jselect), [jlink](https://github.com/keltokhy/jlink)
 
 </details>
 
@@ -71,7 +73,7 @@
 | [TypeSafe Daggerverse](https://github.com/typesafe-ai/daggerverse) | ★ 12 | Python | TypeSafe AI 및 System One 워크플로우를 위한 재사용 가능한 Dagger 모듈의 공식 컬렉션. |
 | [TypeSafe Overwatch](https://github.com/typesafe-ai/Overwatch) | ★ 4 | Python | 관찰 및 평가 시스템 One 워크플로우에 대한 공식 툴링. |
 
-### SDK 및 클라이언트 (42)
+### SDK 및 클라이언트 (43)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -118,7 +120,9 @@
 | [typesafe-sdk-go](https://github.com/valksor/typesafe-sdk-go) | ★ 0 | Go | TypeSafe AI 시스템을 위한 Unofficial Go SDK 1개의 API — 공식 JS와 Python SDK를 가진 1:1 동정. TypeSafe AI와 제휴하지 않습니다. |
 | [typesafe-sdk-php](https://github.com/valksor/typesafe-sdk-php) | ★ 0 | PHP | TypeSafe AI 시스템의 Unofficial PHP SDK 1개의 API — 공식 JS와 Python SDK를 가진 1:1 동정. TypeSafe AI와 제휴하지 않습니다. |
 
-### Frameworks 및 통합 (28)
+| [typesafe-ai-go](https://github.com/kisshan13/typesafe-ai-go) | ★ 3 | Go | Community Go client for the TypeSafe System One API with typed builders, retries, examples, and `jev-latest` by default. |
+
+### Frameworks 및 통합 (31)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -151,7 +155,11 @@
 | [Jev4Mellea](https://github.com/SoundBlaster/Jev4Mellea) | ★ 0 | Python | Mellea에 Jev 접합기. |
 | [ground-zero](https://github.com/zavocc/ground-zero) | ★ 0 | Python | Jev와 AI Hallucinations 및 Instruction-following 실패 검출을위한 평가 프레임 워크. |
 
-### 에이전트 툴링 (112)
+| [jevalyn](https://github.com/Ray-Hughes/jevalyn) | ★ 10 | Ruby | Rails-native Jev wrapper for typed, calibrated application control flow. |
+| [J++](https://github.com/Towow-ai/jpp) | ★ 8 | Python | Experimental language and Rust runtime with composable semantic questions and Jev-backed decision methods. |
+| [jevals](https://github.com/openlayer-ai/jevals) | ★ 3 | Python | Agent evals and guardrails that batch trace checks into one Jev-style decision request. |
+
+### 에이전트 툴링 (120)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -269,7 +277,16 @@
 | [zcode-jev](https://github.com/Zahrannnn/zcode-jev) | ★ 0 | TypeScript | 코딩 에이전트에 대한 유형의 판단 층 - PRD에서 배에 게이트. Jev-ready, 공급자-agnostic. |
 | [agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate) | ★ 0 | Python | 증거 인식 대리인 handoffs를 위한 실험적인 의정서는, 결과의 앞에 Jev 원조한 검토와 더불어 납 대리인을 도달합니다. |
 
-### 브라우저 및 컴퓨터 사용 (41)
+| [jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision) | ★ 35 | JavaScript | Jev decision plugin for agent harnesses. |
+| [jevgrep](https://github.com/nassim-arifette/jevgrep) | ★ 28 | TypeScript | Semantic code search CLI and MCP server with exact source excerpts. |
+| [pi-jev-router (philippdubach)](https://github.com/philippdubach/pi-jev-router) | ★ 14 | TypeScript | Pi model router using Jev and a quality-cost-latency Pareto frontier. |
+| [jcr](https://github.com/NiazMorshed2007/jcr) | ★ 10 | JavaScript | Jev Capability Resolver for task-relevant deterministic commands. |
+| [jev-architect](https://github.com/karanb192/jev-architect) | ★ 6 | HTML | Agent skill for designing and validating Jev decision loops. |
+| [jev-spec](https://github.com/nozomi-koborinai/jev-spec) | ★ 4 | TypeScript | Semantic verification for AI-generated code and specs. |
+| [jev-tool-router](https://github.com/jackbarunz/jev-tool-router) | ★ 4 | JavaScript | Jev-powered MCP tool router for Codex. |
+| [open-jev-approvals](https://github.com/alexj11324/open-jev-approvals) | ★ 3 | Go | Jev-reviewed tool-call gate with versioned local policy. |
+
+### 브라우저 및 컴퓨터 사용 (42)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -316,7 +333,9 @@
 | [sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension) | ★ 0 | JavaScript | Open-source Chrome extension that filter AI-generated prose and ads with Jev. |
 | [sift](https://github.com/tylergibbs1/sift) | ★ 0 | TypeScript | Chrome 확장 가능 TypeSafe Jev와 Google 결과 판매 페이지와 SEO 필러를 접습니다. |
 
-### 이름 * (53)
+| [playjev](https://github.com/filedcom/playjev) | ★ 3 | TypeScript | Experimental Jev-powered Playwright automation library. |
+
+### 이름 * (57)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -374,6 +393,12 @@
 | [trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev) | ★ 0 | TypeScript | Binance testnet 거래 봇은 Jev를 사용하여 뉴스를 판단합니다. |
 | [JevSlop](https://github.com/TKY-27/JevSlop) | ★ 0 | TypeScript | Scores public note.com 8 Jev 차원의 기사와 검사 가능한 AI-slop 점수를 생성합니다. |
 | [github-star-organizer-jev](https://github.com/yutkat/github-star-organizer-jev) | ★ 0 | Python | Jev를 사용하여 GitHub 별을 분류하고 구성합니다. |
+
+| [jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier) | ★ 3 | Python | Recruiting-screening demo combining deterministic checks with Jev judgments. |
+
+| [jsort](https://github.com/keltokhy/jsort) | ★ 8 | Python | Sorts text by a plain-English criterion using pairwise Jev judgments and a locally fitted scale. |
+| [jselect](https://github.com/keltokhy/jselect) | ★ 3 | Python | Selects source-linked evidence within a token budget using Jev relevance judgments and local diversity selection. |
+| [jlink](https://github.com/keltokhy/jlink) | ★ 2 | Python | Record linkage using Jev pair judgments against a plain-English matching rule, with auditable probabilities. |
 
 ### 게임 및 시뮬레이션 (53)
 
@@ -486,7 +511,7 @@
 | [typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion) | ★ 0 | HTML | 정수기 밖으로 Diffusion-style 화소 예술: 256 평행한 per-pixel Jev 질문 플러스 정제 패스. |
 | [jev-playground (wustep)](https://github.com/wustep/jev-playground) | ★ 0 | TypeScript | 시스템 하나의 모델 스티어 음악? Jev는 계획 (enums만); 코드 렌더링 시트, 오디오 및 MIDI. |
 
-### 벤치 마크 & 연구 (92)
+### 벤치 마크 & 연구 (93)
 
 | 프로젝트 | Stars | 언어 | 설명 |
 |---|---:|---|---|
@@ -583,6 +608,8 @@
 | [typesafe-oracles](https://github.com/trophee-bot/typesafe-oracles) | ★ 0 | JavaScript | TypeSafe의 시스템 평가 원 primitives (Choice/Score/Noul) - 타입의 oracle가 LLM 통화를 이룹니다. |
 | [jev-pick-and-place-study](https://github.com/tryaksh/jev-pick-and-place-study) | ★ 0 | Python | Jev, Claude Haiku, Reactive rules for pick-and-place. |
 | [thaiexam-jev-charts](https://github.com/vehas/thaiexam-jev-charts) | ★ 0 | HTML | 차트: TypeSafe Jev는 태국 표준화 시험 vs 110 다른 모델에 평가했습니다. |
+
+| [open-spark-jev](https://github.com/abhishek085/open-spark-jev) | ★ 5 | Python | Open local System One implementation for NVIDIA DGX Spark with a Jev-compatible API. |
 
 ### 기타 목록 (12)
 
