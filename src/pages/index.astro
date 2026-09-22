@@ -490,7 +490,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
             <div class="hero-visual">
               <figure class="hero-illustration" role="img" aria-label={messages.hero.imageAlt} set:html={heroIllustrationSvg}>
               </figure>
-              <button class="realtime-widget-trigger" type="button" aria-controls="realtime-widget">Show live traffic</button>
+              <span class="realtime-widget-placeholder" aria-hidden="true">Live traffic</span>
               <iframe
                 id="realtime-widget"
                 class="realtime-widget"
@@ -713,7 +713,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
       const sidebarClose = document.querySelector('.sidebar-close');
       const navScrim = document.querySelector('.nav-scrim');
       const sidebar = document.querySelector('#sidebar');
-      const realtimeWidgetTrigger = document.querySelector<HTMLButtonElement>('.realtime-widget-trigger');
+      const realtimeWidgetPlaceholder = document.querySelector<HTMLElement>('.realtime-widget-placeholder');
       const realtimeWidget = document.querySelector<HTMLIFrameElement>('#realtime-widget');
       const compactLayout = window.matchMedia('(max-width: 1080px)');
       const getPageSize = () => compactLayout.matches ? 16 : 36;
@@ -940,12 +940,15 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         if (localePicker && !localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
       }));
       loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); void loadAndRender(); });
-      realtimeWidgetTrigger?.addEventListener('click', () => {
-        if (!(realtimeWidget instanceof HTMLIFrameElement) || !realtimeWidget.dataset.src) return;
+      const realtimeWidgetEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
+      const loadRealtimeWidget = (event: Event) => {
+        if (!event.isTrusted || !(realtimeWidget instanceof HTMLIFrameElement) || !realtimeWidget.dataset.src) return;
+        realtimeWidgetEvents.forEach((eventName) => window.removeEventListener(eventName, loadRealtimeWidget));
         realtimeWidget.src = realtimeWidget.dataset.src;
         realtimeWidget.hidden = false;
-        realtimeWidgetTrigger.remove();
-      }, { once: true });
+        realtimeWidgetPlaceholder?.remove();
+      };
+      realtimeWidgetEvents.forEach((eventName) => window.addEventListener(eventName, loadRealtimeWidget, { once: true, passive: true }));
       const syncSidebarAccess = () => {
         const hidden = compactLayout.matches && !document.body.classList.contains('menu-open');
         if (sidebar instanceof HTMLElement) {
