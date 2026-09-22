@@ -3,13 +3,14 @@ import en, { type Messages } from './en';
 const ja: Messages = {
   ...en,
   seo: {
-    title: (n) => `${n}件のJev AIプロジェクト、SDK、ツール | bestjev`,
-    description: (n) => `TypeSafe AIのSystem OneモデルJevを活用した${n}件のオープンソースプロジェクト、SDK、エージェント、統合、ベンチマーク、ツールを検索できます。`,
-    catalogName: 'bestjev オープンソースプロジェクトカタログ', alternateName: 'Awesome Jev プロジェクトカタログ',
+    title: (n) => `bestjev：${n}件のJevオープンソースプロジェクトとツール`,
+    description: (n) => `bestjevで、検証済みのJevオープンソースプロジェクト${n}件を検索。SDK、エージェント、統合、アプリ、ベンチマーク、開発ツールを比較できます。`,
+    catalogName: 'bestjev オープンソースプロジェクトカタログ', alternateName: 'bestjev Jevプロジェクトカタログ',
     imageAlt: (p, c) => `${c}カテゴリーにわたる${p}件の検証済みJevオープンソースプロジェクト`,
   },
   nav: { close: 'ナビゲーションを閉じる', primary: 'メインナビゲーション', overview: '概要', allProjects: 'すべてのプロジェクト', aboutBestjev: 'bestjevについて', aboutJev: 'Jevについて', categories: 'カテゴリー', projectCategories: 'プロジェクトカテゴリー', collaborate: '投稿とコラボレーション', collaborateLabel: '投稿とコラボレーション', submit: '投稿', email: 'メール', promote: 'プロジェクトを宣伝', open: 'ナビゲーションを開く', language: '言語', home: 'bestjev ホーム', logoAlt: 'bestjev ロゴ', flagAlt: (language) => `${language}の言語旗`, githubRepository: 'GitHubでbestjevリポジトリを開く', xProfile: 'Xでbestjevの管理者をフォロー', emailMaintainer: 'bestjevの管理者にメールを送る', promoteEmail: 'プロジェクトの宣伝についてbestjevにメールする' },
   hero: { title: '最高のJevプロジェクト', summary: (p, c, l) => `${p}件の検証済みリポジトリを、${c}カテゴリー・${l}言語から検索できます。`, lastUpdated: '最終更新', updatedDate: '2026年9月22日', filterLanguage: '言語で絞り込む', allLanguages: 'すべての言語', languages: '言語', addedToday: '今日追加', addedThisWeek: '今週追加', clearRecency: 'すべての日付を表示', searchPlaceholder: 'プロジェクト、言語、判断を検索', imageAlt: '構造化入力がJevを通じて確率的な判断に変換される' },
+  filterPage: { categoryTitle: (category) => `Awesome ${category} Jev Projects`, categorySeoTitle: (category) => `Awesome ${category} Jev Projects | bestjev`, categoryDescription: (projects, category) => `bestjevで、${category}のawesomeな検証済みオープンソースJevプロジェクト${projects}件を、GitHubスター、言語、リポジトリ、実装情報から比較できます。`, todayTitle: '今日追加されたJevプロジェクト', todaySeoTitle: '今日の新着Jevオープンソースプロジェクト | bestjev', todayDescription: (projects) => `bestjevに今日追加された${projects}件のオープンソースJevプロジェクトを、検証済みGitHubリポジトリ、言語、スター、実装情報とともに紹介します。`, weekTitle: '今週追加されたJevプロジェクト', weekSeoTitle: '今週の新着Jevオープンソースプロジェクト | bestjev', weekDescription: (projects) => `bestjevに今週追加された${projects}件のオープンソースJevプロジェクトを、検証済みGitHubリポジトリ、言語、スター、実装情報とともに紹介します。` },
   catalog: { all: 'すべて', project: 'プロジェクト', stars: 'スター', language: '言語', addedAt: '収録日', description: '説明', projectsLabel: 'Jevプロジェクト', sortAscending: 'スターの昇順で並べ替え', sortDescending: 'スターの降順で並べ替え', noMatches: '一致するプロジェクトがありません', noMatchesHint: '別のキーワードまたはカテゴリーをお試しください。', showMore: 'さらに表示' },
   siteIntro: { eyebrow: 'カタログについて', title: 'bestjevとは？', paragraphs: ['bestjevは、TypeSafe AIの型付き意思決定向けSystem Oneモデル「Jev」を中心とした、独立運営・コミュニティ管理のオープンソースプロジェクト集です。', '各項目は元のリポジトリへリンクし、カテゴリー、主要言語、GitHubスターのスナップショット、ローカライズされた説明を記録しています。検証可能なJev SDK、エージェント、統合、アプリ、研究、ツールを探せます。', 'bestjevはTypeSafe AIとの提携関係になく、同社の承認を受けたものではありません。'] },
   about: { title: 'Jevとは？', paragraphs: ['Jevは、ソフトウェアが直接利用できる判断のためのTypeSafe AI System Oneモデルです。自由形式の文章ではなく、状態と型付きの質問を受け取り、調整済み確率を含む構造化された回答を返します。', '選択肢や評価基準が事前に分かっている、エージェントのルーティング、ツール呼び出しの検証、候補のランク付け、ポリシーチェックなどに適しています。'], advantage: '運用上の利点', advantageText: 'アプリケーションはしきい値を設定し、不確実性を確認し、低信頼度のケースを人または大規模モデルに送れます。', primitives: [{ code: 'CHOICE', title: '選択肢を一つ選ぶ', description: '既知の選択肢から選び、信頼度付きの確率を返します。' }, { code: 'SCORE', title: '基準で評価', description: '順序付きスケール上で入力を評価し、分布全体を返します。' }, { code: 'NOUL', title: '真実性を推定', description: '文が真である確率を0から1で返します。' }] },

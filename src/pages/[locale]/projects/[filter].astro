@@ -1,0 +1,16 @@
+---
+import CatalogPage from '../../index.astro';
+import { getCatalog } from '../../../lib/catalog';
+import { defaultLocale, locales } from '../../../i18n';
+
+export const getStaticPaths = () => {
+  const filters = ['today', 'this-week', ...getCatalog(defaultLocale).categories.map((category) => category.id)];
+  return locales
+    .filter((locale) => locale !== defaultLocale)
+    .flatMap((locale) => filters.map((filter) => ({ params: { locale, filter }, props: { locale, filter } })));
+};
+
+const { locale, filter } = Astro.props;
+---
+
+<CatalogPage locale={locale} filter={filter} />

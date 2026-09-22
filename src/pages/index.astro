@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import { catalogStats, getCatalog } from '../lib/catalog';
-import { getLocale, getMessages, localeConfig, locales } from '../i18n';
+import { defaultLocale, getLocale, getMessages, localeConfig, locales, type Locale } from '../i18n';
+import { getCategoryGuide } from '../i18n/category-guides';
 import { getLocalePath } from '../i18n/config';
 import {
   AppWindow,
@@ -34,6 +35,19 @@ const base = import.meta.env.BASE_URL;
 const locale = getLocale(Astro.props.locale ?? Astro.currentLocale);
 const messages = getMessages(locale);
 const { categories, projects } = getCatalog(locale);
+const validFilters = new Set(['all', 'today', 'this-week', ...categories.map((category) => category.id)]);
+const requestedFilter = typeof Astro.props.filter === 'string' ? Astro.props.filter : 'all';
+const activeFilter = validFilters.has(requestedFilter) ? requestedFilter : 'all';
+const filterHref = (filter: string, targetLocale: Locale = locale) =>
+  `${base}${getLocalePath(targetLocale)}${filter === 'all' ? '' : `projects/${filter}/`}`;
+const filterPath = (filter: string, targetLocale: Locale = locale) =>
+  `${getLocalePath(targetLocale)}${filter === 'all' ? '' : `projects/${filter}/`}`;
+const pageProjects = projects.filter((project) => {
+  if (activeFilter === 'all') return true;
+  if (activeFilter === 'today') return project.addedDate === catalogStats.today;
+  if (activeFilter === 'this-week') return project.addedDate >= catalogStats.weekStartsOn && project.addedDate <= catalogStats.today;
+  return project.categoryId === activeFilter;
+});
 const addedDateFormatter = new Intl.DateTimeFormat(localeConfig[locale].languageTag, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Taipei' });
 const formatAddedDate = (date: string) => addedDateFormatter.format(new Date(`${date}T00:00:00+08:00`));
 const repositoryUrl = process.env.GITHUB_REPOSITORY
@@ -51,12 +65,10 @@ const submissionIssueBody = [
 const submissionUrl = `${repositoryUrl}/issues/new?title=${encodeURIComponent('[Submission] Project name')}&body=${encodeURIComponent(submissionIssueBody)}`;
 const languages = [...new Set(projects.map((project) => project.language).filter((language) => language !== '—'))]
   .sort((a, b) => a.localeCompare(b));
-const sortedProjects = [...projects].sort((a, b) => {
+const sortedProjects = [...pageProjects].sort((a, b) => {
   const starDifference = b.stars - a.stars;
   return starDifference || a.url.localeCompare(b.url, 'en');
 });
-const initialProjects = sortedProjects.slice(0, 16);
-const localizedCatalogUrl = `${base}catalog/${locale}.json?v=2026-09-22`;
 const localizedSearchText = (project: (typeof projects)[number]) =>
   [project.name, project.url, project.language, project.description].join(' ').toLowerCase();
 const categoryIcons = [BadgeCheck, Blocks, BrainCircuit, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
@@ -66,6 +78,14 @@ const navigationCategories = categories
   .map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }))
   .filter((category) => category.id !== jevLikeCategoryId);
 const filterCategories = categories.filter((category) => category.id !== jevLikeCategoryId);
+const catalogFilterOptions = [
+  { id: 'all', label: messages.catalog.all, count: projects.length, countLabel: String(projects.length) },
+  ...(jevLikeCategory ? [{ id: jevLikeCategory.id, label: jevLikeCategory.name, count: jevLikeCategory.count, countLabel: String(jevLikeCategory.count) }] : []),
+  { id: 'today', label: messages.hero.addedToday, count: catalogStats.addedToday, countLabel: `+${catalogStats.addedToday}` },
+  { id: 'this-week', label: messages.hero.addedThisWeek, count: catalogStats.addedThisWeek, countLabel: `+${catalogStats.addedThisWeek}` },
+  ...filterCategories.map((category) => ({ id: category.id, label: category.name, count: category.count, countLabel: String(category.count) })),
+];
+const activeCatalogFilter = catalogFilterOptions.find((filter) => filter.id === activeFilter) ?? catalogFilterOptions[0];
 const repositorySlug = (url: string) => {
   try {
     const [owner, repository] = new URL(url).pathname.split('/').filter(Boolean);
@@ -75,14 +95,47 @@ const repositorySlug = (url: string) => {
   }
 };
 const siteUrl = 'https://jevbest.com/';
-const pageUrl = `${siteUrl}${getLocalePath(locale)}`;
+const pageUrl = `${siteUrl}${filterPath(activeFilter)}`;
 const socialImageUrl = `${siteUrl}readme/awesome-jev-hero.png`;
 const authorId = `${siteUrl}#author`;
 const publisherId = `${siteUrl}#organization`;
 const catalogId = `${siteUrl}#catalog`;
 const datasetId = `${siteUrl}#projects`;
-const pageTitle = messages.seo.title(catalogStats.projects);
-const pageDescription = messages.seo.description(catalogStats.projects);
+const activeCategory = categories.find((category) => category.id === activeFilter);
+const activeCategoryName = activeCategory?.name.trim();
+const categoryGuide = activeCategory && activeCategoryName ? getCategoryGuide(locale, activeCategory.id, activeCategoryName) : undefined;
+const showEditorialSections = activeFilter === 'all' || activeFilter === 'today' || activeFilter === 'this-week';
+const heroTitle = activeFilter === 'today'
+  ? messages.filterPage.todayTitle
+  : activeFilter === 'this-week'
+    ? messages.filterPage.weekTitle
+    : activeCategoryName
+      ? messages.filterPage.categoryTitle(activeCategoryName)
+      : messages.hero.title;
+const heroSummary = activeFilter === 'today'
+  ? messages.filterPage.todayDescription(pageProjects.length)
+  : activeFilter === 'this-week'
+    ? messages.filterPage.weekDescription(pageProjects.length)
+    : activeCategoryName
+      ? messages.filterPage.categoryDescription(pageProjects.length, activeCategoryName)
+      : messages.hero.summary(catalogStats.projects, catalogStats.categories, catalogStats.languages);
+const catalogPageTitle = messages.seo.title(catalogStats.projects);
+const pageTitle = activeFilter === 'today'
+  ? messages.filterPage.todaySeoTitle
+  : activeFilter === 'this-week'
+    ? messages.filterPage.weekSeoTitle
+    : activeCategoryName
+      ? messages.filterPage.categorySeoTitle(activeCategoryName)
+      : catalogPageTitle;
+const pageDescription = activeFilter === 'all' ? messages.seo.description(catalogStats.projects) : heroSummary;
+const coreSeoKeywords = ['bestjev', 'Jev projects', 'open source Jev', 'Jev GitHub projects', 'TypeSafe AI Jev'];
+const pageKeywords = activeFilter === 'today'
+  ? ['new Jev projects today', 'latest open source Jev projects', ...coreSeoKeywords]
+  : activeFilter === 'this-week'
+    ? ['new Jev projects this week', 'weekly open source Jev projects', ...coreSeoKeywords]
+    : activeCategoryName
+      ? [`awesome ${activeCategoryName} Jev projects`, `${activeCategoryName} Jev projects`, `open source ${activeCategoryName}`, `bestjev ${activeCategoryName}`, ...coreSeoKeywords]
+      : ['Jev open source projects', 'awesome open source Jev projects', 'Jev SDK', 'Jev agents', 'Jev integrations', 'Jev developer tools', ...coreSeoKeywords];
 const alternateLocales = locales.filter((candidate) => candidate !== locale);
 const structuredData = {
   '@context': 'https://schema.org',
@@ -91,7 +144,7 @@ const structuredData = {
       '@type': 'Organization',
       '@id': publisherId,
       name: 'bestjev',
-      alternateName: 'Awesome Jev',
+      alternateName: 'bestjev open-source Jev catalog',
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
@@ -113,7 +166,7 @@ const structuredData = {
       '@id': `${siteUrl}#website`,
       url: siteUrl,
       name: 'bestjev',
-      alternateName: 'Awesome Jev',
+      alternateName: 'bestjev Jev Project Catalog',
       description: pageDescription,
       inLanguage: locales.map((candidate) => localeConfig[candidate].languageTag),
       publisher: { '@id': publisherId },
@@ -122,7 +175,7 @@ const structuredData = {
       '@type': 'CollectionPage',
       '@id': `${pageUrl}#webpage`,
       url: pageUrl,
-      name: messages.seo.catalogName,
+      name: heroTitle,
       alternateName: messages.seo.alternateName,
       description: pageDescription,
       isAccessibleForFree: true,
@@ -132,7 +185,7 @@ const structuredData = {
       author: { '@id': authorId },
       publisher: { '@id': publisherId },
       isPartOf: { '@id': `${siteUrl}#website` },
-      keywords: ['Jev', 'TypeSafe AI', 'System One model', 'Jev SDK', 'Jev tools', 'Jev agents', 'open-source AI'],
+      keywords: pageKeywords,
       about: {
         '@type': 'SoftwareApplication',
         name: 'Jev',
@@ -146,7 +199,7 @@ const structuredData = {
       '@type': 'DataCatalog',
       '@id': catalogId,
       name: 'bestjev Open-Source Project Catalog',
-      alternateName: 'Awesome Jev Project Catalog',
+      alternateName: 'bestjev Jev Project Catalog',
       description: pageDescription,
       url: siteUrl,
       inLanguage: locales.map((candidate) => localeConfig[candidate].languageTag),
@@ -157,7 +210,7 @@ const structuredData = {
       '@type': 'Dataset',
       '@id': datasetId,
       name: 'bestjev Open-Source Project Dataset',
-      alternateName: 'Awesome Jev Project Dataset',
+      alternateName: 'bestjev Jev Project Dataset',
       description: `Machine-readable metadata for ${catalogStats.projects} public repositories built around Jev.`,
       url: siteUrl,
       identifier: datasetId,
@@ -182,6 +235,20 @@ const structuredData = {
         contentUrl: `${siteUrl}catalog.json`,
       },
     },
+    ...(categoryGuide ? [{
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      url: `${pageUrl}#category-faq`,
+      inLanguage: localeConfig[locale].languageTag,
+      mainEntity: categoryGuide.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    }] : []),
   ],
 };
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
@@ -195,15 +262,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <style is:inline>@media (max-width: 1080px) { .sidebar { visibility: hidden; transform: translateX(-102%); } body.menu-open .sidebar { visibility: visible; transform: translateX(0); } }</style>
     <meta name="theme-color" content="#f7f7f5" />
     <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={pageKeywords.join(', ')} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="heyjunpenn" />
     <link rel="canonical" href={pageUrl} />
-    {locales.map((candidate) => <link rel="alternate" hreflang={localeConfig[candidate].languageTag} href={`${siteUrl}${getLocalePath(candidate)}`} />)}
-    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+    {locales.map((candidate) => <link rel="alternate" hreflang={localeConfig[candidate].languageTag} href={`${siteUrl}${filterPath(activeFilter, candidate)}`} />)}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${filterPath(activeFilter, defaultLocale)}`} />
     <link rel="alternate" type="application/json" title="bestjev project catalog" href={`${siteUrl}catalog.json`} />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <link rel="icon" type="image/png" sizes="512x512" href={`${base}favicon.png`} />
-    <link rel="apple-touch-icon" href={`${base}favicon.png`} />
+    <link rel="icon" type="image/png" sizes="96x96" href={`${base}favicon-96x96.png`} />
+    <link rel="shortcut icon" href={`${base}favicon.ico`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="bestjev" />
     <meta property="og:title" content={pageTitle} />
@@ -256,24 +324,25 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
-          <a class="brand" href="#overview" aria-label={messages.nav.home}>
+          <a class="brand" href="#overview" title={messages.nav.home} aria-label={messages.nav.home}>
             <img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" />
+            <span class="sr-only">{messages.nav.home}</span>
           </a>
           <button class="sidebar-close" type="button" aria-label={messages.nav.close}><X size={18} stroke-width={1.8} /></button>
         </div>
 
         <div class="sidebar-primary">
           <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
-            <a class="selected" href="#projects" data-category-nav="all" aria-current="true"><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
-            <a href="#about"><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
-            <a href={repositoryUrl} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
+            <a class:list={[activeFilter === 'all' && 'selected']} href={filterHref('all')} title={messages.nav.allProjects} aria-current={activeFilter === 'all' ? 'page' : undefined}><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
+            <a href={showEditorialSections ? '#about' : `${filterHref('all')}#about`} title={messages.nav.aboutJev}><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
+            <a href={repositoryUrl} title={messages.nav.githubRepository} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
               <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.1c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
               </svg>
               <span>GitHub</span>
             </a>
             {jevLikeCategory && (
-              <a href="#projects" data-category-nav={jevLikeCategory.id}>
+              <a class:list={[activeFilter === jevLikeCategory.id && 'selected']} href={filterHref(jevLikeCategory.id)} title={jevLikeCategory.name} aria-current={activeFilter === jevLikeCategory.id ? 'page' : undefined}>
                 <BrainCircuit class="nav-icon" size={17} stroke-width={1.8} />
                 <span>{jevLikeCategory.name}</span>
                 <small>{jevLikeCategory.count}</small>
@@ -289,7 +358,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </div>
           <nav class="category-nav" aria-label={messages.nav.projectCategories}>
             {navigationCategories.map(({ Icon, ...category }) => (
-              <a href="#projects" data-category-nav={category.id}>
+              <a class:list={[activeFilter === category.id && 'selected']} href={filterHref(category.id)} title={category.name} aria-current={activeFilter === category.id ? 'page' : undefined}>
                 <Icon class="nav-icon" size={16} stroke-width={1.75} />
                 <span>{category.name}</span>
                 <small>{category.count}</small>
@@ -301,17 +370,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>{messages.nav.collaborate}</span>
           </div>
           <nav class="collaboration-nav" aria-label={messages.nav.collaborateLabel}>
-            <a href={submissionUrl} target="_blank" rel="noreferrer" aria-label={messages.submission.cta}>
+            <a href={submissionUrl} title={messages.submission.cta} target="_blank" rel="noreferrer" aria-label={messages.submission.cta}>
               <CirclePlus class="nav-icon" size={16} stroke-width={1.75} />
               <span>{messages.nav.submit}</span>
               <small>GitHub issue</small>
             </a>
-            <a href="https://x.com/heyjunpenn" target="_blank" rel="noreferrer" aria-label={messages.nav.xProfile}>
+            <a href="https://x.com/heyjunpenn" title={messages.nav.xProfile} target="_blank" rel="noreferrer" aria-label={messages.nav.xProfile}>
               <AtSign class="nav-icon" size={16} stroke-width={1.75} />
               <span>X</span>
               <small>@heyjunpenn</small>
             </a>
-            <a href="mailto:someuxyz@gmail.com" aria-label={messages.nav.emailMaintainer}>
+            <a href="mailto:someuxyz@gmail.com" title={messages.nav.emailMaintainer} aria-label={messages.nav.emailMaintainer}>
               <Mail class="nav-icon" size={16} stroke-width={1.75} />
               <span>{messages.nav.email}</span>
               <small>someuxyz@gmail.com</small>
@@ -320,7 +389,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
           <div class="collaboration-placement">
             <strong>{messages.nav.promote}</strong>
-            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement" aria-label={messages.nav.promoteEmail}>
+            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement" title={messages.nav.promoteEmail} aria-label={messages.nav.promoteEmail}>
               <span>someuxyz@gmail.com</span>
               <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
             </a>
@@ -339,7 +408,8 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               {locales.map((candidate) => (
                 <a
                   class:list={['locale-option', candidate === locale && 'selected']}
-                  href={`${base}${getLocalePath(candidate)}`}
+                  href={filterHref(activeFilter, candidate)}
+                  title={localeConfig[candidate].label}
                   lang={localeConfig[candidate].languageTag}
                   hreflang={localeConfig[candidate].languageTag}
                   role="option"
@@ -358,7 +428,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       <main>
         <header class="mobile-header">
-          <a class="brand" href="#overview" aria-label={messages.nav.home}><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" /></a>
+          <a class="brand" href="#overview" title={messages.nav.home} aria-label={messages.nav.home}><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" /><span class="sr-only">{messages.nav.home}</span></a>
           <button class="menu-button" type="button" aria-label={messages.nav.open} aria-controls="sidebar" aria-expanded="false"><Menu size={19} stroke-width={1.8} /></button>
         </header>
         <button class="nav-scrim" type="button" aria-label={messages.nav.close} tabindex="-1"></button>
@@ -366,21 +436,21 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         <section class="hero" id="overview">
           <div class="hero-shell">
             <div class="hero-copy">
-              <h1>{messages.hero.title}</h1>
-              <p>{messages.hero.summary(catalogStats.projects, catalogStats.categories, catalogStats.languages)}</p>
+              <h1 class:list={[activeFilter !== 'all' && 'filtered']}>{heroTitle}</h1>
+              <p>{heroSummary}</p>
               <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-22">{messages.hero.updatedDate}</time></div>
               <div class="recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
                 {jevLikeCategory && (
-                  <button type="button" data-hero-category={jevLikeCategory.id} aria-pressed="false" aria-controls="project-table">
+                  <a href={filterHref(jevLikeCategory.id)} title={jevLikeCategory.name} aria-current={activeFilter === jevLikeCategory.id ? 'page' : undefined}>
                     <span>{jevLikeCategory.name}</span><strong>{jevLikeCategory.count}</strong>
-                  </button>
+                  </a>
                 )}
-                <button type="button" data-recency="today" aria-pressed="false" aria-controls="project-table">
+                <a href={filterHref('today')} title={messages.hero.addedToday} aria-current={activeFilter === 'today' ? 'page' : undefined}>
                   <span>{messages.hero.addedToday}</span><strong>+{catalogStats.addedToday}</strong>
-                </button>
-                <button type="button" data-recency="week" aria-pressed="false" aria-controls="project-table">
+                </a>
+                <a href={filterHref('this-week')} title={messages.hero.addedThisWeek} aria-current={activeFilter === 'this-week' ? 'page' : undefined}>
                   <span>{messages.hero.addedThisWeek}</span><strong>+{catalogStats.addedThisWeek}</strong>
-                </button>
+                </a>
               </div>
               <div class="filter-panel filter-dock">
                 <div class="language-picker" data-language-picker>
@@ -404,46 +474,43 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   <input id="project-search" type="search" placeholder={messages.hero.searchPlaceholder} autocomplete="off" />
                   <kbd>/</kbd>
                 </label>
-                <a class="submit-project-shortcut" href={submissionUrl} target="_blank" rel="noreferrer">
+                <a class="submit-project-shortcut" href={submissionUrl} title={messages.submission.shortCta} target="_blank" rel="noreferrer">
                   <CirclePlus size={17} stroke-width={1.9} aria-hidden="true" />
                   <span>{messages.submission.shortCta}</span>
                 </a>
               </div>
             </div>
 
-            <figure class="hero-illustration">
-              <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={messages.hero.imageAlt} fetchpriority="high" />
-            </figure>
+            <div class="hero-visual">
+              <figure class="hero-illustration">
+                <img src={`${base}jev-decision-flow.svg`} width="760" height="500" alt={messages.hero.imageAlt} fetchpriority="high" />
+              </figure>
+              <iframe
+                class="realtime-widget"
+                src="https://datafa.st/widgets/6aaf7959a02465e4fa8de17c/realtime?mainTextSize=16&amp;primaryColor=%23e78468"
+                style="background: transparent; border: none; width: 100%; height: 100%;"
+                allowtransparency="true"
+                title="DataFast Widget"
+                loading="lazy"
+              ></iframe>
+            </div>
           </div>
         </section>
 
         <div class="catalog-region">
           <section class="catalog" id="projects">
             <div class="category-strip" role="group" aria-label={messages.nav.projectCategories}>
-              <h2 class="category-heading category-primary-filters">
-                <button class="category-button selected" type="button" data-category="all"><span>{messages.catalog.all}</span><b>{projects.length}</b></button>
-                {jevLikeCategory && (
-                  <button class="category-button" type="button" data-category={jevLikeCategory.id}>
-                    <span>{jevLikeCategory.name}</span>
-                    <b>{jevLikeCategory.count}</b>
-                  </button>
-                )}
-              </h2>
-              <span class="filter-divider" aria-hidden="true"></span>
-              <div class="recency-filters catalog-recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
-                <button type="button" data-recency="today" aria-pressed="false" aria-controls="project-table">
-                  <span>{messages.hero.addedToday}</span><strong>+{catalogStats.addedToday}</strong>
-                </button>
-                <button type="button" data-recency="week" aria-pressed="false" aria-controls="project-table">
-                  <span>{messages.hero.addedThisWeek}</span><strong>+{catalogStats.addedThisWeek}</strong>
-                </button>
-              </div>
-              <span class="filter-divider" aria-hidden="true"></span>
-              {filterCategories.map((category) => (
-                <button class="category-button" type="button" data-category={category.id}>
-                  <span>{category.name}</span>
-                  <b>{category.count}</b>
-                </button>
+              {catalogFilterOptions.map((filter, index) => (
+                <>
+                  {filter.id === activeCatalogFilter.id ? (
+                  <h2 class="category-filter-heading">
+                    <a class="category-button selected" href={filterHref(filter.id)} title={filter.label} aria-current="page"><span>{filter.label}</span><b>{filter.countLabel}</b></a>
+                  </h2>
+                  ) : (
+                    <a class="category-button" href={filterHref(filter.id)} title={filter.label}><span>{filter.label}</span><b>{filter.countLabel}</b></a>
+                  )}
+                  {(index === 1 || index === 3) && <span class="filter-divider" aria-hidden="true"></span>}
+                </>
               ))}
             </div>
 
@@ -464,10 +531,10 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <span>{messages.catalog.addedAt}</span>
               <span>{messages.catalog.description}</span>
             </div>
-            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel} data-catalog-url={localizedCatalogUrl}>
-              {initialProjects.map((project) => (
-                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)} data-added-date={project.addedDate}>
-                  <a class="project-name" href={project.url} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
+            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel}>
+              {sortedProjects.map((project, index) => (
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)} data-added-date={project.addedDate} hidden={index >= 16}>
+                  <a class="project-name" href={project.url} title={repositorySlug(project.url)} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
                   <time class="project-added-date" datetime={project.addedDate}>{formatAddedDate(project.addedDate)}</time>
@@ -475,21 +542,48 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                 </li>
               ))}
             </ol>
-            <template id="project-row-template">
-              <li class="project-row" data-project>
-                <a class="project-name" target="_blank" rel="noreferrer"><h3></h3><small></small></a>
-                <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" /><span data-project-stars></span></span>
-                <span class="project-language"></span>
-                <time class="project-added-date"></time>
-                <p></p>
-              </li>
-            </template>
 
             <div class="empty-state" id="empty-state" hidden><strong>{messages.catalog.noMatches}</strong><span>{messages.catalog.noMatchesHint}</span></div>
             <button class="load-more" id="load-more" type="button"><span>{messages.catalog.showMore}</span><b>↓</b></button>
           </section>
         </div>
 
+        {categoryGuide && (
+          <section class="category-guide" id="category-guide">
+            <div class="category-guide-intro">
+              <span>{categoryGuide.eyebrow}</span>
+              <h2>{categoryGuide.title}</h2>
+              <p>{categoryGuide.intro}</p>
+              <p>{categoryGuide.scope}</p>
+            </div>
+            <div class="category-faq" id="category-faq">
+              <h2>{categoryGuide.faqTitle}</h2>
+              <div class="category-faq-list">
+                {categoryGuide.faqs.map((faq) => (
+                  <article>
+                    <h3>{faq.question}</h3>
+                    <p>{faq.answer}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div class="category-sources">
+              <h2>{categoryGuide.sourceTitle}</h2>
+              <p>
+                {categoryGuide.sourceIntro}{' '}
+                <a href="https://docs.typesafe.ai/" title={messages.methodology.officialDocs} target="_blank" rel="noreferrer">{messages.methodology.officialDocs}</a>
+                {' · '}
+                <a href={repositoryUrl} title={messages.methodology.repositories} target="_blank" rel="noreferrer">{messages.methodology.repositories}</a>.
+              </p>
+              <blockquote cite="https://typesafe.ai/">
+                <span>“Typed outputs that software can act on.”</span>
+                <cite>— <a href="https://typesafe.ai/" title="TypeSafe AI on Jev" target="_blank" rel="noreferrer">TypeSafe AI</a></cite>
+              </blockquote>
+            </div>
+          </section>
+        )}
+
+        {showEditorialSections && (<>
         <section class="site-intro" id="about-bestjev">
           <div class="site-intro-heading">
             <span>{messages.siteIntro.eyebrow}</span>
@@ -522,16 +616,16 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </div>
           <div class="methodology-copy">
             <p>{messages.methodology.intro}</p>
-            <p class="catalog-byline"><span>{messages.methodology.curatedBy}</span> <a href="https://github.com/heyjunpenn" rel="author">heyjunpenn</a></p>
+            <p class="catalog-byline"><span>{messages.methodology.curatedBy}</span> <a href="https://github.com/heyjunpenn" title="heyjunpenn" rel="author">heyjunpenn</a></p>
             <blockquote cite="https://typesafe.ai/blog/introducing-system-one-models-and-jev">
               <span>{messages.methodology.quote}</span>
-              <cite>— <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noreferrer">{messages.methodology.quoteSource}</a></cite>
+              <cite>— <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" title={messages.methodology.quoteSource} target="_blank" rel="noreferrer">{messages.methodology.quoteSource}</a></cite>
             </blockquote>
             <h3>{messages.methodology.sourcesTitle}</h3>
             <ul>
-              <li><a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer">{messages.methodology.officialDocs}</a>{messages.methodology.officialDocsSuffix}</li>
-              <li><a href={repositoryUrl} target="_blank" rel="noreferrer">{messages.methodology.repositories}</a>{messages.methodology.repositoriesSuffix}</li>
-              <li><a href={`${siteUrl}catalog.json`}>{messages.methodology.catalogData}</a>{messages.methodology.catalogDataSuffix}</li>
+              <li><a href="https://docs.typesafe.ai/" title={messages.methodology.officialDocs} target="_blank" rel="noreferrer">{messages.methodology.officialDocs}</a>{messages.methodology.officialDocsSuffix}</li>
+              <li><a href={repositoryUrl} title={messages.methodology.repositories} target="_blank" rel="noreferrer">{messages.methodology.repositories}</a>{messages.methodology.repositoriesSuffix}</li>
+              <li><a href={`${siteUrl}catalog.json`} title={messages.methodology.catalogData}>{messages.methodology.catalogData}</a>{messages.methodology.catalogDataSuffix}</li>
             </ul>
           </div>
         </section>
@@ -541,7 +635,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>{messages.submission.eyebrow}</span>
             <h2>{messages.submission.title}</h2>
             <p>{messages.submission.intro}</p>
-            <a class="submission-cta" href={submissionUrl} target="_blank" rel="noreferrer">
+            <a class="submission-cta" href={submissionUrl} title={messages.submission.cta} target="_blank" rel="noreferrer">
               <CirclePlus size={18} stroke-width={1.9} aria-hidden="true" />
               <span>{messages.submission.cta}</span>
               <ArrowUpRight size={16} stroke-width={1.9} aria-hidden="true" />
@@ -557,33 +651,28 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             ))}
           </ol>
         </section>
+        </>)}
 
         <footer>
           <span>bestjev / 2026</span>
           <nav aria-label={messages.footer.label}>
-            <a href="#about-bestjev">{messages.footer.about}</a>
-            <a href="mailto:someuxyz@gmail.com">{messages.footer.contact}</a>
-            <a href={`${base}privacy/`}>{messages.footer.privacy}</a>
-            <a href={`${base}terms/`}>{messages.footer.terms}</a>
-            <a href="https://docs.typesafe.ai/" target="_blank" rel="noreferrer"><span>{messages.footer.docs}</span> ↗</a>
+            <a href={`${base}about/`} title={messages.footer.about}>{messages.footer.about}</a>
+            <a href="mailto:someuxyz@gmail.com" title={messages.footer.contact}>{messages.footer.contact}</a>
+            <a href={`${base}privacy/`} title={messages.footer.privacy}>{messages.footer.privacy}</a>
+            <a href={`${base}terms/`} title={messages.footer.terms}>{messages.footer.terms}</a>
+            <a href="https://docs.typesafe.ai/" title={messages.footer.docs} target="_blank" rel="noreferrer"><span>{messages.footer.docs}</span> ↗</a>
           </nav>
         </footer>
       </main>
     </div>
 
     <script>
-      type ProjectRecord = {
+      type ProjectRowRecord = {
+        element: HTMLElement;
         name: string;
-        url: string;
         stars: number;
-        starsLabel: string;
         language: string;
-        description: string;
-        categoryId: string;
-        category: string;
         searchText: string;
-        addedAt: string;
-        addedDate: string;
       };
 
       const search = document.querySelector<HTMLInputElement>('#project-search');
@@ -597,14 +686,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const localeMenu = localePicker?.querySelector<HTMLElement>('.locale-menu');
       const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
       const projectTable = document.querySelector<HTMLOListElement>('#project-table');
-      const projectRowTemplate = document.querySelector<HTMLTemplateElement>('#project-row-template');
-      const addedDateFormatter = new Intl.DateTimeFormat(document.documentElement.lang || 'en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Taipei' });
       const starSort = document.querySelector<HTMLButtonElement>('#star-sort');
-      const recencyFilters = document.querySelector<HTMLElement>('.recency-filters');
-      const recencyButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-recency]')];
-      const heroCategoryButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-hero-category]')];
-      const categoryButtons = [...document.querySelectorAll<HTMLButtonElement>('.category-button[data-category]')];
-      const categoryNavLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-category-nav]')];
       const loadMore = document.querySelector('#load-more');
       const emptyState = document.querySelector('#empty-state');
       const menuButton = document.querySelector('.menu-button');
@@ -613,44 +695,17 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const sidebar = document.querySelector('#sidebar');
       const compactLayout = window.matchMedia('(max-width: 1080px)');
       const getPageSize = () => compactLayout.matches ? 16 : 36;
-      let activeCategory = 'all';
       let selectedLanguage = 'all';
-      let selectedRecency: 'all' | 'today' | 'week' = 'all';
       let starSortDirection: 'asc' | 'desc' = 'desc';
       let visibleLimit = getPageSize();
 
-      const initialProjects = [...document.querySelectorAll<HTMLElement>('[data-project]')].map((row): ProjectRecord => ({
+      const projectRecords = [...document.querySelectorAll<HTMLElement>('[data-project]')].map((row): ProjectRowRecord => ({
+        element: row,
         name: row.querySelector('h3')?.textContent ?? '',
-        url: row.querySelector<HTMLAnchorElement>('.project-name')?.href ?? '',
         stars: Number(row.dataset.stars ?? 0),
-        starsLabel: row.querySelector('.stars')?.textContent?.trim() ?? '0',
         language: row.dataset.language ?? '—',
-        description: row.querySelector('p')?.textContent ?? '',
-        categoryId: row.dataset.category ?? '',
-        category: row.querySelector('.project-name small')?.textContent ?? '',
         searchText: row.dataset.search ?? '',
-        addedAt: '',
-        addedDate: row.dataset.addedDate ?? '',
       }));
-      let projectRecords = initialProjects;
-      let catalogPromise: Promise<ProjectRecord[]> | undefined;
-
-      const loadCatalog = () => {
-        if (catalogPromise) return catalogPromise;
-        const url = projectTable?.dataset.catalogUrl;
-        if (!url) return Promise.resolve(projectRecords);
-        catalogPromise = fetch(url)
-          .then((response) => {
-            if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
-            return response.json() as Promise<{ projects: ProjectRecord[] }>;
-          })
-          .then((payload) => {
-            projectRecords = payload.projects;
-            return projectRecords;
-          })
-          .catch(() => projectRecords);
-        return catalogPromise;
-      };
 
       const updateSortState = () => {
         starSort?.setAttribute('data-direction', starSortDirection);
@@ -661,38 +716,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         }
       };
 
-      const createProjectRow = (project: ProjectRecord) => {
-        const fragment = projectRowTemplate?.content.cloneNode(true);
-        const row = fragment instanceof DocumentFragment
-          ? fragment.querySelector<HTMLElement>('[data-project]')
-          : null;
-        if (!row) return null;
-
-        row.dataset.stars = String(project.stars);
-        row.dataset.category = project.categoryId;
-        row.dataset.language = project.language;
-        row.dataset.search = project.searchText;
-        row.dataset.addedDate = project.addedDate;
-        const link = row.querySelector<HTMLAnchorElement>('.project-name');
-        if (link) link.href = project.url;
-        const name = row.querySelector('h3');
-        const category = row.querySelector('.project-name small');
-        const stars = row.querySelector('[data-project-stars]');
-        const language = row.querySelector('.project-language');
-        const addedDate = row.querySelector<HTMLTimeElement>('.project-added-date');
-        const description = row.querySelector('p');
-        if (name) name.textContent = project.name;
-        if (category) category.textContent = project.category;
-        if (stars) stars.textContent = project.starsLabel;
-        if (language) language.textContent = project.language;
-        if (addedDate) {
-          addedDate.dateTime = project.addedDate;
-          addedDate.textContent = addedDateFormatter.format(new Date(`${project.addedDate}T00:00:00+08:00`));
-        }
-        if (description) description.textContent = project.description;
-        return row;
-      };
-
       const render = () => {
         const query = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : '';
         const matches = [...projectRecords].sort((a, b) => {
@@ -700,28 +723,29 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
           return a.name.localeCompare(b.name, 'en');
         }).filter((project) => {
-          const categoryMatch = activeCategory === 'all' || project.categoryId === activeCategory;
           const languageMatch = selectedLanguage === 'all' || project.language === selectedLanguage;
-          const today = recencyFilters?.dataset.today ?? '';
-          const weekStart = recencyFilters?.dataset.weekStart ?? '';
-          const recencyMatch = selectedRecency === 'all'
-            || (selectedRecency === 'today' && project.addedDate === today)
-            || (selectedRecency === 'week' && project.addedDate >= weekStart && project.addedDate <= today);
           const searchMatch = !query || project.searchText.includes(query);
-          return categoryMatch && languageMatch && recencyMatch && searchMatch;
+          return languageMatch && searchMatch;
         });
 
+        const visibleProjects = new Set(matches.slice(0, visibleLimit));
         const fragment = document.createDocumentFragment();
-        matches.slice(0, visibleLimit).forEach((project) => {
-          const row = createProjectRow(project);
-          if (row) fragment.append(row);
+        projectRecords
+          .sort((a, b) => {
+            const difference = a.stars - b.stars;
+            if (difference !== 0) return starSortDirection === 'desc' ? -difference : difference;
+            return a.name.localeCompare(b.name, 'en');
+          })
+          .forEach((project) => {
+            project.element.hidden = !visibleProjects.has(project);
+            fragment.append(project.element);
         });
         projectTable?.replaceChildren(fragment);
         if (loadMore instanceof HTMLButtonElement) loadMore.hidden = matches.length <= visibleLimit;
         if (emptyState instanceof HTMLElement) emptyState.hidden = matches.length !== 0;
       };
 
-      const loadAndRender = () => { void loadCatalog().then(render); };
+      const loadAndRender = render;
 
       const setLanguageMenuOpen = (open: boolean, focusOption = false) => {
         if (!(languageFilter instanceof HTMLButtonElement) || !(languageMenu instanceof HTMLElement)) return;
@@ -751,36 +775,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         }
       };
 
-      const selectCategory = (category: string) => {
-        activeCategory = category;
-        visibleLimit = getPageSize();
-        categoryButtons.forEach((item) => item.classList.toggle('selected', item.dataset.category === activeCategory));
-        categoryNavLinks.forEach((item) => {
-          const selected = item.dataset.categoryNav === activeCategory;
-          item.classList.toggle('selected', selected);
-          if (selected) item.setAttribute('aria-current', 'true');
-          else item.removeAttribute('aria-current');
-        });
-        heroCategoryButtons.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.heroCategory === activeCategory)));
-        loadAndRender();
-      };
-      categoryButtons.forEach((button) => button.addEventListener('click', () => {
-        selectCategory(button.dataset.category ?? 'all');
-      }));
-      heroCategoryButtons.forEach((button) => button.addEventListener('click', () => {
-        const category = button.dataset.heroCategory ?? 'all';
-        selectCategory(activeCategory === category ? 'all' : category);
-      }));
       search?.addEventListener('input', () => { visibleLimit = getPageSize(); loadAndRender(); });
-      const selectRecency = (value: 'today' | 'week') => {
-        selectedRecency = selectedRecency === value ? 'all' : value;
-        recencyButtons.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.recency === selectedRecency)));
-        visibleLimit = getPageSize();
-        loadAndRender();
-      };
-      recencyButtons.forEach((button) => button.addEventListener('click', () => {
-        selectRecency(button.dataset.recency === 'today' ? 'today' : 'week');
-      }));
       starSort?.addEventListener('click', () => {
         starSortDirection = starSortDirection === 'desc' ? 'asc' : 'desc';
         visibleLimit = getPageSize();
@@ -873,11 +868,6 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       navScrim?.addEventListener('click', () => setMenuOpen(false, true));
       const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('.primary-nav a[href^="#"]:not([data-category-nav])')];
       sectionLinks.forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
-      categoryNavLinks.forEach((link) => link.addEventListener('click', () => {
-        const category = link.dataset.categoryNav ?? 'all';
-        selectCategory(category);
-        setMenuOpen(false);
-      }));
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') setMenuOpen(false, true);
       });
@@ -904,11 +894,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
 
       syncSidebarAccess();
       updateSortState();
-      window.addEventListener('load', () => {
-        void loadCatalog().then(() => {
-          if (!compactLayout.matches) render();
-        });
-      }, { once: true });
+      render();
     </script>
   </body>
 </html>

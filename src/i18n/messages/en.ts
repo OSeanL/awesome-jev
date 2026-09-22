@@ -1,9 +1,9 @@
 const en = {
   seo: {
-    title: (projects: number) => `${projects} Jev AI Projects, SDKs & Tools | bestjev`,
-    description: (projects: number) => `Search ${projects} open-source projects, SDKs, agents, integrations, benchmarks, and tools built around Jev, TypeSafe AI's System One model.`,
+    title: (projects: number) => `bestjev: ${projects} Open Source Jev Projects & Tools`,
+    description: (projects: number) => `Explore ${projects} verified open-source Jev projects on bestjev, including SDKs, agents, integrations, applications, benchmarks, and developer tools.`,
     catalogName: 'bestjev Open-Source Project Catalog',
-    alternateName: 'Awesome Jev Open-Source Project Catalog',
+    alternateName: 'bestjev Jev Project Catalog',
     imageAlt: (projects: number, categories: number) => `${projects} verified open-source Jev projects across ${categories} categories`,
   },
   nav: {
@@ -19,6 +19,17 @@ const en = {
     lastUpdated: 'Last updated', updatedDate: 'September 22, 2026', filterLanguage: 'Filter by language', allLanguages: 'All languages', languages: 'Languages',
     addedToday: 'Today', addedThisWeek: 'This week', clearRecency: 'Show all dates',
     searchPlaceholder: 'Search projects, languages, or decisions', imageAlt: 'Structured inputs flow through Jev into probabilistic decisions',
+  },
+  filterPage: {
+    categoryTitle: (category: string) => `Awesome ${category} Jev Projects`,
+    categorySeoTitle: (category: string) => `Awesome ${category} Jev Projects | bestjev`,
+    categoryDescription: (projects: number, category: string) => `Explore an awesome collection of ${projects} verified open-source ${category} Jev projects on bestjev. Compare GitHub stars, languages, repositories, and implementations.`,
+    todayTitle: 'Jev Projects Added Today',
+    todaySeoTitle: 'New Jev Projects Today | bestjev',
+    todayDescription: (projects: number) => `Discover ${projects} new open-source Jev projects added today to bestjev, with verified GitHub repositories, languages, stars, and implementation details.`,
+    weekTitle: 'Jev Projects Added This Week',
+    weekSeoTitle: 'New Jev Projects This Week | bestjev',
+    weekDescription: (projects: number) => `Discover ${projects} new open-source Jev projects added this week to bestjev, with verified GitHub repositories, languages, stars, and implementation details.`,
   },
   catalog: {
     all: 'All', project: 'Project', stars: 'Stars', language: 'Language', addedAt: 'Added', description: 'Description', projectsLabel: 'Jev projects',

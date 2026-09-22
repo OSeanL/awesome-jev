@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+
+const title = 'About bestjev | Open Source Jev Project Catalog';
+const description = 'Learn how bestjev curates and verifies its catalog of open-source Jev projects, SDKs, agents, integrations, applications, and developer tools.';
+const siteUrl = 'https://jevbest.com/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="about bestjev, bestjev, Jev projects, open source Jev, Jev catalog" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href={`${siteUrl}about/`} />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="bestjev" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`${siteUrl}about/`} />
+    <meta property="og:image" content={`${siteUrl}readme/awesome-jev-hero.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}readme/awesome-jev-hero.png`} />
+    <title>{title}</title>
+  </head>
+  <body class="policy-body">
+    <main class="policy-page">
+      <a class="policy-back" href="/" title="Back to the bestjev project catalog">← bestjev</a>
+      <p class="section-kicker">ABOUT THE CATALOG</p>
+      <h1>About bestjev</h1>
+      <p>bestjev is an independent, community-maintained catalog of open-source projects built with or around Jev, TypeSafe AI’s System One model for typed probabilistic decisions.</p>
+
+      <h2>What does bestjev include?</h2>
+      <p>The bestjev catalog brings together public SDKs, agents, integrations, applications, research, benchmarks, and developer tools. Each entry links to its original repository and includes a category, primary language, GitHub star snapshot, and concise description.</p>
+
+      <h2>How are projects reviewed?</h2>
+      <p>Listings are checked against public evidence such as source code, project documentation, demos, and visible Jev usage. Star counts are dated discovery snapshots rather than quality rankings.</p>
+
+      <h2>Is bestjev an official TypeSafe AI site?</h2>
+      <p>No. bestjev is an independent community resource and is not affiliated with, sponsored by, or endorsed by TypeSafe AI.</p>
+
+      <h2>Contact</h2>
+      <p>Questions, corrections, and project submissions can be sent to <a href="mailto:someuxyz@gmail.com" title="Email the bestjev maintainer">someuxyz@gmail.com</a> or opened in the <a href="https://github.com/heyjunpenn/awesome-jev/issues" title="Open the bestjev GitHub issue tracker" target="_blank" rel="noreferrer">GitHub issue tracker</a>.</p>
+    </main>
+  </body>
+</html>

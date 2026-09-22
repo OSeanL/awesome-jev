@@ -2,9 +2,9 @@ import type { Messages } from './en';
 
 const zh: Messages = {
   seo: {
-    title: (projects) => `${projects} 个 Jev AI 开源项目、SDK 与工具 | bestjev`,
-    description: (projects) => `收录 ${projects} 个使用 TypeSafe AI System One 模型 Jev 的开源项目，包括 SDK、Agent、集成工具和基准测试。`,
-    catalogName: 'bestjev 开源项目目录', alternateName: 'Awesome Jev 开源项目目录',
+    title: (projects) => `bestjev：${projects} 个 Jev 开源项目与工具`,
+    description: (projects) => `bestjev 收录 ${projects} 个经过核验的 Jev 开源项目，包括 SDK、Agent、集成、应用、基准测试和开发工具，可按 Star、语言与分类浏览。`,
+    catalogName: 'bestjev 开源项目目录', alternateName: 'bestjev Jev 项目目录',
     imageAlt: (projects, categories) => `${projects} 个经过核验的 Jev 开源项目，覆盖 ${categories} 个分类`,
   },
   nav: {
@@ -18,6 +18,13 @@ const zh: Messages = {
     lastUpdated: '最近更新', updatedDate: '2026 年 9 月 22 日', filterLanguage: '按语言筛选', allLanguages: '全部语言', languages: '语言',
     addedToday: '今天新增', addedThisWeek: '本周新增', clearRecency: '显示全部日期',
     searchPlaceholder: '搜索项目、语言或决策', imageAlt: '结构化输入经过 Jev，转化为概率决策',
+  },
+  filterPage: {
+    categoryTitle: (category) => `Awesome ${category} Jev Projects`,
+    categorySeoTitle: (category) => `Awesome ${category} Jev Projects | bestjev`,
+    categoryDescription: (projects, category) => `浏览 bestjev 精选的 ${projects} 个 awesome ${category} Jev 开源项目，对比 GitHub 仓库、Star、开发语言和实现方式。`,
+    todayTitle: '今天新增的 Jev 项目', todaySeoTitle: '今日新增 Jev 开源项目 | bestjev', todayDescription: (projects) => `查看 bestjev 今天新增的 ${projects} 个 Jev 开源项目，包括经过核验的 GitHub 仓库、Star、开发语言和实现信息。`,
+    weekTitle: '本周新增的 Jev 项目', weekSeoTitle: '本周新增 Jev 开源项目 | bestjev', weekDescription: (projects) => `查看 bestjev 本周新增的 ${projects} 个 Jev 开源项目，包括经过核验的 GitHub 仓库、Star、开发语言和实现信息。`,
   },
   catalog: {
     all: '全部', project: '项目', stars: 'Star', language: '语言', addedAt: '收录时间', description: '简介', projectsLabel: 'Jev 项目', sortAscending: '按 Star 升序排列',
