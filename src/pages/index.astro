@@ -254,7 +254,6 @@ const structuredData = {
 };
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 const initialProjectLimit = 16;
-const catalogDataUrl = `${base}catalog/${locale}.json`;
 const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
   .replace('role="img" aria-labelledby="title description"', 'aria-hidden="true" focusable="false"')
   .replace(/\s*<title id="title">[^<]*<\/title>\s*<desc id="description">[^<]*<\/desc>/, '');
@@ -539,9 +538,9 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
               <span>{messages.catalog.addedAt}</span>
               <span>{messages.catalog.description}</span>
             </div>
-            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel} data-catalog-url={catalogDataUrl}>
-              {sortedProjects.slice(0, initialProjectLimit).map((project, index) => (
-                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)} data-added-date={project.addedDate} hidden={index >= 16}>
+            <ol class="project-table" id="project-table" aria-label={messages.catalog.projectsLabel}>
+              {sortedProjects.map((project, index) => (
+                <li class="project-row" data-project data-stars={project.stars} data-category={project.categoryId} data-language={project.language} data-search={localizedSearchText(project)} data-added-date={project.addedDate} hidden={index >= initialProjectLimit}>
                   <a class="project-name" href={project.url} title={repositorySlug(project.url)} target="_blank" rel="noreferrer"><h3>{repositorySlug(project.url)}</h3><small>{project.category}</small></a>
                   <span class="stars"><Star class="star-icon" size={13} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
                   <span class="project-language">{project.language}</span>
@@ -683,18 +682,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         searchText: string;
       };
 
-      type CatalogProjectData = {
-        name: string;
-        url: string;
-        stars: number;
-        starsLabel: string;
-        language: string;
-        searchText: string;
-        category: string;
-        addedDate: string;
-        description: string;
-      };
-
       const search = document.querySelector<HTMLInputElement>('#project-search');
       const languagePicker = document.querySelector<HTMLElement>('[data-language-picker]');
       const languageFilter = document.querySelector<HTMLButtonElement>('#language-filter');
@@ -728,75 +715,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         language: row.dataset.language ?? '—',
         searchText: row.dataset.search ?? '',
       }));
-      let allProjectsLoaded = false;
-      let allProjectsPromise: Promise<void> | undefined;
-      const starIconTemplate = document.querySelector<SVGElement>('.star-icon');
-      const clientDateFormatter = new Intl.DateTimeFormat(document.documentElement.lang, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Taipei' });
-
-      const createProjectRecord = (project: CatalogProjectData): ProjectRowRecord => {
-        const row = document.createElement('li');
-        row.className = 'project-row';
-        row.dataset.project = '';
-        row.dataset.stars = String(project.stars);
-        row.dataset.language = project.language;
-        row.dataset.search = project.searchText;
-        row.dataset.addedDate = project.addedDate;
-        row.hidden = true;
-
-        const link = document.createElement('a');
-        link.className = 'project-name';
-        link.href = project.url;
-        link.title = project.name;
-        link.target = '_blank';
-        link.rel = 'noreferrer';
-        const heading = document.createElement('h3');
-        heading.textContent = project.name;
-        const category = document.createElement('small');
-        category.textContent = project.category;
-        link.append(heading, category);
-
-        const stars = document.createElement('span');
-        stars.className = 'stars';
-        if (starIconTemplate) stars.append(starIconTemplate.cloneNode(true));
-        stars.append(document.createTextNode(project.starsLabel));
-
-        const language = document.createElement('span');
-        language.className = 'project-language';
-        language.textContent = project.language;
-
-        const addedDate = document.createElement('time');
-        addedDate.className = 'project-added-date';
-        addedDate.dateTime = project.addedDate;
-        addedDate.textContent = clientDateFormatter.format(new Date(`${project.addedDate}T00:00:00+08:00`));
-
-        const description = document.createElement('p');
-        description.textContent = project.description;
-        row.append(link, stars, language, addedDate, description);
-
-        return {
-          element: row,
-          name: project.name,
-          stars: project.stars,
-          language: project.language,
-          searchText: project.searchText,
-        };
-      };
-
-      const ensureAllProjects = async () => {
-        if (allProjectsLoaded || !(projectTable instanceof HTMLOListElement) || !projectTable.dataset.catalogUrl) return;
-        if (allProjectsPromise) return allProjectsPromise;
-        allProjectsPromise = (async () => {
-          const response = await fetch(projectTable.dataset.catalogUrl as string);
-          if (!response.ok) throw new Error(`Unable to load project catalog: ${response.status}`);
-          const { projects } = await response.json() as { projects: CatalogProjectData[] };
-          const additions = projects.slice(projectRecords.length).map(createProjectRecord);
-          projectTable.append(...additions.map((project) => project.element));
-          projectRecords = [...projectRecords, ...additions];
-          allProjectsLoaded = true;
-        })();
-        return allProjectsPromise;
-      };
-
       const updateSortState = () => {
         starSort?.setAttribute('data-direction', starSortDirection);
         if (starSort) {
@@ -835,16 +753,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         if (emptyState instanceof HTMLElement) emptyState.hidden = matches.length !== 0;
       };
 
-      const loadAndRender = async () => {
-        try {
-          await ensureAllProjects();
-        } catch (error) {
-          console.warn(error);
-          allProjectsPromise = undefined;
-        }
-        render();
-      };
-
       const setLanguageMenuOpen = (open: boolean, focusOption = false) => {
         if (!(languageFilter instanceof HTMLButtonElement) || !(languageMenu instanceof HTMLElement)) return;
         languageFilter.setAttribute('aria-expanded', String(open));
@@ -860,7 +768,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         languageOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
         visibleLimit = getPageSize();
         setLanguageMenuOpen(false);
-        void loadAndRender();
+        render();
         languageFilter?.focus();
       };
 
@@ -873,12 +781,12 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         }
       };
 
-      search?.addEventListener('input', () => { visibleLimit = getPageSize(); void loadAndRender(); });
+      search?.addEventListener('input', () => { visibleLimit = getPageSize(); render(); });
       starSort?.addEventListener('click', () => {
         starSortDirection = starSortDirection === 'desc' ? 'asc' : 'desc';
         visibleLimit = getPageSize();
         updateSortState();
-        void loadAndRender();
+        render();
       });
       languageFilter?.addEventListener('click', () => setLanguageMenuOpen(languageFilter.getAttribute('aria-expanded') !== 'true'));
       languageFilter?.addEventListener('keydown', (event) => {
@@ -939,7 +847,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
       localePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
         if (localePicker && !localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
       }));
-      loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); void loadAndRender(); });
+      loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); render(); });
       const realtimeWidgetEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
       const loadRealtimeWidget = (event: Event) => {
         if (!event.isTrusted || !(realtimeWidget instanceof HTMLIFrameElement) || !realtimeWidget.dataset.src) return;
@@ -1002,11 +910,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
       syncSidebarAccess();
       updateSortState();
       render();
-      if (!compactLayout.matches) {
-        const hydrateDesktopCatalog = () => { visibleLimit = getPageSize(); void loadAndRender(); };
-        if ('requestIdleCallback' in window) window.requestIdleCallback(hydrateDesktopCatalog, { timeout: 1500 });
-        else setTimeout(hydrateDesktopCatalog, 0);
-      }
     </script>
   </body>
 </html>
