@@ -11,6 +11,9 @@ export default defineConfig({
   base,
   output: 'static',
   trailingSlash: 'always',
+  build: {
+    inlineStylesheets: 'always',
+  },
   i18n: {
     locales: ['en', 'zh', 'ja', 'ko', 'es', 'pt-br'],
     defaultLocale: 'en',
