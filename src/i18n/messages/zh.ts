@@ -15,13 +15,13 @@ const zh: Messages = {
   },
   hero: {
     title: '最佳 Jev 项目', summary: (projects, categories, languages) => `从 ${projects} 个已核验仓库中搜索，也可以按 ${categories} 个分类和 ${languages} 种语言筛选。`,
-    lastUpdated: '最近更新', updatedDate: '2026 年 9 月 22 日', filterLanguage: '按语言筛选', allLanguages: '全部语言', languages: '语言',
+    lastUpdated: '最近更新', updatedDate: '2026 年 9 月 23 日', filterLanguage: '按语言筛选', allLanguages: '全部语言', languages: '语言',
     addedToday: '今天新增', addedThisWeek: '本周新增', clearRecency: '显示全部日期',
-    searchPlaceholder: '搜索项目、语言或决策', imageAlt: '结构化输入经过 Jev，转化为概率决策',
+    searchPlaceholder: '搜索项目、语言或决策', imageAlt: 'heyjunpenn/awesome-jev 仓库的 GitHub Star 增长趋势',
   },
   filterPage: {
-    categoryTitle: (category) => `Awesome ${category} Jev Projects`,
-    categorySeoTitle: (category) => `Awesome ${category} Jev Projects | bestjev`,
+    categoryTitle: (category) => `精选 Jev 项目：${category}`,
+    categorySeoTitle: (category) => `精选 Jev 项目：${category} | bestjev`,
     categoryDescription: (projects, category) => `浏览 bestjev 精选的 ${projects} 个 awesome ${category} Jev 开源项目，对比 GitHub 仓库、Star、开发语言和实现方式。`,
     todayTitle: '今天新增的 Jev 项目', todaySeoTitle: '今日新增 Jev 开源项目 | bestjev', todayDescription: (projects) => `查看 bestjev 今天新增的 ${projects} 个 Jev 开源项目，包括经过核验的 GitHub 仓库、Star、开发语言和实现信息。`,
     weekTitle: '本周新增的 Jev 项目', weekSeoTitle: '本周新增 Jev 开源项目 | bestjev', weekDescription: (projects) => `查看 bestjev 本周新增的 ${projects} 个 Jev 开源项目，包括经过核验的 GitHub 仓库、Star、开发语言和实现信息。`,

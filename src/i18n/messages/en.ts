@@ -16,9 +16,9 @@ const en = {
   hero: {
     title: 'Best Jev Projects',
     summary: (projects: number, categories: number, languages: number) => `Search ${projects} verified repositories across ${categories} categories and ${languages} languages.`,
-    lastUpdated: 'Last updated', updatedDate: 'September 22, 2026', filterLanguage: 'Filter by language', allLanguages: 'All languages', languages: 'Languages',
+    lastUpdated: 'Last updated', updatedDate: 'September 23, 2026', filterLanguage: 'Filter by language', allLanguages: 'All languages', languages: 'Languages',
     addedToday: 'Today', addedThisWeek: 'This week', clearRecency: 'Show all dates',
-    searchPlaceholder: 'Search projects, languages, or decisions', imageAlt: 'Structured inputs flow through Jev into probabilistic decisions',
+    searchPlaceholder: 'Search projects, languages, or decisions', imageAlt: 'GitHub star growth for heyjunpenn/awesome-jev over time',
   },
   filterPage: {
     categoryTitle: (category: string) => `Awesome ${category} Jev Projects`,

@@ -1,12 +1,15 @@
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 
-const [, repository = ''] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
-const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
-const isRootPage = repository.endsWith('.github.io');
-const base = process.env.ASTRO_BASE ?? (isGitHubActions && repository && !isRootPage ? `/${repository}` : '/');
-const site = process.env.SITE_URL ?? (isGitHubActions ? 'https://jevbest.com' : 'http://localhost:4321');
+const base = process.env.ASTRO_BASE ?? '/';
+const site = process.env.SITE_URL ?? 'http://localhost:4321';
 
 export default defineConfig({
+  adapter: cloudflare({
+    imageService: 'passthrough',
+    prerenderEnvironment: 'node',
+  }),
+  session: false,
   site,
   base,
   output: 'static',

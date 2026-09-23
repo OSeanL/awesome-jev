@@ -1,21 +1,25 @@
 # bestjev
 
-> A verified, community-maintained catalog of 485 open-source projects built around Jev, TypeSafe AI's System One model for typed decisions inside software.
+> A verified, community-maintained catalog of 832 open-source projects built around Jev, TypeSafe AI's System One model for typed decisions inside software.
 
 bestjev (formerly Awesome Jev) is an independent community project. It catalogs public Jev SDKs, clients, integrations, agent tools, browser and computer-use projects, applications, games, demos, benchmarks, research, and related lists. The website and catalog are available in English, Simplified Chinese, Japanese, Korean, Spanish, and Brazilian Portuguese.
 
 ## Key facts
 
-- 485 unique public GitHub repositories across 10 categories
-- 25 implementation languages
+- 832 unique public GitHub repositories across 11 categories
+- 27 implementation languages
 - Each entry includes a project link, category, language, GitHub star snapshot, and localized description
 - Jev itself is a hosted TypeSafe AI model; this directory catalogs projects built around it and does not imply that Jev's model weights are open source
 - Independent community project; not affiliated with or endorsed by TypeSafe AI
+- Catalog snapshot updated September 23, 2026
 
 ## Primary resources
 
 - [Browse the catalog](https://jevbest.com/#projects)
+- [Full catalog context for language models](https://jevbest.com/llms-full.txt): Complete English catalog with all 832 project entries, descriptions, metadata, methodology, and contribution guidance.
 - [Machine-readable catalog](https://jevbest.com/catalog.json)
+- [Catalog changelog](https://jevbest.com/changelog/)
+- [Project showcase](https://jevbest.com/showcase/)
 - [English catalog source](https://github.com/heyjunpenn/awesome-jev/blob/main/README.md)
 - [简体中文目录](https://github.com/heyjunpenn/awesome-jev/blob/main/README.zh-Hans.md)
 - [日本語カタログ](https://github.com/heyjunpenn/awesome-jev/blob/main/README.ja.md)

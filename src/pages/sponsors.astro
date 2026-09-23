@@ -1,0 +1,412 @@
+---
+import '../styles/global.css';
+import '../styles/sponsors.css';
+import { ArrowUpRight, LockKeyhole, Minus, Plus } from '@lucide/astro';
+import SiteLayout from '../components/SiteLayout.astro';
+import { nextTopRankAmountUsd, rankedSponsors, sponsorRules } from '../data/sponsors';
+import { defaultLocale, getLocale, localeConfig, locales, type Locale } from '../i18n';
+import { getLocalePath } from '../i18n/config';
+
+const base = import.meta.env.BASE_URL;
+const locale = getLocale(Astro.props.locale ?? Astro.currentLocale);
+const siteUrl = 'https://jevbest.com/';
+const pagePath = `${getLocalePath(locale)}sponsors/`;
+const pageUrl = `${siteUrl}${pagePath}`;
+const returnPath = `/${pagePath}`;
+const sponsorEndpoint = `${base}api/sponsors/`;
+const checkoutAction = `${base}api/sponsors/checkout/`;
+
+const en = {
+  pageTitle: 'Sponsor bestjev',
+  description: 'Put your product on the bestjev sponsor board. Contributions add up, and the top three sponsors appear in the site sidebar.',
+  breadcrumbHome: 'All projects', breadcrumbCurrent: 'Sponsors',
+  title: 'Sponsor bestjev', intro: "Sponsors are ranked by total contributions. The top three appear in the site sidebar, and every sponsor appears in the project and Showcase lists and in this GitHub project's README.",
+  claim: (amount: number) => `Claim #1 for $${amount}`, claimBody: 'Choose a whole-dollar amount. Everything paid for the same link adds up.',
+  amount: 'Amount', amountHint: (amount: number) => `Minimum $${amount}; increase in $5 steps.`, name: 'Product name', namePlaceholder: 'Your product',
+  url: 'Product link', urlPlaceholder: 'https://yourproduct.com', submit: 'Claim rank', stripe: 'Stripe Checkout', decreaseAmount: 'Decrease amount by $5', increaseAmount: 'Increase amount by $5',
+  boardTitle: 'The board', boardIntro: 'Placement follows verified payments. If totals tie, the earlier completed payment keeps the higher position.',
+  emptyTitle: 'No sponsors yet', emptyBody: 'The first verified payment will appear here and across bestjev.',
+  clicks: 'clicks', takesRank: (amount: number) => `$${amount} takes this rank`,
+  rulesTitle: 'How sponsorship works', rules: [
+    'Ranks use the total paid for one product link. Contributions must be in whole USD amounts and increase in $5 steps.',
+    'The three highest totals appear in the site sidebar. Equal totals are ordered by the earliest completed payment.',
+    'Every active sponsor appears at random positions in both the project list and the Showcase list.',
+    "Every active sponsor is also listed in this GitHub project's README.",
+    'Stripe confirms payment before a sponsor is published. A payment can take a short time to appear after Checkout.',
+    'bestjev may remove illegal, deceptive, unsafe, or unrelated links.',
+  ],
+  success: 'Payment received. Your placement will appear after Stripe confirms the payment.',
+  cancelled: 'Checkout was cancelled. No charge was made.',
+  error: 'We could not start Checkout. Check the amount, product name, and HTTPS link, then try again.',
+};
+
+const zh = {
+  ...en,
+  pageTitle: '赞助 bestjev',
+  description: '在赞助榜展示你的产品。赞助金额累计计算，前三名会出现在全站侧边栏。',
+  breadcrumbHome: '全部项目', breadcrumbCurrent: '赞助商',
+  title: '赞助 bestjev', intro: '赞助商按累计金额排名。前三名会展示在全站侧边栏，所有赞助商都会出现在项目列表、Showcase 列表和本 GitHub 项目的 README 中。',
+  claim: (amount: number) => `以 $${amount} 取得第 1 名`, claimBody: '输入整数美元金额。同一链接的所有已完成付款会累计计算。',
+  amount: '赞助金额', amountHint: (amount: number) => `最低 $${amount}，每次增加 $5。`, name: '产品名称', namePlaceholder: '你的产品',
+  url: '产品链接', urlPlaceholder: 'https://yourproduct.com', submit: '取得名次', stripe: 'Stripe Checkout', decreaseAmount: '减少 5 美元', increaseAmount: '增加 5 美元',
+  boardTitle: '赞助榜', boardIntro: '排名以已验证付款为准。累计金额相同时，较早完成付款的赞助商排名更高。',
+  emptyTitle: '还没有赞助商', emptyBody: '第一笔通过验证的赞助会显示在这里及 bestjev 的其他展示位置。',
+  clicks: '次点击', takesRank: (amount: number) => `$${amount} 可取得此名次`,
+  rulesTitle: '赞助规则', rules: [
+    '同一产品链接的已完成付款会累计计算。金额必须为美元整数，每次增加 5 美元。',
+    '累计金额最高的前三名会展示在全站侧边栏；金额相同时，较早完成付款者优先。',
+    '所有有效赞助商都会随机出现在项目列表和 Showcase 列表中。',
+    '所有有效赞助商也会列在本 GitHub 项目的 README 中。',
+    'Stripe 确认付款后才会发布赞助信息，完成结账后可能需要短暂等待。',
+    'bestjev 可以移除违法、欺骗、不安全或与本站无关的链接。',
+  ],
+  success: '已收到付款。Stripe 确认完成后，新的排名会自动显示。',
+  cancelled: '已取消结账，没有产生扣款。',
+  error: '无法发起结账。请检查金额、产品名称和 HTTPS 链接后重试。',
+};
+
+const ja = {
+  ...en,
+  pageTitle: 'bestjevをスポンサーする',
+  description: 'スポンサーボードにあなたのプロダクトを掲載できます。支援額は累計され、上位3件はサイトのサイドバーにも表示されます。',
+  breadcrumbHome: 'すべてのプロジェクト', breadcrumbCurrent: 'スポンサー',
+  title: 'bestjevをスポンサーする', intro: 'スポンサーは累計支援額で順位付けされます。上位3件はサイトのサイドバーに、すべてのスポンサーはプロジェクトと Showcase の一覧、およびこの GitHub プロジェクトの README に掲載されます。',
+  claim: (amount: number) => `$${amount} で1位になる`, claimBody: '金額は1ドル単位で入力してください。同じリンクへの支払いはすべて合算されます。',
+  amount: '支援額', amountHint: (amount: number) => `最低 $${amount}。$5 ずつ増やせます。`, name: 'プロダクト名', namePlaceholder: 'あなたのプロダクト',
+  url: 'プロダクトのリンク', urlPlaceholder: 'https://yourproduct.com', submit: '順位を取得', stripe: 'Stripe Checkout', decreaseAmount: '金額を5ドル減らす', increaseAmount: '金額を5ドル増やす',
+  boardTitle: 'スポンサーボード', boardIntro: '順位は確認済みの支払いに基づきます。累計額が同じ場合は、先に支払いを完了したスポンサーが上位になります。',
+  emptyTitle: 'スポンサーはまだいません', emptyBody: '最初に確認された支払いが、ここと bestjev のその他の掲載位置に表示されます。',
+  clicks: 'クリック', takesRank: (amount: number) => `$${amount} でこの順位になります`,
+  rulesTitle: 'スポンサールール', rules: [
+    '同じプロダクトリンクへの完了済み支払いはすべて合算されます。金額はドルの整数で、5ドル単位で増やせます。',
+    '累計額の上位3件はサイトのサイドバーに表示されます。同額の場合は、支払いの完了が早い順になります。',
+    'すべての有効なスポンサーは、プロジェクトと Showcase の一覧にランダムに表示されます。',
+    'すべての有効なスポンサーは、この GitHub プロジェクトの README にも掲載されます。',
+    'Stripe による支払い確認後にスポンサー情報が公開されます。支払い完了後、表示まで少し時間がかかる場合があります。',
+    'bestjev は、違法、詐欺的、危険、または当サイトと無関係なリンクを削除できます。',
+  ],
+  success: '支払いを受け付けました。Stripe の確認後に新しい順位が表示されます。',
+  cancelled: 'チェックアウトはキャンセルされました。請求は発生していません。',
+  error: 'チェックアウトを開始できませんでした。金額、プロダクト名、HTTPS リンクを確認して、もう一度お試しください。',
+};
+
+const ko = {
+  ...en,
+  pageTitle: 'bestjev 후원하기',
+  description: '후원자 보드에 제품을 소개하세요. 후원금은 누적되며, 상위 3개 제품은 사이트 사이드바에도 표시됩니다.',
+  breadcrumbHome: '전체 프로젝트', breadcrumbCurrent: '후원자',
+  title: 'bestjev 후원하기', intro: '후원자는 누적 후원금순으로 정렬됩니다. 상위 3개 제품은 사이트 사이드바에, 모든 후원자는 프로젝트 및 Showcase 목록과 이 GitHub 프로젝트의 README에 표시됩니다.',
+  claim: (amount: number) => `$${amount}로 1위 차지`, claimBody: '정수 달러 금액을 입력하세요. 같은 링크의 모든 결제 금액이 누적됩니다.',
+  amount: '후원 금액', amountHint: (amount: number) => `최소 $${amount}, $5단위로 증가.`, name: '제품명', namePlaceholder: '제품명',
+  url: '제품 링크', urlPlaceholder: 'https://yourproduct.com', submit: '순위 차지', stripe: 'Stripe Checkout', decreaseAmount: '금액 5달러 줄이기', increaseAmount: '금액 5달러 늘리기',
+  boardTitle: '후원자 보드', boardIntro: '순위는 확인된 결제를 기준으로 합니다. 누적 금액이 같으면 결제를 먼저 완료한 후원자가 더 높은 순위를 유지합니다.',
+  emptyTitle: '아직 후원자가 없습니다', emptyBody: '첫 번째 확인 완료 결제가 여기와 bestjev의 다른 표시 영역에 나타납니다.',
+  clicks: '클릭', takesRank: (amount: number) => `$${amount}로 이 순위를 차지합니다`,
+  rulesTitle: '후원 규칙', rules: [
+    '같은 제품 링크의 완료된 결제는 모두 누적됩니다. 금액은 정수 달러여야 하며 5달러 단위로 증가합니다.',
+    '누적 금액 상위 3개 제품은 사이트 사이드바에 표시됩니다. 금액이 같으면 결제를 먼저 완료한 후원자가 앞선니다.',
+    '모든 유효한 후원자는 프로젝트 및 Showcase 목록의 무작위 위치에 표시됩니다.',
+    '모든 유효한 후원자는 이 GitHub 프로젝트의 README에도 표시됩니다.',
+    'Stripe가 결제를 확인한 뒤 후원 정보가 공개됩니다. 결제 완료 후 표시되기까지 잠시 시간이 걸릴 수 있습니다.',
+    'bestjev는 불법, 기만, 안전 문제가 있거나 사이트와 관련 없는 링크를 삭제할 수 있습니다.',
+  ],
+  success: '결제가 접수되었습니다. Stripe 확인 후 새 순위가 표시됩니다.',
+  cancelled: '결제가 취소되었으며 청구된 금액은 없습니다.',
+  error: '결제를 시작할 수 없습니다. 금액, 제품명, HTTPS 링크를 확인한 뒤 다시 시도하세요.',
+};
+
+const es = {
+  ...en,
+  pageTitle: 'Patrocina bestjev',
+  description: 'Muestra tu producto en el panel de patrocinadores de bestjev. Las aportaciones se acumulan y los tres primeros aparecen en la barra lateral del sitio.',
+  breadcrumbHome: 'Todos los proyectos', breadcrumbCurrent: 'Patrocinadores',
+  title: 'Patrocina bestjev', intro: 'Los patrocinadores se ordenan por sus aportaciones acumuladas. Los tres primeros aparecen en la barra lateral y todos se muestran en las listas de proyectos y Showcase y en el README de este proyecto de GitHub.',
+  claim: (amount: number) => `Consigue el n.º 1 por $${amount}`, claimBody: 'Introduce una cantidad entera en dólares. Se suman todos los pagos realizados para el mismo enlace.',
+  amount: 'Cantidad', amountHint: (amount: number) => `Mínimo $${amount}; aumenta en tramos de $5.`, name: 'Nombre del producto', namePlaceholder: 'Tu producto',
+  url: 'Enlace del producto', urlPlaceholder: 'https://yourproduct.com', submit: 'Conseguir posición', stripe: 'Stripe Checkout', decreaseAmount: 'Reducir la cantidad en 5 dólares', increaseAmount: 'Aumentar la cantidad en 5 dólares',
+  boardTitle: 'Panel de patrocinadores', boardIntro: 'La posición se basa en los pagos verificados. Si hay un empate, conserva la posición superior quien haya completado antes el pago.',
+  emptyTitle: 'Aún no hay patrocinadores', emptyBody: 'El primer pago verificado aparecerá aquí y en los demás espacios de bestjev.',
+  clicks: 'clics', takesRank: (amount: number) => `$${amount} consigue esta posición`,
+  rulesTitle: 'Reglas de patrocinio', rules: [
+    'Se suman los pagos completados para un mismo enlace de producto. Las cantidades deben ser dólares enteros y aumentar en tramos de 5 dólares.',
+    'Los tres totales más altos aparecen en la barra lateral del sitio. Si hay un empate, se ordenan por la fecha del primer pago completado.',
+    'Todos los patrocinadores activos aparecen en posiciones aleatorias de las listas de proyectos y Showcase.',
+    'Todos los patrocinadores activos también aparecen en el README de este proyecto de GitHub.',
+    'La información del patrocinador se publica cuando Stripe confirma el pago. Puede tardar unos instantes en aparecer después de finalizar el pago.',
+    'bestjev puede retirar enlaces ilegales, engañosos, inseguros o que no estén relacionados con el sitio.',
+  ],
+  success: 'Pago recibido. La nueva posición aparecerá cuando Stripe confirme el pago.',
+  cancelled: 'El pago se ha cancelado. No se ha realizado ningún cargo.',
+  error: 'No se pudo iniciar el pago. Comprueba la cantidad, el nombre del producto y el enlace HTTPS e inténtalo de nuevo.',
+};
+
+const ptBr = {
+  ...en,
+  pageTitle: 'Patrocine o bestjev',
+  description: 'Mostre seu produto no painel de patrocinadores do bestjev. Os apoios são acumulados, e os três primeiros aparecem na barra lateral do site.',
+  breadcrumbHome: 'Todos os projetos', breadcrumbCurrent: 'Patrocinadores',
+  title: 'Patrocine o bestjev', intro: 'Os patrocinadores são classificados pelo total acumulado. Os três primeiros aparecem na barra lateral, e todos aparecem nas listas de projetos e Showcase e no README deste projeto no GitHub.',
+  claim: (amount: number) => `Assuma o 1º lugar por $${amount}`, claimBody: 'Informe um valor inteiro em dólares. Todos os pagamentos feitos para o mesmo link são somados.',
+  amount: 'Valor', amountHint: (amount: number) => `Mínimo de $${amount}; aumente em etapas de $5.`, name: 'Nome do produto', namePlaceholder: 'Seu produto',
+  url: 'Link do produto', urlPlaceholder: 'https://yourproduct.com', submit: 'Assumir posição', stripe: 'Stripe Checkout', decreaseAmount: 'Diminuir o valor em 5 dólares', increaseAmount: 'Aumentar o valor em 5 dólares',
+  boardTitle: 'Painel de patrocinadores', boardIntro: 'A posição considera os pagamentos confirmados. Em caso de empate, quem concluiu o pagamento primeiro fica na frente.',
+  emptyTitle: 'Ainda não há patrocinadores', emptyBody: 'O primeiro pagamento confirmado aparecerá aqui e nos demais espaços do bestjev.',
+  clicks: 'cliques', takesRank: (amount: number) => `$${amount} assume esta posição`,
+  rulesTitle: 'Regras de patrocínio', rules: [
+    'Os pagamentos concluídos para o mesmo link de produto são somados. Os valores devem ser números inteiros em dólares e aumentar em etapas de 5 dólares.',
+    'Os três maiores totais aparecem na barra lateral do site. Em caso de empate, quem concluiu o pagamento primeiro fica na frente.',
+    'Todos os patrocinadores ativos aparecem em posições aleatórias nas listas de projetos e Showcase.',
+    'Todos os patrocinadores ativos também aparecem no README deste projeto no GitHub.',
+    'As informações do patrocinador são publicadas depois que o Stripe confirma o pagamento. A exibição pode levar alguns instantes após a finalização do checkout.',
+    'O bestjev pode remover links ilegais, enganosos, inseguros ou sem relação com o site.',
+  ],
+  success: 'Pagamento recebido. A nova posição aparecerá depois que o Stripe confirmar o pagamento.',
+  cancelled: 'O checkout foi cancelado. Nenhuma cobrança foi feita.',
+  error: 'Não foi possível iniciar o checkout. Verifique o valor, o nome do produto e o link HTTPS e tente novamente.',
+};
+
+const copyByLocale: Record<Locale, typeof en> = { en, zh, ja, ko, es, 'pt-br': ptBr };
+const copy = copyByLocale[locale] ?? en;
+const faviconUrl = (name: string, url: string) => name === 'blink.review'
+  ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(url)}&sz=128`
+  : `${new URL(url).origin}/favicon.ico`;
+const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
+---
+
+<!doctype html>
+<html lang={localeConfig[locale].languageTag} data-language={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f7f7f5" />
+    <meta name="description" content={copy.description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={pageUrl} />
+    {locales.map((candidate) => <link rel="alternate" hreflang={localeConfig[candidate].languageTag} href={`${siteUrl}${getLocalePath(candidate)}sponsors/`} />)}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${getLocalePath(defaultLocale)}sponsors/`} />
+    <link rel="icon" type="image/x-icon" href={`${base}favicon.ico`} />
+    <title>{copy.pageTitle}</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <SiteLayout locale={locale} activeSection="sponsors" mainClass="sponsors-main">
+        <div class="sponsors-page">
+          <nav class="sponsors-breadcrumbs" aria-label="Breadcrumb">
+            <a href={`${base}${getLocalePath(locale)}`}>{copy.breadcrumbHome}</a><span aria-hidden="true">/</span><span>{copy.breadcrumbCurrent}</span>
+          </nav>
+
+          <div class="sponsor-status" data-payment-status="success" hidden>{copy.success}</div>
+          <div class="sponsor-status" data-payment-status="cancelled" hidden>{copy.cancelled}</div>
+
+          <section class="sponsors-hero">
+            <div class="sponsors-intro">
+              <h1>{copy.title}</h1>
+              <p>{copy.intro}</p>
+            </div>
+
+            <div class="claim-card">
+              <h2 data-claim-heading>{copy.claim(nextTopRankAmountUsd)}</h2>
+              <p>{copy.claimBody}</p>
+              <form class="sponsor-form" id="sponsor-form" action={checkoutAction} method="post">
+                <input type="hidden" name="returnPath" value={returnPath} />
+                <div class="sponsor-field sponsor-amount-field">
+                  <div class="sponsor-field-heading">
+                    <small data-amount-hint>{copy.amountHint(nextTopRankAmountUsd)}</small>
+                  </div>
+                  <div class="amount-stepper">
+                    <button type="button" data-amount-decrease aria-label={copy.decreaseAmount} title={copy.decreaseAmount}><Minus size={18} stroke-width={2} aria-hidden="true" /></button>
+                    <div class="amount-input"><span aria-hidden="true">$</span><input id="sponsor-amount" name="amount" type="number" min={nextTopRankAmountUsd} step={sponsorRules.minimumIncrementUsd} value={nextTopRankAmountUsd} aria-label={copy.amount} required inputmode="numeric" /></div>
+                    <button type="button" data-amount-increase aria-label={copy.increaseAmount} title={copy.increaseAmount}><Plus size={18} stroke-width={2} aria-hidden="true" /></button>
+                  </div>
+                </div>
+                <div class="sponsor-details">
+                  <div class="sponsor-field">
+                    <input id="sponsor-name" name="sponsorName" type="text" minlength="2" maxlength="80" placeholder={copy.namePlaceholder} aria-label={copy.name} autocomplete="organization" required />
+                  </div>
+                  <div class="sponsor-field">
+                    <input id="sponsor-url" name="productUrl" type="url" maxlength="500" pattern="https://.*" placeholder={copy.urlPlaceholder} aria-label={copy.url} autocomplete="url" required />
+                  </div>
+                </div>
+                <div class="sr-only" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off" /></div>
+                <button class="claim-button" type="submit"><span>{copy.submit}</span><span><LockKeyhole size={13} stroke-width={1.8} aria-hidden="true" /> {copy.stripe}</span></button>
+                <div class="sponsor-status" data-payment-status="error" data-tone="error" role="alert" hidden>{copy.error}</div>
+              </form>
+            </div>
+          </section>
+
+          <section class="sponsor-board" aria-labelledby="sponsor-board-title">
+            <div class="board-heading">
+              <h2 id="sponsor-board-title">{copy.boardTitle}</h2>
+              <p>{copy.boardIntro}</p>
+            </div>
+            <ol class="sponsor-board-list" data-sponsor-board hidden={rankedSponsors.length === 0}>
+              {rankedSponsors.map((sponsor, index) => (
+                <li class="sponsor-board-row">
+                  <span class:list={['board-logo', `sponsor-logo-${sponsor.logoTone}`]}><img src={faviconUrl(sponsor.name, sponsor.url)} alt="" width="52" height="52" loading="lazy" /></span>
+                  <span class="board-rank">#{index + 1}</span>
+                  <div class="board-product"><h3><a href={sponsor.url} target="_blank" rel="sponsored noreferrer">{sponsor.name} <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" /></a></h3><strong>${sponsor.amountUsd}</strong></div>
+                  <div class="board-detail"><p>{sponsor.description}</p><div class="board-meta"><span>{domain(sponsor.url)}</span><span>·</span><span>{sponsor.clicks} {copy.clicks}</span><span>·</span><b>{copy.takesRank(sponsor.amountUsd + sponsorRules.minimumIncrementUsd)}</b></div></div>
+                </li>
+              ))}
+            </ol>
+            <div class="sponsor-board-empty" data-sponsor-board-empty hidden={rankedSponsors.length > 0}>
+              <strong>{copy.emptyTitle}</strong>
+              <p>{copy.emptyBody}</p>
+            </div>
+          </section>
+
+          <section class="sponsor-rules" id="rules">
+            <h2>{copy.rulesTitle}</h2>
+            <ul>{copy.rules.map((rule) => <li>{rule}</li>)}</ul>
+          </section>
+
+        </div>
+      </SiteLayout>
+    </div>
+
+    <script define:vars={{ endpoint: sponsorEndpoint, claimTemplate: copy.claim('__AMOUNT__' as unknown as number), amountHintTemplate: copy.amountHint('__AMOUNT__' as unknown as number), clicksLabel: copy.clicks, rankTemplate: copy.takesRank('__AMOUNT__' as unknown as number), minimumIncrementUsd: sponsorRules.minimumIncrementUsd }}>
+      const params = new URLSearchParams(window.location.search);
+      const state = params.has('error') ? 'error' : params.get('payment');
+      if (state) document.querySelector(`[data-payment-status="${state}"]`)?.removeAttribute('hidden');
+
+      const menuButton = document.querySelector('.menu-button');
+      const sidebarClose = document.querySelector('.sidebar-close');
+      const navScrim = document.querySelector('.nav-scrim');
+      const sidebar = document.querySelector('#sidebar');
+      const compactLayout = window.matchMedia('(max-width: 1080px)');
+      const setMenuOpen = (open) => {
+        document.body.classList.toggle('menu-open', open);
+        menuButton?.setAttribute('aria-expanded', String(open));
+        if (sidebar instanceof HTMLElement && compactLayout.matches) {
+          sidebar.toggleAttribute('inert', !open);
+          sidebar.toggleAttribute('aria-hidden', !open);
+        }
+      };
+      menuButton?.addEventListener('click', () => setMenuOpen(true));
+      sidebarClose?.addEventListener('click', () => setMenuOpen(false));
+      navScrim?.addEventListener('click', () => setMenuOpen(false));
+
+      const localePicker = document.querySelector('[data-locale-picker]');
+      const localeTrigger = localePicker?.querySelector('.locale-trigger');
+      const localeMenu = localePicker?.querySelector('.locale-menu');
+      localeTrigger?.addEventListener('click', () => {
+        const open = localeTrigger.getAttribute('aria-expanded') !== 'true';
+        localeTrigger.setAttribute('aria-expanded', String(open));
+        localeMenu?.toggleAttribute('hidden', !open);
+      });
+
+      const faviconFor = (name, url) => name === 'blink.review'
+        ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(url)}&sz=128`
+        : `${new URL(url).origin}/favicon.ico`;
+      const domainFor = (url) => new URL(url).hostname.replace(/^www\./, '');
+      const replaceAmount = (template, amount) => template.replace('__AMOUNT__', String(amount));
+      const amountInput = document.querySelector('#sponsor-amount');
+      const amountDecrease = document.querySelector('[data-amount-decrease]');
+      const amountIncrease = document.querySelector('[data-amount-increase]');
+      const claimHeading = document.querySelector('[data-claim-heading]');
+      const syncAmountControl = (normalize = false) => {
+        if (!(amountInput instanceof HTMLInputElement)) return;
+        const minimum = Number(amountInput.min) || minimumIncrementUsd;
+        const parsed = Number(amountInput.value);
+        if (normalize || !Number.isFinite(parsed) || parsed < minimum) {
+          amountInput.value = String(Math.max(minimum, Number.isFinite(parsed) ? Math.round(parsed) : minimum));
+        }
+        const amount = Number(amountInput.value);
+        if (amountDecrease instanceof HTMLButtonElement) amountDecrease.disabled = amount <= minimum;
+        if (claimHeading && Number.isFinite(amount)) claimHeading.textContent = replaceAmount(claimTemplate, amount);
+      };
+      amountDecrease?.addEventListener('click', () => {
+        if (!(amountInput instanceof HTMLInputElement)) return;
+        amountInput.stepDown();
+        syncAmountControl(true);
+      });
+      amountIncrease?.addEventListener('click', () => {
+        if (!(amountInput instanceof HTMLInputElement)) return;
+        amountInput.stepUp();
+        syncAmountControl(true);
+      });
+      amountInput?.addEventListener('input', () => syncAmountControl());
+      amountInput?.addEventListener('change', () => syncAmountControl(true));
+      syncAmountControl(true);
+
+      fetch(endpoint, {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      }).then(async (response) => {
+        if (!response.ok) return;
+        const payload = await response.json();
+        if (amountInput instanceof HTMLInputElement) {
+          amountInput.min = String(payload.nextTopRankAmountUsd);
+          amountInput.value = String(payload.nextTopRankAmountUsd);
+        }
+        syncAmountControl(true);
+        const hint = document.querySelector('[data-amount-hint]');
+        if (hint) hint.textContent = replaceAmount(amountHintTemplate, payload.nextTopRankAmountUsd);
+
+        const board = document.querySelector('[data-sponsor-board]');
+        const boardEmpty = document.querySelector('[data-sponsor-board-empty]');
+        if (!board || !boardEmpty) return;
+        board.toggleAttribute('hidden', payload.sponsors.length === 0);
+        boardEmpty.toggleAttribute('hidden', payload.sponsors.length > 0);
+        board.replaceChildren(...payload.sponsors.map((sponsor, index) => {
+          const row = document.createElement('li');
+          row.className = 'sponsor-board-row';
+          const logo = document.createElement('span');
+          logo.className = `board-logo sponsor-logo-${sponsor.logoTone}`;
+          const image = document.createElement('img');
+          image.src = faviconFor(sponsor.name, sponsor.url);
+          image.alt = '';
+          image.width = 52;
+          image.height = 52;
+          image.loading = 'lazy';
+          logo.appendChild(image);
+          const rank = document.createElement('span');
+          rank.className = 'board-rank';
+          rank.textContent = `#${index + 1}`;
+          const product = document.createElement('div');
+          product.className = 'board-product';
+          const title = document.createElement('h3');
+          const link = document.createElement('a');
+          link.href = sponsor.url;
+          link.target = '_blank';
+          link.rel = 'sponsored noreferrer';
+          link.textContent = sponsor.name;
+          title.appendChild(link);
+          const amount = document.createElement('strong');
+          amount.textContent = `$${sponsor.amountUsd}`;
+          product.appendChild(title);
+          product.appendChild(amount);
+          const detail = document.createElement('div');
+          detail.className = 'board-detail';
+          const description = document.createElement('p');
+          description.textContent = sponsor.description;
+          const meta = document.createElement('div');
+          meta.className = 'board-meta';
+          const nextBid = sponsor.amountUsd + minimumIncrementUsd;
+          const domain = document.createElement('span');
+          domain.textContent = domainFor(sponsor.url);
+          const separatorOne = document.createElement('span');
+          separatorOne.textContent = '·';
+          const clicks = document.createElement('span');
+          clicks.textContent = `${sponsor.clicks} ${clicksLabel}`;
+          const separatorTwo = document.createElement('span');
+          separatorTwo.textContent = '·';
+          const next = document.createElement('b');
+          next.textContent = replaceAmount(rankTemplate, nextBid);
+          meta.appendChild(domain);
+          meta.appendChild(separatorOne);
+          meta.appendChild(clicks);
+          meta.appendChild(separatorTwo);
+          meta.appendChild(next);
+          detail.appendChild(description);
+          detail.appendChild(meta);
+          row.appendChild(logo);
+          row.appendChild(rank);
+          row.appendChild(product);
+          row.appendChild(detail);
+          return row;
+        }));
+      }).catch(() => {});
+    </script>
+  </body>
+</html>

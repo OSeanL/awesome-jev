@@ -1,35 +1,23 @@
 ---
 import '../styles/global.css';
-import { readFileSync } from 'node:fs';
+import '../styles/sponsor-placements.css';
+import SearchFilterPanel from '../components/SearchFilterPanel.astro';
+import RealtimeTraffic from '../components/RealtimeTraffic.astro';
+import SiteHero from '../components/SiteHero.astro';
+import SiteLayout from '../components/SiteLayout.astro';
+import SponsorPlacements from '../components/SponsorPlacements.astro';
+import StarHistoryChart from '../components/StarHistoryChart.astro';
 import { catalogStats, getCatalog } from '../lib/catalog';
 import { defaultLocale, getLocale, getMessages, localeConfig, locales, type Locale } from '../i18n';
 import { getCategoryGuide } from '../i18n/category-guides';
 import { getLocalePath } from '../i18n/config';
 import {
-  AppWindow,
   ArrowDown,
   ArrowUpRight,
-  AtSign,
-  BadgeCheck,
-  Blocks,
-  BrainCircuit,
-  Bot,
-  ChartNoAxesCombined,
   Check,
   ChevronDown,
-  CircleQuestionMark,
   CirclePlus,
-  FlaskConical,
-  Gamepad2,
-  LayoutGrid,
-  ListTree,
-  Mail,
-  Menu,
-  MonitorSmartphone,
-  Search,
   Star,
-  Workflow,
-  X,
 } from '@lucide/astro';
 
 const base = import.meta.env.BASE_URL;
@@ -72,12 +60,8 @@ const sortedProjects = [...pageProjects].sort((a, b) => {
 });
 const localizedSearchText = (project: (typeof projects)[number]) =>
   [project.name, project.url, project.language, project.description].join(' ').toLowerCase();
-const categoryIcons = [BadgeCheck, Blocks, BrainCircuit, Workflow, Bot, MonitorSmartphone, AppWindow, Gamepad2, FlaskConical, ChartNoAxesCombined, ListTree];
 const jevLikeCategoryId = 'jev-like-models';
 const jevLikeCategory = categories.find((category) => category.id === jevLikeCategoryId);
-const navigationCategories = categories
-  .map((category, index) => ({ ...category, Icon: categoryIcons[index] ?? LayoutGrid }))
-  .filter((category) => category.id !== jevLikeCategoryId);
 const filterCategories = categories.filter((category) => category.id !== jevLikeCategoryId);
 const catalogFilterOptions = [
   { id: 'all', label: messages.catalog.all, count: projects.length, countLabel: String(projects.length) },
@@ -254,9 +238,6 @@ const structuredData = {
 };
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 const initialProjectLimit = 16;
-const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
-  .replace('role="img" aria-labelledby="title description"', 'aria-hidden="true" focusable="false"')
-  .replace(/\s*<title id="title">[^<]*<\/title>\s*<desc id="description">[^<]*<\/desc>/, '');
 ---
 
 <!doctype html>
@@ -327,122 +308,10 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-head">
-          <a class="brand" href="#overview" title={messages.nav.home} aria-label={messages.nav.home}>
-            <img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" />
-            <span class="sr-only">{messages.nav.home}</span>
-          </a>
-          <button class="sidebar-close" type="button" aria-label={messages.nav.close}><X size={18} stroke-width={1.8} /></button>
-        </div>
+      <SiteLayout locale={locale} activeFilter={activeFilter}>
 
-        <div class="sidebar-primary">
-          <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
-            <a class:list={[activeFilter === 'all' && 'selected']} href={filterHref('all')} title={messages.nav.allProjects} aria-current={activeFilter === 'all' ? 'page' : undefined}><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
-            <a href={showEditorialSections ? '#about' : `${filterHref('all')}#about`} title={messages.nav.aboutJev}><CircleQuestionMark class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.aboutJev}</span></a>
-            <a href={repositoryUrl} title={messages.nav.githubRepository} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
-              <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.1c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
-              </svg>
-              <span>GitHub</span>
-            </a>
-            {jevLikeCategory && (
-              <a class:list={[activeFilter === jevLikeCategory.id && 'selected']} href={filterHref(jevLikeCategory.id)} title={jevLikeCategory.name} aria-current={activeFilter === jevLikeCategory.id ? 'page' : undefined}>
-                <BrainCircuit class="nav-icon" size={17} stroke-width={1.8} />
-                <span>{jevLikeCategory.name}</span>
-                <small>{jevLikeCategory.count}</small>
-              </a>
-            )}
-          </nav>
-
-        </div>
-
-        <div class="sidebar-scroll">
-          <div class="category-nav-head">
-            <span>{messages.nav.categories}</span>
-          </div>
-          <nav class="category-nav" aria-label={messages.nav.projectCategories}>
-            {navigationCategories.map(({ Icon, ...category }) => (
-              <a class:list={[activeFilter === category.id && 'selected']} href={filterHref(category.id)} title={category.name} aria-current={activeFilter === category.id ? 'page' : undefined}>
-                <Icon class="nav-icon" size={16} stroke-width={1.75} />
-                <span>{category.name}</span>
-                <small>{category.count}</small>
-              </a>
-            ))}
-          </nav>
-
-          <div class="collaboration-nav-head">
-            <span>{messages.nav.collaborate}</span>
-          </div>
-          <nav class="collaboration-nav" aria-label={messages.nav.collaborateLabel}>
-            <a href={submissionUrl} title={messages.submission.cta} target="_blank" rel="noreferrer" aria-label={messages.submission.cta}>
-              <CirclePlus class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{messages.nav.submit}</span>
-              <small>GitHub issue</small>
-            </a>
-            <a href="https://x.com/heyjunpenn" title={messages.nav.xProfile} target="_blank" rel="noreferrer" aria-label={messages.nav.xProfile}>
-              <AtSign class="nav-icon" size={16} stroke-width={1.75} />
-              <span>X</span>
-              <small>@heyjunpenn</small>
-            </a>
-            <a href="mailto:someuxyz@gmail.com" title={messages.nav.emailMaintainer} aria-label={messages.nav.emailMaintainer}>
-              <Mail class="nav-icon" size={16} stroke-width={1.75} />
-              <span>{messages.nav.email}</span>
-              <small>someuxyz@gmail.com</small>
-            </a>
-          </nav>
-
-          <div class="collaboration-placement">
-            <strong>{messages.nav.promote}</strong>
-            <a href="mailto:someuxyz@gmail.com?subject=Awesome%20Jev%20placement" title={messages.nav.promoteEmail} aria-label={messages.nav.promoteEmail}>
-              <span>someuxyz@gmail.com</span>
-              <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
-            </a>
-          </div>
-
-        </div>
-
-        <div class="sidebar-foot">
-          <div class="locale-picker" data-locale-picker>
-            <button class="locale-trigger" type="button" aria-label={messages.nav.language} aria-haspopup="listbox" aria-expanded="false" aria-controls="locale-options">
-              <img src={`${base}flags/${localeConfig[locale].flag}.svg`} alt={messages.nav.flagAlt(localeConfig[locale].label)} aria-hidden="true" width="28" height="20" />
-              <span>{localeConfig[locale].label}</span>
-              <ChevronDown size={15} stroke-width={1.8} aria-hidden="true" />
-            </button>
-            <div class="locale-menu" id="locale-options" role="listbox" aria-label={messages.nav.language} hidden>
-              {locales.map((candidate) => (
-                <a
-                  class:list={['locale-option', candidate === locale && 'selected']}
-                  href={filterHref(activeFilter, candidate)}
-                  title={localeConfig[candidate].label}
-                  lang={localeConfig[candidate].languageTag}
-                  hreflang={localeConfig[candidate].languageTag}
-                  role="option"
-                  aria-selected={candidate === locale ? 'true' : 'false'}
-                  aria-current={candidate === locale ? 'page' : undefined}
-                >
-                  <img src={`${base}flags/${localeConfig[candidate].flag}.svg`} alt={messages.nav.flagAlt(localeConfig[candidate].label)} aria-hidden="true" width="28" height="20" />
-                  <span>{localeConfig[candidate].label}</span>
-                  <Check size={14} stroke-width={2} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <main>
-        <header class="mobile-header">
-          <a class="brand" href="#overview" title={messages.nav.home} aria-label={messages.nav.home}><img class="brand-logo" src={`${base}brand/bestjev-logo-rounded.svg`} alt={messages.nav.logoAlt} width="136" height="34" /><span class="sr-only">{messages.nav.home}</span></a>
-          <button class="menu-button" type="button" aria-label={messages.nav.open} aria-controls="sidebar" aria-expanded="false"><Menu size={19} stroke-width={1.8} /></button>
-        </header>
-        <button class="nav-scrim" type="button" aria-label={messages.nav.close} tabindex="-1"></button>
-
-        <section class="hero" id="overview">
-          <div class="hero-shell">
-            <div class="hero-copy">
-              <h1 class:list={[activeFilter !== 'all' && 'filtered']}>{heroTitle}</h1>
-              <p>{heroSummary}</p>
+        <SiteHero title={heroTitle} summary={heroSummary} filtered={activeFilter !== 'all'}>
+          <Fragment slot="copy-extra">
               <div class="hero-updated"><span>{messages.hero.lastUpdated}</span><time datetime="2026-09-22">{messages.hero.updatedDate}</time></div>
               <div class="recency-filters" role="group" aria-label={messages.hero.clearRecency} data-today={catalogStats.today} data-week-start={catalogStats.weekStartsOn}>
                 {jevLikeCategory && (
@@ -457,8 +326,8 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
                   <span>{messages.hero.addedThisWeek}</span><strong>+{catalogStats.addedThisWeek}</strong>
                 </a>
               </div>
-              <div class="filter-panel filter-dock">
-                <div class="language-picker" data-language-picker>
+              <SearchFilterPanel searchId="project-search" placeholder={messages.hero.searchPlaceholder} hasAction>
+                <div class="language-picker" data-language-picker slot="picker">
                   <button class="language-trigger" id="language-filter" type="button" aria-label={messages.hero.filterLanguage} aria-haspopup="listbox" aria-expanded="false" aria-controls="language-options">
                     <span data-language-label>{messages.hero.allLanguages}</span>
                     <ChevronDown class="language-chevron" size={15} stroke-width={1.8} aria-hidden="true" />
@@ -474,35 +343,17 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
                     ))}
                   </div>
                 </div>
-                <label class="search-box">
-                  <span aria-hidden="true"><Search size={18} stroke-width={1.8} /></span>
-                  <input id="project-search" type="search" placeholder={messages.hero.searchPlaceholder} autocomplete="off" />
-                  <kbd>/</kbd>
-                </label>
-                <a class="submit-project-shortcut" href={submissionUrl} title={messages.submission.shortCta} target="_blank" rel="noreferrer">
+                <a class="submit-project-shortcut" slot="action" href={submissionUrl} title={messages.submission.shortCta} target="_blank" rel="noreferrer">
                   <CirclePlus size={17} stroke-width={1.9} aria-hidden="true" />
                   <span>{messages.submission.shortCta}</span>
                 </a>
-              </div>
-            </div>
-
-            <div class="hero-visual">
-              <figure class="hero-illustration" role="img" aria-label={messages.hero.imageAlt} set:html={heroIllustrationSvg}>
-              </figure>
-              <span class="realtime-widget-placeholder" aria-hidden="true">Live traffic</span>
-              <iframe
-                id="realtime-widget"
-                class="realtime-widget"
-                data-src="https://datafa.st/widgets/6aaf7959a02465e4fa8de17c/realtime?mainTextSize=16&amp;primaryColor=%23e78468"
-                style="background: transparent; border: none; width: 100%; height: 100%;"
-                allowtransparency="true"
-                title="DataFast Widget"
-                loading="lazy"
-                hidden
-              ></iframe>
-            </div>
-          </div>
-        </section>
+              </SearchFilterPanel>
+          </Fragment>
+          <Fragment slot="visual">
+            <StarHistoryChart alt={messages.hero.imageAlt} />
+            <RealtimeTraffic />
+          </Fragment>
+        </SiteHero>
 
         <div class="catalog-region">
           <section class="catalog" id="projects">
@@ -549,6 +400,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
                 </li>
               ))}
             </ol>
+            <SponsorPlacements locale={locale} surface="projects" />
 
             <div class="empty-state" id="empty-state" hidden><strong>{messages.catalog.noMatches}</strong><span>{messages.catalog.noMatchesHint}</span></div>
             <button class="load-more" id="load-more" type="button"><span>{messages.catalog.showMore}</span><b>↓</b></button>
@@ -660,17 +512,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         </section>
         </>)}
 
-        <footer>
-          <span>bestjev / 2026</span>
-          <nav aria-label={messages.footer.label}>
-            <a href={`${base}about/`} title={messages.footer.about}>{messages.footer.about}</a>
-            <a href="mailto:someuxyz@gmail.com" title={messages.footer.contact}>{messages.footer.contact}</a>
-            <a href={`${base}privacy/`} title={messages.footer.privacy}>{messages.footer.privacy}</a>
-            <a href={`${base}terms/`} title={messages.footer.terms}>{messages.footer.terms}</a>
-            <a href="https://docs.typesafe.ai/" title={messages.footer.docs} target="_blank" rel="noreferrer"><span>{messages.footer.docs}</span> ↗</a>
-          </nav>
-        </footer>
-      </main>
+      </SiteLayout>
     </div>
 
     <script>
@@ -700,8 +542,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
       const sidebarClose = document.querySelector('.sidebar-close');
       const navScrim = document.querySelector('.nav-scrim');
       const sidebar = document.querySelector('#sidebar');
-      const realtimeWidgetPlaceholder = document.querySelector<HTMLElement>('.realtime-widget-placeholder');
-      const realtimeWidget = document.querySelector<HTMLIFrameElement>('#realtime-widget');
       const compactLayout = window.matchMedia('(max-width: 1080px)');
       const getPageSize = () => compactLayout.matches ? 16 : 36;
       let selectedLanguage = 'all';
@@ -751,6 +591,7 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         projectTable?.replaceChildren(fragment);
         if (loadMore instanceof HTMLButtonElement) loadMore.hidden = matches.length <= visibleLimit;
         if (emptyState instanceof HTMLElement) emptyState.hidden = matches.length !== 0;
+        window.dispatchEvent(new CustomEvent('catalog:rendered'));
       };
 
       const setLanguageMenuOpen = (open: boolean, focusOption = false) => {
@@ -848,15 +689,6 @@ const heroIllustrationSvg = readFileSync('public/jev-decision-flow.svg', 'utf8')
         if (localePicker && !localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
       }));
       loadMore?.addEventListener('click', () => { visibleLimit += getPageSize(); render(); });
-      const realtimeWidgetEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
-      const loadRealtimeWidget = (event: Event) => {
-        if (!event.isTrusted || !(realtimeWidget instanceof HTMLIFrameElement) || !realtimeWidget.dataset.src) return;
-        realtimeWidgetEvents.forEach((eventName) => window.removeEventListener(eventName, loadRealtimeWidget));
-        realtimeWidget.src = realtimeWidget.dataset.src;
-        realtimeWidget.hidden = false;
-        realtimeWidgetPlaceholder?.remove();
-      };
-      realtimeWidgetEvents.forEach((eventName) => window.addEventListener(eventName, loadRealtimeWidget, { once: true, passive: true }));
       const syncSidebarAccess = () => {
         const hidden = compactLayout.matches && !document.body.classList.contains('menu-open');
         if (sidebar instanceof HTMLElement) {

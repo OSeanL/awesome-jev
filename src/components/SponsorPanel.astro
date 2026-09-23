@@ -1,0 +1,160 @@
+---
+import { ArrowUpRight, Megaphone } from '@lucide/astro';
+import { sidebarSponsors } from '../data/sponsors';
+import type { Locale } from '../i18n';
+import { getLocalePath } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const copy: Record<Locale, {
+  heading: string;
+  advertise: string;
+  linkLabel: (name: string, rank: number) => string;
+}> = {
+  en: {
+    heading: 'Sponsors',
+    advertise: 'Advertise here',
+    linkLabel: (name, rank) => `Open sponsor #${rank}: ${name}`,
+  },
+  zh: {
+    heading: '赞助商',
+    advertise: '在此推广',
+    linkLabel: (name, rank) => `打开第 ${rank} 名赞助商：${name}`,
+  },
+  ja: {
+    heading: 'スポンサー',
+    advertise: 'ここに掲載',
+    linkLabel: (name, rank) => `スポンサー第${rank}位を開く：${name}`,
+  },
+  ko: {
+    heading: '스폰서',
+    advertise: '여기에 광고하기',
+    linkLabel: (name, rank) => `${rank}위 스폰서 열기: ${name}`,
+  },
+  es: {
+    heading: 'Patrocinadores',
+    advertise: 'Anúnciate aquí',
+    linkLabel: (name, rank) => `Abrir patrocinador n.º ${rank}: ${name}`,
+  },
+  'pt-br': {
+    heading: 'Patrocinadores',
+    advertise: 'Anuncie aqui',
+    linkLabel: (name, rank) => `Abrir patrocinador nº ${rank}: ${name}`,
+  },
+};
+
+const text = copy[locale];
+const base = import.meta.env.BASE_URL;
+const advertiseHref = `${base}${getLocalePath(locale)}sponsors/`;
+const endpoint = `${base}api/sponsors/`;
+const faviconUrl = (name: string, url: string) => name === 'blink.review'
+  ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(url)}&sz=128`
+  : `${new URL(url).origin}/favicon.ico`;
+---
+
+<section class="sponsor-panel" aria-labelledby="sponsor-panel-title" data-sponsor-panel data-endpoint={endpoint}>
+  <div class="sponsor-panel-head">
+    <h2 id="sponsor-panel-title"><Megaphone size={15} stroke-width={1.8} aria-hidden="true" /><span>{text.heading}</span></h2>
+    <a class="sponsor-cta" href={advertiseHref} title={text.advertise} aria-label={text.advertise}>
+      <span>{text.advertise}</span>
+      <ArrowUpRight size={13} stroke-width={1.9} aria-hidden="true" />
+    </a>
+  </div>
+
+  <ol class="sponsor-list" data-sponsor-list hidden={sidebarSponsors.length === 0}>
+    {sidebarSponsors.map((sponsor, index) => {
+      const rank = index + 1;
+      return (
+        <li>
+          <a
+            href={`${sponsor.url}?utm_source=bestjev&utm_medium=sponsor&utm_campaign=sidebar`}
+            title={text.linkLabel(sponsor.name, rank)}
+            aria-label={text.linkLabel(sponsor.name, rank)}
+            target="_blank"
+            rel="sponsored noreferrer"
+          >
+            <span class:list={['sponsor-logo', `sponsor-logo-${sponsor.logoTone}`]} aria-hidden="true">
+              <span>{sponsor.name.slice(0, 1).toUpperCase()}</span>
+              <img src={faviconUrl(sponsor.name, sponsor.url)} alt="" width="28" height="28" loading="lazy" decoding="async" />
+            </span>
+            <strong>#{rank}</strong>
+            <span class="sponsor-name">{sponsor.name}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ol>
+
+</section>
+
+<script>
+  type SponsorPayload = {
+    sponsors: Array<{
+      name: string;
+      url: string;
+      logoTone: 'light' | 'dark';
+    }>;
+  };
+
+  const faviconFor = (name: string, url: string) => name === 'blink.review'
+    ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(url)}&sz=128`
+    : `${new URL(url).origin}/favicon.ico`;
+
+  document.querySelectorAll<HTMLElement>('[data-sponsor-panel]').forEach(async (panel) => {
+    const list = panel.querySelector<HTMLOListElement>('[data-sponsor-list]');
+    const endpoint = panel.dataset.endpoint;
+    if (!list || !endpoint) return;
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      });
+      if (!response.ok) return;
+      const payload = await response.json() as SponsorPayload;
+      const sponsors = payload.sponsors.slice(0, 3);
+      list.hidden = sponsors.length === 0;
+
+      list.replaceChildren(...sponsors.map((sponsor, index) => {
+        const rank = index + 1;
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `${sponsor.url}?utm_source=bestjev&utm_medium=sponsor&utm_campaign=sidebar`;
+        link.target = '_blank';
+        link.rel = 'sponsored noreferrer';
+        link.ariaLabel = `Sponsor #${rank}: ${sponsor.name}`;
+
+        const logo = document.createElement('span');
+        logo.className = `sponsor-logo sponsor-logo-${sponsor.logoTone}`;
+        logo.ariaHidden = 'true';
+        const fallback = document.createElement('span');
+        fallback.textContent = sponsor.name.slice(0, 1).toUpperCase();
+        const image = document.createElement('img');
+        image.src = faviconFor(sponsor.name, sponsor.url);
+        image.alt = '';
+        image.width = 28;
+        image.height = 28;
+        image.decoding = 'async';
+        logo.appendChild(fallback);
+        logo.appendChild(image);
+
+        const rankLabel = document.createElement('strong');
+        rankLabel.textContent = `#${rank}`;
+        const name = document.createElement('span');
+        name.className = 'sponsor-name';
+        name.textContent = sponsor.name;
+        link.appendChild(logo);
+        link.appendChild(rankLabel);
+        link.appendChild(name);
+        item.appendChild(link);
+        return item;
+      }));
+    } catch {
+      // The prerendered sponsor list remains available when the Worker is unreachable.
+    }
+  });
+</script>
