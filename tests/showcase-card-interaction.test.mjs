@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
 
+const showcase = JSON.parse(readFileSync(new URL('../src/data/showcase.json', import.meta.url), 'utf8'));
+
 test('the rendered showcase card is the dialog trigger without a source icon', () => {
   const outputCandidates = [
     new URL('../dist/showcase/index.html', import.meta.url),
@@ -51,5 +53,5 @@ test('showcase HTML exposes the next API page after the server-rendered cards', 
 
   assert.match(loader, /data-api="\/api\/showcase\/en\.json"/);
   assert.match(loader, /data-offset="24"/);
-  assert.match(loader, /data-total="1592"/);
+  assert.match(loader, new RegExp(`data-total="${showcase.count}"`));
 });

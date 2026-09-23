@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
+import { formatShowcaseDuration } from '../src/lib/showcase-dialog.ts';
 import { GET } from '../src/pages/api/showcase/[locale].json.ts';
+
+const showcase = JSON.parse(readFileSync(new URL('../src/data/showcase.json', import.meta.url), 'utf8'));
 
 test('showcase API returns one localized 24-item page for a route filter', async () => {
   const url = new URL('https://jevbest.com/api/showcase/zh.json?filter=games&offset=0&limit=24');
@@ -16,15 +20,16 @@ test('showcase API returns one localized 24-item page for a route filter', async
   assert.equal(body.filter, 'games');
   assert.equal(body.offset, 0);
   assert.equal(body.limit, 24);
-  assert.equal(body.total, 385);
+  const games = showcase.videos.filter((video) => video.category === 'Games & real time');
+  assert.equal(body.total, games.length);
   assert.equal(body.nextOffset, 24);
   assert.equal(body.hasMore, true);
   assert.equal(body.items.length, 24);
-  assert.equal(body.items[0].id, '2102379667919425536');
-  assert.equal(body.items[0].description, '结合 Laya、MLX-Serve 与类型化判断，让双人 Pac-Man 对局自主运行');
+  assert.equal(body.items[0].id, games[0].id);
+  assert.equal(body.items[0].description, games[0].descriptions.zh);
   assert.equal(body.items[0].categoryLabel, '游戏与实时交互');
   assert.equal(body.items[0].dialogData.description, body.items[0].description);
-  assert.equal(body.items[0].dialogData.durationLabel, '0:55');
+  assert.equal(body.items[0].dialogData.durationLabel, formatShowcaseDuration(games[0].duration));
   assert.equal('descriptions' in body.items[0], false);
 });
 
