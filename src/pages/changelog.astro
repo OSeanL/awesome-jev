@@ -19,6 +19,10 @@ const repositoryUrl = process.env.GITHUB_REPOSITORY
 const changelogPath = (targetLocale = locale) => `${getLocalePath(targetLocale)}changelog/`;
 const siteUrl = 'https://jevbest.com/';
 const pageUrl = `${siteUrl}${changelogPath()}`;
+const authorUrl = 'https://github.com/heyjunpenn';
+const organizationId = `${siteUrl}#organization`;
+const authorId = `${siteUrl}#author`;
+const websiteId = `${siteUrl}#website`;
 const categoryOrder = new Map(categories.map((category, index) => [category.id, index]));
 const groupedByDate = new Map<string, typeof projects>();
 
@@ -51,22 +55,53 @@ const dateFormatter = new Intl.DateTimeFormat(localeConfig[locale].languageTag, 
 const formatDate = (date: string) => dateFormatter.format(new Date(`${date}T12:00:00+08:00`));
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: copy.heroTitle,
-  description: copy.pageDescription,
-  url: pageUrl,
-  inLanguage: localeConfig[locale].languageTag,
-  dateModified: catalogStats.today,
-  mainEntity: {
-    '@type': 'ItemList',
-    numberOfItems: days.length,
-    itemListElement: days.map((day, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: `${day.date}: ${day.projects.length} ${copy.additions}`,
-      url: `${pageUrl}#day-${day.date}`,
-    })),
-  },
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'bestjev',
+      url: siteUrl,
+      logo: `${siteUrl}favicon.png`,
+      sameAs: ['https://github.com/heyjunpenn/awesome-jev', 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'Person',
+      '@id': authorId,
+      name: 'heyjunpenn',
+      url: authorUrl,
+      sameAs: [authorUrl, 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: 'bestjev',
+      url: siteUrl,
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#webpage`,
+      name: copy.heroTitle,
+      description: copy.pageDescription,
+      url: pageUrl,
+      inLanguage: localeConfig[locale].languageTag,
+      datePublished: days.at(-1)?.date ?? catalogStats.today,
+      dateModified: catalogStats.today,
+      author: { '@id': authorId },
+      publisher: { '@id': organizationId },
+      isPartOf: { '@id': websiteId },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: days.length,
+        itemListElement: days.map((day, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: `${day.date}: ${day.projects.length} ${copy.additions}`,
+          url: `${pageUrl}#day-${day.date}`,
+        })),
+      },
+    },
+  ],
 };
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
@@ -119,12 +154,24 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </div>
         </SiteHero>
 
+        <section class="changelog-context" aria-labelledby="changelog-context-title">
+          <div class="changelog-context-heading">
+            <span>{copy.contextLabel}</span>
+            <h2 id="changelog-context-title">{copy.contextHeading}</h2>
+          </div>
+          <div class="changelog-context-copy">
+            <p>{copy.contextSummary}</p>
+            <p>{copy.sourceSummary} <a href={`${repositoryUrl}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer">{copy.sourceLink}</a>.</p>
+            <p class="changelog-byline">{copy.bylineLabel} <a href={authorUrl} target="_blank" rel="author noreferrer">heyjunpenn</a></p>
+          </div>
+        </section>
+
         <section class="changelog-timeline" aria-label={copy.timelineLabel}>
           {days.map((day, dayIndex) => (
-            <details class="changelog-day" id={`day-${day.date}`} open={dayIndex === 0}>
+            <details class="changelog-day" id={`day-${day.date}`} aria-labelledby={`day-heading-${day.date}`} open={dayIndex === 0}>
               <summary class="changelog-day-head">
                 <div>
-                  <time datetime={day.date}>{formatDate(day.date)}</time>
+                  <h2 id={`day-heading-${day.date}`}><time datetime={day.date}>{formatDate(day.date)}</time></h2>
                   {dayIndex === 0 && <span>{copy.latest}</span>}
                 </div>
                 <div class="changelog-day-count">
@@ -135,9 +182,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
               <div class="changelog-category-list">
                 {day.categories.map((category) => (
                   <section class="changelog-category" aria-labelledby={`${day.date}-${category.id}`}>
-                    <h2 id={`${day.date}-${category.id}`}>
+                    <h3 id={`${day.date}-${category.id}`}>
                       <span>{category.name}</span><small>{category.projects.length}</small>
-                    </h2>
+                    </h3>
                     <ul>
                       {category.projects.map((project) => (
                         <li>

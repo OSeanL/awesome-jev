@@ -3,6 +3,7 @@ import test from 'node:test';
 import { locales } from '../src/i18n/config.ts';
 import {
   getShowcaseCategoryBySlug,
+  getShowcaseCategoryFaq,
   getShowcaseCategorySlug,
   getShowcaseCategorySeo,
   getShowcaseRecencySeo,
@@ -79,5 +80,25 @@ test('every locale and category has distinct SEO copy with count and environment
 
     assert.equal(titles.size, showcaseCategoryDefinitions.length);
     assert.equal(descriptions.size, showcaseCategoryDefinitions.length);
+  }
+});
+
+test('every locale and category has distinct FAQ content', () => {
+  for (const locale of locales) {
+    const headings = new Set();
+    const questionSets = new Set();
+
+    for (const category of showcaseCategoryDefinitions) {
+      const faq = getShowcaseCategoryFaq(locale, category.id, 7);
+
+      assert.equal(faq.items.length, 4);
+      assert.match(faq.items[0].answer, /7/);
+      assert.ok(faq.items.every(({ question, answer }) => question.length > 0 && answer.length > 0));
+      headings.add(faq.heading);
+      questionSets.add(faq.items.map(({ question }) => question).join('|'));
+    }
+
+    assert.equal(headings.size, showcaseCategoryDefinitions.length);
+    assert.equal(questionSets.size, showcaseCategoryDefinitions.length);
   }
 });

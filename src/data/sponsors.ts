@@ -1,3 +1,5 @@
+import { rankSponsors } from '../lib/sponsor-ranking.ts';
+
 export interface Sponsor {
   id: string;
   name: string;
@@ -16,13 +18,6 @@ export const sponsorRules = {
 
 const sponsors: Sponsor[] = [];
 
-export const rankedSponsors = [...sponsors].sort((first, second) =>
-  second.amountUsd - first.amountUsd
-  || first.sponsoredAt.localeCompare(second.sponsoredAt)
-  || first.name.localeCompare(second.name, 'en'),
-);
+export const rankedSponsors = rankSponsors(sponsors);
 
 export const sidebarSponsors = rankedSponsors.slice(0, sponsorRules.sidebarSlots);
-
-export const nextTopRankAmountUsd =
-  (rankedSponsors[0]?.amountUsd ?? 0) + sponsorRules.minimumIncrementUsd;

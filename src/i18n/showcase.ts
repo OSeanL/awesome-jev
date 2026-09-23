@@ -5,7 +5,10 @@ type ShowcaseCopy = {
   pageTitle: string;
   pageDescription: string;
   heroTitle: string;
-  heroSummary: string;
+  contextSummary: (demos: number, categories: number) => string;
+  faqLabel: string;
+  faqHeading: string;
+  faqItems: Array<{ question: string; answer: string }>;
   demoCount: string;
   filtersLabel: string;
   searchPlaceholder: string;
@@ -40,10 +43,18 @@ type ShowcaseCopy = {
 const showcaseMessages = {
   en: {
     navLabel: 'Showcase',
-    pageTitle: 'Jev Showcase — Real-world demos',
-    pageDescription: 'Explore real Jev demo videos by use case, then open the original post for implementation context.',
+    pageTitle: 'Jev Showcase: Real-World Demos & Use Cases | bestjev',
+    pageDescription: 'Watch verified Jev demos across games, automation, developer tools, agents, safety, trading, and robotics, with original posts and creator attribution.',
     heroTitle: 'Jev Showcase',
-    heroSummary: 'Real examples of Jev making decisions, routing work, and powering automation.',
+    contextSummary: (demos, categories) => `This showcase documents ${demos} real Jev demos across ${categories} use-case categories. Each entry includes the creator, publication date, original post, video, and a concise explanation of the decision workflow.`,
+    faqLabel: 'Frequently asked questions',
+    faqHeading: 'Jev Showcase FAQ',
+    faqItems: [
+      { question: 'What is the Jev Showcase?', answer: 'The Jev Showcase is a curated collection of public demos that show how Jev is used for decisions, routing, automation, development, safety, trading, games, and robotics.' },
+      { question: 'Where do the demos come from?', answer: 'Each entry is based on a public post from its creator. The card records the creator and publication date, and the detail view links to the original post for context.' },
+      { question: 'How can I find a relevant Jev example?', answer: 'Use the category filters to narrow the collection by use case. You can also search descriptions, creator names, handles, and technologies across the full showcase.' },
+      { question: 'Are showcase entries benchmarks or endorsements?', answer: 'No. They are demonstrations of how creators use Jev. Review the original post and implementation details before drawing performance, safety, or production-readiness conclusions.' },
+    ],
     demoCount: 'demos',
     filtersLabel: 'Filter demos',
     searchPlaceholder: 'Search descriptions, creators, or technologies',
@@ -76,10 +87,18 @@ const showcaseMessages = {
   },
   zh: {
     navLabel: '案例展示',
-    pageTitle: 'Jev Showcase — 真实使用演示',
-    pageDescription: '浏览真实的 Jev 使用演示视频，按场景筛选，并从原帖了解每个案例的实现背景。',
+    pageTitle: 'Jev Showcase：真实演示、应用案例与工作流 | bestjev',
+    pageDescription: '浏览经过整理的 Jev 真实演示，覆盖游戏、自动化、开发工具、智能体、安全审核、交易与机器人等场景，并核对作者、视频和原帖来源。',
     heroTitle: 'Jev Showcase',
-    heroSummary: '真实案例，直接看 Jev 如何参与判断、路由和自动化。',
+    contextSummary: (demos, categories) => `这里收录了 ${demos} 个真实 Jev 演示，覆盖 ${categories} 类应用场景。每条记录都包含作者、发布日期、原帖、视频，以及对决策工作流的简明说明。`,
+    faqLabel: '常见问题',
+    faqHeading: 'Jev Showcase 常见问题',
+    faqItems: [
+      { question: 'Jev Showcase 是什么？', answer: 'Jev Showcase 是一个经过整理的公开演示案例库，展示 Jev 如何用于决策、任务路由、自动化、开发、安全审核、交易、游戏和机器人等场景。' },
+      { question: '这些案例来自哪里？', answer: '每个案例都整理自作者公开发布的原帖。卡片保留作者和发布日期，详情视图提供原帖链接，方便核对完整背景。' },
+      { question: '如何找到相关的 Jev 案例？', answer: '可以按应用场景筛选，也可以搜索案例描述、作者名称、账号和技术关键词；搜索范围覆盖完整案例库。' },
+      { question: '这些案例是性能基准或官方背书吗？', answer: '不是。它们用于展示创作者如何使用 Jev。判断性能、安全性或生产可用性前，请查看原帖和具体实现。' },
+    ],
     demoCount: '个演示',
     filtersLabel: '筛选演示',
     searchPlaceholder: '搜索描述、作者或技术关键词',
@@ -115,7 +134,15 @@ const showcaseMessages = {
     pageTitle: 'Jev Showcase — 実際の活用デモ',
     pageDescription: 'Jev の実際のデモ動画を用途別に探し、元の投稿から実装の背景を確認できます。',
     heroTitle: 'Jev Showcase',
-    heroSummary: 'Jev が判断、ルーティング、自動化に使われる実例を紹介します。',
+    contextSummary: (demos, categories) => `このショーケースには、${categories}カテゴリーにわたる${demos}件の実際のJevデモがあります。各記録には作成者、公開日、元投稿、動画、判断ワークフローの説明が含まれます。`,
+    faqLabel: 'よくある質問',
+    faqHeading: 'Jev Showcase よくある質問',
+    faqItems: [
+      { question: 'Jev Showcaseとは何ですか？', answer: 'Jev Showcaseは、判断、タスク振り分け、自動化、開発、安全性、取引、ゲーム、ロボティクスでのJev活用を紹介する公開デモ集です。' },
+      { question: 'デモの出典はどこですか？', answer: '各項目は作成者の公開投稿をもとに編集されています。カードには作成者と公開日があり、詳細画面から元の投稿を確認できます。' },
+      { question: '関連する事例をどう探せますか？', answer: '用途カテゴリーで絞り込むか、説明、作成者名、ハンドル名、技術キーワードでショーケース全体を検索できます。' },
+      { question: '掲載事例はベンチマークや推奨を意味しますか？', answer: 'いいえ。Jevの利用例を紹介するデモです。性能、安全性、本番利用について判断する前に、元の投稿と実装内容を確認してください。' },
+    ],
     demoCount: '件のデモ',
     filtersLabel: 'デモを絞り込む',
     searchPlaceholder: '説明、作成者、技術キーワードを検索',
@@ -151,7 +178,15 @@ const showcaseMessages = {
     pageTitle: 'Jev Showcase — 실제 활용 데모',
     pageDescription: '실제 Jev 데모 영상을 사용 사례별로 살펴보고 원문에서 구현 배경을 확인하세요.',
     heroTitle: 'Jev Showcase',
-    heroSummary: 'Jev가 판단, 라우팅, 자동화에 활용되는 실제 사례를 확인하세요.',
+    contextSummary: (demos, categories) => `이 쇼케이스는 ${categories}개 활용 분야의 실제 Jev 데모 ${demos}개를 기록합니다. 각 항목에는 제작자, 게시일, 원문, 영상과 의사결정 워크플로 설명이 포함됩니다.`,
+    faqLabel: '자주 묻는 질문',
+    faqHeading: 'Jev Showcase 자주 묻는 질문',
+    faqItems: [
+      { question: 'Jev Showcase는 무엇인가요?', answer: 'Jev Showcase는 의사결정, 작업 분배, 자동화, 개발, 안전 검토, 거래, 게임, 로봇 분야에서 Jev를 사용하는 공개 데모 모음입니다.' },
+      { question: '데모의 출처는 어디인가요?', answer: '각 항목은 제작자의 공개 게시물을 바탕으로 정리됩니다. 카드에는 제작자와 게시일이 표시되며 상세 화면에서 원문을 확인할 수 있습니다.' },
+      { question: '관련 Jev 사례를 어떻게 찾나요?', answer: '활용 분야별 필터를 사용하거나 설명, 제작자 이름, 계정과 기술 키워드로 전체 쇼케이스를 검색할 수 있습니다.' },
+      { question: '쇼케이스 항목은 벤치마크나 공식 추천인가요?', answer: '아닙니다. 제작자가 Jev를 사용하는 방식을 보여 주는 데모입니다. 성능, 안전성, 운영 환경 적합성을 판단하기 전에 원문과 구현을 검토하세요.' },
+    ],
     demoCount: '개 데모',
     filtersLabel: '데모 필터',
     searchPlaceholder: '설명, 제작자 또는 기술 키워드 검색',
@@ -187,7 +222,15 @@ const showcaseMessages = {
     pageTitle: 'Jev Showcase — Demostraciones reales',
     pageDescription: 'Explora demostraciones reales de Jev por caso de uso y consulta la publicación original para conocer su implementación.',
     heroTitle: 'Jev Showcase',
-    heroSummary: 'Ejemplos reales de Jev tomando decisiones, distribuyendo trabajo y automatizando procesos.',
+    contextSummary: (demos, categories) => `Esta galería documenta ${demos} demostraciones reales de Jev en ${categories} categorías. Cada entrada incluye autor, fecha, publicación original, vídeo y una explicación del flujo de decisión.`,
+    faqLabel: 'Preguntas frecuentes',
+    faqHeading: 'Preguntas frecuentes sobre Jev Showcase',
+    faqItems: [
+      { question: '¿Qué es Jev Showcase?', answer: 'Jev Showcase es una colección seleccionada de demostraciones públicas sobre el uso de Jev en decisiones, asignación, automatización, desarrollo, seguridad, mercados, juegos y robótica.' },
+      { question: '¿De dónde proceden las demostraciones?', answer: 'Cada entrada parte de una publicación pública de su autor. La tarjeta conserva el autor y la fecha, y la vista detallada enlaza la publicación original.' },
+      { question: '¿Cómo encuentro un ejemplo relevante?', answer: 'Filtra por caso de uso o busca descripciones, nombres de autores, cuentas y tecnologías en toda la colección.' },
+      { question: '¿Las entradas son pruebas de rendimiento o recomendaciones?', answer: 'No. Son demostraciones de cómo distintos autores usan Jev. Revisa la publicación y la implementación antes de evaluar rendimiento, seguridad o uso en producción.' },
+    ],
     demoCount: 'demos',
     filtersLabel: 'Filtrar demostraciones',
     searchPlaceholder: 'Buscar descripciones, autores o tecnologías',
@@ -223,7 +266,15 @@ const showcaseMessages = {
     pageTitle: 'Jev Showcase — Demonstrações reais',
     pageDescription: 'Explore demonstrações reais do Jev por caso de uso e consulte a publicação original para entender a implementação.',
     heroTitle: 'Jev Showcase',
-    heroSummary: 'Exemplos reais do Jev tomando decisões, distribuindo trabalho e automatizando processos.',
+    contextSummary: (demos, categories) => `Esta vitrine documenta ${demos} demonstrações reais do Jev em ${categories} categorias. Cada item inclui autor, data, publicação original, vídeo e uma explicação do fluxo de decisão.`,
+    faqLabel: 'Perguntas frequentes',
+    faqHeading: 'Perguntas frequentes sobre o Jev Showcase',
+    faqItems: [
+      { question: 'O que é o Jev Showcase?', answer: 'O Jev Showcase é uma coleção de demonstrações públicas sobre o uso do Jev em decisões, distribuição de tarefas, automação, desenvolvimento, segurança, mercados, jogos e robótica.' },
+      { question: 'De onde vêm as demonstrações?', answer: 'Cada item é baseado em uma publicação pública do autor. O cartão informa autor e data, e a visualização detalhada inclui o link da publicação original.' },
+      { question: 'Como encontro um exemplo relevante?', answer: 'Filtre por caso de uso ou pesquise descrições, nomes de autores, contas e tecnologias em toda a coleção.' },
+      { question: 'Os itens são benchmarks ou recomendações?', answer: 'Não. São demonstrações de como os autores usam o Jev. Consulte a publicação e a implementação antes de avaliar desempenho, segurança ou uso em produção.' },
+    ],
     demoCount: 'demonstrações',
     filtersLabel: 'Filtrar demonstrações',
     searchPlaceholder: 'Buscar descrições, autores ou tecnologias',
@@ -397,6 +448,66 @@ const showcaseCategorySeoTemplates = {
   title: (name: string, count: number) => string;
   heroTitle: (name: string) => string;
   description: (name: string, count: number, environment: string) => string;
+}>;
+
+const showcaseCategoryFaqTemplates = {
+  en: (name: string, count: number, environment: string) => ({
+    heading: `Jev ${name} FAQ`,
+    items: [
+      { question: `What does Jev do in ${name} applications?`, answer: `The demos in this category show Jev handling ${environment}. This page currently contains ${count} real ${count === 1 ? 'example' : 'examples'} with videos and source posts.` },
+      { question: `What can I learn from the Jev ${name} demos?`, answer: `Open a demo to see its decision context, creator, publication date, video, and original post. These details help you understand the inputs, choices, and workflow around each ${name} use case.` },
+      { question: `How should I evaluate a Jev ${name} example?`, answer: `Check the original post and implementation context, then compare the demonstrated behavior with your own requirements for accuracy, latency, safety, and operating conditions.` },
+      { question: `How are new Jev ${name} examples added?`, answer: `The category is updated as relevant public demos are discovered and verified against their original posts. Newly indexed examples appear in this collection with creator attribution.` },
+    ],
+  }),
+  zh: (name: string, count: number, environment: string) => ({
+    heading: `Jev ${name}案例常见问题`,
+    items: [
+      { question: `Jev 在${name}应用中能做什么？`, answer: `本分类展示 Jev 如何处理「${environment}」。当前页面收录 ${count} 个真实案例，每个案例都提供视频和原帖来源。` },
+      { question: `可以从 Jev ${name}案例中了解什么？`, answer: `打开案例后，可以查看决策背景、作者、发布日期、演示视频和原帖，从而了解该${name}场景中的输入、候选选项与工作流程。` },
+      { question: `如何评估一个 Jev ${name}案例？`, answer: `先核对原帖和实现背景，再根据自己的准确性、响应速度、安全性及运行环境要求，判断演示方案是否适用。` },
+      { question: `新的 Jev ${name}案例如何加入？`, answer: `发现相关公开演示后，案例库会核对原帖并整理入库。新案例会保留创作者署名，并出现在这个分类页面中。` },
+    ],
+  }),
+  ja: (name: string, count: number, environment: string) => ({
+    heading: `Jevの${name}事例に関するFAQ`,
+    items: [
+      { question: `Jevは${name}アプリで何ができますか？`, answer: `このカテゴリーでは、Jevが${environment}を扱うデモを紹介しています。現在、動画と元投稿を確認できる実例を${count}件掲載しています。` },
+      { question: `Jevの${name}デモから何を学べますか？`, answer: `各デモで判断の背景、作成者、公開日、動画、元投稿を確認し、${name}用途での入力、選択肢、ワークフローを把握できます。` },
+      { question: `Jevの${name}事例をどう評価すればよいですか？`, answer: `元投稿と実装背景を確認し、精度、応答時間、安全性、実行環境に関する要件とデモの動作を比較してください。` },
+      { question: `新しいJevの${name}事例はどのように追加されますか？`, answer: `関連する公開デモを発見した後、元投稿を確認して収録します。新しい事例には作成者情報を付け、このカテゴリーページに追加します。` },
+    ],
+  }),
+  ko: (name: string, count: number, environment: string) => ({
+    heading: `Jev ${name} 사례 FAQ`,
+    items: [
+      { question: `Jev는 ${name} 애플리케이션에서 무엇을 하나요?`, answer: `이 카테고리는 Jev가 ${environment}을 처리하는 데모를 보여 줍니다. 현재 영상과 원문을 확인할 수 있는 실제 사례 ${count}개가 있습니다.` },
+      { question: `Jev ${name} 데모에서 무엇을 배울 수 있나요?`, answer: `각 데모의 의사결정 배경, 제작자, 게시일, 영상과 원문을 확인하여 ${name} 활용 사례의 입력, 선택지와 워크플로를 이해할 수 있습니다.` },
+      { question: `Jev ${name} 사례를 어떻게 평가해야 하나요?`, answer: `원문과 구현 배경을 확인한 뒤 정확도, 응답 시간, 안전성, 운영 환경에 관한 요구 사항과 데모 결과를 비교하세요.` },
+      { question: `새로운 Jev ${name} 사례는 어떻게 추가되나요?`, answer: `관련 공개 데모가 발견되면 원문을 확인한 뒤 수록합니다. 새 사례는 제작자 정보와 함께 이 카테고리 페이지에 추가됩니다.` },
+    ],
+  }),
+  es: (name: string, count: number, environment: string) => ({
+    heading: `Preguntas sobre Jev para ${name}`,
+    items: [
+      { question: `¿Qué hace Jev en aplicaciones de ${name}?`, answer: `Las demostraciones de esta categoría muestran a Jev aplicado a ${environment}. La página contiene actualmente ${count} ${count === 1 ? 'ejemplo real' : 'ejemplos reales'} con vídeos y publicaciones originales.` },
+      { question: `¿Qué puedo aprender de las demos de Jev para ${name}?`, answer: `Cada demo incluye el contexto de la decisión, autor, fecha, vídeo y publicación original para explicar las entradas, opciones y el flujo de trabajo del caso de ${name}.` },
+      { question: `¿Cómo debo evaluar un caso de Jev para ${name}?`, answer: `Revisa la publicación y el contexto de implementación, y compara el comportamiento con tus requisitos de precisión, latencia, seguridad y entorno operativo.` },
+      { question: `¿Cómo se añaden nuevos casos de Jev para ${name}?`, answer: `Cuando se encuentra una demo pública relevante, se comprueba su publicación original antes de incorporarla. Los casos nuevos aparecen aquí con atribución a su autor.` },
+    ],
+  }),
+  'pt-br': (name: string, count: number, environment: string) => ({
+    heading: `Perguntas sobre o Jev em ${name}`,
+    items: [
+      { question: `O que o Jev faz em aplicações de ${name}?`, answer: `As demonstrações desta categoria mostram o Jev aplicado a ${environment}. A página contém atualmente ${count} ${count === 1 ? 'exemplo real' : 'exemplos reais'} com vídeos e publicações originais.` },
+      { question: `O que posso aprender com as demonstrações de Jev em ${name}?`, answer: `Cada demonstração apresenta o contexto da decisão, autor, data, vídeo e publicação original para explicar entradas, opções e o fluxo do caso de ${name}.` },
+      { question: `Como devo avaliar um caso de Jev em ${name}?`, answer: `Confira a publicação e o contexto da implementação e compare o comportamento com seus requisitos de precisão, latência, segurança e ambiente operacional.` },
+      { question: `Como novos casos de Jev em ${name} são adicionados?`, answer: `Quando uma demonstração pública relevante é encontrada, a publicação original é verificada antes da inclusão. Os novos casos aparecem aqui com atribuição ao autor.` },
+    ],
+  }),
+} satisfies Record<Locale, (name: string, count: number, environment: string) => {
+  heading: string;
+  items: Array<{ question: string; answer: string }>;
 }>;
 
 export type ShowcaseRecencySlug = 'today' | 'this-week';
@@ -652,6 +763,11 @@ export const getShowcaseCategorySeo = (locale: Locale, category: ShowcaseCategor
     heroTitle: template.heroTitle(name),
     description: template.description(name, count, environment),
   };
+};
+export const getShowcaseCategoryFaq = (locale: Locale, category: ShowcaseCategoryId, count: number) => {
+  const name = getShowcaseCategoryLabel(locale, category);
+  const environment = showcaseCategoryEnvironments[locale][category];
+  return showcaseCategoryFaqTemplates[locale](name, count, environment);
 };
 export const getShowcaseRecencySeo = (locale: Locale, recency: ShowcaseRecencySlug, count: number) => {
   const template = showcaseRecencySeoTemplates[locale][recency];

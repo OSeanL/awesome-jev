@@ -30,6 +30,12 @@ const text = copy[locale];
 ></span>
 
 <script>
+  import {
+    planSponsorSlots,
+    sponsorPlacementPageSize,
+    type SponsorSlotChoice,
+  } from '../lib/sponsor-placement';
+
   type Sponsor = {
     name: string;
     url: string;
@@ -62,23 +68,16 @@ const text = copy[locale];
     fallback.textContent = sponsor.name.slice(0, 1).toUpperCase();
     logo.appendChild(fallback);
     const favicon = faviconFor(sponsor);
-    if (favicon) {
-      const image = document.createElement('img');
-      image.src = favicon;
-      image.alt = '';
-      image.loading = 'lazy';
-      image.decoding = 'async';
-      logo.appendChild(image);
-    }
+      if (favicon) {
+        const image = document.createElement('img');
+        image.src = favicon;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.addEventListener('error', () => image.remove(), { once: true });
+        logo.appendChild(image);
+      }
     return logo;
-  };
-
-  const insertAtRandomPosition = (container: Element, node: Element, candidates: Element[]) => {
-    const position = Math.floor(Math.random() * (candidates.length + 1));
-    const reference = position < candidates.length
-      ? candidates[position]
-      : candidates.at(-1)?.nextSibling ?? null;
-    container.insertBefore(node, reference);
   };
 
   document.querySelectorAll<HTMLElement>('[data-sponsor-placement-loader]').forEach(async (loader) => {
@@ -90,19 +89,9 @@ const text = copy[locale];
     const visitLabel = loader.dataset.visit ?? 'Visit sponsor';
     const totalTemplate = loader.dataset.totalTemplate ?? '$__AMOUNT__ total support';
     const totalLabel = (amount: number) => totalTemplate.replace('__AMOUNT__', String(amount));
-
-    let sponsors: Sponsor[] = [];
-    try {
-      const response = await fetch(endpoint, {
-        headers: { Accept: 'application/json' },
-        cache: 'no-store',
-      });
-      if (!response.ok) return;
-      const payload = await response.json() as SponsorPayload;
-      sponsors = payload.sponsors;
-    } catch {
-      return;
-    }
+    const slotChoices = new Map<string, SponsorSlotChoice>();
+    const productChoices = new Map<string, number>();
+    let sponsors: Sponsor[] | undefined;
 
     const createProjectPlacement = (sponsor: Sponsor) => {
       const item = document.createElement('li');
@@ -113,6 +102,7 @@ const text = copy[locale];
       link.target = '_blank';
       link.rel = 'sponsored noreferrer';
       link.ariaLabel = `${visitLabel}: ${sponsor.name}`;
+      link.dataset.sponsorClickUrl = sponsor.url;
 
       const label = document.createElement('span');
       label.className = 'sponsor-placement-label';
@@ -150,13 +140,14 @@ const text = copy[locale];
       link.target = '_blank';
       link.rel = 'sponsored noreferrer';
       link.ariaLabel = `${visitLabel}: ${sponsor.name}`;
+      link.dataset.sponsorClickUrl = sponsor.url;
       const visual = document.createElement('span');
       visual.className = 'showcase-sponsor-visual';
       const label = document.createElement('span');
       label.className = 'sponsor-placement-label';
       label.textContent = sponsoredLabel;
-      visual.appendChild(createLogo(sponsor, 'showcase-sponsor-logo'));
       visual.appendChild(label);
+      visual.appendChild(createLogo(sponsor, 'showcase-sponsor-logo'));
       const body = document.createElement('span');
       body.className = 'showcase-sponsor-body';
       const name = document.createElement('strong');
@@ -180,23 +171,125 @@ const text = copy[locale];
       return item;
     };
 
+    const createSkeletonBar = (className: string) => {
+      const bar = document.createElement('span');
+      bar.className = `sponsor-skeleton-bar ${className}`;
+      return bar;
+    };
+
+    const createProjectSkeleton = () => {
+      const item = document.createElement('li');
+      item.className = 'sponsor-project-placement sponsor-placement-skeleton';
+      item.dataset.sponsorPlacement = '';
+      item.ariaHidden = 'true';
+      const shell = document.createElement('span');
+      shell.className = 'sponsor-project-skeleton';
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-label'));
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-logo'));
+      const identity = document.createElement('span');
+      identity.className = 'sponsor-skeleton-identity';
+      identity.appendChild(createSkeletonBar('sponsor-skeleton-title'));
+      identity.appendChild(createSkeletonBar('sponsor-skeleton-domain'));
+      shell.appendChild(identity);
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-amount'));
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-action'));
+      item.appendChild(shell);
+      return item;
+    };
+
+    const createShowcaseSkeleton = () => {
+      const item = document.createElement('article');
+      item.className = 'showcase-sponsor-placement sponsor-placement-skeleton';
+      item.dataset.sponsorPlacement = '';
+      item.ariaHidden = 'true';
+      const visual = document.createElement('span');
+      visual.className = 'showcase-sponsor-visual sponsor-skeleton-visual';
+      visual.appendChild(createSkeletonBar('sponsor-skeleton-showcase-label'));
+      visual.appendChild(createSkeletonBar('sponsor-skeleton-showcase-logo'));
+      const body = document.createElement('span');
+      body.className = 'showcase-sponsor-body sponsor-skeleton-body';
+      body.appendChild(createSkeletonBar('sponsor-skeleton-showcase-title'));
+      body.appendChild(createSkeletonBar('sponsor-skeleton-showcase-domain'));
+      const meta = document.createElement('span');
+      meta.className = 'showcase-sponsor-meta sponsor-skeleton-meta';
+      meta.appendChild(createSkeletonBar('sponsor-skeleton-showcase-amount'));
+      meta.appendChild(createSkeletonBar('sponsor-skeleton-showcase-action'));
+      body.appendChild(meta);
+      item.appendChild(visual);
+      item.appendChild(body);
+      return item;
+    };
+
+    const placeSponsors = (
+      container: Element,
+      candidates: HTMLElement[],
+      pageSize: number,
+      keyFor: (candidate: HTMLElement, index: number) => string,
+      createPlacement: (sponsor: Sponsor) => HTMLElement,
+      createSkeleton: () => HTMLElement,
+    ) => {
+      container.querySelectorAll<HTMLElement>('[data-sponsor-placement-key][data-sponsor-position]').forEach((placement) => {
+        const key = placement.dataset.sponsorPlacementKey;
+        const position = Number(placement.dataset.sponsorPosition);
+        if (key && Number.isSafeInteger(position)) slotChoices.set(key, { position });
+      });
+      container.querySelectorAll('[data-sponsor-placement]').forEach((placement) => placement.remove());
+      const itemKeys = candidates.map(keyFor);
+      const slots = planSponsorSlots(
+        itemKeys,
+        pageSize,
+        slotChoices,
+      );
+
+      slots.forEach(({ key, pageStart, pageLength, position }) => {
+        if (sponsors?.length === 0) return;
+        const page = candidates.slice(pageStart, pageStart + pageLength);
+        const reference = position < pageLength
+          ? page[position]
+          : candidates[pageStart + pageLength] ?? page.at(-1)?.nextSibling ?? null;
+        let node: HTMLElement;
+        if (sponsors) {
+          let sponsorIndex = productChoices.get(key);
+          if (sponsorIndex === undefined || sponsorIndex >= sponsors.length) {
+            sponsorIndex = Math.floor(Math.random() * sponsors.length);
+            productChoices.set(key, sponsorIndex);
+          }
+          node = createPlacement(sponsors[sponsorIndex]);
+        } else {
+          node = createSkeleton();
+        }
+        node.dataset.sponsorPlacementKey = key;
+        node.dataset.sponsorPosition = String(position);
+        container.insertBefore(node, reference);
+      });
+    };
+
     const placeProjectSponsors = () => {
       const table = document.querySelector('#project-table');
       if (!table) return;
-      table.querySelectorAll('[data-sponsor-placement]').forEach((placement) => placement.remove());
       const projects = [...table.querySelectorAll<HTMLElement>('[data-project]:not([hidden])')];
-      sponsors.forEach((sponsor) => {
-        const visibleProjects = projects.filter((project) => project.isConnected);
-        insertAtRandomPosition(table, createProjectPlacement(sponsor), visibleProjects);
-      });
+      placeSponsors(
+        table,
+        projects,
+        sponsorPlacementPageSize,
+        (project, index) => project.querySelector<HTMLAnchorElement>('.project-name')?.href ?? String(index),
+        createProjectPlacement,
+        createProjectSkeleton,
+      );
     };
 
     const placeShowcaseSponsors = () => {
       const grid = document.querySelector('#showcase-grid');
       if (!grid) return;
-      grid.querySelectorAll('[data-sponsor-placement]').forEach((placement) => placement.remove());
       const cards = [...grid.querySelectorAll<HTMLElement>('[data-showcase-card]')];
-      sponsors.forEach((sponsor) => insertAtRandomPosition(grid, createShowcasePlacement(sponsor), cards));
+      placeSponsors(
+        grid,
+        cards,
+        sponsorPlacementPageSize,
+        (card, index) => card.dataset.videoId ?? String(index),
+        createShowcasePlacement,
+        createShowcaseSkeleton,
+      );
     };
 
     if (surface === 'projects') {
@@ -204,6 +297,22 @@ const text = copy[locale];
       window.addEventListener('catalog:rendered', placeProjectSponsors);
     } else {
       placeShowcaseSponsors();
+      window.addEventListener('showcase:rendered', placeShowcaseSponsors);
     }
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      });
+      if (!response.ok) throw new Error(`Sponsor API returned ${response.status}`);
+      const payload = await response.json() as SponsorPayload;
+      sponsors = payload.sponsors;
+    } catch {
+      sponsors = [];
+    }
+
+    if (surface === 'projects') placeProjectSponsors();
+    else placeShowcaseSponsors();
   });
 </script>

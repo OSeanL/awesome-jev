@@ -63,6 +63,63 @@
   font: 600 var(--text-label)/1.2 var(--font-mono);
 }
 
+.changelog-context {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+  gap: 52px;
+  padding: 58px max(var(--page-gutter), calc((100% - var(--content-width)) / 2));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.changelog-context-heading > span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--blue-deep);
+  font: 650 var(--text-label)/1 var(--font-mono);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+.changelog-context h2 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.changelog-context-copy {
+  display: grid;
+  align-content: start;
+  gap: 13px;
+  max-width: 68ch;
+}
+
+.changelog-context-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.changelog-context-copy p:first-child { color: var(--ink); }
+
+.changelog-context-copy a {
+  color: var(--blue);
+  text-decoration: underline .06em;
+  text-underline-offset: .16em;
+}
+
+.changelog-context-copy .changelog-byline {
+  margin-top: 7px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  font: var(--text-meta)/1.55 var(--font-mono);
+}
+
 .changelog-timeline {
   display: grid;
   gap: 26px;
@@ -102,6 +159,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.changelog-day-head h2 {
+  margin: 0;
+  font: inherit;
 }
 
 .changelog-day-head time {
@@ -150,7 +212,7 @@
 
 .changelog-category:nth-child(odd) { border-right: 1px solid var(--line); }
 
-.changelog-category h2 {
+.changelog-category h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -161,7 +223,7 @@
   letter-spacing: .02em;
 }
 
-.changelog-category h2 small {
+.changelog-category h3 small {
   min-width: 25px;
   padding: 3px 6px;
   background: var(--blue-soft);
@@ -225,6 +287,7 @@
 }
 
 @media (max-width: 760px) {
+  .changelog-context { grid-template-columns: 1fr; gap: 30px; padding-block: 44px; }
   .changelog-timeline { padding-top: 24px; }
   .changelog-category-list { grid-template-columns: 1fr; }
   .changelog-category:nth-child(odd) { border-right: 0; }

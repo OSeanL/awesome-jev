@@ -6,5 +6,6 @@ dist/
 .wrangler/
 /downloads/jev-showcase/
 /.impeccable/
+/.anyapi/
 /PRODUCT.md
 /.local-workers/

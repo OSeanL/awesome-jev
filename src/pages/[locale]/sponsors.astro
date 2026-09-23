@@ -1,12 +1,10 @@
 ---
 import SponsorsPage from '../sponsors.astro';
-import { defaultLocale, locales } from '../../i18n';
+import { getLocale } from '../../i18n';
 
-export const getStaticPaths = () => locales
-  .filter((locale) => locale !== defaultLocale)
-  .map((locale) => ({ params: { locale }, props: { locale } }));
+export const prerender = false;
 
-const { locale } = Astro.props;
+const locale = getLocale(Astro.params.locale);
 ---
 
 <SponsorsPage locale={locale} />

@@ -7,13 +7,12 @@ import {
   verifyCompletedSponsorSession,
 } from '../src/lib/sponsor-payment.ts';
 
-test('sponsor amounts use a five-dollar step and enforce the current minimum', () => {
-  assert.equal(isValidSponsorAmount(5, 5), true);
-  assert.equal(isValidSponsorAmount(15, 10), true);
-  assert.equal(isValidSponsorAmount(1, 5), false);
-  assert.equal(isValidSponsorAmount(6, 5), false);
-  assert.equal(isValidSponsorAmount(10, 15), false);
-  assert.equal(isValidSponsorAmount(Number.POSITIVE_INFINITY, 5), false);
+test('sponsor amounts can start at five dollars and use a five-dollar step', () => {
+  assert.equal(isValidSponsorAmount(5), true);
+  assert.equal(isValidSponsorAmount(10), true);
+  assert.equal(isValidSponsorAmount(1), false);
+  assert.equal(isValidSponsorAmount(6), false);
+  assert.equal(isValidSponsorAmount(Number.POSITIVE_INFINITY), false);
 });
 
 test('sponsor identity fields reject unsafe or oversized values', () => {

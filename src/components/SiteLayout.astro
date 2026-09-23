@@ -1,10 +1,12 @@
 ---
-import { catalogStats, getCatalog } from '../lib/catalog';
+import { navigationCatalogStats, navigationCategories as catalogNavigationCategories } from '../data/catalog-navigation';
+import type { Sponsor } from '../data/sponsors';
 import { getMessages, localeConfig, locales, type Locale } from '../i18n';
 import { getChangelogMessages } from '../i18n/changelog';
 import { getShowcaseMessages } from '../i18n/showcase';
 import { getLocalePath } from '../i18n/config';
 import showcaseManifest from '../data/showcase.json';
+import NewFeatureTour from './NewFeatureTour.astro';
 import SponsorPanel from './SponsorPanel.astro';
 import SiteFooter from './SiteFooter.astro';
 import {
@@ -40,6 +42,7 @@ interface Props {
   activeShowcaseCategory?: string;
   activeShowcaseFilter?: string;
   mainClass?: string;
+  sponsors?: Sponsor[];
 }
 
 const {
@@ -51,13 +54,13 @@ const {
   activeShowcaseCategory,
   activeShowcaseFilter,
   mainClass,
+  sponsors = [],
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const messages = getMessages(locale);
 const changelogCopy = getChangelogMessages(locale);
 const showcaseCopy = getShowcaseMessages(locale);
-const { categories, projects } = getCatalog(locale);
-const changelogDays = new Set(projects.map((project) => project.addedDate)).size;
+const categories = catalogNavigationCategories[locale];
 const repositoryUrl = process.env.GITHUB_REPOSITORY
   ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
   : 'https://github.com/heyjunpenn/awesome-jev';
@@ -104,9 +107,9 @@ const localeHref = (candidate: Locale) => {
 
     <div class="sidebar-primary">
       <nav class="side-nav primary-nav" aria-label={messages.nav.primary}>
-        <a class:list={[catalogActive && activeFilter === 'all' && 'selected']} href={filterHref('all')} title={messages.nav.allProjects} aria-current={catalogActive && activeFilter === 'all' ? 'page' : undefined}><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{catalogStats.projects}</small></a>
+        <a class:list={[catalogActive && activeFilter === 'all' && 'selected']} href={filterHref('all')} title={messages.nav.allProjects} aria-current={catalogActive && activeFilter === 'all' ? 'page' : undefined}><LayoutGrid class="nav-icon" size={17} stroke-width={1.8} /><span>{messages.nav.allProjects}</span><small>{navigationCatalogStats.projects}</small></a>
         <a class:list={[activeSection === 'showcase' && 'selected']} href={showcaseHref()} title={showcaseCopy.navLabel} aria-current={activeSection === 'showcase' ? 'page' : undefined}><Clapperboard class="nav-icon" size={17} stroke-width={1.8} /><span>{showcaseCopy.navLabel}</span><small>{showcaseCount}</small></a>
-        <a class:list={[activeSection === 'changelog' && 'selected']} href={changelogHref()} title={changelogCopy.navLabel} aria-current={activeSection === 'changelog' ? 'page' : undefined}><ListRestart class="nav-icon" size={17} stroke-width={1.8} /><span>{changelogCopy.navLabel}</span><small>{changelogDays}</small></a>
+        <a class:list={[activeSection === 'changelog' && 'selected']} href={changelogHref()} title={changelogCopy.navLabel} aria-current={activeSection === 'changelog' ? 'page' : undefined}><ListRestart class="nav-icon" size={17} stroke-width={1.8} /><span>{changelogCopy.navLabel}</span><small>{navigationCatalogStats.changelogDays}</small></a>
         <a href={repositoryUrl} title={messages.nav.githubRepository} target="_blank" rel="noreferrer" aria-label={messages.nav.githubRepository}>
           <svg class="nav-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A10.98 10.98 0 0 1 12 6.1c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.26c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
@@ -137,7 +140,7 @@ const localeHref = (candidate: Locale) => {
   </div>
 
   <div class="sidebar-foot">
-    <SponsorPanel locale={locale} />
+    <SponsorPanel locale={locale} sponsors={sponsors} />
     <div class="locale-picker" data-locale-picker>
       <button class="locale-trigger" type="button" aria-label={messages.nav.language} aria-haspopup="listbox" aria-expanded="false" aria-controls="locale-options">
         <img src={`${base}flags/${localeConfig[locale].flag}.svg`} alt={messages.nav.flagAlt(localeConfig[locale].label)} aria-hidden="true" width="28" height="20" />
@@ -175,3 +178,5 @@ const localeHref = (candidate: Locale) => {
   <slot />
   <SiteFooter locale={locale} />
 </main>
+
+<NewFeatureTour locale={locale} />

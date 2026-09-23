@@ -55,21 +55,118 @@
   break-inside: avoid;
   margin: 0 0 18px;
   overflow: hidden;
-  border: 1px solid #9cb4ef;
+  border: 1px solid #8daaf0;
   background: #fff;
   vertical-align: top;
+  transition: border-color .18s ease, box-shadow .2s ease, transform .18s cubic-bezier(.22,1,.36,1);
 }
 
-.showcase-sponsor-placement > a { display: block; color: var(--ink); text-decoration: none; }
-.showcase-sponsor-placement > a:focus-visible { outline-offset: -3px; }
-.showcase-sponsor-visual { min-height: 184px; display: grid; place-items: center; gap: 14px; padding: 28px; background: #1e63ff; color: #fff; }
-.showcase-sponsor-visual .sponsor-placement-label { color: #fff; }
-.showcase-sponsor-logo { width: 72px; height: 72px; border-color: rgba(255,255,255,.58); border-radius: 16px; font-size: 1.1rem; }
-.showcase-sponsor-body { display: grid; gap: 7px; padding: 16px; }
-.showcase-sponsor-body > strong { overflow-wrap: anywhere; font-size: 1.05rem; line-height: 1.3; }
+.showcase-sponsor-placement > a { display: grid; color: var(--ink); text-decoration: none; }
+.showcase-sponsor-placement > a:focus-visible { position: relative; z-index: 1; outline: 3px solid var(--ink); outline-offset: -4px; }
+.showcase-sponsor-visual {
+  min-height: 144px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  gap: 16px;
+  padding: 18px;
+  background: #1e63ff;
+  color: #fff;
+}
+.showcase-sponsor-visual .sponsor-placement-label {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  padding: 6px 8px;
+  border: 1px solid rgba(255,255,255,.58);
+  color: #fff;
+  line-height: 1;
+}
+.showcase-sponsor-logo {
+  width: 64px;
+  height: 64px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  border-color: rgba(255,255,255,.64);
+  border-radius: 14px;
+  font-size: 1.05rem;
+}
+.showcase-sponsor-body { display: grid; gap: 8px; padding: 18px; }
+.showcase-sponsor-body > strong { overflow-wrap: anywhere; font-size: 1.125rem; line-height: 1.25; }
 .showcase-sponsor-body > span:not(.showcase-sponsor-meta) { overflow-wrap: anywhere; color: var(--muted); font: var(--text-label)/1.45 var(--font-mono); }
-.showcase-sponsor-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font: var(--text-label)/1.4 var(--font-mono); }
-.showcase-sponsor-meta b { color: var(--blue-deep); font-family: var(--font-sans); font-size: .75rem; }
+.showcase-sponsor-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font: var(--text-label)/1.4 var(--font-mono); }
+.showcase-sponsor-meta b { min-height: 32px; display: inline-flex; align-items: center; padding: 0 10px; background: var(--blue-soft); color: var(--blue-deep); font-family: var(--font-sans); font-size: .75rem; }
+
+@media (hover: hover) {
+  .showcase-sponsor-placement:hover {
+    border-color: transparent;
+    box-shadow: 0 16px 34px rgba(20,20,18,.16);
+    transform: translateY(-2px);
+  }
+}
+
+.sponsor-placement-skeleton { pointer-events: none; }
+
+.sponsor-project-skeleton {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: max-content 44px minmax(0, 1fr) max-content max-content;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+}
+
+.sponsor-skeleton-bar {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #cbd8f6;
+}
+
+.sponsor-skeleton-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.78) 48%, transparent 76%);
+  transform: translateX(-110%);
+  animation: sponsor-skeleton-sweep 1.25s cubic-bezier(.4,0,.2,1) infinite;
+}
+
+.sponsor-skeleton-label { width: 56px; height: 10px; }
+.sponsor-skeleton-logo { width: 44px; height: 44px; border-radius: 12px; }
+.sponsor-skeleton-identity { min-width: 0; display: grid; gap: 8px; }
+.sponsor-skeleton-title { width: min(180px, 70%); height: 15px; }
+.sponsor-skeleton-domain { width: min(132px, 52%); height: 10px; }
+.sponsor-skeleton-amount { width: 76px; height: 11px; }
+.sponsor-skeleton-action { width: 72px; height: 13px; }
+
+.sponsor-skeleton-visual {
+  background: #e8eeff;
+}
+
+.sponsor-skeleton-showcase-logo {
+  width: 64px;
+  height: 64px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  border-radius: 14px;
+}
+
+.sponsor-skeleton-showcase-label { width: 68px; height: 24px; grid-column: 1; grid-row: 1; }
+.sponsor-skeleton-body { min-height: 147px; }
+.sponsor-skeleton-showcase-title { width: 68%; height: 22px; }
+.sponsor-skeleton-showcase-domain { width: 44%; height: 14px; }
+.sponsor-skeleton-meta { min-height: 47px; }
+.sponsor-skeleton-showcase-amount { width: 88px; height: 13px; }
+.sponsor-skeleton-showcase-action { width: 86px; height: 32px; }
+
+@keyframes sponsor-skeleton-sweep {
+  to { transform: translateX(110%); }
+}
 
 @media (max-width: 1080px) {
   .sponsor-project-placement > a {
@@ -80,6 +177,14 @@
   .sponsor-project-placement .sponsor-placement-label { grid-column: 1 / -1; }
   .sponsor-placement-amount { grid-column: 2; }
   .sponsor-placement-visit { grid-column: 3; grid-row: 2 / span 2; }
+  .sponsor-project-skeleton {
+    grid-template-columns: 44px minmax(0, 1fr) max-content;
+    gap: 12px;
+    padding: 16px;
+  }
+  .sponsor-project-skeleton .sponsor-skeleton-label { grid-column: 1 / -1; }
+  .sponsor-project-skeleton .sponsor-skeleton-amount { grid-column: 2; }
+  .sponsor-project-skeleton .sponsor-skeleton-action { grid-column: 3; grid-row: 2 / span 2; }
 }
 
 @media (max-width: 560px) {
@@ -87,4 +192,14 @@
   .sponsor-placement-logo { width: 40px; height: 40px; border-radius: 10px; }
   .sponsor-placement-amount { grid-column: 2; }
   .sponsor-placement-visit { grid-column: 2; grid-row: auto; justify-self: start; }
+  .sponsor-project-skeleton { grid-template-columns: 40px minmax(0, 1fr); }
+  .sponsor-project-skeleton .sponsor-skeleton-logo { width: 40px; height: 40px; border-radius: 10px; }
+  .sponsor-project-skeleton .sponsor-skeleton-amount,
+  .sponsor-project-skeleton .sponsor-skeleton-action { grid-column: 2; grid-row: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-skeleton-bar::after { animation: none; }
+  .showcase-sponsor-placement { transition: none; }
+  .showcase-sponsor-placement:hover { transform: none; }
 }

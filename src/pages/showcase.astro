@@ -6,6 +6,7 @@ import RealtimeTraffic from '../components/RealtimeTraffic.astro';
 import SearchFilterPanel from '../components/SearchFilterPanel.astro';
 import SiteHero from '../components/SiteHero.astro';
 import SiteLayout from '../components/SiteLayout.astro';
+import SponsorPlacementSkeleton from '../components/SponsorPlacementSkeleton.astro';
 import SponsorPlacements from '../components/SponsorPlacements.astro';
 import StarHistoryChart from '../components/StarHistoryChart.astro';
 import showcaseManifest from '../data/showcase.json';
@@ -13,6 +14,7 @@ import { defaultLocale, getLocale, getMessages, localeConfig, locales } from '..
 import { getLocalePath } from '../i18n/config';
 import {
   getShowcaseCategoryLabel,
+  getShowcaseCategoryFaq,
   getShowcaseCategorySeo,
   getShowcaseMessages,
   getShowcaseRecencySeo,
@@ -22,6 +24,7 @@ import { catalogStats } from '../lib/catalog';
 import { filterShowcaseVideos, resolveShowcaseFilter } from '../lib/showcase-filter';
 import { getShowcaseFeedPage, SHOWCASE_PAGE_SIZE } from '../lib/showcase-feed';
 import { getShowcaseStats } from '../lib/showcase-stats';
+import { planSponsorSlots, sponsorPlacementPageSize } from '../lib/sponsor-placement';
 import {
   ArrowLeft,
   ArrowRight,
@@ -107,6 +110,10 @@ const siteUrl = 'https://jevbest.com/';
 const showcasePath = (targetLocale = locale, filterSlug = activeFilter.slug) =>
   `${getLocalePath(targetLocale)}showcase/${filterSlug ? `${filterSlug}/` : ''}`;
 const pageUrl = `${siteUrl}${showcasePath()}`;
+const authorUrl = 'https://github.com/heyjunpenn';
+const organizationId = `${siteUrl}#organization`;
+const authorId = `${siteUrl}#author`;
+const websiteId = `${siteUrl}#website`;
 const categoryCounts = new Map(
   manifest.categories.map((category) => [
     category,
@@ -120,10 +127,17 @@ const activeRecencySeo = activeRecency
   ? getShowcaseRecencySeo(locale, activeRecency, localizedVideos.length)
   : undefined;
 const activePageSeo = activeCategorySeo ?? activeRecencySeo;
+const activeCategoryFaq = activeCategoryId
+  ? getShowcaseCategoryFaq(locale, activeCategoryId, localizedVideos.length)
+  : undefined;
 const pageTitle = activePageSeo?.title ?? copy.pageTitle;
 const pageDescription = activePageSeo?.description ?? copy.pageDescription;
 const heroTitle = activePageSeo?.heroTitle ?? copy.heroTitle;
-const heroSummary = activePageSeo?.description ?? copy.heroSummary;
+const heroSummary = activePageSeo?.description
+  ?? copy.contextSummary(manifest.videos.length, showcaseCategoryDefinitions.length);
+const currentFilterHeading = activeCategorySeo?.name
+  ?? activeRecencySeo?.heroTitle
+  ?? copy.allCategories;
 const pageKeywords = activeCategorySeo
   ? [
       `Jev ${activeCategorySeo.name}`,
@@ -147,6 +161,10 @@ const showcaseStats = getShowcaseStats(manifest.videos, {
   weekStartsOn: catalogStats.weekStartsOn,
   updatedAt: manifest.updatedAt,
 });
+const earliestPublishedAt = localizedVideos.reduce(
+  (earliest, video) => !earliest || video.publishedAt < earliest ? video.publishedAt : earliest,
+  '',
+);
 const updatedDateFormatter = new Intl.DateTimeFormat(localeConfig[locale].languageTag, {
   year: 'numeric',
   month: 'long',
@@ -155,36 +173,108 @@ const updatedDateFormatter = new Intl.DateTimeFormat(localeConfig[locale].langua
 });
 const formattedUpdatedAt = updatedDateFormatter.format(new Date(showcaseStats.updatedAt));
 const showcaseVideos = initialFeed.items;
+const faqItems = activeCategoryFaq?.items ?? (activeFilter.type === 'all' ? copy.faqItems : []);
+const faqHeading = activeCategoryFaq?.heading ?? copy.faqHeading;
+const hasFaq = faqItems.length > 0;
+const initialSponsorSlots = planSponsorSlots(
+  showcaseVideos.map((video) => video.id),
+  sponsorPlacementPageSize,
+  new Map(),
+);
+const slotsByInsertionIndex = new Map<number, typeof initialSponsorSlots>();
+initialSponsorSlots.forEach((slot) => {
+  const insertionIndex = slot.pageStart + slot.position;
+  slotsByInsertionIndex.set(insertionIndex, [...(slotsByInsertionIndex.get(insertionIndex) ?? []), slot]);
+});
+const showcaseRenderItems: Array<
+  { kind: 'video'; video: (typeof showcaseVideos)[number] }
+  | { kind: 'sponsor'; key: string; position: number }
+> = [];
+for (let index = 0; index <= showcaseVideos.length; index += 1) {
+  (slotsByInsertionIndex.get(index) ?? []).forEach((slot) => {
+    showcaseRenderItems.push({ kind: 'sponsor', key: slot.key, position: slot.position });
+  });
+  const video = showcaseVideos[index];
+  if (video) showcaseRenderItems.push({ kind: 'video', video });
+}
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: pageTitle,
-  description: pageDescription,
-  url: pageUrl,
-  inLanguage: localeConfig[locale].languageTag,
-  mainEntity: {
-    '@type': 'ItemList',
-    numberOfItems: initialFeed.total,
-    itemListElement: showcaseVideos.map((video, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'VideoObject',
-        name: video.title,
-        description: video.description,
-        thumbnailUrl: video.posterUrl,
-        contentUrl: video.videoUrl,
-        uploadDate: video.publishedAt,
-        duration: `PT${Math.round(video.duration)}S`,
-        url: video.sourceUrl,
-        author: {
-          '@type': 'Person',
-          name: video.creator.name,
-          alternateName: `@${video.creator.handle}`,
-        },
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'bestjev',
+      url: siteUrl,
+      logo: `${siteUrl}favicon.png`,
+      sameAs: ['https://github.com/heyjunpenn/awesome-jev', 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'Person',
+      '@id': authorId,
+      name: 'heyjunpenn',
+      url: authorUrl,
+      sameAs: [authorUrl, 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: 'bestjev',
+      url: siteUrl,
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#webpage`,
+      name: pageTitle,
+      description: pageDescription,
+      url: pageUrl,
+      inLanguage: localeConfig[locale].languageTag,
+      datePublished: earliestPublishedAt || showcaseStats.updatedAt,
+      dateModified: showcaseStats.updatedAt,
+      author: { '@id': authorId },
+      publisher: { '@id': organizationId },
+      isPartOf: { '@id': websiteId },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: initialFeed.total,
+        itemListElement: showcaseVideos.map((video, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'VideoObject',
+            name: video.title,
+            description: video.description,
+            thumbnailUrl: video.posterUrl,
+            contentUrl: video.videoUrl,
+            encodingFormat: 'video/mp4',
+            uploadDate: `${video.publishedAt}T00:00:00Z`,
+            duration: `PT${Math.round(video.duration)}S`,
+            url: video.sourceUrl,
+            keywords: video.tags,
+            author: {
+              '@type': 'Person',
+              name: video.creator.name,
+              alternateName: `@${video.creator.handle}`,
+              url: `https://x.com/${video.creator.handle}`,
+            },
+          },
+        })),
       },
-    })),
-  },
+    },
+    ...(hasFaq ? [{
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      inLanguage: localeConfig[locale].languageTag,
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    }] : []),
+  ],
 };
 const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
@@ -282,6 +372,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         </SiteHero>
 
         <section class="showcase-controls" aria-label={copy.filtersLabel}>
+          <h2 class="showcase-filter-heading">{currentFilterHeading}</h2>
           <div class="category-strip showcase-category-strip" role="group" aria-label={copy.categoryLabel}>
             <a class:list={['category-button', activeFilter.type === 'all' && 'selected']} href={`${base}${getLocalePath(locale)}showcase/`} aria-current={activeFilter.type === 'all' ? 'page' : undefined}>
               <span>{copy.all}</span><b>{manifest.videos.length}</b>
@@ -317,7 +408,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         ) : (
           <>
             <section class="showcase-grid" id="showcase-grid" aria-label={copy.gridLabel}>
-              {showcaseVideos.map((video) => (
+              {showcaseRenderItems.map((item) => {
+                if (item.kind === 'sponsor') {
+                  return <SponsorPlacementSkeleton placementKey={item.key} position={item.position} />;
+                }
+                const video = item.video;
+                return (
                 <article
                   class="showcase-card"
                   data-showcase-card
@@ -326,59 +422,61 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
                   data-published-at={video.publishedAt}
                   data-search={[video.title, video.description, video.creator.name, video.creator.handle, ...video.tags].join(' ').toLowerCase()}
                   data-dialog={JSON.stringify(video.dialogData)}
-                  role="button"
-                  tabindex="0"
-                  aria-haspopup="dialog"
-                  aria-controls="showcase-dialog"
-                  aria-label={video.playLabel}
                 >
-                  <div
-                    class="showcase-media"
-                    style={`--media-ratio: ${video.width} / ${video.height}`}
-                    aria-hidden="true"
+                  <button
+                    class="showcase-card-trigger"
+                    type="button"
+                    aria-haspopup="dialog"
+                    aria-controls="showcase-dialog"
+                    aria-label={video.playLabel}
                   >
-                    <img src={video.posterUrl} alt="" width={video.width} height={video.height} loading="lazy" decoding="async" />
-                    <span class="play-control" aria-hidden="true"><Play size={19} fill="currentColor" stroke-width={1.6} /></span>
-                    <span class="duration-badge">{video.durationLabel}</span>
-                    <span class="media-loading" aria-hidden="true"></span>
-                  </div>
-                  <div class="showcase-card-body">
-                    <div class="showcase-card-tags">
-                      <span>{video.categoryLabel}</span>
-                      <span>{video.languageLabel}</span>
+                    <div
+                      class="showcase-media"
+                      style={`--media-ratio: ${video.width} / ${video.height}`}
+                      aria-hidden="true"
+                    >
+                      <img src={video.posterUrl} alt="" width={video.width} height={video.height} loading="lazy" decoding="async" />
+                      <span class="play-control" aria-hidden="true"><Play size={19} fill="currentColor" stroke-width={1.6} /></span>
+                      <span class="duration-badge">{video.durationLabel}</span>
+                      <span class="media-loading" aria-hidden="true"></span>
                     </div>
-                    <p>{video.description}</p>
-                    <div class="showcase-card-meta">
-                      <span class="showcase-card-author" title={video.creator.name}>@{video.creator.handle}</span>
-                      <time datetime={video.publishedAt}>{video.dateLabel}</time>
+                    <div class="showcase-card-body">
+                      <div class="showcase-card-tags">
+                        <span>{video.categoryLabel}</span>
+                        <span>{video.languageLabel}</span>
+                      </div>
+                      <h3>{video.description}</h3>
+                      <div class="showcase-card-meta">
+                        <span class="showcase-card-author" title={video.creator.name}>@{video.creator.handle}</span>
+                        <time datetime={video.publishedAt}>{video.dateLabel}</time>
+                      </div>
                     </div>
-                  </div>
+                  </button>
                 </article>
-              ))}
+                );
+              })}
             </section>
             <template id="showcase-card-template">
               <article
                 class="showcase-card"
                 data-showcase-card
-                role="button"
-                tabindex="0"
-                aria-haspopup="dialog"
-                aria-controls="showcase-dialog"
               >
-                <div class="showcase-media" aria-hidden="true">
-                  <img src="" alt="" width="1" height="1" loading="lazy" decoding="async" />
-                  <span class="play-control" aria-hidden="true"><Play size={19} fill="currentColor" stroke-width={1.6} /></span>
-                  <span class="duration-badge"></span>
-                  <span class="media-loading" aria-hidden="true"></span>
-                </div>
-                <div class="showcase-card-body">
-                  <div class="showcase-card-tags"><span></span><span></span></div>
-                  <p></p>
-                  <div class="showcase-card-meta">
-                    <span class="showcase-card-author"></span>
-                    <time></time>
+                <button class="showcase-card-trigger" type="button" aria-haspopup="dialog" aria-controls="showcase-dialog">
+                  <div class="showcase-media" aria-hidden="true">
+                    <img alt="" width="1" height="1" loading="lazy" decoding="async" />
+                    <span class="play-control" aria-hidden="true"><Play size={19} fill="currentColor" stroke-width={1.6} /></span>
+                    <span class="duration-badge"></span>
+                    <span class="media-loading" aria-hidden="true"></span>
                   </div>
-                </div>
+                  <div class="showcase-card-body">
+                    <div class="showcase-card-tags"><span></span><span></span></div>
+                    <h3></h3>
+                    <div class="showcase-card-meta">
+                      <span class="showcase-card-author"></span>
+                      <time></time>
+                    </div>
+                  </div>
+                </button>
               </article>
             </template>
             <div
@@ -403,11 +501,29 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           </>
         )}
 
+        {hasFaq && (
+          <section class="showcase-faq" aria-labelledby="showcase-faq-title">
+            <header class="showcase-faq-heading">
+              <span>{copy.faqLabel}</span>
+              <h2 id="showcase-faq-title">{faqHeading}</h2>
+            </header>
+            <div class="showcase-faq-list">
+              {faqItems.map((item) => (
+                <article class="showcase-faq-item">
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
       </SiteLayout>
     </div>
 
-    <dialog class="showcase-dialog" id="showcase-dialog" aria-labelledby="showcase-dialog-title">
-      <div class="showcase-dialog-shell">
+    <template id="showcase-dialog-template">
+      <dialog class="showcase-dialog" id="showcase-dialog" aria-labelledby="showcase-dialog-title">
+        <div class="showcase-dialog-shell">
         <button class="showcase-dialog-close" type="button" aria-label={copy.closeDetails} title={copy.closeDetails} data-showcase-dialog-close>
           <X size={19} stroke-width={1.8} aria-hidden="true" />
         </button>
@@ -446,19 +562,21 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
             <span>{copy.source}</span><ArrowUpRight size={16} stroke-width={1.9} aria-hidden="true" />
           </a>
         </aside>
-      </div>
-      <div class="showcase-dialog-navigation">
-        <button class="showcase-dialog-nav showcase-dialog-previous" type="button" aria-label={copy.previous} data-showcase-dialog-nav="previous">
-          <ArrowLeft size={17} stroke-width={1.9} aria-hidden="true" /><span>{copy.previous}</span>
-        </button>
-        <button class="showcase-dialog-nav showcase-dialog-next" type="button" aria-label={copy.next} data-showcase-dialog-nav="next">
-          <span>{copy.next}</span><ArrowRight size={17} stroke-width={1.9} aria-hidden="true" />
-        </button>
-      </div>
-    </dialog>
+        </div>
+        <div class="showcase-dialog-navigation">
+          <button class="showcase-dialog-nav showcase-dialog-previous" type="button" aria-label={copy.previous} data-showcase-dialog-nav="previous">
+            <ArrowLeft size={17} stroke-width={1.9} aria-hidden="true" /><span>{copy.previous}</span>
+          </button>
+          <button class="showcase-dialog-nav showcase-dialog-next" type="button" aria-label={copy.next} data-showcase-dialog-nav="next">
+            <span>{copy.next}</span><ArrowRight size={17} stroke-width={1.9} aria-hidden="true" />
+          </button>
+        </div>
+      </dialog>
+    </template>
 
     <script>
       import { getAdjacentShowcaseId } from '../lib/showcase-dialog';
+      import { planStableMasonry } from '../lib/stable-masonry';
 
       type ShowcaseDialogData = {
         id: string;
@@ -526,23 +644,24 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       const localeTrigger = localePicker?.querySelector<HTMLButtonElement>('.locale-trigger');
       const localeMenu = localePicker?.querySelector<HTMLElement>('.locale-menu');
       const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
-      const showcaseDialog = document.querySelector<HTMLDialogElement>('#showcase-dialog');
-      const dialogVideo = document.querySelector<HTMLVideoElement>('#showcase-dialog-video');
-      const dialogTitle = document.querySelector<HTMLElement>('#showcase-dialog-title');
-      const dialogDescription = document.querySelector<HTMLElement>('#showcase-dialog-description');
-      const dialogPostText = document.querySelector<HTMLElement>('#showcase-dialog-post-text');
-      const dialogPostSection = document.querySelector<HTMLElement>('.showcase-dialog-original');
-      const dialogPostToggle = document.querySelector<HTMLButtonElement>('[data-showcase-post-toggle]');
-      const dialogCategory = document.querySelector<HTMLElement>('#showcase-dialog-category');
-      const dialogLanguage = document.querySelector<HTMLElement>('#showcase-dialog-language');
-      const dialogCreator = document.querySelector<HTMLElement>('#showcase-dialog-creator');
-      const dialogDate = document.querySelector<HTMLTimeElement>('#showcase-dialog-date');
-      const dialogDuration = document.querySelector<HTMLElement>('#showcase-dialog-duration');
-      const dialogResolution = document.querySelector<HTMLElement>('#showcase-dialog-resolution');
-      const dialogSource = document.querySelector<HTMLAnchorElement>('#showcase-dialog-source');
-      const dialogError = document.querySelector<HTMLElement>('#showcase-dialog-error');
-      const dialogClose = document.querySelector<HTMLButtonElement>('[data-showcase-dialog-close]');
-      const dialogNavButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-showcase-dialog-nav]')];
+      const dialogTemplate = document.querySelector<HTMLTemplateElement>('#showcase-dialog-template');
+      let showcaseDialog: HTMLDialogElement | undefined;
+      let dialogVideo: HTMLVideoElement | undefined;
+      let dialogTitle: HTMLElement | undefined;
+      let dialogDescription: HTMLElement | undefined;
+      let dialogPostText: HTMLElement | undefined;
+      let dialogPostSection: HTMLElement | undefined;
+      let dialogPostToggle: HTMLButtonElement | undefined;
+      let dialogCategory: HTMLElement | undefined;
+      let dialogLanguage: HTMLElement | undefined;
+      let dialogCreator: HTMLElement | undefined;
+      let dialogDate: HTMLTimeElement | undefined;
+      let dialogDuration: HTMLElement | undefined;
+      let dialogResolution: HTMLElement | undefined;
+      let dialogSource: HTMLAnchorElement | undefined;
+      let dialogError: HTMLElement | undefined;
+      let dialogClose: HTMLButtonElement | undefined;
+      let dialogNavButtons: HTMLButtonElement[] = [];
       const compactLayout = window.matchMedia('(max-width: 1080px)');
       let activeDialogId = '';
       let nextOffset = Number(loadSentinel?.dataset.offset ?? 0);
@@ -551,6 +670,51 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
       let requestVersion = 0;
       let activeRequest: AbortController | undefined;
       let searchTimer: ReturnType<typeof setTimeout> | undefined;
+      let masonryFrame = 0;
+
+      const layoutShowcaseMasonry = () => {
+        if (!showcaseGrid) return;
+        cancelAnimationFrame(masonryFrame);
+        masonryFrame = requestAnimationFrame(() => {
+          const gridStyle = getComputedStyle(showcaseGrid);
+          const columnCount = Math.max(1, Number.parseInt(gridStyle.getPropertyValue('--showcase-masonry-columns'), 10) || 1);
+          const gap = Math.max(0, Number.parseFloat(gridStyle.getPropertyValue('--showcase-masonry-gap')) || 0);
+          const paddingLeft = Number.parseFloat(gridStyle.paddingLeft) || 0;
+          const paddingRight = Number.parseFloat(gridStyle.paddingRight) || 0;
+          const paddingTop = Number.parseFloat(gridStyle.paddingTop) || 0;
+          const paddingBottom = Number.parseFloat(gridStyle.paddingBottom) || 0;
+          const availableWidth = Math.max(0, showcaseGrid.clientWidth - paddingLeft - paddingRight);
+          const columnWidth = Math.max(0, (availableWidth - gap * (columnCount - 1)) / columnCount);
+          const items = [...showcaseGrid.children].filter((child): child is HTMLElement => (
+            child instanceof HTMLElement
+            && child.matches('.showcase-card, [data-sponsor-placement]')
+          ));
+
+          showcaseGrid.style.setProperty('--showcase-masonry-column-width', `${columnWidth}px`);
+          showcaseGrid.dataset.masonryReady = '';
+          const plan = planStableMasonry(items.map((item) => item.offsetHeight), columnCount, gap);
+
+          items.forEach((item, index) => {
+            const placement = plan.items[index];
+            item.style.left = `${paddingLeft + placement.column * (columnWidth + gap)}px`;
+            item.style.top = `${paddingTop + placement.y}px`;
+          });
+          showcaseGrid.style.height = `${paddingTop + plan.height + paddingBottom}px`;
+        });
+      };
+
+      if (showcaseGrid) {
+        new MutationObserver(layoutShowcaseMasonry).observe(showcaseGrid, { childList: true });
+        let observedGridWidth = 0;
+        new ResizeObserver(([entry]) => {
+          const nextWidth = entry?.contentRect.width ?? 0;
+          if (Math.abs(nextWidth - observedGridWidth) < 0.5) return;
+          observedGridWidth = nextWidth;
+          layoutShowcaseMasonry();
+        }).observe(showcaseGrid);
+        void document.fonts?.ready.then(layoutShowcaseMasonry);
+        layoutShowcaseMasonry();
+      }
 
       const legacyCategory = new URLSearchParams(window.location.search).get('category');
       const legacyCategoryLink = [...document.querySelectorAll<HTMLAnchorElement>('[data-showcase-category-source]')]
@@ -576,7 +740,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           ...item.tags,
         ].join(' ').toLowerCase();
         card.dataset.dialog = JSON.stringify(item.dialogData);
-        card.setAttribute('aria-label', item.playLabel);
+        card.querySelector<HTMLButtonElement>('.showcase-card-trigger')?.setAttribute('aria-label', item.playLabel);
 
         const media = card.querySelector<HTMLElement>('.showcase-media');
         media?.style.setProperty('--media-ratio', `${item.width} / ${item.height}`);
@@ -591,7 +755,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
         const tags = card.querySelectorAll<HTMLElement>('.showcase-card-tags span');
         if (tags[0]) tags[0].textContent = item.categoryLabel;
         if (tags[1]) tags[1].textContent = item.languageLabel;
-        const description = card.querySelector<HTMLElement>('.showcase-card-body > p');
+        const description = card.querySelector<HTMLElement>('.showcase-card-body > h3');
         if (description) description.textContent = item.description;
         const author = card.querySelector<HTMLElement>('.showcase-card-author');
         if (author) {
@@ -650,6 +814,7 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           });
           if (reset) showcaseGrid.replaceChildren();
           showcaseGrid.appendChild(fragment);
+          window.dispatchEvent(new CustomEvent('showcase:rendered'));
           nextOffset = page.nextOffset;
           hasMore = page.hasMore;
           loadSentinel.dataset.offset = String(page.nextOffset);
@@ -815,12 +980,75 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           : (dialogPostToggle.dataset.expandLabel ?? 'Expand');
       };
 
-      dialogPostToggle?.addEventListener('click', () => {
-        setOriginalPostExpanded(dialogPostToggle.getAttribute('aria-expanded') !== 'true');
-      });
+      const initializeShowcaseDialog = () => {
+        if (showcaseDialog && dialogVideo) return true;
+        const dialog = dialogTemplate?.content.firstElementChild?.cloneNode(true);
+        if (!(dialog instanceof HTMLDialogElement)) return false;
+
+        document.body.appendChild(dialog);
+        showcaseDialog = dialog;
+        dialogVideo = dialog.querySelector<HTMLVideoElement>('#showcase-dialog-video') ?? undefined;
+        dialogTitle = dialog.querySelector<HTMLElement>('#showcase-dialog-title') ?? undefined;
+        dialogDescription = dialog.querySelector<HTMLElement>('#showcase-dialog-description') ?? undefined;
+        dialogPostText = dialog.querySelector<HTMLElement>('#showcase-dialog-post-text') ?? undefined;
+        dialogPostSection = dialog.querySelector<HTMLElement>('.showcase-dialog-original') ?? undefined;
+        dialogPostToggle = dialog.querySelector<HTMLButtonElement>('[data-showcase-post-toggle]') ?? undefined;
+        dialogCategory = dialog.querySelector<HTMLElement>('#showcase-dialog-category') ?? undefined;
+        dialogLanguage = dialog.querySelector<HTMLElement>('#showcase-dialog-language') ?? undefined;
+        dialogCreator = dialog.querySelector<HTMLElement>('#showcase-dialog-creator') ?? undefined;
+        dialogDate = dialog.querySelector<HTMLTimeElement>('#showcase-dialog-date') ?? undefined;
+        dialogDuration = dialog.querySelector<HTMLElement>('#showcase-dialog-duration') ?? undefined;
+        dialogResolution = dialog.querySelector<HTMLElement>('#showcase-dialog-resolution') ?? undefined;
+        dialogSource = dialog.querySelector<HTMLAnchorElement>('#showcase-dialog-source') ?? undefined;
+        dialogError = dialog.querySelector<HTMLElement>('#showcase-dialog-error') ?? undefined;
+        dialogClose = dialog.querySelector<HTMLButtonElement>('[data-showcase-dialog-close]') ?? undefined;
+        dialogNavButtons = [...dialog.querySelectorAll<HTMLButtonElement>('[data-showcase-dialog-nav]')];
+
+        dialogPostToggle?.addEventListener('click', () => {
+          setOriginalPostExpanded(dialogPostToggle?.getAttribute('aria-expanded') !== 'true');
+        });
+        dialogNavButtons.forEach((button) => button.addEventListener('click', () => {
+          const direction = button.dataset.showcaseDialogNav;
+          if (direction !== 'previous' && direction !== 'next') return;
+          const visibleCards = getCards();
+          const adjacentId = getAdjacentShowcaseId(
+            visibleCards.map((card) => card.dataset.videoId ?? ''),
+            activeDialogId,
+            direction,
+          );
+          const adjacentCard = visibleCards.find((card) => card.dataset.videoId === adjacentId);
+          if (adjacentCard) openCardDialog(adjacentCard);
+        }));
+        dialogClose?.addEventListener('click', closeShowcaseDialog);
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) closeShowcaseDialog();
+        });
+        dialog.addEventListener('keydown', (event) => {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          dialogNavButtons.find((button) => button.dataset.showcaseDialogNav === (event.key === 'ArrowLeft' ? 'previous' : 'next'))?.click();
+        });
+        dialog.addEventListener('close', () => {
+          activeDialogId = '';
+          document.body.classList.remove('dialog-open');
+          if (!dialogVideo) return;
+          dialogVideo.pause();
+          dialogVideo.removeAttribute('src');
+          dialogVideo.removeAttribute('poster');
+          dialogVideo.load();
+        });
+        dialogVideo?.addEventListener('loadeddata', () => {
+          if (dialogError) dialogError.hidden = true;
+        });
+        dialogVideo?.addEventListener('error', () => {
+          if (dialogError) dialogError.hidden = false;
+        });
+
+        return Boolean(dialogVideo);
+      };
 
       const openShowcaseDialog = (data: ShowcaseDialogData) => {
-        if (!showcaseDialog || !dialogVideo) return;
+        if (!initializeShowcaseDialog() || !showcaseDialog || !dialogVideo) return;
         activeDialogId = data.id;
         if (dialogTitle) dialogTitle.textContent = data.title;
         if (dialogDescription) dialogDescription.textContent = data.description;
@@ -858,55 +1086,15 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c
           try {
             openShowcaseDialog(JSON.parse(serializedData) as ShowcaseDialogData);
           } catch {
-            card.setAttribute('aria-label', document.body.dataset.videoError ?? 'Video failed to load. Click to retry.');
+            card.querySelector<HTMLButtonElement>('.showcase-card-trigger')?.setAttribute(
+              'aria-label',
+              document.body.dataset.videoError ?? 'Video failed to load. Click to retry.',
+            );
           }
       };
       showcaseGrid?.addEventListener('click', (event) => {
         const card = (event.target as HTMLElement).closest<HTMLElement>('[data-showcase-card]');
         if (card) openCardDialog(card);
-      });
-      showcaseGrid?.addEventListener('keydown', (event) => {
-        if (event.key !== 'Enter' && event.key !== ' ') return;
-        const card = (event.target as HTMLElement).closest<HTMLElement>('[data-showcase-card]');
-        if (!card) return;
-        event.preventDefault();
-        openCardDialog(card);
-      });
-      dialogNavButtons.forEach((button) => button.addEventListener('click', () => {
-        const direction = button.dataset.showcaseDialogNav;
-        if (direction !== 'previous' && direction !== 'next') return;
-        const visibleCards = getCards();
-        const adjacentId = getAdjacentShowcaseId(
-          visibleCards.map((card) => card.dataset.videoId ?? ''),
-          activeDialogId,
-          direction,
-        );
-        const adjacentCard = visibleCards.find((card) => card.dataset.videoId === adjacentId);
-        if (adjacentCard) openCardDialog(adjacentCard);
-      }));
-      dialogClose?.addEventListener('click', closeShowcaseDialog);
-      showcaseDialog?.addEventListener('click', (event) => {
-        if (event.target === showcaseDialog) closeShowcaseDialog();
-      });
-      showcaseDialog?.addEventListener('keydown', (event) => {
-        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-        event.preventDefault();
-        dialogNavButtons.find((button) => button.dataset.showcaseDialogNav === (event.key === 'ArrowLeft' ? 'previous' : 'next'))?.click();
-      });
-      showcaseDialog?.addEventListener('close', () => {
-        activeDialogId = '';
-        document.body.classList.remove('dialog-open');
-        if (!dialogVideo) return;
-        dialogVideo.pause();
-        dialogVideo.removeAttribute('src');
-        dialogVideo.removeAttribute('poster');
-        dialogVideo.load();
-      });
-      dialogVideo?.addEventListener('loadeddata', () => {
-        if (dialogError) dialogError.hidden = true;
-      });
-      dialogVideo?.addEventListener('error', () => {
-        if (dialogError) dialogError.hidden = false;
       });
 
       if (emptyState) emptyState.hidden = getCards().length !== 0;

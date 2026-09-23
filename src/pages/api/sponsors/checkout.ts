@@ -6,7 +6,6 @@ import {
   normalizeSponsorName,
   normalizeSponsorUrl,
 } from '../../../lib/sponsor-payment';
-import { getRequiredNextTopRankAmountUsd } from '../../../lib/sponsors';
 
 export const prerender = false;
 
@@ -47,14 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
     return redirectWithStatus(returnOrigin, returnPath, 'error', 'checkout-unavailable');
   }
 
-  let nextTopRankAmountUsd: number;
-  try {
-    nextTopRankAmountUsd = await getRequiredNextTopRankAmountUsd(workerEnv.SPONSORS_DB);
-  } catch {
-    return redirectWithStatus(returnOrigin, returnPath, 'error', 'checkout-unavailable');
-  }
-
-  if (!sponsorName || !productUrl || !isValidSponsorAmount(amountUsd, nextTopRankAmountUsd)) {
+  if (!sponsorName || !productUrl || !isValidSponsorAmount(amountUsd)) {
     return redirectWithStatus(returnOrigin, returnPath, 'error', 'invalid-details');
   }
 
@@ -84,7 +76,8 @@ export const POST: APIRoute = async ({ request }) => {
             unit_amount: amountUsd * 100,
             product_data: {
               name: `bestjev sponsor rank — ${sponsorName}`,
-              description: 'Ranked placement in the bestjev sidebar and sponsor board.',
+              description: productUrl,
+              metadata,
             },
           },
         },

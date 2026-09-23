@@ -6,7 +6,7 @@ interface Props {
 
 const { alt, className } = Astro.props;
 const starHistoryUrl = 'https://www.star-history.com/?repos=heyjunpenn%2Fawesome-jev&type=date&legend=bottom-right';
-const darkChartUrl = 'https://api.star-history.com/chart?repos=heyjunpenn/awesome-jev&type=timeline&theme=dark&legend=bottom-right';
+const darkChartUrl = `${import.meta.env.BASE_URL}api/star-history.png`;
 ---
 
 <figure class:list={['hero-illustration', 'hero-star-history', className]}>

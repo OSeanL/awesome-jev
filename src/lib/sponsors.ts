@@ -1,8 +1,8 @@
 import {
   rankedSponsors as fallbackSponsors,
-  sponsorRules,
   type Sponsor,
 } from '../data/sponsors';
+import { rankSponsors } from './sponsor-ranking.ts';
 
 interface SponsorRow {
   checkout_session_id: string;
@@ -43,7 +43,7 @@ export async function getRankedSponsors(
         SELECT
           url,
           SUM(amount_usd) AS amount_usd,
-          MIN(paid_at) AS paid_at,
+          MAX(paid_at) AS paid_at,
           SUM(clicks) AS clicks
         FROM sponsors
         WHERE active = 1
@@ -55,7 +55,7 @@ export async function getRankedSponsors(
           SELECT payment.name
           FROM sponsors AS payment
           WHERE payment.active = 1 AND payment.url = totals.url
-          ORDER BY payment.paid_at ASC, payment.checkout_session_id ASC
+          ORDER BY payment.paid_at DESC, payment.checkout_session_id DESC
           LIMIT 1
         ) AS name,
         totals.url,
@@ -63,7 +63,7 @@ export async function getRankedSponsors(
         totals.paid_at,
         totals.clicks
       FROM sponsor_totals AS totals
-      ORDER BY amount_usd DESC, paid_at ASC, name ASC
+      ORDER BY amount_usd DESC, paid_at DESC, name ASC
       ${limit ? 'LIMIT ?1' : ''}
     `;
     const statement = database.prepare(query);
@@ -71,38 +71,8 @@ export async function getRankedSponsors(
       ? await statement.bind(limit).all<SponsorRow>()
       : await statement.all<SponsorRow>();
 
-    return result.results.map(rowToSponsor);
+    return rankSponsors(result.results.map(rowToSponsor));
   } catch {
     return limit ? fallbackSponsors.slice(0, limit) : fallbackSponsors;
   }
-}
-
-export async function getNextTopRankAmountUsd(database: D1Database | undefined) {
-  const [topSponsor] = await getRankedSponsors(database, 1);
-  return (topSponsor?.amountUsd ?? 0) + sponsorRules.minimumIncrementUsd;
-}
-
-export async function getRequiredNextTopRankAmountUsd(database: D1Database) {
-  const result = await database.prepare(`
-    SELECT COALESCE(MAX(total_amount), 0) AS top_amount
-    FROM (
-      SELECT SUM(amount_usd) AS total_amount
-      FROM sponsors
-      WHERE active = 1
-      GROUP BY url
-    )
-  `).first<{ top_amount: number | null }>();
-  const topAmountUsd = result?.top_amount ?? 0;
-
-  if (
-    !Number.isSafeInteger(topAmountUsd)
-    || topAmountUsd < 0
-    || topAmountUsd % sponsorRules.minimumIncrementUsd !== 0
-  ) {
-    throw new Error('Sponsor totals failed validation.');
-  }
-
-  const nextAmountUsd = topAmountUsd + sponsorRules.minimumIncrementUsd;
-  if (!Number.isSafeInteger(nextAmountUsd)) throw new Error('Sponsor total exceeds the safe integer range.');
-  return nextAmountUsd;
 }

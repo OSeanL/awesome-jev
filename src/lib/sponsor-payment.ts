@@ -43,11 +43,9 @@ export const normalizeSponsorUrl = (value: unknown) => {
   }
 };
 
-export const isValidSponsorAmount = (amountUsd: number, minimumAmountUsd: number) =>
+export const isValidSponsorAmount = (amountUsd: number) =>
   Number.isSafeInteger(amountUsd)
-  && Number.isSafeInteger(minimumAmountUsd)
-  && minimumAmountUsd >= sponsorRules.minimumIncrementUsd
-  && amountUsd >= minimumAmountUsd
+  && amountUsd >= sponsorRules.minimumIncrementUsd
   && amountUsd % sponsorRules.minimumIncrementUsd === 0;
 
 export const verifyCompletedSponsorSession = (
@@ -63,7 +61,7 @@ export const verifyCompletedSponsorSession = (
     && session.currency?.toLowerCase() === 'usd'
     && sponsorName
     && sponsorUrl
-    && isValidSponsorAmount(amountUsd, sponsorRules.minimumIncrementUsd)
+    && isValidSponsorAmount(amountUsd)
     && Number.isSafeInteger(metadataAmountUsd)
     && metadataAmountUsd === amountUsd;
 
