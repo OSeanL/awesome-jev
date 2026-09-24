@@ -40,12 +40,14 @@ const text = copy[locale];
     name: string;
     url: string;
     amountUsd: number;
+    logoUrl?: string;
     logoTone: 'light' | 'dark';
   };
 
   type SponsorPayload = { sponsors: Sponsor[] };
 
   const faviconFor = (sponsor: Sponsor) => {
+    if (sponsor.logoUrl) return sponsor.logoUrl;
     try {
       return `${new URL(sponsor.url).origin}/favicon.ico`;
     } catch {

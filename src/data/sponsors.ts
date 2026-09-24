@@ -6,6 +6,7 @@ export interface Sponsor {
   url: string;
   amountUsd: number;
   sponsoredAt: string;
+  logoUrl?: string;
   logoTone: 'light' | 'dark';
   description: string;
   clicks: number;

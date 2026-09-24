@@ -13,28 +13,28 @@ const sponsor = (name, amountUsd, sponsoredAt, url = `https://${name.toLowerCase
   sponsoredAt,
 });
 
-test('sponsors rank by amount descending and then latest payment descending', () => {
+test('sponsors rank by amount descending and then payment time ascending', () => {
   const ranked = rankSponsors([
     sponsor('Older', 25, '2026-09-23T10:00:00Z'),
     sponsor('Higher', 30, '2026-09-23T09:00:00Z'),
     sponsor('Newer', 25, '2026-09-23T11:00:00Z'),
   ]);
 
-  assert.deepEqual(ranked.map(({ name }) => name), ['Higher', 'Newer', 'Older']);
+  assert.deepEqual(ranked.map(({ name }) => name), ['Higher', 'Older', 'Newer']);
 });
 
-test('a new payment takes the first rank after sponsors with a higher total', () => {
+test('a new payment ranks after existing sponsors with the same total', () => {
   const sponsors = [
     sponsor('First', 30, '2026-09-23T09:00:00Z'),
     sponsor('Second', 25, '2026-09-23T10:00:00Z'),
     sponsor('Third', 20, '2026-09-23T11:00:00Z'),
   ];
 
-  assert.equal(getProjectedSponsorRank(sponsors, 25), 2);
+  assert.equal(getProjectedSponsorRank(sponsors, 25), 3);
   assert.equal(getProjectedSponsorRank(sponsors, 5), 4);
 });
 
-test('a repeat payment ranks the accumulated total and refreshes the tie-break time', () => {
+test('a repeat payment ranks the accumulated total after an existing tied sponsor', () => {
   const returningUrl = 'https://returning.example/';
   const sponsors = [
     sponsor('First', 30, '2026-09-23T09:00:00Z'),
@@ -42,7 +42,7 @@ test('a repeat payment ranks the accumulated total and refreshes the tie-break t
     sponsor('Peer', 25, '2026-09-23T11:00:00Z'),
   ];
 
-  assert.equal(getProjectedSponsorRank(sponsors, 5, returningUrl), 2);
+  assert.equal(getProjectedSponsorRank(sponsors, 5, returningUrl), 3);
 });
 
 test('the default sponsor amount claims first place with one five-dollar step', () => {

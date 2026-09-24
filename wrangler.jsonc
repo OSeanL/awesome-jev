@@ -27,6 +27,12 @@
       "migrations_dir": "migrations"
     }
   ],
+  "r2_buckets": [
+    {
+      "binding": "SPONSOR_ASSETS",
+      "bucket_name": "awesome-jev-showcase"
+    }
+  ],
   "observability": {
     "enabled": true
   }

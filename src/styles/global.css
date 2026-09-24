@@ -778,6 +778,62 @@ html .hero h1.filtered {
   overflow: hidden;
 }
 
+.feature-tour-callout {
+  border-bottom: 1px solid var(--line);
+  background: #fafaf8;
+}
+
+.feature-tour-callout-inner {
+  width: min(var(--content-width), calc(100% - var(--page-gutter) - var(--page-gutter)));
+  min-height: 54px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.feature-tour-callout p {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--muted);
+  font-size: .8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.feature-tour-callout p > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.feature-tour-callout a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--blue);
+  font-weight: 700;
+  padding-bottom: 1px;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  transition: color .16s ease, border-color .16s ease;
+}
+
+.feature-tour-callout a:hover {
+  color: var(--blue-deep);
+}
+
+.feature-tour-callout a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .hero-illustration {
   min-width: 0;
   min-height: 0;

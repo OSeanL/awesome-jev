@@ -13,6 +13,7 @@ import { getCategoryGuide } from '../i18n/category-guides';
 import { getLocalePath } from '../i18n/config';
 import {
   ArrowDown,
+  ArrowRight,
   ArrowUpRight,
   Check,
   ChevronDown,
@@ -354,6 +355,20 @@ const initialProjectLimit = 16;
             <RealtimeTraffic />
           </Fragment>
         </SiteHero>
+
+        {activeFilter === 'all' && (
+          <div class="feature-tour-callout">
+            <div class="feature-tour-callout-inner">
+              <p>
+                <span>{messages.hero.featureAnnouncement}</span>
+                <a href="?tour=1" data-open-feature-tour>
+                  <span>{messages.hero.viewTour}</span>
+                  <ArrowRight size={13} stroke-width={2} aria-hidden="true" />
+                </a>
+              </p>
+            </div>
+          </div>
+        )}
 
         <div class="catalog-region">
           <section class="catalog" id="projects">

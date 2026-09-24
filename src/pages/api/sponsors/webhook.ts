@@ -1,12 +1,14 @@
 import type { APIRoute } from 'astro';
-import { env } from 'cloudflare:workers';
+import { env, waitUntil } from 'cloudflare:workers';
 import Stripe from 'stripe';
+import { ensureSponsorLogo } from '../../../lib/sponsor-logo';
 import { verifyCompletedSponsorSession } from '../../../lib/sponsor-payment';
 
 export const prerender = false;
 
 const workerEnv = env as unknown as {
   SPONSORS_DB?: D1Database;
+  SPONSOR_ASSETS?: R2Bucket;
   STRIPE_SECRET_KEY?: string;
   STRIPE_WEBHOOK_SECRET?: string;
 };
@@ -67,6 +69,16 @@ export const POST: APIRoute = async ({ request }) => {
         new Date(event.created * 1000).toISOString(),
         typeof session.payment_intent === 'string' ? session.payment_intent : null,
       ).run();
+
+      if (workerEnv.SPONSOR_ASSETS) {
+        waitUntil(
+          ensureSponsorLogo(
+            workerEnv.SPONSORS_DB,
+            workerEnv.SPONSOR_ASSETS,
+            payment.sponsorUrl,
+          ).then(() => undefined).catch(() => undefined),
+        );
+      }
     }
   }
 

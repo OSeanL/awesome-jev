@@ -17,6 +17,13 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
+  vite: {
+    ssr: {
+      optimizeDeps: {
+        exclude: ['@lucide/astro'],
+      },
+    },
+  },
   i18n: {
     locales: ['en', 'zh', 'ja', 'ko', 'es', 'pt-br'],
     defaultLocale: 'en',

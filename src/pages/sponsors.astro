@@ -34,12 +34,12 @@ const en = {
   claim: (rank: number, amount: number) => `Claim #${rank} for $${amount}`, claimBody: 'Choose any amount from $5 in $5 steps. Everything paid for the same link adds up.',
   amount: 'Amount', amountHint: (amount: number) => `From $${amount}, in $5 steps.`, name: 'Product name', namePlaceholder: 'Your product',
   url: 'Product link', urlPlaceholder: 'https://yourproduct.com', submit: 'Claim rank', stripe: 'Stripe Checkout', decreaseAmount: 'Decrease amount by $5', increaseAmount: 'Increase amount by $5',
-  boardTitle: 'The board', boardIntro: 'Placement follows verified payments, ordered by total paid and then latest payment time, both descending.',
+  boardTitle: 'The board', boardIntro: 'Placement follows verified payments, ordered by total paid descending and then latest payment time ascending.',
   emptyTitle: 'No sponsors yet', emptyBody: 'The first verified payment will appear here and across bestjev.',
   clicks: 'clicks',
   rulesTitle: 'How sponsorship works', rules: [
     'Choose any amount from $5 in $5 steps. It does not need to exceed the current top sponsor.',
-    'Payments for the same product link add up. Ranking uses total paid descending, then latest payment time descending.',
+    'Payments for the same product link add up. Ranking uses total paid descending, then latest payment time ascending.',
     'The three highest-ranked sponsors appear in the site sidebar.',
     'Every active sponsor appears at random positions in both the project list and the Showcase list.',
     "Every active sponsor is also listed in this GitHub project's README.",
@@ -60,12 +60,12 @@ const zh = {
   claim: (rank: number, amount: number) => `以 $${amount} 取得第 ${rank} 名`, claimBody: '可从 $5 起按 $5 的倍数选择金额，同一链接的所有已完成付款会累计计算。',
   amount: '赞助金额', amountHint: (amount: number) => `从 $${amount} 起，以 $5 为单位切换。`, name: '产品名称', namePlaceholder: '你的产品',
   url: '产品链接', urlPlaceholder: 'https://yourproduct.com', submit: '取得名次', stripe: 'Stripe Checkout', decreaseAmount: '减少 5 美元', increaseAmount: '增加 5 美元',
-  boardTitle: '赞助榜', boardIntro: '排名以已验证付款为准，按累计金额降序、最近付款时间降序排列。',
+  boardTitle: '赞助榜', boardIntro: '排名以已验证付款为准，按累计金额降序、最近付款时间升序排列。',
   emptyTitle: '还没有赞助商', emptyBody: '第一笔通过验证的赞助会显示在这里及 bestjev 的其他展示位置。',
   clicks: '次点击',
   rulesTitle: '赞助规则', rules: [
     '赞助金额最低为 5 美元，且必须为 5 美元的倍数；无需超过当前榜首金额。',
-    '同一产品链接的已完成付款会累计计算；按累计金额降序、最近付款时间降序排名。',
+    '同一产品链接的已完成付款会累计计算；按累计金额降序、最近付款时间升序排名。',
     '排名最高的前三名会展示在全站侧边栏。',
     '所有有效赞助商都会随机出现在项目列表和 Showcase 列表中。',
     '所有有效赞助商也会列在本 GitHub 项目的 README 中。',
@@ -86,12 +86,12 @@ const ja = {
   claim: (rank: number, amount: number) => `$${amount} で第${rank}位を獲得`, claimBody: '$5 から $5 単位で金額を選べます。同じリンクへの支払いはすべて合算されます。',
   amount: '支援額', amountHint: (amount: number) => `$${amount} から $5 単位で選択。`, name: 'プロダクト名', namePlaceholder: 'あなたのプロダクト',
   url: 'プロダクトのリンク', urlPlaceholder: 'https://yourproduct.com', submit: '順位を取得', stripe: 'Stripe Checkout', decreaseAmount: '金額を5ドル減らす', increaseAmount: '金額を5ドル増やす',
-  boardTitle: 'スポンサーボード', boardIntro: '確認済みの支払いを、累計額の降順、最新支払い時刻の降順で並べます。',
+  boardTitle: 'スポンサーボード', boardIntro: '確認済みの支払いを、累計額の降順、最新支払い時刻の昇順で並べます。',
   emptyTitle: 'スポンサーはまだいません', emptyBody: '最初に確認された支払いが、ここと bestjev のその他の掲載位置に表示されます。',
   clicks: 'クリック',
   rulesTitle: 'スポンサールール', rules: [
     '支援額は $5 以上の $5 単位で選べます。現在の首位額を上回る必要はありません。',
-    '同じプロダクトリンクへの支払いは合算され、累計額の降順、最新支払い時刻の降順で順位付けされます。',
+    '同じプロダクトリンクへの支払いは合算され、累計額の降順、最新支払い時刻の昇順で順位付けされます。',
     '上位3件はサイトのサイドバーに表示されます。',
     'すべての有効なスポンサーは、プロジェクトと Showcase の一覧にランダムに表示されます。',
     'すべての有効なスポンサーは、この GitHub プロジェクトの README にも掲載されます。',
@@ -112,12 +112,12 @@ const ko = {
   claim: (rank: number, amount: number) => `$${amount}로 #${rank} 차지`, claimBody: '$5부터 $5 단위로 금액을 선택할 수 있으며, 같은 링크의 모든 결제 금액은 누적됩니다.',
   amount: '후원 금액', amountHint: (amount: number) => `$${amount}부터 $5 단위로 선택.`, name: '제품명', namePlaceholder: '제품명',
   url: '제품 링크', urlPlaceholder: 'https://yourproduct.com', submit: '순위 차지', stripe: 'Stripe Checkout', decreaseAmount: '금액 5달러 줄이기', increaseAmount: '금액 5달러 늘리기',
-  boardTitle: '후원자 보드', boardIntro: '확인된 결제를 누적 금액 내림차순, 최근 결제 시간 내림차순으로 정렬합니다.',
+  boardTitle: '후원자 보드', boardIntro: '확인된 결제를 누적 금액 내림차순, 최근 결제 시간 오름차순으로 정렬합니다.',
   emptyTitle: '아직 후원자가 없습니다', emptyBody: '첫 번째 확인 완료 결제가 여기와 bestjev의 다른 표시 영역에 나타납니다.',
   clicks: '클릭',
   rulesTitle: '후원 규칙', rules: [
     '후원 금액은 최소 $5이며 $5 단위로 선택합니다. 현재 1위 금액을 넘을 필요는 없습니다.',
-    '같은 제품 링크의 결제는 누적되며, 누적 금액 내림차순, 최근 결제 시간 내림차순으로 순위를 정합니다.',
+    '같은 제품 링크의 결제는 누적되며, 누적 금액 내림차순, 최근 결제 시간 오름차순으로 순위를 정합니다.',
     '상위 3개 제품은 사이트 사이드바에 표시됩니다.',
     '모든 유효한 후원자는 프로젝트 및 Showcase 목록의 무작위 위치에 표시됩니다.',
     '모든 유효한 후원자는 이 GitHub 프로젝트의 README에도 표시됩니다.',
@@ -138,12 +138,12 @@ const es = {
   claim: (rank: number, amount: number) => `Consigue el n.º ${rank} por $${amount}`, claimBody: 'Elige cualquier cantidad desde $5 en tramos de $5. Se suman todos los pagos realizados para el mismo enlace.',
   amount: 'Cantidad', amountHint: (amount: number) => `Desde $${amount}, en tramos de $5.`, name: 'Nombre del producto', namePlaceholder: 'Tu producto',
   url: 'Enlace del producto', urlPlaceholder: 'https://yourproduct.com', submit: 'Conseguir posición', stripe: 'Stripe Checkout', decreaseAmount: 'Reducir la cantidad en 5 dólares', increaseAmount: 'Aumentar la cantidad en 5 dólares',
-  boardTitle: 'Panel de patrocinadores', boardIntro: 'Los pagos verificados se ordenan por total descendente y luego por fecha del pago más reciente descendente.',
+  boardTitle: 'Panel de patrocinadores', boardIntro: 'Los pagos verificados se ordenan por total descendente y luego por fecha del pago más reciente ascendente.',
   emptyTitle: 'Aún no hay patrocinadores', emptyBody: 'El primer pago verificado aparecerá aquí y en los demás espacios de bestjev.',
   clicks: 'clics',
   rulesTitle: 'Reglas de patrocinio', rules: [
     'El importe mínimo es $5 y debe ser múltiplo de $5. No tiene que superar al patrocinador que ocupa el primer puesto.',
-    'Los pagos del mismo enlace se suman. La clasificación usa el total descendente y la fecha del pago más reciente descendente.',
+    'Los pagos del mismo enlace se suman. La clasificación usa el total descendente y la fecha del pago más reciente ascendente.',
     'Los tres patrocinadores mejor clasificados aparecen en la barra lateral del sitio.',
     'Todos los patrocinadores activos aparecen en posiciones aleatorias de las listas de proyectos y Showcase.',
     'Todos los patrocinadores activos también aparecen en el README de este proyecto de GitHub.',
@@ -164,12 +164,12 @@ const ptBr = {
   claim: (rank: number, amount: number) => `Assuma o ${rank}º lugar por $${amount}`, claimBody: 'Escolha qualquer valor a partir de $5 em etapas de $5. Todos os pagamentos feitos para o mesmo link são somados.',
   amount: 'Valor', amountHint: (amount: number) => `A partir de $${amount}, em etapas de $5.`, name: 'Nome do produto', namePlaceholder: 'Seu produto',
   url: 'Link do produto', urlPlaceholder: 'https://yourproduct.com', submit: 'Assumir posição', stripe: 'Stripe Checkout', decreaseAmount: 'Diminuir o valor em 5 dólares', increaseAmount: 'Aumentar o valor em 5 dólares',
-  boardTitle: 'Painel de patrocinadores', boardIntro: 'Os pagamentos confirmados são ordenados pelo total decrescente e depois pelo horário do pagamento mais recente, também decrescente.',
+  boardTitle: 'Painel de patrocinadores', boardIntro: 'Os pagamentos confirmados são ordenados pelo total decrescente e depois pelo horário do pagamento mais recente em ordem crescente.',
   emptyTitle: 'Ainda não há patrocinadores', emptyBody: 'O primeiro pagamento confirmado aparecerá aqui e nos demais espaços do bestjev.',
   clicks: 'cliques',
   rulesTitle: 'Regras de patrocínio', rules: [
     'O valor mínimo é $5 e deve ser múltiplo de $5. Não é necessário superar o patrocinador que está em primeiro lugar.',
-    'Os pagamentos do mesmo link são somados. A classificação usa o total decrescente e o horário do pagamento mais recente decrescente.',
+    'Os pagamentos do mesmo link são somados. A classificação usa o total decrescente e o horário do pagamento mais recente crescente.',
     'Os três patrocinadores mais bem classificados aparecem na barra lateral do site.',
     'Todos os patrocinadores ativos aparecem em posições aleatórias nas listas de projetos e Showcase.',
     'Todos os patrocinadores ativos também aparecem no README deste projeto no GitHub.',
@@ -258,10 +258,10 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
             <ol class="sponsor-board-list" data-sponsor-board hidden={rankedSponsors.length === 0}>
               {rankedSponsors.map((sponsor, index) => (
                 <li class="sponsor-board-row">
-                  <span class:list={['board-logo', `sponsor-logo-${sponsor.logoTone}`]}><span aria-hidden="true">{sponsor.name.slice(0, 1).toUpperCase()}</span><img src={faviconUrl(sponsor.name, sponsor.url)} alt="" width="52" height="52" loading="lazy" /></span>
                   <span class="board-rank">#{index + 1}</span>
+                  <span class:list={['board-logo', `sponsor-logo-${sponsor.logoTone}`]}><span aria-hidden="true">{sponsor.name.slice(0, 1).toUpperCase()}</span><img src={sponsor.logoUrl ?? faviconUrl(sponsor.name, sponsor.url)} alt="" width="52" height="52" loading="lazy" /></span>
                   <div class="board-product"><h3><a href={sponsor.url} target="_blank" rel="sponsored noreferrer" data-sponsor-click-url={sponsor.url}>{sponsor.name} <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" /></a></h3><strong>${sponsor.amountUsd}</strong></div>
-                  <div class="board-detail"><p>{sponsor.description}</p><div class="board-meta"><span>{domain(sponsor.url)}</span><span>·</span><span>{sponsor.clicks} {copy.clicks}</span><span>·</span><button class="rank-price-button" type="button" data-claim-amount={sponsor.amountUsd}>{copy.claim(getProjectedSponsorRank(rankedSponsors, sponsor.amountUsd), sponsor.amountUsd)}</button></div></div>
+                  <div class="board-detail"><p>{sponsor.description}</p><div class="board-meta"><span>{domain(sponsor.url)}</span><span>·</span><span>{sponsor.clicks} {copy.clicks}</span></div></div>
                 </li>
               ))}
             </ol>
@@ -311,9 +311,10 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
         localeMenu?.toggleAttribute('hidden', !open);
       });
 
-      const faviconFor = (name, url) => name === 'blink.review'
-        ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(url)}&sz=128`
-        : `${new URL(url).origin}/favicon.ico`;
+      const faviconFor = (sponsor) => sponsor.logoUrl
+        ?? (sponsor.name === 'blink.review'
+          ? `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(sponsor.url)}&sz=128`
+          : `${new URL(sponsor.url).origin}/favicon.ico`);
       const domainFor = (url) => new URL(url).hostname.replace(/^www\./, '');
       const replaceClaim = (template, rank, amount) => template
         .replace('__RANK__', String(rank))
@@ -337,7 +338,7 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
           : undefined;
         const projectedTotal = amount + (currentSponsor?.amountUsd ?? 0);
         return 1 + sponsors.filter((sponsor) =>
-          sponsor.url !== currentSponsor?.url && sponsor.amountUsd > projectedTotal
+          sponsor.url !== currentSponsor?.url && sponsor.amountUsd >= projectedTotal
         ).length;
       };
       const syncAmountControl = (normalize = false) => {
@@ -376,16 +377,6 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
       amountInput?.addEventListener('change', () => syncAmountControl(true));
       productUrlInput?.addEventListener('input', () => syncAmountControl());
       productUrlInput?.addEventListener('change', () => syncAmountControl());
-      document.querySelector('[data-sponsor-board]')?.addEventListener('click', (event) => {
-        if (!(event.target instanceof Element)) return;
-        const button = event.target.closest('[data-claim-amount]');
-        if (!(button instanceof HTMLButtonElement) || !(amountInput instanceof HTMLInputElement)) return;
-        amountWasChanged = true;
-        amountInput.value = button.dataset.claimAmount ?? String(minimumIncrementUsd);
-        syncAmountControl(true);
-        amountInput.focus();
-        document.querySelector('.claim-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
       syncAmountControl(true);
 
       fetch(endpoint, {
@@ -416,7 +407,7 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
           const fallback = document.createElement('span');
           fallback.textContent = sponsor.name.slice(0, 1).toUpperCase();
           const image = document.createElement('img');
-          image.src = faviconFor(sponsor.name, sponsor.url);
+          image.src = faviconFor(sponsor);
           image.alt = '';
           image.width = 52;
           image.height = 52;
@@ -453,26 +444,13 @@ const domain = (url: string) => new URL(url).hostname.replace(/^www\./, '');
           separatorOne.textContent = '·';
           const clicks = document.createElement('span');
           clicks.textContent = `${sponsor.clicks} ${clicksLabel}`;
-          const separatorTwo = document.createElement('span');
-          separatorTwo.textContent = '·';
-          const next = document.createElement('button');
-          next.className = 'rank-price-button';
-          next.type = 'button';
-          next.dataset.claimAmount = String(sponsor.amountUsd);
-          next.textContent = replaceClaim(
-            claimTemplate,
-            projectedRank(sponsor.amountUsd),
-            sponsor.amountUsd,
-          );
           meta.appendChild(domain);
           meta.appendChild(separatorOne);
           meta.appendChild(clicks);
-          meta.appendChild(separatorTwo);
-          meta.appendChild(next);
           detail.appendChild(description);
           detail.appendChild(meta);
-          row.appendChild(logo);
           row.appendChild(rank);
+          row.appendChild(logo);
           row.appendChild(product);
           row.appendChild(detail);
           return row;

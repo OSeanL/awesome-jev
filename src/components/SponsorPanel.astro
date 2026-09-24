@@ -82,7 +82,7 @@ const faviconUrl = (name: string, url: string) => name === 'blink.review'
           >
             <span class:list={['sponsor-logo', `sponsor-logo-${sponsor.logoTone}`]} aria-hidden="true">
               <span>{sponsor.name.slice(0, 1).toUpperCase()}</span>
-              <img src={faviconUrl(sponsor.name, sponsor.url)} alt="" width="28" height="28" loading="lazy" decoding="async" />
+              <img src={sponsor.logoUrl ?? faviconUrl(sponsor.name, sponsor.url)} alt="" width="28" height="28" loading="lazy" decoding="async" />
             </span>
             <strong>#{rank}</strong>
             <span class="sponsor-name">{sponsor.name}</span>
@@ -99,6 +99,7 @@ const faviconUrl = (name: string, url: string) => name === 'blink.review'
     sponsors: Array<{
       name: string;
       url: string;
+      logoUrl?: string;
       logoTone: 'light' | 'dark';
     }>;
   };
@@ -160,7 +161,7 @@ const faviconUrl = (name: string, url: string) => name === 'blink.review'
         const fallback = document.createElement('span');
         fallback.textContent = sponsor.name.slice(0, 1).toUpperCase();
         const image = document.createElement('img');
-        image.src = faviconFor(sponsor.name, sponsor.url);
+        image.src = sponsor.logoUrl ?? faviconFor(sponsor.name, sponsor.url);
         image.alt = '';
         image.width = 28;
         image.height = 28;

@@ -8,7 +8,7 @@ export interface RankableSponsor {
 export const rankSponsors = <Sponsor extends RankableSponsor>(sponsors: readonly Sponsor[]) =>
   [...sponsors].sort((first, second) =>
     second.amountUsd - first.amountUsd
-    || second.sponsoredAt.localeCompare(first.sponsoredAt)
+    || first.sponsoredAt.localeCompare(second.sponsoredAt)
     || first.name.localeCompare(second.name, 'en'),
   );
 
@@ -38,6 +38,6 @@ export const getProjectedSponsorRank = (
 
   return 1 + sponsors.filter((sponsor) =>
     sponsor.url !== currentSponsor?.url
-    && sponsor.amountUsd > projectedTotalUsd,
+    && sponsor.amountUsd >= projectedTotalUsd,
   ).length;
 };

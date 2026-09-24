@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const showcase = JSON.parse(readFileSync(new URL('../src/data/showcase.json', import.meta.url), 'utf8'));
+const showcaseStyles = readFileSync(new URL('../src/styles/showcase.css', import.meta.url), 'utf8');
 
 test('the rendered showcase card uses a native dialog-trigger button without a source icon', () => {
   const outputCandidates = [
@@ -96,4 +97,14 @@ test('showcase initializes its dialog from a template only after interaction', (
   assert.match(source, /dialogTemplate\?\.content\.firstElementChild\?\.cloneNode\(true\)/);
   assert.match(source, /document\.body\.appendChild\(dialog\)/);
   assert.doesNotMatch(source, /const showcaseDialog = document\.querySelector/);
+});
+
+test('showcase dialog constrains portrait videos to the available media height', () => {
+  const videoRule = showcaseStyles.match(/\.showcase-dialog-media video\s*\{[\s\S]*?\}/)?.[0] ?? '';
+
+  assert.match(videoRule, /width:\s*auto/);
+  assert.match(videoRule, /height:\s*auto/);
+  assert.match(videoRule, /max-width:\s*100%/);
+  assert.match(videoRule, /max-height:\s*100%/);
+  assert.match(videoRule, /object-fit:\s*contain/);
 });

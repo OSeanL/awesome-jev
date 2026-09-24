@@ -10,6 +10,7 @@ interface SponsorRow {
   url: string;
   amount_usd: number;
   paid_at: string;
+  logo_url: string | null;
   clicks: number;
 }
 
@@ -26,6 +27,7 @@ const rowToSponsor = (row: SponsorRow): Sponsor => ({
   url: row.url,
   amountUsd: row.amount_usd,
   sponsoredAt: row.paid_at,
+  logoUrl: row.logo_url ?? undefined,
   logoTone: logoToneFor(row.name),
   description: descriptionFor(row.name, row.url),
   clicks: row.clicks,
@@ -61,9 +63,18 @@ export async function getRankedSponsors(
         totals.url,
         totals.amount_usd,
         totals.paid_at,
+        (
+          SELECT payment.logo_url
+          FROM sponsors AS payment
+          WHERE payment.active = 1
+            AND payment.url = totals.url
+            AND payment.logo_url IS NOT NULL
+          ORDER BY payment.paid_at DESC, payment.checkout_session_id DESC
+          LIMIT 1
+        ) AS logo_url,
         totals.clicks
       FROM sponsor_totals AS totals
-      ORDER BY amount_usd DESC, paid_at DESC, name ASC
+      ORDER BY amount_usd DESC, paid_at ASC, name ASC
       ${limit ? 'LIMIT ?1' : ''}
     `;
     const statement = database.prepare(query);

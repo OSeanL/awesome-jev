@@ -106,20 +106,19 @@ html[data-language="en"] .sponsors-intro h1 { font-size: clamp(2.25rem, 3.5vw, 3
 .board-heading h2 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 650; letter-spacing: -.035em; line-height: 1.02; text-wrap: balance; }
 .board-heading p { max-width: 58ch; margin: 0; color: var(--muted); line-height: 1.6; text-wrap: pretty; }
 
-.sponsor-board-list { width: min(760px, 100%); margin: 0 auto; padding: 0; display: grid; gap: 16px; list-style: none; }
+.sponsor-board-list { width: min(760px, 100%); margin: 0 auto; padding: 0; display: grid; gap: 12px; list-style: none; }
 .sponsor-board-row {
   --rank-surface: #fff;
   --rank-border: var(--line-dark);
   --rank-ink: var(--ink);
   --rank-muted: #4f4f4b;
   --rank-accent: var(--blue-deep);
-  --rank-badge-surface: var(--blue-soft);
   min-width: 0;
-  padding: 20px;
+  padding: 14px 16px;
   display: grid;
-  grid-template-columns: 56px 36px minmax(140px, .72fr) minmax(0, 1.28fr);
+  grid-template-columns: 32px 48px minmax(132px, .72fr) minmax(0, 1.28fr);
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   border: 1px solid var(--rank-border);
   border-radius: 12px;
   background: var(--rank-surface);
@@ -133,7 +132,6 @@ html[data-language="en"] .sponsors-intro h1 { font-size: clamp(2.25rem, 3.5vw, 3
   --rank-ink: #fff;
   --rank-muted: #e0e8ff;
   --rank-accent: #fff;
-  --rank-badge-surface: rgba(255,255,255,.14);
 }
 .sponsor-board-row:nth-child(2) {
   --rank-surface: var(--blue-soft);
@@ -141,7 +139,6 @@ html[data-language="en"] .sponsors-intro h1 { font-size: clamp(2.25rem, 3.5vw, 3
   --rank-ink: #14224a;
   --rank-muted: #3f4f79;
   --rank-accent: #1542ba;
-  --rank-badge-surface: #d9e4ff;
 }
 .sponsor-board-row:nth-child(3) {
   --rank-surface: #f5f7ff;
@@ -149,25 +146,20 @@ html[data-language="en"] .sponsors-intro h1 { font-size: clamp(2.25rem, 3.5vw, 3
   --rank-ink: #1c2847;
   --rank-muted: #4a587d;
   --rank-accent: var(--blue-deep);
-  --rank-badge-surface: #e5ebff;
 }
 .sponsor-board-row:hover { transform: translateY(-2px); }
-.board-logo { position: relative; width: 56px; height: 56px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--rank-border); border-radius: 14px; background: #fff; color: var(--ink); font: 700 .9rem/1 var(--font-mono); }
+.board-logo { position: relative; width: 48px; height: 48px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--rank-border); border-radius: 12px; background: #fff; color: var(--ink); font: 700 .82rem/1 var(--font-mono); }
 .board-logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.board-rank { width: 36px; min-height: 24px; display: inline-grid; place-items: center; border: 1px solid color-mix(in srgb, var(--rank-accent) 28%, transparent); border-radius: 999px; background: var(--rank-badge-surface); color: var(--rank-accent); font: 700 .75rem/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.board-rank { width: 32px; color: var(--rank-accent); font: 700 .72rem/1 var(--font-mono); font-variant-numeric: tabular-nums; text-align: center; }
 .board-product { min-width: 0; }
-.board-product h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.board-product h3 { margin: 0; font-size: 1.125rem; letter-spacing: -.02em; overflow-wrap: anywhere; }
 .board-product a { text-decoration: none; }
 .board-product a:hover { color: var(--rank-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .sponsor-board-row:nth-child(1) .board-product a:focus-visible { outline-color: #fff; }
-.board-product strong { display: block; margin-top: 7px; font: 700 .875rem/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.board-product strong { display: block; margin-top: 5px; font: 700 .8125rem/1 var(--font-mono); font-variant-numeric: tabular-nums; }
 .board-detail { min-width: 0; max-width: 58ch; }
-.board-detail p { margin: 0; color: var(--rank-muted); font-size: .9rem; line-height: 1.6; text-wrap: pretty; }
-.board-meta { display: flex; flex-wrap: wrap; gap: 6px 9px; margin-top: 12px; color: var(--rank-muted); font: .67rem/1.45 var(--font-mono); overflow-wrap: anywhere; }
-.rank-price-button { padding: 0; border: 0; background: transparent; color: var(--rank-accent); font: inherit; font-weight: 650; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--rank-accent) 35%, transparent); text-underline-offset: .18em; cursor: pointer; }
-.rank-price-button:hover { text-decoration-color: currentColor; }
-.rank-price-button:focus-visible { border-radius: 2px; outline: 2px solid currentColor; outline-offset: 3px; }
-
+.board-detail p { margin: 0; color: var(--rank-muted); font-size: .84rem; line-height: 1.45; text-wrap: pretty; }
+.board-meta { display: flex; flex-wrap: wrap; gap: 5px 8px; margin-top: 6px; color: var(--rank-muted); font: .64rem/1.4 var(--font-mono); overflow-wrap: anywhere; }
 .sponsor-board-empty { width: min(620px, 100%); padding: 2px 0 0; text-align: left; }
 .sponsor-board-empty strong { display: block; font-size: 1.25rem; letter-spacing: -.015em; }
 .sponsor-board-empty p { max-width: 46ch; margin: 8px 0 0; color: var(--muted); line-height: 1.55; }
@@ -194,11 +186,12 @@ html[data-language="en"] .sponsors-intro h1 { font-size: clamp(2.25rem, 3.5vw, 3
   .sponsors-intro > p { font-size: .975rem; }
   .claim-card { padding: var(--form-space-6); }
   .sponsor-board { padding-top: 44px; }
-  .sponsor-board-row { grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "logo product" "rank product" "detail detail"; align-items: start; gap: 8px 14px; padding: 20px 18px; }
-  .board-logo { grid-area: logo; }
-  .board-rank { grid-area: rank; }
-  .board-product { grid-area: product; align-self: center; }
-  .board-detail { grid-area: detail; margin-top: 10px; }
+  .sponsor-board-list { gap: 10px; }
+  .sponsor-board-row { grid-template-columns: 28px 44px minmax(0, 1fr); grid-template-areas: "rank logo product" "rank logo detail"; align-items: start; column-gap: 10px; row-gap: 6px; padding: 14px; }
+  .board-logo { grid-area: logo; width: 44px; height: 44px; }
+  .board-rank { grid-area: rank; width: 28px; padding-top: 8px; }
+  .board-product { grid-area: product; align-self: start; }
+  .board-detail { grid-area: detail; }
   .sponsor-rules { padding-top: 46px; }
 }
 
