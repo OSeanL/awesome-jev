@@ -1,0 +1,29 @@
+---
+import { Search } from '@lucide/astro';
+
+type Props = {
+  searchId: string;
+  placeholder: string;
+  searchLabel?: string;
+  hasAction?: boolean;
+  className?: string;
+};
+
+const {
+  searchId,
+  placeholder,
+  searchLabel = placeholder,
+  hasAction = false,
+  className = '',
+} = Astro.props;
+---
+
+<div class:list={['filter-panel', 'filter-dock', !hasAction && 'filter-panel-without-action', className]}>
+  <slot name="picker" />
+  <label class="search-box" for={searchId}>
+    <span aria-hidden="true"><Search size={18} stroke-width={1.8} /></span>
+    <input id={searchId} type="search" placeholder={placeholder} aria-label={searchLabel} autocomplete="off" />
+    <kbd aria-hidden="true">/</kbd>
+  </label>
+  {hasAction && <slot name="action" />}
+</div>

@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "awesome-jev",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-09-23",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "jevbest.com/*",
+      "zone_name": "jevbest.com"
+    }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "d1_databases": [
+    {
+      "binding": "SPONSORS_DB",
+      "database_name": "awesome-jev-sponsors",
+      "database_id": "64fb662a-9371-4539-a230-69b3836da7cf",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "SPONSOR_ASSETS",
+      "bucket_name": "awesome-jev-showcase"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

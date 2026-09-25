@@ -13,7 +13,7 @@ export const GET: APIRoute = () => {
     url: 'https://jevbest.com/',
     repository: 'https://github.com/heyjunpenn/awesome-jev',
     license: 'https://opensource.org/license/mit',
-    updated: '2026-09-20',
+    updated: '2026-09-25',
     stats: catalogStats,
     categories: source.categories,
     projects: source.projects.map(({ starsLabel, searchText, ...project }) => {

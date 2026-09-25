@@ -1,0 +1,292 @@
+---
+import '../styles/global.css';
+import '../styles/changelog.css';
+import SiteHero from '../components/SiteHero.astro';
+import SiteLayout from '../components/SiteLayout.astro';
+import { defaultLocale, getLocale, localeConfig, locales } from '../i18n';
+import { getLocalePath } from '../i18n/config';
+import { getChangelogMessages } from '../i18n/changelog';
+import { catalogStats, getCatalog } from '../lib/catalog';
+import { ArrowUpRight, CalendarDays, ChevronDown, FolderGit2, ListRestart, Star } from '@lucide/astro';
+
+const base = import.meta.env.BASE_URL;
+const locale = getLocale(Astro.props.locale ?? Astro.currentLocale);
+const copy = getChangelogMessages(locale);
+const { categories, projects } = getCatalog(locale);
+const repositoryUrl = process.env.GITHUB_REPOSITORY
+  ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
+  : 'https://github.com/heyjunpenn/awesome-jev';
+const changelogPath = (targetLocale = locale) => `${getLocalePath(targetLocale)}changelog/`;
+const siteUrl = 'https://jevbest.com/';
+const pageUrl = `${siteUrl}${changelogPath()}`;
+const authorUrl = 'https://github.com/heyjunpenn';
+const organizationId = `${siteUrl}#organization`;
+const authorId = `${siteUrl}#author`;
+const websiteId = `${siteUrl}#website`;
+const categoryOrder = new Map(categories.map((category, index) => [category.id, index]));
+const groupedByDate = new Map<string, typeof projects>();
+
+for (const project of projects) {
+  const group = groupedByDate.get(project.addedDate) ?? [];
+  group.push(project);
+  groupedByDate.set(project.addedDate, group);
+}
+
+const days = [...groupedByDate.entries()]
+  .sort(([left], [right]) => right.localeCompare(left))
+  .map(([date, dayProjects]) => ({
+    date,
+    projects: dayProjects,
+    categories: [...Map.groupBy(dayProjects, (project) => project.categoryId).entries()]
+      .sort(([left], [right]) => (categoryOrder.get(left) ?? 99) - (categoryOrder.get(right) ?? 99))
+      .map(([categoryId, categoryProjects]) => ({
+        id: categoryId,
+        name: categoryProjects[0]?.category ?? categoryId,
+        projects: categoryProjects,
+      })),
+  }));
+
+const dateFormatter = new Intl.DateTimeFormat(localeConfig[locale].languageTag, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'Asia/Taipei',
+});
+const formatDate = (date: string) => dateFormatter.format(new Date(`${date}T12:00:00+08:00`));
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'bestjev',
+      url: siteUrl,
+      logo: `${siteUrl}favicon.png`,
+      sameAs: ['https://github.com/heyjunpenn/awesome-jev', 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'Person',
+      '@id': authorId,
+      name: 'heyjunpenn',
+      url: authorUrl,
+      sameAs: [authorUrl, 'https://x.com/heyjunpenn'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: 'bestjev',
+      url: siteUrl,
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#webpage`,
+      name: copy.heroTitle,
+      description: copy.pageDescription,
+      url: pageUrl,
+      inLanguage: localeConfig[locale].languageTag,
+      datePublished: days.at(-1)?.date ?? catalogStats.today,
+      dateModified: catalogStats.today,
+      author: { '@id': authorId },
+      publisher: { '@id': organizationId },
+      isPartOf: { '@id': websiteId },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: days.length,
+        itemListElement: days.map((day, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: `${day.date}: ${day.projects.length} ${copy.additions}`,
+          url: `${pageUrl}#day-${day.date}`,
+        })),
+      },
+    },
+  ],
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang={localeConfig[locale].languageTag} data-language={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style is:inline>@media (max-width: 1080px) { .sidebar { visibility: hidden; transform: translateX(-102%); } body.menu-open .sidebar { visibility: visible; transform: translateX(0); } }</style>
+    <meta name="theme-color" content="#f7f7f5" />
+    <meta name="description" content={copy.pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={pageUrl} />
+    {locales.map((candidate) => <link rel="alternate" hreflang={localeConfig[candidate].languageTag} href={`${siteUrl}${changelogPath(candidate)}`} />)}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${changelogPath(defaultLocale)}`} />
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href={`${base}favicon.ico`} />
+    <link rel="icon" type="image/png" sizes="96x96" href={`${base}favicon-96x96.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="bestjev" />
+    <meta property="og:title" content={copy.pageTitle} />
+    <meta property="og:description" content={copy.pageDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content={localeConfig[locale].openGraphLocale} />
+    <meta property="og:image" content="https://jevbest.com/readme/awesome-jev-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={copy.pageTitle} />
+    <meta name="twitter:description" content={copy.pageDescription} />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
+    <title>{copy.pageTitle}</title>
+  </head>
+  <body class="changelog-body">
+    <div class="app-shell">
+      <SiteLayout locale={locale} activeSection="changelog" mainClass="changelog-main">
+        <SiteHero title={copy.heroTitle} summary={copy.heroSummary} id="changelog" titleId="changelog-title" className="changelog-hero">
+          <Fragment slot="copy-extra">
+            <div class="changelog-stats" aria-label={copy.timelineLabel}>
+              <span><CalendarDays size={15} stroke-width={1.8} aria-hidden="true" />{copy.dayCount(days.length)}</span>
+              <span><FolderGit2 size={15} stroke-width={1.8} aria-hidden="true" />{copy.projectCount(projects.length)}</span>
+            </div>
+            <a class="changelog-github" href={`${repositoryUrl}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer" title={copy.githubTitle}>
+              {copy.githubCta}<ArrowUpRight size={15} stroke-width={1.8} aria-hidden="true" />
+            </a>
+          </Fragment>
+          <div class="changelog-visual" slot="visual" aria-hidden="true">
+            <ListRestart size={62} stroke-width={1.25} />
+            <strong>{days.length}</strong>
+            <span>{copy.dayCount(days.length)}</span>
+          </div>
+        </SiteHero>
+
+        <section class="changelog-context" aria-labelledby="changelog-context-title">
+          <div class="changelog-context-heading">
+            <span>{copy.contextLabel}</span>
+            <h2 id="changelog-context-title">{copy.contextHeading}</h2>
+          </div>
+          <div class="changelog-context-copy">
+            <p>{copy.contextSummary}</p>
+            <p>{copy.sourceSummary} <a href={`${repositoryUrl}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer">{copy.sourceLink}</a>.</p>
+            <p class="changelog-byline">{copy.bylineLabel} <a href={authorUrl} target="_blank" rel="author noreferrer">heyjunpenn</a></p>
+          </div>
+        </section>
+
+        <section class="changelog-timeline" aria-label={copy.timelineLabel}>
+          {days.map((day, dayIndex) => (
+            <details class="changelog-day" id={`day-${day.date}`} aria-labelledby={`day-heading-${day.date}`} open={dayIndex === 0}>
+              <summary class="changelog-day-head">
+                <div>
+                  <h2 id={`day-heading-${day.date}`}><time datetime={day.date}>{formatDate(day.date)}</time></h2>
+                  {dayIndex === 0 && <span>{copy.latest}</span>}
+                </div>
+                <div class="changelog-day-count">
+                  <strong>+{day.projects.length} {copy.additions}</strong>
+                  <ChevronDown class="changelog-day-chevron" size={18} stroke-width={2} aria-hidden="true" />
+                </div>
+              </summary>
+              <div class="changelog-category-list">
+                {day.categories.map((category) => (
+                  <section class="changelog-category" aria-labelledby={`${day.date}-${category.id}`}>
+                    <h3 id={`${day.date}-${category.id}`}>
+                      <span>{category.name}</span><small>{category.projects.length}</small>
+                    </h3>
+                    <ul>
+                      {category.projects.map((project) => (
+                        <li>
+                          <a href={project.url} target="_blank" rel="noreferrer">
+                            <strong>{project.name}</strong>
+                            <span class="changelog-project-stars"><Star size={12} stroke-width={1.8} aria-hidden="true" />{project.starsLabel}</span>
+                            <span>{project.language}</span>
+                            <ArrowUpRight size={14} stroke-width={1.8} aria-hidden="true" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </details>
+          ))}
+        </section>
+      </SiteLayout>
+    </div>
+
+    <script>
+      const localePicker = document.querySelector<HTMLElement>('[data-locale-picker]');
+      const localeTrigger = localePicker?.querySelector<HTMLButtonElement>('.locale-trigger');
+      const localeMenu = localePicker?.querySelector<HTMLElement>('.locale-menu');
+      const localeOptions = [...(localePicker?.querySelectorAll<HTMLAnchorElement>('.locale-option') ?? [])];
+      const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
+      const sidebarClose = document.querySelector<HTMLButtonElement>('.sidebar-close');
+      const navScrim = document.querySelector<HTMLButtonElement>('.nav-scrim');
+      const sidebar = document.querySelector<HTMLElement>('#sidebar');
+      const compactLayout = window.matchMedia('(max-width: 1080px)');
+
+      const setLocaleMenuOpen = (open: boolean, focusOption = false) => {
+        if (!(localeTrigger instanceof HTMLButtonElement) || !(localeMenu instanceof HTMLElement)) return;
+        localeTrigger.setAttribute('aria-expanded', String(open));
+        localeMenu.hidden = !open;
+        if (open && focusOption) {
+          (localeOptions.find((option) => option.getAttribute('aria-selected') === 'true') ?? localeOptions[0])?.focus();
+        }
+      };
+
+      const syncSidebarAccess = () => {
+        const hidden = compactLayout.matches && !document.body.classList.contains('menu-open');
+        if (!sidebar) return;
+        sidebar.toggleAttribute('inert', hidden);
+        sidebar.toggleAttribute('aria-hidden', hidden);
+      };
+
+      const setMenuOpen = (open: boolean, restoreFocus = false) => {
+        const shouldOpen = compactLayout.matches && open;
+        if (shouldOpen && sidebar) {
+          sidebar.removeAttribute('inert');
+          sidebar.removeAttribute('aria-hidden');
+        }
+        document.body.classList.toggle('menu-open', shouldOpen);
+        menuButton?.setAttribute('aria-expanded', String(shouldOpen));
+        if (!shouldOpen) setLocaleMenuOpen(false);
+        syncSidebarAccess();
+        if (shouldOpen) requestAnimationFrame(() => sidebarClose?.focus());
+        if (!shouldOpen && restoreFocus) menuButton?.focus();
+      };
+
+      menuButton?.addEventListener('click', () => setMenuOpen(!document.body.classList.contains('menu-open')));
+      sidebarClose?.addEventListener('click', () => setMenuOpen(false, true));
+      navScrim?.addEventListener('click', () => setMenuOpen(false, true));
+      compactLayout.addEventListener('change', () => setMenuOpen(false));
+
+      localeTrigger?.addEventListener('click', () => {
+        setLocaleMenuOpen(localeTrigger.getAttribute('aria-expanded') !== 'true');
+      });
+      localeTrigger?.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          setLocaleMenuOpen(true, true);
+        } else if (event.key === 'Escape') {
+          setLocaleMenuOpen(false);
+        }
+      });
+      localeOptions.forEach((option, index) => option.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          const offset = event.key === 'ArrowDown' ? 1 : -1;
+          localeOptions[(index + offset + localeOptions.length) % localeOptions.length]?.focus();
+        } else if (event.key === 'Home' || event.key === 'End') {
+          event.preventDefault();
+          localeOptions[event.key === 'Home' ? 0 : localeOptions.length - 1]?.focus();
+        } else if (event.key === 'Escape') {
+          event.preventDefault();
+          setLocaleMenuOpen(false);
+          localeTrigger?.focus();
+        }
+      }));
+      document.addEventListener('click', (event) => {
+        if (localePicker && !localePicker.contains(event.target as Node)) setLocaleMenuOpen(false);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !localePicker?.contains(event.target as Node)) setMenuOpen(false, true);
+      });
+      localePicker?.addEventListener('focusout', () => requestAnimationFrame(() => {
+        if (!localePicker.contains(document.activeElement)) setLocaleMenuOpen(false);
+      }));
+      syncSidebarAccess();
+    </script>
+  </body>
+</html>

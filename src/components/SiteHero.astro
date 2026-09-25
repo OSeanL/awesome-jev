@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  id?: string;
+  titleId?: string;
+  className?: string;
+  filtered?: boolean;
+}
+
+const {
+  title,
+  summary,
+  id = 'overview',
+  titleId = `${id}-title`,
+  className,
+  filtered = false,
+} = Astro.props;
+---
+
+<section class:list={['hero', className]} id={id} aria-labelledby={titleId}>
+  <div class="hero-shell">
+    <div class="hero-copy">
+      <h1 id={titleId} class:list={[filtered && 'filtered']}>{title}</h1>
+      <p>{summary}</p>
+      <slot name="copy-extra" />
+    </div>
+    <div class="hero-visual">
+      <slot name="visual" />
+    </div>
+  </div>
+</section>

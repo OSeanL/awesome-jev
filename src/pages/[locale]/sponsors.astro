@@ -1,0 +1,10 @@
+---
+import SponsorsPage from '../sponsors.astro';
+import { getLocale } from '../../i18n';
+
+export const prerender = false;
+
+const locale = getLocale(Astro.params.locale);
+---
+
+<SponsorsPage locale={locale} />

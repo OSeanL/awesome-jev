@@ -1,0 +1,320 @@
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  surface: 'projects' | 'showcase';
+}
+
+const { locale, surface } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const copy: Record<Locale, { sponsored: string; visit: string; total: (amount: number) => string }> = {
+  en: { sponsored: 'Sponsor', visit: 'Visit sponsor', total: (amount) => `$${amount} total support` },
+  zh: { sponsored: '赞助商', visit: '访问赞助商', total: (amount) => `累计赞助 $${amount}` },
+  ja: { sponsored: 'スポンサー', visit: 'スポンサーを見る', total: (amount) => `累計 $${amount}` },
+  ko: { sponsored: '스폰서', visit: '스폰서 방문', total: (amount) => `누적 후원 $${amount}` },
+  es: { sponsored: 'Patrocinador', visit: 'Visitar patrocinador', total: (amount) => `$${amount} de apoyo total` },
+  'pt-br': { sponsored: 'Patrocinador', visit: 'Visitar patrocinador', total: (amount) => `$${amount} em apoio total` },
+};
+const text = copy[locale];
+---
+
+<span
+  hidden
+  data-sponsor-placement-loader
+  data-surface={surface}
+  data-endpoint={`${base}api/sponsors/`}
+  data-sponsored={text.sponsored}
+  data-visit={text.visit}
+  data-total-template={text.total(Number.NaN).replace('NaN', '__AMOUNT__')}
+></span>
+
+<script>
+  import {
+    planSponsorSlots,
+    sponsorPlacementPageSize,
+    type SponsorSlotChoice,
+  } from '../lib/sponsor-placement';
+
+  type Sponsor = {
+    name: string;
+    url: string;
+    amountUsd: number;
+    logoUrl?: string;
+    logoTone: 'light' | 'dark';
+  };
+
+  type SponsorPayload = { sponsors: Sponsor[] };
+
+  const faviconFor = (sponsor: Sponsor) => {
+    if (sponsor.logoUrl) return sponsor.logoUrl;
+    try {
+      return `${new URL(sponsor.url).origin}/favicon.ico`;
+    } catch {
+      return '';
+    }
+  };
+
+  const sponsorDomain = (url: string) => {
+    try {
+      return new URL(url).hostname.replace(/^www\./, '');
+    } catch {
+      return url;
+    }
+  };
+
+  const createLogo = (sponsor: Sponsor, className: string) => {
+    const logo = document.createElement('span');
+    logo.className = `${className} sponsor-logo-${sponsor.logoTone}`;
+    const fallback = document.createElement('span');
+    fallback.textContent = sponsor.name.slice(0, 1).toUpperCase();
+    logo.appendChild(fallback);
+    const favicon = faviconFor(sponsor);
+      if (favicon) {
+        const image = document.createElement('img');
+        image.src = favicon;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.addEventListener('error', () => image.remove(), { once: true });
+        logo.appendChild(image);
+      }
+    return logo;
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-sponsor-placement-loader]').forEach(async (loader) => {
+    const endpoint = loader.dataset.endpoint;
+    const surface = loader.dataset.surface;
+    if (!endpoint || !surface) return;
+
+    const sponsoredLabel = loader.dataset.sponsored ?? 'Sponsor';
+    const visitLabel = loader.dataset.visit ?? 'Visit sponsor';
+    const totalTemplate = loader.dataset.totalTemplate ?? '$__AMOUNT__ total support';
+    const totalLabel = (amount: number) => totalTemplate.replace('__AMOUNT__', String(amount));
+    const slotChoices = new Map<string, SponsorSlotChoice>();
+    const productChoices = new Map<string, number>();
+    let sponsors: Sponsor[] | undefined;
+
+    const createProjectPlacement = (sponsor: Sponsor) => {
+      const item = document.createElement('li');
+      item.className = 'sponsor-project-placement';
+      item.dataset.sponsorPlacement = '';
+      const link = document.createElement('a');
+      link.href = sponsor.url;
+      link.target = '_blank';
+      link.rel = 'sponsored noreferrer';
+      link.ariaLabel = `${visitLabel}: ${sponsor.name}`;
+      link.dataset.sponsorClickUrl = sponsor.url;
+
+      const label = document.createElement('span');
+      label.className = 'sponsor-placement-label';
+      label.textContent = sponsoredLabel;
+      const logo = createLogo(sponsor, 'sponsor-placement-logo');
+      const identity = document.createElement('span');
+      identity.className = 'sponsor-placement-identity';
+      const name = document.createElement('strong');
+      name.textContent = sponsor.name;
+      const domain = document.createElement('span');
+      domain.textContent = sponsorDomain(sponsor.url);
+      identity.appendChild(name);
+      identity.appendChild(domain);
+      const amount = document.createElement('span');
+      amount.className = 'sponsor-placement-amount';
+      amount.textContent = totalLabel(sponsor.amountUsd);
+      const visit = document.createElement('span');
+      visit.className = 'sponsor-placement-visit';
+      visit.textContent = visitLabel;
+      link.appendChild(label);
+      link.appendChild(logo);
+      link.appendChild(identity);
+      link.appendChild(amount);
+      link.appendChild(visit);
+      item.appendChild(link);
+      return item;
+    };
+
+    const createShowcasePlacement = (sponsor: Sponsor) => {
+      const item = document.createElement('article');
+      item.className = 'showcase-sponsor-placement';
+      item.dataset.sponsorPlacement = '';
+      const link = document.createElement('a');
+      link.href = sponsor.url;
+      link.target = '_blank';
+      link.rel = 'sponsored noreferrer';
+      link.ariaLabel = `${visitLabel}: ${sponsor.name}`;
+      link.dataset.sponsorClickUrl = sponsor.url;
+      const visual = document.createElement('span');
+      visual.className = 'showcase-sponsor-visual';
+      const label = document.createElement('span');
+      label.className = 'sponsor-placement-label';
+      label.textContent = sponsoredLabel;
+      visual.appendChild(label);
+      visual.appendChild(createLogo(sponsor, 'showcase-sponsor-logo'));
+      const body = document.createElement('span');
+      body.className = 'showcase-sponsor-body';
+      const name = document.createElement('strong');
+      name.textContent = sponsor.name;
+      const domain = document.createElement('span');
+      domain.textContent = sponsorDomain(sponsor.url);
+      const meta = document.createElement('span');
+      meta.className = 'showcase-sponsor-meta';
+      const amount = document.createElement('span');
+      amount.textContent = totalLabel(sponsor.amountUsd);
+      const visit = document.createElement('b');
+      visit.textContent = visitLabel;
+      meta.appendChild(amount);
+      meta.appendChild(visit);
+      body.appendChild(name);
+      body.appendChild(domain);
+      body.appendChild(meta);
+      link.appendChild(visual);
+      link.appendChild(body);
+      item.appendChild(link);
+      return item;
+    };
+
+    const createSkeletonBar = (className: string) => {
+      const bar = document.createElement('span');
+      bar.className = `sponsor-skeleton-bar ${className}`;
+      return bar;
+    };
+
+    const createProjectSkeleton = () => {
+      const item = document.createElement('li');
+      item.className = 'sponsor-project-placement sponsor-placement-skeleton';
+      item.dataset.sponsorPlacement = '';
+      item.ariaHidden = 'true';
+      const shell = document.createElement('span');
+      shell.className = 'sponsor-project-skeleton';
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-label'));
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-logo'));
+      const identity = document.createElement('span');
+      identity.className = 'sponsor-skeleton-identity';
+      identity.appendChild(createSkeletonBar('sponsor-skeleton-title'));
+      identity.appendChild(createSkeletonBar('sponsor-skeleton-domain'));
+      shell.appendChild(identity);
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-amount'));
+      shell.appendChild(createSkeletonBar('sponsor-skeleton-action'));
+      item.appendChild(shell);
+      return item;
+    };
+
+    const createShowcaseSkeleton = () => {
+      const item = document.createElement('article');
+      item.className = 'showcase-sponsor-placement sponsor-placement-skeleton';
+      item.dataset.sponsorPlacement = '';
+      item.ariaHidden = 'true';
+      const visual = document.createElement('span');
+      visual.className = 'showcase-sponsor-visual sponsor-skeleton-visual';
+      visual.appendChild(createSkeletonBar('sponsor-skeleton-showcase-label'));
+      visual.appendChild(createSkeletonBar('sponsor-skeleton-showcase-logo'));
+      const body = document.createElement('span');
+      body.className = 'showcase-sponsor-body sponsor-skeleton-body';
+      body.appendChild(createSkeletonBar('sponsor-skeleton-showcase-title'));
+      body.appendChild(createSkeletonBar('sponsor-skeleton-showcase-domain'));
+      const meta = document.createElement('span');
+      meta.className = 'showcase-sponsor-meta sponsor-skeleton-meta';
+      meta.appendChild(createSkeletonBar('sponsor-skeleton-showcase-amount'));
+      meta.appendChild(createSkeletonBar('sponsor-skeleton-showcase-action'));
+      body.appendChild(meta);
+      item.appendChild(visual);
+      item.appendChild(body);
+      return item;
+    };
+
+    const placeSponsors = (
+      container: Element,
+      candidates: HTMLElement[],
+      pageSize: number,
+      keyFor: (candidate: HTMLElement, index: number) => string,
+      createPlacement: (sponsor: Sponsor) => HTMLElement,
+      createSkeleton: () => HTMLElement,
+    ) => {
+      container.querySelectorAll<HTMLElement>('[data-sponsor-placement-key][data-sponsor-position]').forEach((placement) => {
+        const key = placement.dataset.sponsorPlacementKey;
+        const position = Number(placement.dataset.sponsorPosition);
+        if (key && Number.isSafeInteger(position)) slotChoices.set(key, { position });
+      });
+      container.querySelectorAll('[data-sponsor-placement]').forEach((placement) => placement.remove());
+      const itemKeys = candidates.map(keyFor);
+      const slots = planSponsorSlots(
+        itemKeys,
+        pageSize,
+        slotChoices,
+      );
+
+      slots.forEach(({ key, pageStart, pageLength, position }) => {
+        if (sponsors?.length === 0) return;
+        const page = candidates.slice(pageStart, pageStart + pageLength);
+        const reference = position < pageLength
+          ? page[position]
+          : candidates[pageStart + pageLength] ?? page.at(-1)?.nextSibling ?? null;
+        let node: HTMLElement;
+        if (sponsors) {
+          let sponsorIndex = productChoices.get(key);
+          if (sponsorIndex === undefined || sponsorIndex >= sponsors.length) {
+            sponsorIndex = Math.floor(Math.random() * sponsors.length);
+            productChoices.set(key, sponsorIndex);
+          }
+          node = createPlacement(sponsors[sponsorIndex]);
+        } else {
+          node = createSkeleton();
+        }
+        node.dataset.sponsorPlacementKey = key;
+        node.dataset.sponsorPosition = String(position);
+        container.insertBefore(node, reference);
+      });
+    };
+
+    const placeProjectSponsors = () => {
+      const table = document.querySelector('#project-table');
+      if (!table) return;
+      const projects = [...table.querySelectorAll<HTMLElement>('[data-project]:not([hidden])')];
+      placeSponsors(
+        table,
+        projects,
+        sponsorPlacementPageSize,
+        (project, index) => project.querySelector<HTMLAnchorElement>('.project-name')?.href ?? String(index),
+        createProjectPlacement,
+        createProjectSkeleton,
+      );
+    };
+
+    const placeShowcaseSponsors = () => {
+      const grid = document.querySelector('#showcase-grid');
+      if (!grid) return;
+      const cards = [...grid.querySelectorAll<HTMLElement>('[data-showcase-card]')];
+      placeSponsors(
+        grid,
+        cards,
+        sponsorPlacementPageSize,
+        (card, index) => card.dataset.videoId ?? String(index),
+        createShowcasePlacement,
+        createShowcaseSkeleton,
+      );
+    };
+
+    if (surface === 'projects') {
+      placeProjectSponsors();
+      window.addEventListener('catalog:rendered', placeProjectSponsors);
+    } else {
+      placeShowcaseSponsors();
+      window.addEventListener('showcase:rendered', placeShowcaseSponsors);
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      });
+      if (!response.ok) throw new Error(`Sponsor API returned ${response.status}`);
+      const payload = await response.json() as SponsorPayload;
+      sponsors = payload.sponsors;
+    } catch {
+      sponsors = [];
+    }
+
+    if (surface === 'projects') placeProjectSponsors();
+    else placeShowcaseSponsors();
+  });
+</script>

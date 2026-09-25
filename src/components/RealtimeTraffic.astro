@@ -1,0 +1,58 @@
+---
+interface Props {
+  loadingLabel?: string;
+}
+
+const { loadingLabel = 'Loading live traffic ...' } = Astro.props;
+---
+
+<div class="realtime-widget-shell" data-realtime-widget-shell>
+  <span class="realtime-widget-placeholder" aria-hidden="true">{loadingLabel}</span>
+  <iframe
+    class="realtime-widget"
+    data-realtime-widget
+    data-src="https://datafa.st/widgets/6aaf7959a02465e4fa8de17c/realtime?mainTextSize=16&amp;primaryColor=%233157ff&amp;theme=dark"
+    allowtransparency="true"
+    title="DataFast Widget"
+    loading="lazy"
+    hidden
+  ></iframe>
+</div>
+
+<script>
+  const realtimeWidgetEvents = ['wheel', 'pointerdown', 'touchstart', 'keydown'] as const;
+  const shells = [...document.querySelectorAll<HTMLElement>('[data-realtime-widget-shell]')];
+  let loadTimer: number | undefined;
+  let loaded = false;
+
+  const stopWaitingForInteraction = () => {
+    realtimeWidgetEvents.forEach((eventName) => window.removeEventListener(eventName, loadOnInteraction));
+  };
+
+  const load = () => {
+    if (loaded) return;
+    loaded = true;
+    stopWaitingForInteraction();
+    if (loadTimer !== undefined) window.clearTimeout(loadTimer);
+
+    shells.forEach((shell) => {
+      const placeholder = shell.querySelector<HTMLElement>('.realtime-widget-placeholder');
+      const widget = shell.querySelector<HTMLIFrameElement>('[data-realtime-widget]');
+      if (!widget?.dataset.src) return;
+      widget.addEventListener('load', () => placeholder?.remove(), { once: true });
+      widget.src = widget.dataset.src;
+      widget.hidden = false;
+    });
+  };
+
+  function loadOnInteraction(event: Event) {
+    if (event.isTrusted) load();
+  }
+
+  realtimeWidgetEvents.forEach((eventName) => window.addEventListener(eventName, loadOnInteraction, { passive: true }));
+  const scheduleLoad = () => {
+    if (!loaded) loadTimer = window.setTimeout(load, 2000);
+  };
+  if (document.readyState === 'complete') scheduleLoad();
+  else window.addEventListener('load', scheduleLoad, { once: true });
+</script>
