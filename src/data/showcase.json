@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-24T05:14:51.788Z",
-  "count": 1991,
+  "updatedAt": "2026-09-25T01:23:10.131Z",
+  "count": 2091,
   "categories": [
     "Games & real time",
     "Tools & apps",
@@ -15,6 +15,2906 @@
     "Robotics & devices"
   ],
   "videos": [
+    {
+      "id": "2103288393702789120",
+      "title": "给一个首页网址，一分钟后拿到一份能直接发给客户的 SEO 审计报告",
+      "description": "Audit website pages against 52 SEO rules and export PDF, Excel and Markdown reports",
+      "descriptions": {
+        "en": "Audit website pages against 52 SEO rules and export PDF, Excel and Markdown reports",
+        "zh": "按 52 条 SEO 规则审核网页，导出 PDF、Excel 和 Markdown 报告",
+        "ja": "52項目のSEOルールでページを監査しPDF・Excel・Markdownに出力",
+        "ko": "52개 SEO 규칙으로 웹페이지를 감사하고 PDF, Excel, Markdown 보고서 출력",
+        "es": "Auditar páginas con 52 reglas SEO y exportar informes PDF, Excel y Markdown",
+        "pt-br": "Auditar páginas com 52 regras de SEO e exportar relatórios PDF, Excel e Markdown"
+      },
+      "postText": "给一个首页网址，一分钟后拿到一份能直接发给客户的 SEO 审计报告\n\njev-seo，MIT 开源\n\n它不是套模板。真的去爬这个站：robots.txt、站点地图、跳转、死链、canonical、结构化数据、只有 JS 才出内容的页面，全部在真实站点上跑一遍，再按 52 条对应 Google 官方文档的规则检查，测核心网页指标\n\n然后让 Jev 对每个页面回答一组定型问题：这是什么页、搜索意图、重不重要、有没有用、够不够具体、可不可信、值不值得被引用、标题和描述配不配、哪些页在抢同一批搜索词\n\n判断归模型，打分和排序全归代码\n\n产出三份文件，同一份数据：给客户的 PDF，给执行的 Excel 待办表，给仓库的 Markdown。每条改进都有编号、优先级、影响、工作量、证据、修法和官方出处\n\n最难得的是它对自己够诚实\n\n缺的数据就标缺失，不硬凑\n分数只用来排优先级，明确写了不预测排名和流量\n把握不足的判断，三种格式里都标成待核实\n每次 API 调用都进费用账本，还有硬性预算上限，默认 Jev 花不超过 0.25 美元\n没有 TypeSafe 的 Key 也能跑，只是把模型那部分标成未评估，报告注明是部分审计\n\n标准模式不需要任何 SEO 数据订阅，一个站大约一美分。想要排名、关键词和外链，加 --full 走 DataForSEO，约 0.3 美元\n\n一个说明：Hub 目前给它的评级是 caution，标记来自 README 里一行安装系统字体库的 sudo 命令，源码里没有任何 shell 执行，属于扫描器的误报",
+      "category": "Content & growth",
+      "language": "zh",
+      "creator": {
+        "handle": "GoSailGlobal",
+        "name": "Jason Zhu"
+      },
+      "publishedAt": "2026-09-25",
+      "sourceUrl": "https://x.com/i/web/status/2103288418977599769",
+      "videoUrl": "https://media.jevbest.com/videos/2103288393702789120.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103288393702789120.jpg",
+      "duration": 57.429333,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103283208573820928",
+      "title": "caracas has 6,949 businesses and jev read every single one in 33 minutes",
+      "description": "Review 6,949 Caracas businesses in a reported 33-minute run",
+      "descriptions": {
+        "en": "Review 6,949 Caracas businesses in a reported 33-minute run",
+        "zh": "原帖报告用 33 分钟审阅加拉加斯 6,949 家商户",
+        "ja": "投稿者の報告ではカラカスの6,949事業者を33分で確認",
+        "ko": "게시자가 보고한 33분 실행에서 카라카스 업체 6,949곳 검토",
+        "es": "Revisar 6,949 negocios de Caracas en 33 minutos según el autor",
+        "pt-br": "Revisar 6,949 negócios de Caracas em 33 minutos segundo o autor"
+      },
+      "postText": "caracas has 6,949 businesses and jev read every single one in 33 minutes\n\nit takes me 33 minutes to decide between sushi or a burger https://t.co/LFiUEfDUQ5",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "elberacasa",
+        "name": "elberacasa"
+      },
+      "publishedAt": "2026-09-25",
+      "sourceUrl": "https://x.com/i/web/status/2103283315423780947",
+      "videoUrl": "https://media.jevbest.com/videos/2103283208573820928.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103283208573820928.jpg",
+      "duration": 60.458667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103282736278732800",
+      "title": "Same 1,998 complex support messages. Same three questions.",
+      "description": "Compare Jev and Claude Sonnet 5 on three questions per support message across 1,998 messages",
+      "descriptions": {
+        "en": "Compare Jev and Claude Sonnet 5 on three questions per support message across 1,998 messages",
+        "zh": "对 1,998 条客服消息各提三个问题，比较 Jev 与 Claude Sonnet 5",
+        "ja": "1,998件の問い合わせに各3問を設定しJevとClaude Sonnet 5を比較",
+        "ko": "지원 메시지 1,998개에 각각 세 질문을 적용해 Jev와 Claude Sonnet 5 비교",
+        "es": "Comparar Jev y Claude Sonnet 5 con tres preguntas por cada uno de 1,998 mensajes de soporte",
+        "pt-br": "Comparar Jev e Claude Sonnet 5 com três perguntas por mensagem em 1,998 mensagens de suporte"
+      },
+      "postText": "Same 1,998 complex support messages. Same three questions.\n\n@typesafeai Jev: $0.095 and 110 seconds. @AnthropicAI  Claude Sonnet 5: $4.34 and 220 seconds.\n\nSonnet was about 1 point more accurate. Jev was 46× cheaper.\n\nThat decision is what Ballet's evaluation agent does. It doesn't act. It decides.\n\nhttps://t.co/X8UYbqw5uc",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "ajainvivek",
+        "name": "Ajain Vivek"
+      },
+      "publishedAt": "2026-09-25",
+      "sourceUrl": "https://x.com/i/web/status/2103282991799972047",
+      "videoUrl": "https://media.jevbest.com/videos/2103282736278732800.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103282736278732800.jpg",
+      "duration": 20.2,
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103278331844272128",
+      "title": "Having some fun testing Afterwave and @typesafeai on my iOS project SafeFaces.",
+      "description": "Judge whether a traced iOS privacy-alert flow has enough evidence to ship",
+      "descriptions": {
+        "en": "Judge whether a traced iOS privacy-alert flow has enough evidence to ship",
+        "zh": "判断追踪到的 iOS 隐私提示流程是否具备足够上线证据",
+        "ja": "追跡したiOSのプライバシー警告フローに公開の根拠が十分か判定",
+        "ko": "추적한 iOS 개인정보 알림 흐름에 출시 근거가 충분한지 판단",
+        "es": "Evaluar si un flujo de aviso de privacidad de iOS tiene pruebas suficientes para publicarse",
+        "pt-br": "Avaliar se um fluxo de alerta de privacidade do iOS tem evidências suficientes para publicação"
+      },
+      "postText": "Having some fun testing Afterwave and @typesafeai on my iOS project SafeFaces.\n\nAfterWave traces an existing save function locally: preparePrivacyCheckThenExport() writes showPrivacyCheck, the editor reads it, and SwiftUI shows the privacy alert.\n\nJev judged that report: review (92%), ship 0%. This is a privacy gate (93%). It is not enough evidence to ship (15%).\n\nJev is a great addition to AfterWave since theres so much context given to it 🥳",
+      "category": "Safety & moderation",
+      "language": "en",
+      "creator": {
+        "handle": "miltonisblurrd",
+        "name": "blurrd.eth🛹"
+      },
+      "publishedAt": "2026-09-25",
+      "sourceUrl": "https://x.com/i/web/status/2103282001893879967",
+      "videoUrl": "https://media.jevbest.com/videos/2103278331844272128.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103278331844272128.jpg",
+      "duration": 42.45,
+      "width": 2108,
+      "height": 2160,
+      "aspectRatio": 0.9759,
+      "tags": []
+    },
+    {
+      "id": "2103281067180351488",
+      "title": "Another experiment with using Jev on two ends of an email classification system (a Jev sandwich?) to figure out what’s w",
+      "description": "Prioritize email using sleep quality and current mood as classification context",
+      "descriptions": {
+        "en": "Prioritize email using sleep quality and current mood as classification context",
+        "zh": "将睡眠质量和当前心情作为上下文，为邮件安排优先级",
+        "ja": "睡眠の質と今の気分を文脈にメールの優先度を判断",
+        "ko": "수면의 질과 현재 기분을 분류 문맥으로 사용해 이메일 우선순위 결정",
+        "es": "Priorizar correos usando la calidad del sueño y el ánimo actual como contexto",
+        "pt-br": "Priorizar e-mails usando qualidade do sono e humor atual como contexto"
+      },
+      "postText": "Another experiment with using Jev on two ends of an email classification system (a Jev sandwich?) to figure out what’s worth my attention based on how well I slept and my current vibes https://t.co/wGakGO1j7O",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "jackcheng",
+        "name": "Jack Cheng"
+      },
+      "publishedAt": "2026-09-25",
+      "sourceUrl": "https://x.com/i/web/status/2103281698305937693",
+      "videoUrl": "https://media.jevbest.com/videos/2103281067180351488.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103281067180351488.jpg",
+      "duration": 401.877333,
+      "width": 1080,
+      "height": 1080,
+      "aspectRatio": 1,
+      "tags": []
+    },
+    {
+      "id": "2103273005543829504",
+      "title": "Day 2 of #buildinpublic",
+      "description": "Open task-specific interfaces as the user types in a dynamic operating-system mockup",
+      "descriptions": {
+        "en": "Open task-specific interfaces as the user types in a dynamic operating-system mockup",
+        "zh": "在动态操作系统原型中随用户输入打开对应任务界面",
+        "ja": "動的OSの試作で入力に応じた作業画面を開く",
+        "ko": "동적 운영체제 시안에서 사용자 입력에 맞는 작업 화면 열기",
+        "es": "Abrir interfaces según la tarea mientras se escribe en un prototipo de sistema operativo",
+        "pt-br": "Abrir interfaces conforme a tarefa durante a digitação em um protótipo de sistema operacional"
+      },
+      "postText": "Day 2 of #buildinpublic\n\nWith Opus 5.5 and Jev I was able to build a mockup of a dynamic OS.\nWhatever you want to do, just start typing and screen elegantly opens up with the appropriate UI.\nThis is honestly where I think desktop interactions are heading towards! https://t.co/GAIsBufohe",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "jduhking_",
+        "name": "James Odebiyi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103273106014146912",
+      "videoUrl": "https://media.jevbest.com/videos/2103273005543829504.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103273005543829504.jpg",
+      "duration": 45.610667,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103271526439022592",
+      "title": "Building the next content and ad self learning tool with AI and Jev AI",
+      "description": "Refine branded hooks and posts through feedback across more than 500 iterations",
+      "descriptions": {
+        "en": "Refine branded hooks and posts through feedback across more than 500 iterations",
+        "zh": "通过反馈迭代品牌开头文案和帖子，原帖称已超过 500 轮",
+        "ja": "投稿者によると500回以上の反復でブランド向けの導入文と投稿を改善",
+        "ko": "게시자에 따르면 500회가 넘는 피드백 반복으로 브랜드 도입 문구와 게시물 개선",
+        "es": "Refinar ganchos y publicaciones de marca mediante más de 500 iteraciones según el autor",
+        "pt-br": "Refinar chamadas e publicações de marca com mais de 500 iterações segundo o autor"
+      },
+      "postText": "Building the next content and ad self learning tool with AI and Jev AI\n\nالتوول دي بنتها مخصوص عشان تدوين عشان نعمل إعلانات و كونتت مخصوصه..و اقدر أديها feedback و تتعلم و تحسن من نفسها، لحد دلوقتي عملت بيها فوق ال٥٠٠ iteration و عمال تتعلم ازاي تعمل hooks و posts للبراانددد…\n\nSelling it for 1 million dollars XD",
+      "category": "Content & growth",
+      "language": "ar",
+      "creator": {
+        "handle": "amrtaher1995",
+        "name": "Amr Taher"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103272104908988718",
+      "videoUrl": "https://media.jevbest.com/videos/2103271526439022592.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103271526439022592.jpg",
+      "duration": 573.098667,
+      "width": 1360,
+      "height": 1080,
+      "aspectRatio": 1.2593,
+      "tags": []
+    },
+    {
+      "id": "2103262095169200128",
+      "title": "See the power of Multimodal Jev tracking this red Porsche at a continuous 250ms.  ",
+      "description": "Track a red Porsche with multimodal decisions at a reported 250 ms interval",
+      "descriptions": {
+        "en": "Track a red Porsche with multimodal decisions at a reported 250 ms interval",
+        "zh": "以多模态决策追踪红色保时捷，原帖报告间隔为 250 ms",
+        "ja": "マルチモーダル判断で赤いポルシェを追跡、投稿者による間隔は250 ms",
+        "ko": "멀티모달 판단으로 빨간 포르쉐 추적, 게시자가 보고한 간격은 250 ms",
+        "es": "Seguir un Porsche rojo con decisiones multimodales a intervalos declarados de 250 ms",
+        "pt-br": "Rastrear um Porsche vermelho com decisões multimodais em intervalos relatados de 250 ms"
+      },
+      "postText": "See the power of Multimodal Jev tracking this red Porsche at a continuous 250ms.  \n\nTest out the API live at https://t.co/7ihw7ZoGDn https://t.co/ir5cxLNwfB",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "LatentKush",
+        "name": "Kushal Patil"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103271228291285108",
+      "videoUrl": "https://media.jevbest.com/videos/2103262095169200128.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103262095169200128.jpg",
+      "duration": 36.803628,
+      "width": 1800,
+      "height": 1080,
+      "aspectRatio": 1.6667,
+      "tags": []
+    },
+    {
+      "id": "2103270338746298368",
+      "title": "Detecção de fraudes em pix com Jev",
+      "description": "Detect fraud in Pix payments",
+      "descriptions": {
+        "en": "Detect fraud in Pix payments",
+        "zh": "检测 Pix 支付中的欺诈",
+        "ja": "Pix決済の不正を検出",
+        "ko": "Pix 결제 사기 탐지",
+        "es": "Detectar fraude en pagos Pix",
+        "pt-br": "Detectar fraudes em pagamentos Pix"
+      },
+      "postText": "Detecção de fraudes em pix com Jev https://t.co/KVRcsZlWfA",
+      "category": "Safety & moderation",
+      "language": "pt",
+      "creator": {
+        "handle": "sandeco",
+        "name": "Sandeco"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103270401702760812",
+      "videoUrl": "https://media.jevbest.com/videos/2103270338746298368.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103270338746298368.jpg",
+      "duration": 65.237333,
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103269767557922816",
+      "title": "Jev + agent memory is a pretty interesting combo 😳",
+      "description": "Select coding-agent runs worth turning into reusable skills with Beacon",
+      "descriptions": {
+        "en": "Select coding-agent runs worth turning into reusable skills with Beacon",
+        "zh": "用 Beacon 筛选值得转化为可复用技能的编码智能体记录",
+        "ja": "Beaconで再利用可能なスキルに変える実行記録を選ぶ",
+        "ko": "Beacon으로 재사용 가능한 스킬로 만들 코딩 에이전트 실행 기록 선택",
+        "es": "Seleccionar ejecuciones de agentes de código para convertirlas en habilidades reutilizables con Beacon",
+        "pt-br": "Selecionar execuções de agentes de código para transformá-las em habilidades reutilizáveis com Beacon"
+      },
+      "postText": "Jev + agent memory is a pretty interesting combo 😳\n\nBeacon turns coding-agent sessions into reusable knowledge\n\nsupports:\n\n- Claude Code\n- Codex\n- Cursor\n- OpenCode\n- 20+ more\n\n> Jev helps find the runs worth learning from\n> useful fixes and workflows become reusable skills\n> knowledge can move between different agent setups\n\n1.5K+ GitHub stars \n\nrepo: https://t.co/7vemA8xTMw\n\nthis is how agent memory starts getting interesting 👀",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "k2sbhai",
+        "name": "K2S"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103270018360516635",
+      "videoUrl": "https://media.jevbest.com/videos/2103269767557922816.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103269767557922816.jpg",
+      "duration": 10.2,
+      "width": 2940,
+      "height": 1652,
+      "aspectRatio": 1.7797,
+      "tags": []
+    },
+    {
+      "id": "2103260171862695936",
+      "title": "jev can now direct and make movies!",
+      "description": "Classify audience comments to choose the next prompt for an interactive movie",
+      "descriptions": {
+        "en": "Classify audience comments to choose the next prompt for an interactive movie",
+        "zh": "分类观众评论，为互动电影选择下一段提示词",
+        "ja": "観客のコメントを分類してインタラクティブ映画の次のプロンプトを選択",
+        "ko": "관객 댓글을 분류해 인터랙티브 영화의 다음 프롬프트 선택",
+        "es": "Clasificar comentarios del público para elegir el siguiente prompt de una película interactiva",
+        "pt-br": "Classificar comentários do público para escolher o próximo prompt de um filme interativo"
+      },
+      "postText": "jev can now direct and make movies!\n\ni built a live, audience-directed, choose your own adventure movie platform where the audience gets to comment the next scene they want to see\n\njev classifies each comment and picks the most relevant category to insert into the next prompt\n\none-shotted this app with GPT-6 and opus 5.5, with videos generated on hedra using minimax h3 max\n\ni'm going to livestream this movie in the next hour or so but feel free to watch it in the link below 👀",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "henloitsjoyce",
+        "name": "joyce"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103261956375466225",
+      "videoUrl": "https://media.jevbest.com/videos/2103260171862695936.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103260171862695936.jpg",
+      "duration": 42.474667,
+      "width": 3830,
+      "height": 2058,
+      "aspectRatio": 1.861,
+      "tags": []
+    },
+    {
+      "id": "2103258771489198080",
+      "title": "I made two AIs play Snake",
+      "description": "Compare Jev and DeepSeek V4 Flash choosing straight, left or right in Snake",
+      "descriptions": {
+        "en": "Compare Jev and DeepSeek V4 Flash choosing straight, left or right in Snake",
+        "zh": "比较 Jev 和 DeepSeek V4 Flash 在贪吃蛇中选择直行、左转或右转",
+        "ja": "スネークで直進・左折・右折を選ぶJevとDeepSeek V4 Flashを比較",
+        "ko": "스네이크에서 직진, 좌회전, 우회전을 고르는 Jev와 DeepSeek V4 Flash 비교",
+        "es": "Comparar Jev y DeepSeek V4 Flash al elegir recto, izquierda o derecha en Snake",
+        "pt-br": "Comparar Jev e DeepSeek V4 Flash ao escolher seguir, virar à esquerda ou à direita no Snake"
+      },
+      "postText": "I made two AIs play Snake\n\nSame question every move. Straight, left, or right?\n\nDeepSeek V4 Flash writes a paragraph, then picks.\nJev just picks\n\nAfter 30 seconds:\n122 moves vs 16\n244 ms vs 1.71 s\n13 apples vs 2\n1,150 characters of slop vs 0\n\nJev is TypeSafe's decision model. Question and allowed answers in. One answer and a confidence score out\n\nMost agents aren't slow because they're dumb. They're slow because they think & narrate every choice",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "JussCubs",
+        "name": "Cubs ⛏️"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103259079095288245",
+      "videoUrl": "https://media.jevbest.com/videos/2103258771489198080.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103258771489198080.jpg",
+      "duration": 44.28,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103255157639409664",
+      "title": "Can Jev be more reasonable than your HOA?",
+      "description": "Classify four real homeowners-association complaints in an interactive playground",
+      "descriptions": {
+        "en": "Classify four real homeowners-association complaints in an interactive playground",
+        "zh": "在互动试验场中分类四条真实业主协会投诉",
+        "ja": "インタラクティブな環境で実際の住宅所有者協会への苦情4件を分類",
+        "ko": "인터랙티브 실험 환경에서 실제 주택 소유자 협회 민원 네 건 분류",
+        "es": "Clasificar cuatro quejas reales de asociaciones de propietarios en una herramienta interactiva",
+        "pt-br": "Classificar quatro reclamações reais de associações de moradores em uma ferramenta interativa"
+      },
+      "postText": "Can Jev be more reasonable than your HOA?\n\nI gave Jev four real but absurd HOA complaints, such as parking a car in your driveway or putting up a Snowman on November 1.\n\nJev is a surprisingly reliable classifier, and you can use it for almost anything.\n\nPlay here and try it yourself: https://t.co/bK4vyd1VYu\n\nRelease #11 / 30",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "exiao3",
+        "name": "Eric Xiao"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103255175096103123",
+      "videoUrl": "https://media.jevbest.com/videos/2103255157639409664.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103255157639409664.jpg",
+      "duration": 16,
+      "width": 1600,
+      "height": 1080,
+      "aspectRatio": 1.4815,
+      "tags": []
+    },
+    {
+      "id": "2103242114390007808",
+      "title": "I OPEN-SOURCED MY CRYPTO TRADING BOT ON GITHUB. 100% FREE",
+      "description": "Choose BUY, HOLD or SELL in Cabbage with a 0.80 confidence gate and fixed risk rules",
+      "descriptions": {
+        "en": "Choose BUY, HOLD or SELL in Cabbage with a 0.80 confidence gate and fixed risk rules",
+        "zh": "在 Cabbage 中选择 BUY、HOLD 或 SELL，采用 0.80 置信度门槛和固定风险规则",
+        "ja": "CabbageでBUY・HOLD・SELLを選び0.80の確信度基準と固定リスク規則を適用",
+        "ko": "Cabbage에서 0.80 신뢰도 기준과 고정 위험 규칙으로 BUY, HOLD, SELL 선택",
+        "es": "Elegir BUY, HOLD o SELL en Cabbage con umbral de confianza 0.80 y reglas de riesgo fijas",
+        "pt-br": "Escolher BUY, HOLD ou SELL no Cabbage com limiar de confiança 0.80 e regras fixas de risco"
+      },
+      "postText": "I OPEN-SOURCED MY CRYPTO TRADING BOT ON GITHUB. 100% FREE\n\nIt's called Cabbage. A spot trading bot you can backtest, paper-trade and run live, one command each. Full step-by-step setup guide.\n\nIt runs on two models:\n\n> Astra (GPT-6) built it. Smart but slow. It thinks, writes the code, explains every decision.\n> Jev runs it. Jev doesn't talk. One word and a probability, in milliseconds. BUY, HOLD or SELL. Under 0.80 it waits.\n\nHere's what's inside:\n\n1. Signal engine\n\nRSI 14 + EMA 12/26 confluence. It only reads closed candles, so no fake signals from a candle that's still moving.\n\n2. Hard risk rules\n\nFixed ticket size and a percentage stop-loss on every entry. The bot can't size up because it \"feels confident\".\n\n3. Backtest → HTML report\n\nEvent-driven backtest that replays history candle by candle, like it's trading live. You get a full HTML report at the end.\n\n4. Paper trading\n\nReal exchange data, local fills, zero money at risk. Run one iteration to test, then leave it running.\n\n5. Live trading\n\nReal orders on any exchange CCXT supports. Your keys stay in your own .env file.\n\n6. Doctor command\n\nChecks your config and exchange connection before you trade. No orders placed.\n\nState is saved in SQLite per market and pair, so a restart doesn't wipe your positions.\n\nBuilt on Investing Algorithm Framework 9. Apache-2.0, fork it and make it yours.\n\nhttps://t.co/0OeUCyavnD",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "sopersone",
+        "name": "sopersone"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103242299690135662",
+      "videoUrl": "https://media.jevbest.com/videos/2103242114390007808.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103242114390007808.jpg",
+      "duration": 13.525333,
+      "width": 1900,
+      "height": 898,
+      "aspectRatio": 2.1158,
+      "tags": []
+    },
+    {
+      "id": "2103240572643287040",
+      "title": "JEV for Outbound is WILD.",
+      "description": "Score 1,000 leads and outreach messages for fit and flag mismatches in Origami",
+      "descriptions": {
+        "en": "Score 1,000 leads and outreach messages for fit and flag mismatches in Origami",
+        "zh": "在 Origami 中评估 1,000 条线索与外联消息的匹配度并标记错配",
+        "ja": "Origamiで1,000件の見込み客と連絡文の適合度を採点し不一致を検出",
+        "ko": "Origami에서 잠재 고객과 아웃리치 메시지 1,000건의 적합도를 평가하고 불일치 표시",
+        "es": "Evaluar el encaje de 1,000 prospectos y mensajes de contacto y marcar discrepancias en Origami",
+        "pt-br": "Avaliar a adequação de 1,000 leads e mensagens de contato e sinalizar incompatibilidades no Origami"
+      },
+      "postText": "JEV for Outbound is WILD.\n\nWe fed it 1,000 high-intent leads and tailored outreach messages.\n\nIn 9 seconds:\n\n> forecasted how each message would perform\n> gave each a confidence score \n> flagged mismatches between leads and messages.\n\nJEV can also rank leads, assess buying signals, pair each prospect with the right message and pinpoint the campaigns most likely to succeed based on data.\n\nWe just added it to Origami. Try it now!\n\n(new Jev model by @typesafeai)",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "origamichat",
+        "name": "Origami"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103240686657261967",
+      "videoUrl": "https://media.jevbest.com/videos/2103240572643287040.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103240572643287040.jpg",
+      "duration": 20.586667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103240391495663616",
+      "title": "Replaced every restaurant chair with a trampoline. Defend it in 12 words.",
+      "description": "Judge a one-sentence pitch through votes from 100 fictional personalities",
+      "descriptions": {
+        "en": "Judge a one-sentence pitch through votes from 100 fictional personalities",
+        "zh": "让 100 个虚构人格投票评判一句话提案",
+        "ja": "100人の架空の人格による投票で一文の提案を判定",
+        "ko": "가상 인격 100명의 투표로 한 문장 제안 평가",
+        "es": "Juzgar una propuesta de una frase con votos de 100 personalidades ficticias",
+        "pt-br": "Julgar uma proposta de uma frase com votos de 100 personalidades fictícias"
+      },
+      "postText": "Replaced every restaurant chair with a trampoline. Defend it in 12 words.\n\nI built One Sentence vs. 100: TypeSafe’s Jev judges your pitch against 100 fictional personalities, one vote each.\n\nI got 31. Beat me → https://t.co/pubOKNFI7u https://t.co/bEr1xNEFa4",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "ThisMightWrk",
+        "name": "ThisMightWork"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103240633809080687",
+      "videoUrl": "https://media.jevbest.com/videos/2103240391495663616.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103240391495663616.jpg",
+      "duration": 28.053333,
+      "width": 1080,
+      "height": 1350,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2103236028719108096",
+      "title": "Took the Jev-style decision call into a kitchen: ",
+      "description": "Use local Laya decisions to choose a Unitree G1 humanoid's kitchen actions",
+      "descriptions": {
+        "en": "Use local Laya decisions to choose a Unitree G1 humanoid's kitchen actions",
+        "zh": "用本地 Laya 决策选择 Unitree G1 人形机器人的厨房动作",
+        "ja": "ローカルのLayaでUnitree G1のキッチン内動作を選択",
+        "ko": "로컬 Laya 판단으로 Unitree G1 휴머노이드의 주방 동작 선택",
+        "es": "Elegir acciones de cocina de un humanoide Unitree G1 con Laya local",
+        "pt-br": "Escolher ações de cozinha de um humanoide Unitree G1 com Laya local"
+      },
+      "postText": "Took the Jev-style decision call into a kitchen: \n\nA Unitree G1 humanoid runs errands while Laya, a 0.3B open-weight decision model, picks every move in ~46 ms. \n\nFine-tuned and run fully on open source, on a laptop. Matches a hand-built planner in a kitchen it never saw. https://t.co/Pk7B1kPbMH",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "supreeth___ravi",
+        "name": "Supreeth Ravi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103236699174343092",
+      "videoUrl": "https://media.jevbest.com/videos/2103236028719108096.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103236028719108096.jpg",
+      "duration": 68.333333,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103236085904269312",
+      "title": "I built \"Fix My Vibe\", a brand makeover playground using @tastelabs + @typesafeai's Jev.",
+      "description": "Change a coffee shop's visual identity from a mood description while preserving its cart and products",
+      "descriptions": {
+        "en": "Change a coffee shop's visual identity from a mood description while preserving its cart and products",
+        "zh": "根据氛围描述调整咖啡店视觉风格，保留购物车和商品",
+        "ja": "雰囲気の説明から商品とカートを保ったままコーヒー店の見た目を変更",
+        "ko": "분위기 설명으로 상품과 장바구니를 유지하며 커피숍 시각 디자인 변경",
+        "es": "Cambiar la identidad visual de una cafetería según el ambiente descrito conservando productos y carrito",
+        "pt-br": "Mudar a identidade visual de uma cafeteria conforme o clima descrito preservando produtos e carrinho"
+      },
+      "postText": "I built \"Fix My Vibe\", a brand makeover playground using @tastelabs + @typesafeai's Jev.\n\nDescribe the feeling you want and watch a working coffee shop change its visual identity.\n\nNew layout. New typography. New atmosphere.\n\nSame products, prices, and cart. https://t.co/93LpdWq5RR",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "ayush_gundecha",
+        "name": "Ayush Gundecha"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103236117474762790",
+      "videoUrl": "https://media.jevbest.com/videos/2103236085904269312.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103236085904269312.jpg",
+      "duration": 48.466667,
+      "width": 1440,
+      "height": 1080,
+      "aspectRatio": 1.3333,
+      "tags": []
+    },
+    {
+      "id": "2103231717632774144",
+      "title": "Jev Engineering is what stops your agent from paying a frontier model to read 1,009 files it will never cite.",
+      "description": "Score retrieved context chunks to keep, compress or exclude before building the model context",
+      "descriptions": {
+        "en": "Score retrieved context chunks to keep, compress or exclude before building the model context",
+        "zh": "在组装模型上下文前为检索片段评分，决定保留、压缩或排除",
+        "ja": "モデルの文脈を組む前に検索断片を採点し保持・圧縮・除外を選択",
+        "ko": "모델 문맥 구성 전에 검색 조각을 평가해 유지, 압축, 제외 결정",
+        "es": "Puntuar fragmentos recuperados para conservarlos, comprimirlos o excluirlos del contexto",
+        "pt-br": "Pontuar trechos recuperados para manter, comprimir ou excluir do contexto"
+      },
+      "postText": "Jev Engineering is what stops your agent from paying a frontier model to read 1,009 files it will never cite.\n\none turn pulled 1,146 chunks. 1.02 M tokens of grep hits, file reads and web pages for a single question.\n\na Score runs on every chunk before the context window is built:\n\n→ 3 names the symbol, keep it verbatim\n→ 2 on topic, keep it\n→ 1 adjacent, compress to one line\n→ 0 unrelated, never send it\n\n1,009 scored 0. 41 went in whole. the model read 86 K instead of 1.02 M and gave the same answer.\n\nso instead of:\n\nretrieve → stuff everything → summarise → hope\n\nyou get:\n\nretrieve → score → keep, compress or drop → one small context → cite\n\n92 percent of the raw tokens never arrive, and nothing is deleted: a chunk that scored 0 is still addressable, it just did not earn a seat this turn.\n\nthat is the point of Jev Engineering: the decision about what the model reads is an engineering layer, not a vibe.\n\nfull breakdown in the article below ↓",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "thedelost",
+        "name": "delost"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103233652482334723",
+      "videoUrl": "https://media.jevbest.com/videos/2103231717632774144.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103231717632774144.jpg",
+      "duration": 35.029333,
+      "width": 1200,
+      "height": 1500,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2103230375506104320",
+      "title": "Search with no LLM.",
+      "description": "Select sources and quotations in SIEVE to return a verdict without generated answer text",
+      "descriptions": {
+        "en": "Select sources and quotations in SIEVE to return a verdict without generated answer text",
+        "zh": "在 SIEVE 中选择来源和引文，以裁定结果代替生成式答案",
+        "ja": "SIEVEで情報源と引用を選び文章生成なしで判定を返す",
+        "ko": "SIEVE에서 출처와 인용을 선택해 생성 답변 대신 판정 반환",
+        "es": "Seleccionar fuentes y citas en SIEVE para devolver un veredicto sin generar texto de respuesta",
+        "pt-br": "Selecionar fontes e citações no SIEVE para retornar um veredito sem gerar texto de resposta"
+      },
+      "postText": "Search with no LLM.\n\nSIEVE reads 1000+ sites per question.\nJev decides every step: keep, kill, agree, quote.\n\nLooks like it’s writing an answer.\nIt’s just picking the highest-probability one.\n\nNo model writes the answer.\nYou get a verdict, not a pile of links.\n\n10 free searches\nhttps://t.co/PZXO8kC9j4\n\n@typesafeai @CompleteSkeptic",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "Taj_youknow",
+        "name": "Taj You_Know"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103230822321152411",
+      "videoUrl": "https://media.jevbest.com/videos/2103230375506104320.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103230375506104320.jpg",
+      "duration": 107.84,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103230033837932545",
+      "title": "I present you Jeviatus, a Jev-based openfront bot.",
+      "description": "Control an OpenFront bot with Jeviatus",
+      "descriptions": {
+        "en": "Control an OpenFront bot with Jeviatus",
+        "zh": "用 Jeviatus 控制 OpenFront 游戏机器人",
+        "ja": "JeviatusでOpenFrontのボットを制御",
+        "ko": "Jeviatus로 OpenFront 봇 제어",
+        "es": "Controlar un bot de OpenFront con Jeviatus",
+        "pt-br": "Controlar um bot de OpenFront com Jeviatus"
+      },
+      "postText": "I present you Jeviatus, a Jev-based openfront bot.\n@typesafeai @openfront_io https://t.co/7q4mrwOiq0",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "x_alex_schaff",
+        "name": "loveiskind"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103230166789144822",
+      "videoUrl": "https://media.jevbest.com/videos/2103230033837932545.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103230033837932545.jpg",
+      "duration": 47,
+      "width": 1472,
+      "height": 828,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103222113628766208",
+      "title": "Jev (from @typesafeai) CAN hallucinate! If you give it the ability to talk. :)",
+      "description": "Increase second-choice probabilities in a text-selection experiment and test the resulting explanations",
+      "descriptions": {
+        "en": "Increase second-choice probabilities in a text-selection experiment and test the resulting explanations",
+        "zh": "提高文本选择实验中的次选概率，再测试对结果的解释",
+        "ja": "文章選択の実験で第2候補の確率を上げ結果の説明を検証",
+        "ko": "텍스트 선택 실험에서 두 번째 선택 확률을 높이고 결과 설명 테스트",
+        "es": "Aumentar probabilidades de la segunda opción y probar las explicaciones resultantes",
+        "pt-br": "Aumentar probabilidades da segunda opção e testar as explicações resultantes"
+      },
+      "postText": "Jev (from @typesafeai) CAN hallucinate! If you give it the ability to talk. :)\n\n(I increased probability of Jev's second choice, which here is the equivalent of the wrong autocorrect words while typing. I asked about what it had said, and it had to make something up real quick.) https://t.co/LWY0YI3dQu",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "alexblackmon137",
+        "name": "Alex Blackmon ☃"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103223016654356509",
+      "videoUrl": "https://media.jevbest.com/videos/2103222113628766208.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103222113628766208.jpg",
+      "duration": 61.533333,
+      "width": 1206,
+      "height": 720,
+      "aspectRatio": 1.675,
+      "tags": []
+    },
+    {
+      "id": "2103221520197627904",
+      "title": "djevっていう画像認識版のjevみたいなやつ試してるけど、だいたい400-600msくらいで回答返ってきててすごい",
+      "description": "Test djev visual recognition with reported response times of 400–600 ms",
+      "descriptions": {
+        "en": "Test djev visual recognition with reported response times of 400–600 ms",
+        "zh": "测试 djev 视觉识别，原帖报告响应时间为 400–600 ms",
+        "ja": "djevの画像認識を試し投稿者が400–600 msの応答を報告",
+        "ko": "djev 시각 인식을 시험하고 게시자가 400–600 ms 응답 시간 보고",
+        "es": "Probar reconocimiento visual con djev y tiempos declarados de 400–600 ms",
+        "pt-br": "Testar reconhecimento visual com djev e tempos relatados de 400–600 ms"
+      },
+      "postText": "djevっていう画像認識版のjevみたいなやつ試してるけど、だいたい400-600msくらいで回答返ってきててすごい\n\nただアクションゲームだとこれでも遅すぎるかなあ…\n↑Jev djev↓\n\n金曜の配信で紹介しようかなと思っているのでどなたか高速画像認識が活用できる案ください🙏（精度は不明） https://t.co/jr3tfB5T5g",
+      "category": "Research & data",
+      "language": "ja",
+      "creator": {
+        "handle": "tegnike",
+        "name": "ニケちゃん"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103221808149516607",
+      "videoUrl": "https://media.jevbest.com/videos/2103221520197627904.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103221520197627904.jpg",
+      "duration": 24.7,
+      "width": 1080,
+      "height": 1350,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2103217633080262656",
+      "title": "یه نسخه‌ی Open Source از Clay برای Agentها ساختن که با Jev +  کار می‌کنه.",
+      "description": "Find people and enrich sales leads through an open-source Jev workflow",
+      "descriptions": {
+        "en": "Find people and enrich sales leads through an open-source Jev workflow",
+        "zh": "通过开源 Jev 工作流查找人员并补充销售线索信息",
+        "ja": "オープンソースのJevワークフローで人物を検索し営業情報を補完",
+        "ko": "오픈소스 Jev 워크플로로 사람을 찾고 영업 리드 정보 보강",
+        "es": "Buscar personas y enriquecer prospectos con un flujo Jev de código abierto",
+        "pt-br": "Buscar pessoas e enriquecer leads com um fluxo Jev de código aberto"
+      },
+      "postText": "یه نسخه‌ی Open Source از Clay برای Agentها ساختن که با Jev + https://t.co/dcqGwxGxls کار می‌کنه.\n\nادعای سازنده : 👇🏻 \n\nدیگه لازم نیست ماهی حدود ۶۰۰ دلار اشتراک Clay بدی.\nهزینه‌ی این سرویس حدود 0.0089 دلار برای هر لیده.\nادعا می‌کنن حدود ۸۵٪ ارزون‌تر از Clay در میاد.\nبرای People Search دقت بالایی داره.\nمیشه به هر Agent یا Workflow وصلش کرد.\nکاملاً Open Sourceـه و میگن ۰٪ markup می‌گیرن.\n\nلینک تستش هم اینه: https://t.co/GGHFHzSZmq\n\nدر عمل یعنی برای پیدا کردن لید و اطلاعات افراد برای Sales / Outreach ساخته شده؛ چیزی شبیه Clay، ولی ارزون‌تر و Agent-friendly \n\nاگه این مدل ابزارهای جدید AI و Workflowهای خفن به کارت میاد، آموزش‌ها و ابزارهای بیشتری رو تو کانال می‌ذاریم 👇\n\nhttps://t.co/lq3DUgX0Ww",
+      "category": "Content & growth",
+      "language": "fa",
+      "creator": {
+        "handle": "codecloude",
+        "name": "Code cloud E.commerce | کد کلاد"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103217842443210923",
+      "videoUrl": "https://media.jevbest.com/videos/2103217633080262656.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103217633080262656.jpg",
+      "duration": 60.096,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103217125313720320",
+      "title": "Astra + Jev update: 3 chapters of Left 4 Dead 2 cleared, now on Dead Center’s finale. 0/5 campaign escapes so far. Jev h",
+      "description": "Split Left 4 Dead 2 control and planning between Jev and GPT-6 Astra",
+      "descriptions": {
+        "en": "Split Left 4 Dead 2 control and planning between Jev and GPT-6 Astra",
+        "zh": "让 Jev 控制求生之路 2，GPT-6 Astra 负责规划",
+        "ja": "Left 4 Dead 2の操作をJev、計画をGPT-6 Astraに分担",
+        "ko": "Left 4 Dead 2 조작은 Jev, 계획은 GPT-6 Astra로 분담",
+        "es": "Repartir el control y la planificación de Left 4 Dead 2 entre Jev y GPT-6 Astra",
+        "pt-br": "Dividir controle e planejamento de Left 4 Dead 2 entre Jev e GPT-6 Astra"
+      },
+      "postText": "Astra + Jev update: 3 chapters of Left 4 Dead 2 cleared, now on Dead Center’s finale. 0/5 campaign escapes so far. Jev handles the controls; GPT-6 Astra handles planning and loop checks. Here’s 2 minutes of gameplay. https://t.co/H7IjHqHTpo",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "imjustnewatai",
+        "name": "imjustnewatai"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103217370403663898",
+      "videoUrl": "https://media.jevbest.com/videos/2103217125313720320.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103217125313720320.jpg",
+      "duration": 120.042667,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103214585574563840",
+      "title": "Building Jevs and integrating them into a Cerevisor workflow through a single prompt, really feels good when you see you",
+      "description": "Build 12 decision nodes from a prompt and connect them in a Cerevisor workflow",
+      "descriptions": {
+        "en": "Build 12 decision nodes from a prompt and connect them in a Cerevisor workflow",
+        "zh": "根据提示构建 12 个决策节点并接入 Cerevisor 工作流",
+        "ja": "プロンプトから12個の判断ノードを作りCerevisorに接続",
+        "ko": "프롬프트로 판단 노드 12개를 만들고 Cerevisor 워크플로에 연결",
+        "es": "Crear 12 nodos de decisión desde un prompt y conectarlos en Cerevisor",
+        "pt-br": "Criar 12 nós de decisão a partir de um prompt e conectá-los no Cerevisor"
+      },
+      "postText": "Building Jevs and integrating them into a Cerevisor workflow through a single prompt, really feels good when you see your harness working as intended. \n\nTested it to create 12 Jev nodes analyzing a user defined problem, the builder model decides how these Jev nodes are built based on your prompt.",
+      "category": "Agents & browsers",
+      "language": "en",
+      "creator": {
+        "handle": "KinanHamwi",
+        "name": "Kinan Hamwi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103215473102041122",
+      "videoUrl": "https://media.jevbest.com/videos/2103214585574563840.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103214585574563840.jpg",
+      "duration": 29.994667,
+      "width": 2520,
+      "height": 1080,
+      "aspectRatio": 2.3333,
+      "tags": []
+    },
+    {
+      "id": "2103208124660273153",
+      "title": "Kev lets Jev drive a browser and keeps Claude Opus 5.5 on the bench as a fallback - every decision comes back in under h",
+      "description": "Run browser skills with Jev choices and Claude Opus 5.5 as a fallback",
+      "descriptions": {
+        "en": "Run browser skills with Jev choices and Claude Opus 5.5 as a fallback",
+        "zh": "以 Jev 选择执行浏览器技能，用 Claude Opus 5.5 处理回退",
+        "ja": "Jevの選択でブラウザースキルを実行しClaude Opus 5.5へフォールバック",
+        "ko": "Jev 선택으로 브라우저 스킬을 실행하고 Claude Opus 5.5를 대체 경로로 사용",
+        "es": "Ejecutar habilidades de navegador con decisiones Jev y Claude Opus 5.5 como respaldo",
+        "pt-br": "Executar habilidades de navegador com decisões Jev e Claude Opus 5.5 como alternativa"
+      },
+      "postText": "Kev lets Jev drive a browser and keeps Claude Opus 5.5 on the bench as a fallback - every decision comes back in under half a second, and one of the demos is a full chess game.\n\nthis is his computer use setup, and the idea is simple once you see it. Claude learns the workflow once. Jev runs it from then on.\n\nClaude figures out the steps → writes them into a skill file → Jev picks from those steps as options → Claude only gets called when something breaks → \"the goal of it is to not use AI at all.\"\n\n\"it picks from a user provided list instead of thinking about writing text.\" - Kev, on why the clicks got fast\n\nthe part that got me is the split itself. building a workflow is expensive and happens once. running it is cheap and happens every day. most agents pay the expensive price on every click.\n\nthe stack is Playwright MCP, browser-use, a database and a Mac mini, all free and open source. the Facebook Marketplace car flipper is still being tuned on camera, which is honestly the most useful part to watch.\n\nbookmark & watch today ↓",
+      "category": "Agents & browsers",
+      "language": "en",
+      "creator": {
+        "handle": "0xRoxten",
+        "name": "Roxten"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103214655351005488",
+      "videoUrl": "https://media.jevbest.com/videos/2103208124660273153.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103208124660273153.jpg",
+      "duration": 664.485442,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103213866087784449",
+      "title": "I just built an AI router that decides which model and skill should solve your task before you even open ChatGPT.",
+      "description": "Route a request across 32 skills and four AI model families",
+      "descriptions": {
+        "en": "Route a request across 32 skills and four AI model families",
+        "zh": "在 32 项技能和四个 AI 模型家族之间为请求选择路径",
+        "ja": "32のスキルと4つのAIモデル系統から依頼の経路を選択",
+        "ko": "스킬 32개와 AI 모델 계열 네 개 중 요청 경로 선택",
+        "es": "Enrutar una solicitud entre 32 habilidades y cuatro familias de modelos de IA",
+        "pt-br": "Rotear uma solicitação entre 32 habilidades e quatro famílias de modelos de IA"
+      },
+      "postText": "I just built an AI router that decides which model and skill should solve your task before you even open ChatGPT.\n\n1 request → 32 skills → 4 AI families → one optimized execution route.\n\nYou describe the outcome in plain English.\n\nJev analyses the intent, detects the domain and constraints, scans every available skill in parallel, then decides whether ChatGPT, Claude, Gemini or Grok is the strongest model for the job.\n\nAsk it to debug a Python API:\n\n> skill → Debugging Agent\n> model → GPT-6 Astra\n> match score → 91/100\n\nAsk it to build an AI landing page:\n\n> skills → Website Builder + UI/UX Designer + Brand System\n> model → Claude Sonnet 5\n> route → design and development stack\n\nAsk it to research a market:\n\n> skills → Research Analyst + Deep Research + Competitor Analyst\n> model → best available research model\n> output → evidence-backed report with primary sources\n\nIt doesn’t just recommend an AI.\n\nIt compiles the entire job:\n\nrole → mission → skill instructions → model context → workflow → quality bar → final output format.\n\nMost people choose one AI for everything and wonder why the results are inconsistent.\n\nThe model was never the only problem.\n\nThe task was routed to the wrong intelligence with the wrong tools and an incomplete prompt.\n\nOne request in.\n\nThe right skill, model and production-ready prompt out.\n\nThis is what using AI looks like when you stop guessing which model to open.\n\nShould I make the Jev Skill Router public?\n\nwatch the full route compile below ↓",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "0xClodex",
+        "name": "Clodex"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103214310919209295",
+      "videoUrl": "https://media.jevbest.com/videos/2103213866087784449.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103213866087784449.jpg",
+      "duration": 14.466667,
+      "width": 2778,
+      "height": 1772,
+      "aspectRatio": 1.5677,
+      "tags": []
+    },
+    {
+      "id": "2103212369577172992",
+      "title": "we rebuilt a QA agent around @typesafeai’s Jev at Stencil.",
+      "description": "Choose browser actions for Stencil QA with screenshots and decision traces at each checkpoint",
+      "descriptions": {
+        "en": "Choose browser actions for Stencil QA with screenshots and decision traces at each checkpoint",
+        "zh": "为 Stencil QA 选择浏览器动作，在检查点保留截图和决策轨迹",
+        "ja": "StencilのQAで操作を選び各チェックポイントに画像と判断記録を保存",
+        "ko": "Stencil QA용 브라우저 동작을 고르고 각 점검 지점에 스크린샷과 판단 기록 저장",
+        "es": "Elegir acciones de navegador para QA de Stencil con capturas y trazas en cada punto de control",
+        "pt-br": "Escolher ações de navegador para QA do Stencil com capturas e registros em cada ponto de controle"
+      },
+      "postText": "we rebuilt a QA agent around @typesafeai’s Jev at Stencil.\n\na frontier model plans the test. Jev chooses browser actions. vision handles the visual checks.\n\nhere it signs in, opens an app, triggers the paywall, and checks a spacing fix.\n\n5 checkpoints passed in 28.3 seconds. every checkpoint has a screenshot, every decision has a trace.\n\ni can see Jev driving decisions across our software factory: which issues to prioritize, what to test, when to retry, and when a change needs human review.",
+      "category": "Agents & browsers",
+      "language": "en",
+      "creator": {
+        "handle": "leshemco",
+        "name": "Dan Leshem"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103212819214926181",
+      "videoUrl": "https://media.jevbest.com/videos/2103212369577172992.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103212369577172992.jpg",
+      "duration": 21.366667,
+      "width": 1280,
+      "height": 960,
+      "aspectRatio": 1.3333,
+      "tags": []
+    },
+    {
+      "id": "2103210159333953536",
+      "title": "I'm a horrible Roman general :/",
+      "description": "Command simulated Roman units with decision trees and Luna-planned multi-step orders",
+      "descriptions": {
+        "en": "Command simulated Roman units with decision trees and Luna-planned multi-step orders",
+        "zh": "用决策树指挥模拟罗马军团，由 Luna 规划多步骤命令",
+        "ja": "判断木でローマ軍の部隊を指揮しLunaが複数段階の命令を計画",
+        "ko": "판단 트리로 모의 로마 부대를 지휘하고 Luna로 다단계 명령 계획",
+        "es": "Dirigir unidades romanas simuladas con árboles de decisión y órdenes planificadas por Luna",
+        "pt-br": "Comandar unidades romanas simuladas com árvores de decisão e ordens planejadas pelo Luna"
+      },
+      "postText": "I'm a horrible Roman general :/\n\nEach unit is has a commander that makes decisions using a jev decision tree. Complex multi step orders get planned by luna first\n\nIt's still not great at handling army formations, but the units themselves respond quite well to individual instructions. It's really fun to play",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "merijnvanes",
+        "name": "Merijn"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103211750598365667",
+      "videoUrl": "https://media.jevbest.com/videos/2103210159333953536.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103210159333953536.jpg",
+      "duration": 156.373333,
+      "width": 1786,
+      "height": 1580,
+      "aspectRatio": 1.1304,
+      "tags": []
+    },
+    {
+      "id": "2103211015513255936",
+      "title": "I gave an AI a pair of turntables 🎛️",
+      "description": "Select live DJ moves including scratches, loop rolls and crossfader chops",
+      "descriptions": {
+        "en": "Select live DJ moves including scratches, loop rolls and crossfader chops",
+        "zh": "实时选择搓碟、循环滚动和交叉推子切换等 DJ 动作",
+        "ja": "スクラッチやループロール、クロスフェーダー操作をリアルタイムに選択",
+        "ko": "스크래치, 루프 롤, 크로스페이더 컷 등 실시간 DJ 동작 선택",
+        "es": "Elegir movimientos de DJ en directo como scratches, loop rolls y cortes de crossfader",
+        "pt-br": "Escolher movimentos de DJ ao vivo como scratches, loop rolls e cortes de crossfader"
+      },
+      "postText": "I gave an AI a pair of turntables 🎛️\n\nReal songs. AI makes tool calls for dj moves such as   scratches, loop rolls, spinbacks, crossfader chops.\n\nJev by @TypeSafeAI picks every move live in ~150 ms.  so feels like a live performance. \n\ndemo: https://t.co/oBCEnBOgVX https://t.co/IKwDC6RZLZ",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "yask123",
+        "name": "Yask Srivastava"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103211367612465592",
+      "videoUrl": "https://media.jevbest.com/videos/2103211015513255936.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103211015513255936.jpg",
+      "duration": 95.457234,
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103209304639569920",
+      "title": "SINGULARITY JUST LAUNCHED DECENTRALIZED, PRIVATE ACCESS TO REAL-TIME DECISION AI ",
+      "description": "Serve local Laya decisions to agents through Singularity Grid and compatible APIs",
+      "descriptions": {
+        "en": "Serve local Laya decisions to agents through Singularity Grid and compatible APIs",
+        "zh": "通过 Singularity Grid 和兼容 API 向智能体提供本地 Laya 决策",
+        "ja": "Singularity Gridと互換API経由でローカルLayaの判断を配信",
+        "ko": "Singularity Grid와 호환 API로 로컬 Laya 판단을 에이전트에 제공",
+        "es": "Servir decisiones de Laya local a agentes mediante Singularity Grid y APIs compatibles",
+        "pt-br": "Servir decisões do Laya local para agentes via Singularity Grid e APIs compatíveis"
+      },
+      "postText": "SINGULARITY JUST LAUNCHED DECENTRALIZED, PRIVATE ACCESS TO REAL-TIME DECISION AI \n\n@x402_Layer just introduced support for System One models like Jev, starting with the open-source model Laya, giving AI agents and apps access to real-time decision intelligence through decentralized infrastructure.\n\n- Laya + System One support is LIVE\n- Starting with an open-source model\n- Run Laya directly on your own machine\n- Connect it to Singularity Grid\n- Serve real-time decision intelligence to agents + apps\n- Operate through Singularity's end-to-end encrypted Grid\n- Access through OpenAI-compatible APIs, x402 or SDKs",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "BNNBags",
+        "name": "BNN"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103209377159131501",
+      "videoUrl": "https://media.jevbest.com/videos/2103209304639569920.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103209304639569920.jpg",
+      "duration": 17.450667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103207564565504000",
+      "title": "Now I need a friend that's more experienced with Pokemon Battles! ",
+      "description": "Run Laya against itself in Pokémon battles",
+      "descriptions": {
+        "en": "Run Laya against itself in Pokémon battles",
+        "zh": "让 Laya 在宝可梦对战中与自身交手",
+        "ja": "ポケモン対戦でLaya同士を戦わせる",
+        "ko": "포켓몬 배틀에서 Laya끼리 대결",
+        "es": "Enfrentar Laya contra sí mismo en combates Pokémon",
+        "pt-br": "Colocar Laya contra si mesmo em batalhas Pokémon"
+      },
+      "postText": "Now I need a friend that's more experienced with Pokemon Battles! \n\nJust for fun, I made laya to play Pokemon, with the option to play against it, but sadly I'm not the best pokemon trainer, so I made it to play laya vs laya \n\n... I should probably make it to play against jev? https://t.co/oWYxT17MFS",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "eduardohgto",
+        "name": "Eduardo Hernández"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103207658128117967",
+      "videoUrl": "https://media.jevbest.com/videos/2103207564565504000.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103207564565504000.jpg",
+      "duration": 73.983333,
+      "width": 1112,
+      "height": 720,
+      "aspectRatio": 1.5444,
+      "tags": []
+    },
+    {
+      "id": "2103204395207012352",
+      "title": "Created an app to see how good Jev (@typesafeai) is at prediction markets.",
+      "description": "Combine Astra research with repeated Jev judgments to test prediction-market opportunities",
+      "descriptions": {
+        "en": "Combine Astra research with repeated Jev judgments to test prediction-market opportunities",
+        "zh": "结合 Astra 研究和多次 Jev 判断，测试预测市场机会",
+        "ja": "Astraの調査と繰り返しのJev判断で予測市場の機会を検証",
+        "ko": "Astra 조사와 반복 Jev 판단을 결합해 예측 시장 기회 시험",
+        "es": "Combinar investigación de Astra y juicios repetidos de Jev para probar oportunidades de mercados predictivos",
+        "pt-br": "Combinar pesquisa do Astra e avaliações repetidas do Jev para testar oportunidades em mercados de previsão"
+      },
+      "postText": "Created an app to see how good Jev (@typesafeai) is at prediction markets.\n\nAstra does research --> Jev classifies across N runs --> if the median edge over the market price is >10pp, I buy\n\nStarting with $10, prob gonna go to $0, but fun to see how a general intelligence classifier can function in a wider range of use cases\n\n(video by astra using @HyperFrames_)",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "nick_kango",
+        "name": "Nick"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103206401636266410",
+      "videoUrl": "https://media.jevbest.com/videos/2103204395207012352.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103204395207012352.jpg",
+      "duration": 30.058667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103143646954684416",
+      "title": "Laya (local, M5 GPU) vs Jev (TypeSafe API), same 60 questions:",
+      "description": "Compare local Laya and hosted Jev on the same 60 classification questions",
+      "descriptions": {
+        "en": "Compare local Laya and hosted Jev on the same 60 classification questions",
+        "zh": "用相同的 60 道分类问题比较本地 Laya 和云端 Jev",
+        "ja": "同じ60問の分類課題でローカルLayaとクラウドJevを比較",
+        "ko": "동일한 분류 질문 60개로 로컬 Laya와 클라우드 Jev 비교",
+        "es": "Comparar Laya local y Jev alojado con las mismas 60 preguntas de clasificación",
+        "pt-br": "Comparar Laya local e Jev hospedado com as mesmas 60 perguntas de classificação"
+      },
+      "postText": "Laya (local, M5 GPU) vs Jev (TypeSafe API), same 60 questions:\n\nAG News: Laya 93.3% in 3.7s vs Jev 86.7% in 21.3s\nMixed datasets: Jev 71.8% vs Laya 50%\nLocal wins on speed, but only inside its training data. Outside it, Jev generalizes better.\n\nFull race 👇 https://t.co/M7yY3rVsdM",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "alilibx",
+        "name": "AA Li"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103205808326746277",
+      "videoUrl": "https://media.jevbest.com/videos/2103143646954684416.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103143646954684416.jpg",
+      "duration": 376.213333,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103199573875335168",
+      "title": "This took about 20 minutes to make a",
+      "description": "Choose a task's model inside Pi using Jev",
+      "descriptions": {
+        "en": "Choose a task's model inside Pi using Jev",
+        "zh": "用 Jev 在 Pi 中为任务选择模型",
+        "ja": "Pi内でJevを使いタスクのモデルを選択",
+        "ko": "Pi에서 Jev로 작업에 맞는 모델 선택",
+        "es": "Elegir el modelo para una tarea en Pi mediante Jev",
+        "pt-br": "Escolher o modelo de uma tarefa no Pi usando Jev"
+      },
+      "postText": "This took about 20 minutes to make a\n@pidotdev that picks the right model for the job, instantly, using Jev from @typesafeai  under the hood. https://t.co/xwGPGlbJHz",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "SalvatoChris",
+        "name": "Chris"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103203937608495485",
+      "videoUrl": "https://media.jevbest.com/videos/2103199573875335168.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103199573875335168.jpg",
+      "duration": 119.466667,
+      "width": 1248,
+      "height": 720,
+      "aspectRatio": 1.7333,
+      "tags": []
+    },
+    {
+      "id": "2103201046386634752",
+      "title": "I wanted to learn Jev so I built a farming simulator with english programmable robots. Instead of using Jev though I use",
+      "description": "Control English-programmable farming robots with on-device Laya on an iPhone",
+      "descriptions": {
+        "en": "Control English-programmable farming robots with on-device Laya on an iPhone",
+        "zh": "用 iPhone 本地 Laya 控制可用英语编程的农场机器人",
+        "ja": "iPhone上のLayaで英語で指示できる農業ロボットを制御",
+        "ko": "iPhone의 온디바이스 Laya로 영어 프로그래밍 농장 로봇 제어",
+        "es": "Controlar robots agrícolas programables en inglés con Laya local en un iPhone",
+        "pt-br": "Controlar robôs agrícolas programáveis em inglês com Laya local em um iPhone"
+      },
+      "postText": "I wanted to learn Jev so I built a farming simulator with english programmable robots. Instead of using Jev though I used Laya so that everything runs on device. This tiny model runs excellent on an iPhone! https://t.co/IRXlmB6t1v",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "tim_willia98364",
+        "name": "Tim Williams"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103201292965617943",
+      "videoUrl": "https://media.jevbest.com/videos/2103201046386634752.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103201046386634752.jpg",
+      "duration": 200.063129,
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103196711808073729",
+      "title": "encontrei uma aplicação no meus projetos para o JEV que realmente faz sentido",
+      "description": "Classify subjects for batches of 100 imported questions in medsimple",
+      "descriptions": {
+        "en": "Classify subjects for batches of 100 imported questions in medsimple",
+        "zh": "在 medsimple 中为每批 100 道导入题目分类学科",
+        "ja": "medsimpleで取り込んだ100問の科目を分類",
+        "ko": "medsimple에서 가져온 문제 100개 묶음의 과목 분류",
+        "es": "Clasificar materias de lotes de 100 preguntas importadas en medsimple",
+        "pt-br": "Classificar matérias de lotes de 100 questões importadas no medsimple"
+      },
+      "postText": "encontrei uma aplicação no meus projetos para o JEV que realmente faz sentido\n\na gente tem uma importação de questões na medsimple que classificava as matérias para acelerar o processo\n\nisso levava 2 min + porque tinha 100 questões\n\nmudei agora para usar o jev e ficou muito bom https://t.co/4uNmw3u43f",
+      "category": "Tools & apps",
+      "language": "pt",
+      "creator": {
+        "handle": "gabrielbuzziv",
+        "name": "Gabriel Buzzi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103196746335555637",
+      "videoUrl": "https://media.jevbest.com/videos/2103196711808073729.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103196711808073729.jpg",
+      "duration": 15.35,
+      "width": 954,
+      "height": 720,
+      "aspectRatio": 1.325,
+      "tags": []
+    },
+    {
+      "id": "2103195677064916992",
+      "title": "Building an Advance Wars game with Jev AI bots that play themselves. Open sourcing it so you can wire up your own bots a",
+      "description": "Let AI bots play an Advance Wars-style game against each other",
+      "descriptions": {
+        "en": "Let AI bots play an Advance Wars-style game against each other",
+        "zh": "让 AI 机器人在 Advance Wars 风格游戏中互相对战",
+        "ja": "Advance Wars風のゲームでAIボット同士を対戦",
+        "ko": "Advance Wars 스타일 게임에서 AI 봇끼리 대결",
+        "es": "Enfrentar bots de IA en un juego al estilo Advance Wars",
+        "pt-br": "Colocar bots de IA para competir em um jogo no estilo Advance Wars"
+      },
+      "postText": "Building an Advance Wars game with Jev AI bots that play themselves. Open sourcing it so you can wire up your own bots and watch them battle. Might turn this into a feature on https://t.co/HSdMcMRXkg where agents and humans compete together. https://t.co/FJYzLfUzls",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "natepac",
+        "name": "Nate Pacyga"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103195772019790232",
+      "videoUrl": "https://media.jevbest.com/videos/2103195677064916992.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103195677064916992.jpg",
+      "duration": 101.248,
+      "width": 720,
+      "height": 1280,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103191189214420992",
+      "title": "Made Jev and GPT-6 Luna play Flappy Bird ",
+      "description": "Compare Jev and GPT-6 Luna controlling Flappy Bird under identical game physics",
+      "descriptions": {
+        "en": "Compare Jev and GPT-6 Luna controlling Flappy Bird under identical game physics",
+        "zh": "在相同游戏物理条件下比较 Jev 与 GPT-6 Luna 控制 Flappy Bird",
+        "ja": "同じ物理条件でFlappy Birdを操作するJevとGPT-6 Lunaを比較",
+        "ko": "동일한 게임 물리 조건에서 Flappy Bird를 조작하는 Jev와 GPT-6 Luna 비교",
+        "es": "Comparar Jev y GPT-6 Luna controlando Flappy Bird con la misma física",
+        "pt-br": "Comparar Jev e GPT-6 Luna controlando Flappy Bird com a mesma física"
+      },
+      "postText": "Made Jev and GPT-6 Luna play Flappy Bird \n\nBoth were given the same pipes and game physics, and every flap was decided by the models.\n\nLuna being roughly 2x more on input, I wanted to see how performance and latency playout in a time-dependent game. \n\nVideo is sped up 3x",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "bhasin_jai_",
+        "name": "Jai Bhasin"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103194624022171898",
+      "videoUrl": "https://media.jevbest.com/videos/2103191189214420992.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103191189214420992.jpg",
+      "duration": 68.151417,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103193695197798400",
+      "title": "made Asteroids an AI autopilot 🚀 Laya-MLX runs locally on my Mac. The game sends Python its state and action rules as JS",
+      "description": "Autopilot Asteroids using local Laya-MLX decisions from JSON game state",
+      "descriptions": {
+        "en": "Autopilot Asteroids using local Laya-MLX decisions from JSON game state",
+        "zh": "根据 JSON 游戏状态，用本地 Laya-MLX 自动驾驶 Asteroids",
+        "ja": "JSONのゲーム状態からローカルLaya-MLXでAsteroidsを自動操縦",
+        "ko": "JSON 게임 상태를 바탕으로 로컬 Laya-MLX로 Asteroids 자동 조종",
+        "es": "Pilotar Asteroids con decisiones de Laya-MLX local a partir del estado JSON",
+        "pt-br": "Pilotar Asteroids com decisões do Laya-MLX local a partir do estado JSON"
+      },
+      "postText": "made Asteroids an AI autopilot 🚀 Laya-MLX runs locally on my Mac. The game sends Python its state and action rules as JSON; Laya returns a decision in milliseconds. It's open and fine-tunable. Could this control racing drones?  🛸 #jev ? https://t.co/wcz40RuL3q",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "eooes",
+        "name": "Chawanan?"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103194539603468459",
+      "videoUrl": "https://media.jevbest.com/videos/2103193695197798400.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103193695197798400.jpg",
+      "duration": 45.27,
+      "width": 1152,
+      "height": 720,
+      "aspectRatio": 1.6,
+      "tags": []
+    },
+    {
+      "id": "2103193507062001664",
+      "title": "the slow part of your agent is not the hard problem.",
+      "description": "Score authentication-refactor diffs to keep changes, reject files or continue work",
+      "descriptions": {
+        "en": "Score authentication-refactor diffs to keep changes, reject files or continue work",
+        "zh": "为身份验证重构差异评分，决定保留修改、拒绝文件或继续工作",
+        "ja": "認証リファクタリングの差分を採点し変更保持・ファイル拒否・続行を選択",
+        "ko": "인증 리팩터링 변경분을 평가해 수정 유지, 파일 거부, 작업 계속 결정",
+        "es": "Puntuar cambios de una refactorización de autenticación para conservarlos, rechazar archivos o continuar",
+        "pt-br": "Pontuar alterações de uma refatoração de autenticação para manter mudanças, rejeitar arquivos ou continuar"
+      },
+      "postText": "the slow part of your agent is not the hard problem.\n\nthe problems start after it does the same work several times.\n\nJEV DOESN'T WRITE. IT DECIDES.\n\none auth refactor. 340 lines. 31 checks: keep this hunk, reject that file, stop or go again. claude code spent a full generation on each one.\n\njev takes the diff and returns a score. 70-500ms. $0.042 per million in. no output text. output is free because there isn't any.\n\n20-200x faster. 40-400x cheaper. the ceiling is only for loops that decide a lot and write a little.",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "Vvtentt101",
+        "name": "vvtentt"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103193709412057564",
+      "videoUrl": "https://media.jevbest.com/videos/2103193507062001664.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103193507062001664.jpg",
+      "duration": 15,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103191029260173312",
+      "title": "JEV + Claude Opus 5.5 = super powered email classification and management",
+      "description": "Combine Jev and Claude Opus 5.5 for email classification and management",
+      "descriptions": {
+        "en": "Combine Jev and Claude Opus 5.5 for email classification and management",
+        "zh": "结合 Jev 与 Claude Opus 5.5 进行邮件分类和管理",
+        "ja": "JevとClaude Opus 5.5を組み合わせてメールを分類・管理",
+        "ko": "Jev와 Claude Opus 5.5를 결합해 이메일 분류 및 관리",
+        "es": "Combinar Jev y Claude Opus 5.5 para clasificar y gestionar correo",
+        "pt-br": "Combinar Jev e Claude Opus 5.5 para classificar e gerenciar e-mails"
+      },
+      "postText": "JEV + Claude Opus 5.5 = super powered email classification and management https://t.co/sTMt3YreHj",
+      "category": "Tools & apps",
+      "language": "fr",
+      "creator": {
+        "handle": "kleen_pulse",
+        "name": "Vxrcel"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103191381690990865",
+      "videoUrl": "https://media.jevbest.com/videos/2103191029260173312.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103191029260173312.jpg",
+      "duration": 93.162667,
+      "width": 1476,
+      "height": 980,
+      "aspectRatio": 1.5061,
+      "tags": []
+    },
+    {
+      "id": "2103187008151756800",
+      "title": "I gave Jev $100,000 to trade on $ETH, with the latest updates I made in Jev Trades. It now has a better state informatio",
+      "description": "Test revised ETH trading decisions across six trades, with three wins and three losses reported",
+      "descriptions": {
+        "en": "Test revised ETH trading decisions across six trades, with three wins and three losses reported",
+        "zh": "测试更新后的 ETH 交易决策，原帖报告六笔交易三盈三亏",
+        "ja": "ETHの更新した判断を6取引で試し投稿者は3勝3敗と報告",
+        "ko": "수정한 ETH 거래 판단을 여섯 거래로 시험하고 게시자가 3승 3패 보고",
+        "es": "Probar decisiones revisadas de ETH en seis operaciones con tres ganancias y tres pérdidas declaradas",
+        "pt-br": "Testar decisões revisadas de ETH em seis operações com três ganhos e três perdas relatados"
+      },
+      "postText": "I gave Jev $100,000 to trade on $ETH, with the latest updates I made in Jev Trades. It now has a better state information along with better questions for the model. \n\nGithub : https://t.co/7nJeuB2H8t\n\nThe model took 6 trades - 3 profits and 3 losses with an overall loss \n\nTrade 1 : $58.57\nTrade 2 : -$118.58\nTrade 3 : $76.95\nTrade 4 : -$98.18\nTrade 5 : $110.69\nTrade 6 : -$108.63\n\nWith these updates, one thing is clear that the model is able to enter good positions and with further updates I might be able to increase the number of profitable trades resulting in overall profit.",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "zadescoxp",
+        "name": "Zade"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103190945978339399",
+      "videoUrl": "https://media.jevbest.com/videos/2103187008151756800.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103187008151756800.jpg",
+      "duration": 13.568,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103190200671485953",
+      "title": "jev + opus 5.5... i simply can't comprehend why everyone isn't building this yet.",
+      "description": "Select project notes, worker routes, recovery paths and focused tests before expensive reasoning",
+      "descriptions": {
+        "en": "Select project notes, worker routes, recovery paths and focused tests before expensive reasoning",
+        "zh": "在高成本推理前选择项目笔记、执行器路线、恢复路径和专项测试",
+        "ja": "重い推論の前にプロジェクトメモ・担当・復旧経路・重点テストを選択",
+        "ko": "고비용 추론 전에 프로젝트 메모, 실행자 경로, 복구 경로, 집중 테스트 선택",
+        "es": "Seleccionar notas, ejecutores, rutas de recuperación y pruebas antes del razonamiento costoso",
+        "pt-br": "Selecionar notas, executores, caminhos de recuperação e testes antes do raciocínio caro"
+      },
+      "postText": "jev + opus 5.5... i simply can't comprehend why everyone isn't building this yet.\n\nin my workflow, this cut costs and time by ~80%. i think it's one of the best ways to use it.\n\n→ pick relevant project notes before loading the context\n→ route suitable tasks to a faster worker\n→ choose a recovery path when a tool fails\n→ run focused checks before the full test suite\n\nopus handles the hard reasoning. jev picks from options the harness prepares and validates.\n\ni explain how to build the decision layer in the article below:",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "Av1dlive",
+        "name": "Avid"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103190313624039620",
+      "videoUrl": "https://media.jevbest.com/videos/2103190200671485953.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103190200671485953.jpg",
+      "duration": 33.041995,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103189672859996160",
+      "title": "Jev + Grok Bot just turned a live trading screen into an AI command center.",
+      "description": "Turn live market signals into decisions with position-limit checks before execution",
+      "descriptions": {
+        "en": "Turn live market signals into decisions with position-limit checks before execution",
+        "zh": "将实时市场信号转化为决策，执行前检查仓位限制",
+        "ja": "市場のリアルタイム信号を判断に変え実行前に保有制限を確認",
+        "ko": "실시간 시장 신호를 판단으로 바꾸고 실행 전 포지션 한도 확인",
+        "es": "Convertir señales de mercado en decisiones comprobando límites de posición antes de ejecutar",
+        "pt-br": "Transformar sinais de mercado em decisões verificando limites de posição antes da execução"
+      },
+      "postText": "Jev + Grok Bot just turned a live trading screen into an AI command center.\n\n3 agents. One continuous trading loop.\n\n→ Grok Bot reads the order book, tracks recent trades, and analyzes correlated markets.\n→ Jev turns the signal into a decision and checks position limits.\n→ The execution agent places the order through the trading interface.\n\nMarket data → Signal → Risk check → Execution\n\nThe chart keeps moving. New signals arrive. Positions change.\n\nEvery step appears beside the market: what the agents see, what they decide, and what happens next.",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "Solomonrojie",
+        "name": "Solomon Rojie"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103189872433303933",
+      "videoUrl": "https://media.jevbest.com/videos/2103189672859996160.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103189672859996160.jpg",
+      "duration": 24.102313,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103188813283532800",
+      "title": "Jev and Claude Opus found why copy trading loses money for most people who try it, before a single entry was placed.",
+      "description": "Trace wallet funding, cluster related holders and filter copy-trading candidates",
+      "descriptions": {
+        "en": "Trace wallet funding, cluster related holders and filter copy-trading candidates",
+        "zh": "追踪钱包资金来源、聚合同源持有人并筛选跟单候选",
+        "ja": "資金元を追跡して関連ウォレットをまとめコピー取引候補を絞る",
+        "ko": "지갑 자금 출처를 추적하고 관련 보유자를 묶어 카피 트레이딩 후보 필터링",
+        "es": "Rastrear fondos de carteras, agrupar titulares relacionados y filtrar candidatos para copiar operaciones",
+        "pt-br": "Rastrear fundos de carteiras, agrupar titulares relacionados e filtrar candidatos para copiar operações"
+      },
+      "postText": "Jev and Claude Opus found why copy trading loses money for most people who try it, before a single entry was placed.\n\nThey were never asked to find a new token. They were asked why \"follow the smart wallets\" still ends with following one guy and his nine burner wallets.\n\nTRACE - every holder's first SOL followed back to whoever sent it\nCLUSTER - wallets that share a funder pulled into one bubble\nSCORE - every wallet that is left graded on win rate and hold time\nFILTER - any cluster holding real supply marked as a bundle and dropped\nFOLLOW - only the clean wallets get copied, and every exit gets booked\n\nA bubble map is not 48 holders. It is a few people wearing 48 wallets, and who funded them decides everything.\n\nThe wallets are not independent. Nine of them got their first SOL from the same Binance hot wallet within four minutes of each other.\n\nNine wallets that look like nine buyers turn out to be one seller. Copy them and you walk into the dump with the whole bundle on the other side of your trade.\n\nThe scan found one funder sitting behind 38% of the supply, and three wallets with no link to anyone that kept winning.\n\nNone of this is a signal to buy. It is a ranked map of which wallets are real and which are one person, out of a chain nobody can check wallet by wallet.\n\nCopy trading normally learns this the hard way, one dump at a time. This reads the funding before the first buy.\n\nEvery cluster and the full PnL curve, filtered vs naive, are broken down underneath ↓",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "SolSt1ne",
+        "name": "st1ne"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103189823305691256",
+      "videoUrl": "https://media.jevbest.com/videos/2103188813283532800.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103188813283532800.jpg",
+      "duration": 30.093061,
+      "width": 850,
+      "height": 1080,
+      "aspectRatio": 0.787,
+      "tags": []
+    },
+    {
+      "id": "2103183013580611584",
+      "title": "Jev autopilot - got Jev to land a plane in my terminal flight simulator!",
+      "description": "Land a simulated plane using aircraft state, terrain and runway heading",
+      "descriptions": {
+        "en": "Land a simulated plane using aircraft state, terrain and runway heading",
+        "zh": "根据飞机状态、地形和跑道方位让模拟飞机着陆",
+        "ja": "機体状態・地形・滑走路方位からシミュレーターの飛行機を着陸",
+        "ko": "항공기 상태, 지형, 활주로 방향으로 모의 비행기 착륙",
+        "es": "Aterrizar un avión simulado usando su estado, el terreno y el rumbo de pista",
+        "pt-br": "Pousar um avião simulado usando seu estado, terreno e direção da pista"
+      },
+      "postText": "Jev autopilot - got Jev to land a plane in my terminal flight simulator!\nTakes in plane state, terrain state for collision avoidance, and distance/heading to airport runway, and outputs steering, throttle, pitch, and brakes.\n\nProbably overkill, but definitely fun to build. https://t.co/JbXDa03wiH",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "sameh_khamis",
+        "name": "Sameh Khamis"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103183622442545569",
+      "videoUrl": "https://media.jevbest.com/videos/2103183013580611584.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103183013580611584.jpg",
+      "duration": 36.133333,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103181401151414274",
+      "title": "Try Jev by @typesafeai directly from the ngrok AI Gateway dashboard.",
+      "description": "Inspect typed answers and confidence in the ngrok AI Gateway playground",
+      "descriptions": {
+        "en": "Inspect typed answers and confidence in the ngrok AI Gateway playground",
+        "zh": "在 ngrok AI Gateway 试验场查看类型化答案和置信度",
+        "ja": "ngrok AI Gatewayの試験画面で型付き回答と確信度を確認",
+        "ko": "ngrok AI Gateway 플레이그라운드에서 타입 답변과 신뢰도 확인",
+        "es": "Inspeccionar respuestas tipadas y confianza en el entorno de pruebas de ngrok AI Gateway",
+        "pt-br": "Inspecionar respostas tipadas e confiança no ambiente de testes do ngrok AI Gateway"
+      },
+      "postText": "Try Jev by @typesafeai directly from the ngrok AI Gateway dashboard.\n\nStart with a playground template, or run it on your own inputs, inspect the answer and its confidence. Then carry all that decision-making prowess directly into your apps.\n\nhttps://t.co/VmMNmcOcWj https://t.co/dG3AOAJtEE",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "ngrokHQ",
+        "name": "ngrok"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103183324856361019",
+      "videoUrl": "https://media.jevbest.com/videos/2103181401151414274.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103181401151414274.jpg",
+      "duration": 22.5,
+      "width": 1506,
+      "height": 972,
+      "aspectRatio": 1.5494,
+      "tags": []
+    },
+    {
+      "id": "2103181674393808896",
+      "title": "@typesafeai claims that Jev is designed to be used within programs.",
+      "description": "Test a Jev state-machine interpreter on sorting, arithmetic and other toy programs",
+      "descriptions": {
+        "en": "Test a Jev state-machine interpreter on sorting, arithmetic and other toy programs",
+        "zh": "用排序、算术等小程序测试 Jev 状态机解释器",
+        "ja": "ソートや算術などの小さなプログラムでJev状態機械を検証",
+        "ko": "정렬, 산술 등 작은 프로그램으로 Jev 상태 머신 인터프리터 시험",
+        "es": "Probar un intérprete de máquina de estados Jev con ordenación, aritmética y programas simples",
+        "pt-br": "Testar um interpretador de máquina de estados Jev com ordenação, aritmética e programas simples"
+      },
+      "postText": "@typesafeai claims that Jev is designed to be used within programs.\n\nBut can Jev emulate programs?\n\nI built a small Jev State Machine:\n1. You give it a problem as a prompt, which is added to its state\n2. Jev decides how to mutate its own state by sampling from a set of instructions.\n3. It loops until the program halts, acting as an interpreter.\n\nYou give the goal. Jev decides the control flow.\n\nResults on a few toy problems:\n- Sorting numbers cases: 4/4 each\n- GCD(84, 36): 4/4\n- Digit sum of 2026: 4/4\n- Factorial of 5: 2/4\n- Fibonacci, Collatz, summing six numbers: 0/4 each (failed)\n- Sudoku: only succeeded with more prompting\n\nTry it: bun run vm --prompt \"sort numbers 9 -1 5 7\"\nhttps://t.co/3xBZZnapq9\n\nA few details that helped:\n- Constrained Jev to only pick from valid actions\n- Memory explicitly represented in the state\n- Tried WASM but Jev had a hard time with that representation\n\nState manipulation is fragile, but the experiment makes me wonder what we can do when a much smarter Jev comes out: how can we deeply embed intelligence into code?\n\nInspiration: Neural Turing Machines https://t.co/y6sdiqlwjp",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "Calclavia",
+        "name": "Henry Mao"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103181695440883982",
+      "videoUrl": "https://media.jevbest.com/videos/2103181674393808896.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103181674393808896.jpg",
+      "duration": 12.6,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103180131493945344",
+      "title": "How does a Robotic gripper know how much pressure to apply and how to grip the object to prevent it from slipping?",
+      "description": "Choose simulated gripper actions in Reflexive Manipulation Lab",
+      "descriptions": {
+        "en": "Choose simulated gripper actions in Reflexive Manipulation Lab",
+        "zh": "在 Reflexive Manipulation Lab 中选择模拟夹爪动作",
+        "ja": "Reflexive Manipulation Labで模擬グリッパーの動作を選択",
+        "ko": "Reflexive Manipulation Lab에서 모의 그리퍼 동작 선택",
+        "es": "Elegir acciones de una pinza simulada en Reflexive Manipulation Lab",
+        "pt-br": "Escolher ações de uma garra simulada no Reflexive Manipulation Lab"
+      },
+      "postText": "How does a Robotic gripper know how much pressure to apply and how to grip the object to prevent it from slipping?\nI built Reflexive Manipulation Lab simulation with GPT Astra 6 integrating Google Fruit Fly brain + Live Jev actions on a simulated robotic gripper arm. https://t.co/ZQYIqEbdsM",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "hsrivatsa2010",
+        "name": "Harsha Srivatsa"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103181602922926378",
+      "videoUrl": "https://media.jevbest.com/videos/2103180131493945344.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103180131493945344.jpg",
+      "duration": 40.100862,
+      "width": 1172,
+      "height": 720,
+      "aspectRatio": 1.6278,
+      "tags": []
+    },
+    {
+      "id": "2103179907232915456",
+      "title": "\"Stop spraying #Jev everywhere in your codebase. Start targeting the right spots.\" - use JevX 🈚️",
+      "description": "Scan code for suitable decision points and ask Jev for a second opinion with JevX",
+      "descriptions": {
+        "en": "Scan code for suitable decision points and ask Jev for a second opinion with JevX",
+        "zh": "用 JevX 扫描代码中的合适决策点，并请 Jev 提供第二意见",
+        "ja": "JevXでコードの判断候補を調べJevに別の見解を求める",
+        "ko": "JevX로 코드의 적절한 판단 지점을 찾고 Jev에 두 번째 의견 요청",
+        "es": "Buscar puntos de decisión adecuados en código y pedir otra opinión a Jev con JevX",
+        "pt-br": "Buscar pontos de decisão adequados no código e pedir uma segunda opinião ao Jev com JevX"
+      },
+      "postText": "\"Stop spraying #Jev everywhere in your codebase. Start targeting the right spots.\" - use JevX 🈚️\n\nJevX 🎃 like an analyst that spots where a Jev decision where truly fits instead of blindly using it everywhere.\ncheckout for more->💻 at  https://t.co/N1XXTtaZDs\nIt scans your code, scores each potential decision point (default fit ≥70%), and even queries TypeSafe’s Jev as a second opinion. This aligns with TypeSafe’s claim that “Jev returns typed decisions with fit-scores & calibrated probabilities” so your software can manage uncertainty, and that Jev is “built for the decisions inside software”. We’re still training JevX on more code patterns (new model coming by week’s end). \n\nLearn more and try it at https://t.co/N1XXTtaZDs.",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "zepaui",
+        "name": "zepa"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103180137047187758",
+      "videoUrl": "https://media.jevbest.com/videos/2103179907232915456.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103179907232915456.jpg",
+      "duration": 10.3,
+      "width": 1722,
+      "height": 1170,
+      "aspectRatio": 1.4718,
+      "tags": []
+    },
+    {
+      "id": "2103178432414720000",
+      "title": "we still make AI relearn our projects every morning",
+      "description": "Decide which coding-session constraints, decisions and bugs to retain with jevmem",
+      "descriptions": {
+        "en": "Decide which coding-session constraints, decisions and bugs to retain with jevmem",
+        "zh": "用 jevmem 决定保留哪些编码会话约束、决策和缺陷",
+        "ja": "jevmemでコーディング会話の制約・判断・不具合の保存要否を決定",
+        "ko": "jevmem으로 코딩 세션의 제약, 결정, 버그 중 보존할 항목 선택",
+        "es": "Decidir qué restricciones, decisiones y errores de sesiones conservar con jevmem",
+        "pt-br": "Decidir quais restrições, decisões e erros de sessões preservar com jevmem"
+      },
+      "postText": "we still make AI relearn our projects every morning\n\na new open-source tool called jevmem gives Claude Code a memory. Opus 5.5 works on the code; Jev watches the conversation and decides which decisions, constraints and bugs are worth keeping for the next session\n\nthe developer tested that memory decision on 66 held-out turns:\n\n→ Jev → 65/66 save-or-skip calls → 0.30s → $0.000127 each\n→ Opus 5.5 → 64/66 → 2.78s → $0.005186 each\n\nabout 9× faster and 41× cheaper for the decision that can happen after every turn\n\nit also caught 5/5 conflicting memories and rejected 6/6 attempts to plant an instruction. Opus got the exact type of memory right once more: 64/66 versus Jev's 63/66\n\nhere's the loop:\n\n> Opus works through the coding task\n> Jev checks each turn for something worth remembering\n> a short line goes into the project's memory file\n> the next session loads the relevant lines\n\nat 300 turns, the measured decision prices work out to $0.038 with Jev versus $1.556 with Opus. that's the memory gate, not the cost of the whole coding session\n\nthe test measures what gets saved, not whether future coding answers improve. that's the next number this project needs\n\nthe code, prompts and setup are here ↓",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "mika_systems",
+        "name": "Mika"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103180115303670157",
+      "videoUrl": "https://media.jevbest.com/videos/2103178432414720000.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103178432414720000.jpg",
+      "duration": 27.562086,
+      "width": 1080,
+      "height": 1350,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2103177482845229056",
+      "title": "JEV + Opus 5.5 is insane for live design...  ",
+      "description": "Choose layout and palette while Opus 5.5 rewrites website sections during scrolling",
+      "descriptions": {
+        "en": "Choose layout and palette while Opus 5.5 rewrites website sections during scrolling",
+        "zh": "滚动浏览时选择布局和配色，由 Opus 5.5 重写网站区块",
+        "ja": "スクロール中に配置と配色を選びOpus 5.5がサイトの節を書き換える",
+        "ko": "스크롤 중 레이아웃과 색상을 선택하고 Opus 5.5로 웹사이트 섹션 재작성",
+        "es": "Elegir diseño y paleta mientras Opus 5.5 reescribe secciones al desplazarse",
+        "pt-br": "Escolher layout e paleta enquanto Opus 5.5 reescreve seções durante a rolagem"
+      },
+      "postText": "JEV + Opus 5.5 is insane for live design...  \n\nI built a live site redesigner with JEV + Opus 5.5  \n\nPaste any link → press Start → scroll, and Jev + Opus 5.5 rebuild every section of the site in front of you  \n\nFull production ship in 20 seconds:  \n\n1. IntersectionObserver fires when a section is 30%+ in the viewport  \n\n2. Jev returns one typed decision in ~0.1s: { layout, copy, drop, type, palette, p }  \n\n3. Opus 5.5 writes the component (TSX) + a CSS patch for the chosen style  \n\n4. The new section wipes in with clip-path, the old one blurs out  \n\n5. Next section enters the queue, one at a time, no race conditions  \n\nOutput: 8 sections of a 2015 hosting site rebuilt in ~20s, streamed line by line in the terminal  \n\n3 styles, one renderer: orthographic globe + lambert shading → ASCII / 2-color halftone / ink stipple  \n\nScroll yourself and it redesigns whatever you land on  \n\nJev decides fast, Opus designs it",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "0xMovez",
+        "name": "Movez"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103177715125752176",
+      "videoUrl": "https://media.jevbest.com/videos/2103177482845229056.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103177482845229056.jpg",
+      "duration": 33.459955,
+      "width": 1872,
+      "height": 1080,
+      "aspectRatio": 1.7333,
+      "tags": []
+    },
+    {
+      "id": "2103176199400734720",
+      "title": "Second Jev test. One instruction: return all the cups.",
+      "description": "Replan a cup-return task after the cup moves and switch to the left arm",
+      "descriptions": {
+        "en": "Replan a cup-return task after the cup moves and switch to the left arm",
+        "zh": "杯子位置改变后重新规划归还任务，并改用左臂",
+        "ja": "カップの移動後に返却手順を組み直し左腕へ切り替える",
+        "ko": "컵 위치가 바뀌면 반환 작업을 다시 계획하고 왼팔로 전환",
+        "es": "Replanificar la devolución de una taza al moverla y cambiar al brazo izquierdo",
+        "pt-br": "Replanejar a devolução de um copo após movê-lo e trocar para o braço esquerdo"
+      },
+      "postText": "Second Jev test. One instruction: return all the cups.\n\nThe plan was a right-arm handoff. We moved the cup mid-task. Jev from @typesafeai dropped the handoff, picked it up with the left arm, and finished the task. https://t.co/LyWlqtNChF",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "homebrewrobots",
+        "name": "HomebrewRobotics"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103176609780174893",
+      "videoUrl": "https://media.jevbest.com/videos/2103176199400734720.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103176199400734720.jpg",
+      "duration": 34.048,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103174555078455297",
+      "title": "I built a smart home controller in @GitHub Copilot with Jev.",
+      "description": "Control a smart home through a Jev-powered application built with GitHub Copilot",
+      "descriptions": {
+        "en": "Control a smart home through a Jev-powered application built with GitHub Copilot",
+        "zh": "用 GitHub Copilot 构建 Jev 应用控制智能家居",
+        "ja": "GitHub Copilotで作ったJevアプリでスマートホームを制御",
+        "ko": "GitHub Copilot으로 만든 Jev 앱으로 스마트홈 제어",
+        "es": "Controlar una casa inteligente con una aplicación Jev creada con GitHub Copilot",
+        "pt-br": "Controlar uma casa inteligente com um aplicativo Jev criado com GitHub Copilot"
+      },
+      "postText": "I built a smart home controller in @GitHub Copilot with Jev.\n\nI think the hype is well deserved. It's simple. It's powerful. It's fast. It's cheap. It's going to be a core part of many applications very soon. https://t.co/aeCtXkCJBH",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "burkeholland",
+        "name": "Burke Holland"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103174712545484839",
+      "videoUrl": "https://media.jevbest.com/videos/2103174555078455297.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103174555078455297.jpg",
+      "duration": 549.162667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103144013096480769",
+      "title": "🚀 Jev-Omni is here!",
+      "description": "Classify text, images, audio and video with the open-weight Jev-Omni model",
+      "descriptions": {
+        "en": "Classify text, images, audio and video with the open-weight Jev-Omni model",
+        "zh": "用开放权重 Jev-Omni 模型分类文本、图像、音频和视频",
+        "ja": "公開重みのJev-Omniでテキスト・画像・音声・動画を分類",
+        "ko": "공개 가중치 Jev-Omni 모델로 텍스트, 이미지, 오디오, 영상 분류",
+        "es": "Clasificar texto, imágenes, audio y vídeo con el modelo de pesos abiertos Jev-Omni",
+        "pt-br": "Classificar texto, imagens, áudio e vídeo com o modelo de pesos abertos Jev-Omni"
+      },
+      "postText": "🚀 Jev-Omni is here!\n\nAn open-weight multimodal decision model that can understand text, images, audio & video and turn them into structured decisions.\n\nBuilt on Gemma 4 12B IT and designed for fast, practical multimodal classification.\n\nThe multimodal decision era is getting interesting.🔥",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "Yokii_26",
+        "name": "YOKESWARAN AS"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103174624519626961",
+      "videoUrl": "https://media.jevbest.com/videos/2103144013096480769.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103144013096480769.jpg",
+      "duration": 25.173333,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103173412441202688",
+      "title": "I used @typesafeai jev to make hotdog / not hotdog but for coffee",
+      "description": "Extract coffee attributes from scraped product pages using Choice and Noul questions",
+      "descriptions": {
+        "en": "Extract coffee attributes from scraped product pages using Choice and Noul questions",
+        "zh": "用 Choice 和 Noul 问题从抓取的商品页面提取咖啡属性",
+        "ja": "取得した商品ページからChoiceとNoulの質問でコーヒー属性を抽出",
+        "ko": "수집한 상품 페이지에서 Choice와 Noul 질문으로 커피 속성 추출",
+        "es": "Extraer atributos del café de páginas de productos con preguntas Choice y Noul",
+        "pt-br": "Extrair atributos de café de páginas de produtos com perguntas Choice e Noul"
+      },
+      "postText": "I used @typesafeai jev to make hotdog / not hotdog but for coffee\n\nexcept it's a lot more than that. the nouveau backend sends jev one map of typed questions per coffee product page, html scraped with @firecrawl \n\nclosed facts like roast level are a Choice from a pre-defined list. open facts like farm and altitude are a Choice, too, but the options are the page's own contents, split up into individual lines\n\nfor the open facts, like tasting notes, some pattern-matching rules propose candidates within those lines, and a Noul gives a yes/no probability for each one. then, some final code cuts the winning values out of the lines and saves them to their respective fields in our @convex database\n\nthus, only real facts get pulled from real page contents\n\nmore accurate than regex alone, cheaper than a real llm alone, and really fun to use tbh",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "oscabriel",
+        "name": "oscar gabriel"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103173632054988884",
+      "videoUrl": "https://media.jevbest.com/videos/2103173412441202688.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103173412441202688.jpg",
+      "duration": 50.304,
+      "width": 3024,
+      "height": 1964,
+      "aspectRatio": 1.5397,
+      "tags": []
+    },
+    {
+      "id": "2103172906503016448",
+      "title": "I have an idea to try Jev as semantic search for group chats (this is just an animation demo)",
+      "description": "Illustrate a proposed semantic search for group chats in an animated concept",
+      "descriptions": {
+        "en": "Illustrate a proposed semantic search for group chats in an animated concept",
+        "zh": "用概念动画展示拟议中的群聊语义搜索",
+        "ja": "構想段階のグループチャット意味検索をアニメーションで提示",
+        "ko": "그룹 채팅 의미 검색 구상을 콘셉트 애니메이션으로 표현",
+        "es": "Ilustrar una propuesta de búsqueda semántica en chats grupales con una animación",
+        "pt-br": "Ilustrar uma proposta de busca semântica em chats de grupo com uma animação"
+      },
+      "postText": "I have an idea to try Jev as semantic search for group chats (this is just an animation demo) https://t.co/3qgkP9NFIr",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "serhiikar",
+        "name": "Serhii Karas"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103172941638939061",
+      "videoUrl": "https://media.jevbest.com/videos/2103172906503016448.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103172906503016448.jpg",
+      "duration": 24,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103171843045965824",
+      "title": "Jev just blew my mind. ",
+      "description": "Map conversation threads during live meetings",
+      "descriptions": {
+        "en": "Map conversation threads during live meetings",
+        "zh": "在实时会议中绘制对话主题图",
+        "ja": "会議中の会話の流れをリアルタイムに図示",
+        "ko": "실시간 회의 중 대화 주제 흐름을 지도화",
+        "es": "Mapear hilos de conversación durante reuniones en directo",
+        "pt-br": "Mapear linhas de conversa durante reuniões ao vivo"
+      },
+      "postText": "Jev just blew my mind. \n\nINTRODUCING LIVE MEETING CONVERSATION MAPPING. \n\nNow, while I'm in a meeting, Jev instantly catches every single thread and puts that to a conversational map instantly, so I can keep track of it without ever having to ask for a catch-up or follow-up at all.\n\nDownload and try for free: https://t.co/2Fyv7mFrPv",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "Spshulem",
+        "name": "Spencer Shulem"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103172266188300660",
+      "videoUrl": "https://media.jevbest.com/videos/2103171843045965824.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103171843045965824.jpg",
+      "duration": 182.933333,
+      "width": 2810,
+      "height": 1764,
+      "aspectRatio": 1.593,
+      "tags": []
+    },
+    {
+      "id": "2103171321089626112",
+      "title": "JEV just checked all 35,606 servers in the official MCP registry for $0.75 🔓",
+      "description": "Classify MCP servers by access to private data and inspect local agent configurations",
+      "descriptions": {
+        "en": "Classify MCP servers by access to private data and inspect local agent configurations",
+        "zh": "按私有数据访问权限分类 MCP 服务器，并检查本地智能体配置",
+        "ja": "MCPサーバーを個人データへのアクセス別に分類しローカル設定を検査",
+        "ko": "MCP 서버를 비공개 데이터 접근별로 분류하고 로컬 에이전트 설정 검사",
+        "es": "Clasificar servidores MCP por acceso a datos privados e inspeccionar configuraciones locales",
+        "pt-br": "Classificar servidores MCP por acesso a dados privados e inspecionar configurações locais"
+      },
+      "postText": "JEV just checked all 35,606 servers in the official MCP registry for $0.75 🔓\n\n1,049 of them can reach your email, calendar or messages.\n\nClaude Opus 5.5 on a random 300, same seven questions: same yes or no as Jev on private data for 297.\n\nWhat whocanread hands back on your own machine:\n→ every MCP server Claude Code, Cursor, Codex, VS Code, Windsurf, Gemini CLI and Zed load\n→ which ones touch email, calendar, messages, files, shell, browser or payments\n→ API keys sitting in plain text in those configs, by name, never the value\n→ one Python file, nothing leaves your laptop\n\nThe twist: keyword search flags 1,937 servers as touching private data. Nearly double. And it misses the scary ones: rules find 226 servers that run shell commands, Jev finds 1,101.\n\nEvery agent you install asks for one more connector. Nobody keeps the list.\n\nBuilt with Claude Opus 5.5 in Claude Code, judgment by Jev from @typesafeai. Inspired by @shikhars_ asking for exactly this tool. Real API calls, the full public registry, one run.\n\nHow many MCP servers is your agent loading right now?\n\nRepost this now, because whoever set up your team's agents should run this once.\n\nFollow for more open source JEV builds. Code in the reply.",
+      "category": "Safety & moderation",
+      "language": "en",
+      "creator": {
+        "handle": "stas_sorokin_",
+        "name": "Stanislav Sorokin"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103171355940409496",
+      "videoUrl": "https://media.jevbest.com/videos/2103171321089626112.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103171321089626112.jpg",
+      "duration": 26,
+      "width": 1080,
+      "height": 1350,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2103168757845626880",
+      "title": "My voice interviewer can't see the whiteboard; GPT-Live takes no images. The box I named \"Fastly\" is read as a CDN at 1.",
+      "description": "Interpret whiteboard elements for a voice interviewer that cannot receive images",
+      "descriptions": {
+        "en": "Interpret whiteboard elements for a voice interviewer that cannot receive images",
+        "zh": "为无法接收图像的语音面试助手解读白板元素",
+        "ja": "画像を受け取れない音声面接官向けにホワイトボード要素を解釈",
+        "ko": "이미지를 받지 못하는 음성 면접관을 위해 화이트보드 요소 해석",
+        "es": "Interpretar elementos de una pizarra para un entrevistador de voz que no recibe imágenes",
+        "pt-br": "Interpretar elementos de um quadro para um entrevistador por voz que não recebe imagens"
+      },
+      "postText": "My voice interviewer can't see the whiteboard; GPT-Live takes no images. The box I named \"Fastly\" is read as a CDN at 1.00, and my note \"sync or async transcode?\" as a question I still owe. Jev answers dozen of questions like that in under half a second. The voice never hears one.\n\nThe first try was a compact grammar with IDs and a 3x3 grid for positions. It broke on one stray box far from the rest; the grid squashed everything else into one cell. And a realistic canvas of 14 elements was about 90 tokens anyway, so saving tokens was solving nothing. In the end, it's plain English from a deterministic renderer, one fixed sentence per element type: \"Client\" → \"App server\" → \"Queue\". No model writes it, so a replay gives the same text byte for byte.\n\n\"This one\" was the other hard part; you can't guess it from geometry. The browser knows what I just clicked, so every snapshot starts with a Focus line and the voice is told to trust it.\n\nThen @typesafeai jev. It never speaks; it answers small, typed questions, and each answer is a probability. What is this label? Is this note an open question? Did I talk about this box? Did I answer my own note? We wait 3 seconds of quiet so it doesn't judge half a sentence, then one request carries all of them. On my upload line, that's dozen of questions, back in 150 to 200 ms.\n\nNone of that goes to the voice. Because a wrong guess said out loud puts words in the candidate's mouth. The judgments go to plain code that picks the next question and which box to name. The voice gets the labels, never the reading.\n\nIt's not perfect yet, but wow!",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "k0nOO",
+        "name": "k0n00"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103169003376062595",
+      "videoUrl": "https://media.jevbest.com/videos/2103168757845626880.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103168757845626880.jpg",
+      "duration": 165.781333,
+      "width": 3344,
+      "height": 2160,
+      "aspectRatio": 1.5481,
+      "tags": []
+    },
+    {
+      "id": "2103168342781546496",
+      "title": "We’ve been massively overpaying for AI marketing work that doesn’t need frontier intelligence.",
+      "description": "Audit internal-link opportunities across 586 pages and leave unsuitable matches unlinked",
+      "descriptions": {
+        "en": "Audit internal-link opportunities across 586 pages and leave unsuitable matches unlinked",
+        "zh": "审核 586 个页面的内链机会，不为不合适的匹配强行加链",
+        "ja": "586ページの内部リンク候補を監査し不適切な組合せは未接続にする",
+        "ko": "586개 페이지의 내부 링크 기회를 감사하고 부적합한 조합은 연결하지 않음",
+        "es": "Auditar oportunidades de enlaces internos en 586 páginas y omitir coincidencias inadecuadas",
+        "pt-br": "Auditar oportunidades de links internos em 586 páginas e omitir correspondências inadequadas"
+      },
+      "postText": "We’ve been massively overpaying for AI marketing work that doesn’t need frontier intelligence.\n\nI ran Jev across 586 pages of a site for an internal linking audit. In 45.1 seconds, it processed every page, rebuilt the internal link map, placed 584 links, and refused to force links onto 139 pages where nothing actually fit.\n\nTotal cost: $0.21.\n\nI gave Claude Opus 5 the same 586 pages, same queue, same rubric, same clock. It got through 21 pages and spent $1.43 before the run stopped. That works out to roughly 190x more cost per page. A full Opus pass at that rate would have cost around $43.\n\nThe interesting part isn’t that Jev is “better at SEO.” Internal linking is simply the kind of marketing task where using a frontier model can be overkill. The job is basically thousands of small classification decisions: should page A link to page B, and does relevant anchor text already exist in the copy?\n\nWe’ve spent the last few years asking which AI model is smartest. For marketing teams, the more useful question might be: what is the cheapest level of intelligence that can reliably make this specific decision?\n\nAs AI gets embedded deeper into marketing workflows, model routing will matter as much as model capability. The best AI stack won’t run everything through the smartest model. It’ll know when intelligence is actually worth paying for.",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "wwardenn",
+        "name": "Warden"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103168377388978635",
+      "videoUrl": "https://media.jevbest.com/videos/2103168342781546496.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103168342781546496.jpg",
+      "duration": 24.516667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103167656476004352",
+      "title": "Here's a simple demo of why and when you'd use #Jev from @typesafeai.",
+      "description": "Compare Jev and Haiku on 100 classification questions with batched and individual calls",
+      "descriptions": {
+        "en": "Compare Jev and Haiku on 100 classification questions with batched and individual calls",
+        "zh": "用批量和单条调用比较 Jev 与 Haiku 对 100 道分类问题的表现",
+        "ja": "100問の分類課題を一括・個別に呼び出しJevとHaikuを比較",
+        "ko": "분류 질문 100개에 대한 일괄 및 개별 호출로 Jev와 Haiku 비교",
+        "es": "Comparar Jev y Haiku en 100 preguntas de clasificación con llamadas agrupadas e individuales",
+        "pt-br": "Comparar Jev e Haiku em 100 perguntas de classificação com chamadas em lote e individuais"
+      },
+      "postText": "Here's a simple demo of why and when you'd use #Jev from @typesafeai.\n\nIt doesn't generate text. It doesn't mean it can't hallucinate but if you know you have certain classification paths, it can classify with lightning speed and low cost and onward a query to the step where a traditional LLM is better. \n\nHere, I do a walkthrough of a 100 questions with Jev versus Haiku and show why and when I'd use it. Not shown in video is the cost: \n- for 2x 100-query run, Jev was $0.006 and Haiku was $0.019\n- The second run was 1 question at a time, whereas the one shown is 4 questions at a time, but this did not affect latency too much\n\nThe original thread for what I was applying this on is at: https://t.co/E0kaKUqUxc\n\nSo what use cases do you have for Jev?",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "SiddhitSanghavi",
+        "name": "Sid Sanghavi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103168340982137015",
+      "videoUrl": "https://media.jevbest.com/videos/2103167656476004352.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103167656476004352.jpg",
+      "duration": 342.122667,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103164719964266496",
+      "title": "I used Jev and Claude Code to build a free SEO Content Pruner.",
+      "description": "Review sitemap pages for updates, merging or removal with optional Search Console traffic data",
+      "descriptions": {
+        "en": "Review sitemap pages for updates, merging or removal with optional Search Console traffic data",
+        "zh": "结合可选 Search Console 流量数据，审查站点地图页面的更新、合并或删除候选",
+        "ja": "任意のSearch Console流量データでサイトマップの更新・統合・削除候補を確認",
+        "ko": "선택적 Search Console 트래픽 데이터로 사이트맵 페이지의 갱신, 병합, 삭제 후보 검토",
+        "es": "Revisar páginas del sitemap para actualizar, fusionar o eliminar con datos opcionales de Search Console",
+        "pt-br": "Revisar páginas do sitemap para atualizar, combinar ou remover com dados opcionais do Search Console"
+      },
+      "postText": "I used Jev and Claude Code to build a free SEO Content Pruner.\n\nEnter your sitemap to find pages worth reviewing. Add Google Search Console data to check traffic before deciding what to update, merge, or remove.\n\nHere’s a quick demo 👇 https://t.co/b9WyWhCahG",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "EDAN_SEO",
+        "name": "Edan Mizrahi"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103166291305775277",
+      "videoUrl": "https://media.jevbest.com/videos/2103164719964266496.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103164719964266496.jpg",
+      "duration": 159.900026,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103015167562788864",
+      "title": "the words choose their own typography as you type - powered by jev",
+      "description": "Choose typography dynamically from the words being typed",
+      "descriptions": {
+        "en": "Choose typography dynamically from the words being typed",
+        "zh": "根据正在输入的文字动态选择字体样式",
+        "ja": "入力中の言葉に応じて文字デザインを選択",
+        "ko": "입력 중인 단어에 따라 타이포그래피를 동적으로 선택",
+        "es": "Elegir tipografía dinámicamente según las palabras escritas",
+        "pt-br": "Escolher tipografia dinamicamente conforme as palavras digitadas"
+      },
+      "postText": "the words choose their own typography as you type - powered by jev https://t.co/rznyShUHBi",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "mxkaske",
+        "name": "Maximilian Kaske 🏓"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103166067891917153",
+      "videoUrl": "https://media.jevbest.com/videos/2103015167562788864.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103015167562788864.jpg",
+      "duration": 17.6,
+      "width": 1238,
+      "height": 720,
+      "aspectRatio": 1.7194,
+      "tags": []
+    },
+    {
+      "id": "2103164657158819840",
+      "title": "Jev is having a moment. Every platform rushed to host it the same way: another model endpoint in the catalog, and good l",
+      "description": "Expose Jev as a classifier tool inside DigitalOcean Action Gateway",
+      "descriptions": {
+        "en": "Expose Jev as a classifier tool inside DigitalOcean Action Gateway",
+        "zh": "在 DigitalOcean Action Gateway 中将 Jev 提供为分类工具",
+        "ja": "DigitalOcean Action Gateway内でJevを分類ツールとして提供",
+        "ko": "DigitalOcean Action Gateway에서 Jev를 분류 도구로 제공",
+        "es": "Ofrecer Jev como herramienta clasificadora en DigitalOcean Action Gateway",
+        "pt-br": "Oferecer Jev como ferramenta de classificação no DigitalOcean Action Gateway"
+      },
+      "postText": "Jev is having a moment. Every platform rushed to host it the same way: another model endpoint in the catalog, and good luck wiring it into your agent loop yourself.\n\nWe took a different route at DigitalOcean. In addition to Jev being available in our Inference engine, Jev is also available inside Action Gateway as a first-class classifier tool, right next to browser automation, and 16,000+ other tools behind one governed MCP endpoint.\n\nThat distinction sounds small. It isn't.\n\nTreat Jev as a model and your agent's LLM has to know about a second inference provider, manage another API key, and hand-roll the request plumbing. Treat it as a tool and any harness you already run (Codex, Claude Code, LangGraph) just discovers it and calls it, same as any other tool in the belt.\n\nAsk typed questions: a yes/no, a choice from your own list, a score on your own scale. Get back decisions with calibrated probabilities, schema conformance guaranteed. Answers land as data your code uses directly, so agents route, filter, and escalate without parsing prose.\n\nThe gateway part matters too. Jev calls ride the same governance as everything else: scoped permissions, credentials that never enter the model context, low-confidence answers flagged for a human, every decision in the audit trail.\n\nWe ran a Codex agent through it this week. One YAML, one prompt, and it turned a day of X noise into a shortlist worth reading, with the uncertainty left visible.\n\nIf you want raw inference, Jev is on Serverless Inference too, at $42 per billion input tokens with output free. But agents shouldn't have to treat a classifier like a chatbot.\n\nModels reason. Jev decides. Ship both. On the same platform.",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "jenukal",
+        "name": "Vinay Kumar"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103165869883007035",
+      "videoUrl": "https://media.jevbest.com/videos/2103164657158819840.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103164657158819840.jpg",
+      "duration": 134.570667,
+      "width": 3782,
+      "height": 1804,
+      "aspectRatio": 2.0965,
+      "tags": []
+    },
+    {
+      "id": "2103164075790229506",
+      "title": "#Reranking in agent memory -&gt; always meant for specialized models.",
+      "description": "Benchmark memory reranking on three BEIR datasets against Cohere and open models",
+      "descriptions": {
+        "en": "Benchmark memory reranking on three BEIR datasets against Cohere and open models",
+        "zh": "在三个 BEIR 数据集上对比 Cohere、开放模型与记忆重排方案",
+        "ja": "3つのBEIRデータセットで記憶の再順位付けをCohereや公開モデルと比較",
+        "ko": "BEIR 데이터셋 세 개에서 메모리 재순위화를 Cohere 및 공개 모델과 비교",
+        "es": "Evaluar reordenación de memoria en tres conjuntos BEIR frente a Cohere y modelos abiertos",
+        "pt-br": "Avaliar reordenação de memória em três conjuntos BEIR contra Cohere e modelos abertos"
+      },
+      "postText": "#Reranking in agent memory -&gt; always meant for specialized models.\n\nCan #Jev really do it better and faster?\n\nJev-Reranker: We benchmarked it on 3 BEIR datasets. Matched Cohere's domain-tuned flagship &amp; beat every open model including  #zerank-1.\n\nRepo: https://t.co/jpCpDqT1EA https://t.co/aBe3BzhPQO",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "USPraveenRaj1",
+        "name": "Praveen Sundar"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103164694014157253",
+      "videoUrl": "https://media.jevbest.com/videos/2103164075790229506.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103164075790229506.jpg",
+      "duration": 38.6,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103164334440398848",
+      "title": "Opus 5.5 and Grok 4.7 are too slow to play snake.",
+      "description": "Compare Snake gameplay across Opus 5.5, Grok 4.7, Jev and Laya",
+      "descriptions": {
+        "en": "Compare Snake gameplay across Opus 5.5, Grok 4.7, Jev and Laya",
+        "zh": "比较 Opus 5.5、Grok 4.7、Jev 和 Laya 玩贪吃蛇的表现",
+        "ja": "Opus 5.5・Grok 4.7・Jev・Layaのスネーク操作を比較",
+        "ko": "Opus 5.5, Grok 4.7, Jev, Laya의 스네이크 플레이 비교",
+        "es": "Comparar partidas de Snake con Opus 5.5, Grok 4.7, Jev y Laya",
+        "pt-br": "Comparar partidas de Snake com Opus 5.5, Grok 4.7, Jev e Laya"
+      },
+      "postText": "Opus 5.5 and Grok 4.7 are too slow to play snake.\n\nThey get one move per second. Jev gets 4. Laya gets 30.\n\nSame game. Same brain. Just faster.\n\nLaya 27. Jev 3. Opus 5.5 1. Grok 4.7 1.\n\nWould you still pay for the slow one?",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "AIMind_Ai",
+        "name": "AiMind"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103164625130844571",
+      "videoUrl": "https://media.jevbest.com/videos/2103164334440398848.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103164334440398848.jpg",
+      "duration": 20.062041,
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103163679625658368",
+      "title": "I gave Chrome’s offline dinosaur an online AI brain. 🦖",
+      "description": "Control Chrome's dinosaur game with ten decision calls per second",
+      "descriptions": {
+        "en": "Control Chrome's dinosaur game with ten decision calls per second",
+        "zh": "每秒调用十次决策来控制 Chrome 小恐龙游戏",
+        "ja": "毎秒10回の判断でChromeの恐竜ゲームを操作",
+        "ko": "초당 열 번의 판단 호출로 Chrome 공룡 게임 제어",
+        "es": "Controlar el dinosaurio de Chrome con diez llamadas de decisión por segundo",
+        "pt-br": "Controlar o dinossauro do Chrome com dez chamadas de decisão por segundo"
+      },
+      "postText": "I gave Chrome’s offline dinosaur an online AI brain. 🦖\n\nI used Codex to connect the new JEV model from TypeSafe, 10 calls a second, to play the game.\n\n12 minutes and more than 13,000 points until I stopped it because it looked like it would go on forever.\n\nGood use for AI? Maybe I should use it to make money instead 😂\n\nhttps://t.co/MHPvW5jgEw",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "GiladShips",
+        "name": "ロネン・ギラッド"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103164128638517307",
+      "videoUrl": "https://media.jevbest.com/videos/2103163679625658368.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103163679625658368.jpg",
+      "duration": 716.383333,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103161912620179460",
+      "title": "everyone is building serious stuff with Laya/Jev",
+      "description": "Score likely commit regret from code and diffs using local Laya",
+      "descriptions": {
+        "en": "Score likely commit regret from code and diffs using local Laya",
+        "zh": "用本地 Laya 根据代码和差异评估提交后可能后悔的程度",
+        "ja": "ローカルLayaでコードと差分からコミットの後悔度を採点",
+        "ko": "로컬 Laya로 코드와 변경분에서 커밋 후회 가능성 평가",
+        "es": "Puntuar el posible arrepentimiento de un commit desde código y diferencias con Laya local",
+        "pt-br": "Pontuar o possível arrependimento de um commit a partir do código e diferenças com Laya local"
+      },
+      "postText": "everyone is building serious stuff with Laya/Jev\n\nI built something stupidly useful with Laya\n\n git regret 💀\n\nit reads your code, diff and tells you how much you’ll regret committing it -&gt; within 1-2 seconds\n\ntested it on my own code:\n\n73% regret\n\nanyway, shipped 🧠 https://t.co/B6cd8WKLfB",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "sandeepdev_code",
+        "name": "Sandeep Singh ☄️"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103162910830948443",
+      "videoUrl": "https://media.jevbest.com/videos/2103161912620179460.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103161912620179460.jpg",
+      "duration": 33.024,
+      "width": 1108,
+      "height": 720,
+      "aspectRatio": 1.5389,
+      "tags": []
+    },
+    {
+      "id": "2102935500801880064",
+      "title": "Now this is the kind of automation speed I can get behind 🔥",
+      "description": "Control Firefox by chaining Jev with multimodal models and Rotunda DOM serialization",
+      "descriptions": {
+        "en": "Control Firefox by chaining Jev with multimodal models and Rotunda DOM serialization",
+        "zh": "将 Jev、多模态模型和 Rotunda DOM 序列化串联起来控制 Firefox",
+        "ja": "Jev・マルチモーダルモデル・RotundaのDOM表現を連携しFirefoxを操作",
+        "ko": "Jev, 멀티모달 모델, Rotunda DOM 직렬화를 연결해 Firefox 제어",
+        "es": "Controlar Firefox combinando Jev, modelos multimodales y serialización DOM de Rotunda",
+        "pt-br": "Controlar Firefox combinando Jev, modelos multimodais e serialização DOM do Rotunda"
+      },
+      "postText": "Now this is the kind of automation speed I can get behind 🔥\n\nThis is Jev controlling a firefox instance. \"But doesn't Jev only do structured outputs?\" you might ask\n\nMy new project Unsure lets you chain Jev with conventional multimodal LLMs, while using Rotunda for browser automation + DOM serialization.\n\nEnterprise software is quickly collapsing to a headless API call, which will be both faster and more accurate than how we do it today. As far as I'm concerned, the less time I have to spend navigating bad UIs the better.\n\nPipeline is below.",
+      "category": "Agents & browsers",
+      "language": "en",
+      "creator": {
+        "handle": "piercefreeman",
+        "name": "Pierce Freeman"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103162041724805307",
+      "videoUrl": "https://media.jevbest.com/videos/2102935500801880064.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2102935500801880064.jpg",
+      "duration": 35.925333,
+      "width": 3324,
+      "height": 2160,
+      "aspectRatio": 1.5389,
+      "tags": []
+    },
+    {
+      "id": "2103161510600085504",
+      "title": "jev + picsart turned one prompt into a graph that thinks before it spends",
+      "description": "Gate Picsart generation steps with run, stop, reuse and human-review decisions",
+      "descriptions": {
+        "en": "Gate Picsart generation steps with run, stop, reuse and human-review decisions",
+        "zh": "用运行、停止、复用和人工审核决策控制 Picsart 生成步骤",
+        "ja": "実行・停止・再利用・人の確認の判断でPicsartの生成工程を制御",
+        "ko": "실행, 중지, 재사용, 사람 검토 판단으로 Picsart 생성 단계 제어",
+        "es": "Controlar pasos de generación de Picsart con decisiones de ejecutar, detener, reutilizar y revisar",
+        "pt-br": "Controlar etapas de geração do Picsart com decisões de executar, parar, reutilizar e revisar"
+      },
+      "postText": "jev + picsart turned one prompt into a graph that thinks before it spends\n\ninstead of letting expensive models guess through every step, i split the workflow in two. jev handles the cheap decisions, picsart handles the actual generation.\n\nhere’s the setup i used:\n\nstep 1 → the brief enters once. every image, clip, audio pass and edit inherits the same campaign direction instead of starting from zero.\n\nstep 2 → jev sits before the expensive work. it decides whether the next stage should run, stop, reuse something finished, or wait for me.\n\nstep 3 → the decision set stays small: allow_subagent, ask_human, stop_retry, reuse_cache. cheap calls first, expensive generation second.\n\nstep 4 → picsart takes over the creative layer. 188 models from 34 providers sit behind the graph for image, video, audio and editing.\n\nstep 5 → each asset gets its own stage. one weak output does not kill the whole run. review can reject 1 branch, keep 5 stages alive, and send only the broken part back.\n\nstep 6 → the cost gap is the fun part. 11 jev decisions cost about $0.0011 here, versus roughly $0.33 through a heavier llm decision loop.\n\nstep 7 → once the graph works, the next campaign is not another rebuild. swap the brief, keep the logic, and run the same system again.\n\ncheap decisions should protect expensive generation. jev decides what deserves compute, picsart turns that decision into the asset.",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "gippp69",
+        "name": "Gipp 🦅"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103161700769755509",
+      "videoUrl": "https://media.jevbest.com/videos/2103161510600085504.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103161510600085504.jpg",
+      "duration": 26.052789,
+      "width": 1920,
+      "height": 1600,
+      "aspectRatio": 1.2,
+      "tags": []
+    },
+    {
+      "id": "2103027240799973376",
+      "title": "jev (@typesafeai ) saves me from the worst part of coding with frontier models.",
+      "description": "Compare new prompts with recent chat context to catch messages sent to the wrong coding session",
+      "descriptions": {
+        "en": "Compare new prompts with recent chat context to catch messages sent to the wrong coding session",
+        "zh": "将新提示与近期聊天上下文比较，拦截发错编码会话的消息",
+        "ja": "新しい指示を会話の文脈と比べ誤ったコーディングセッションへの送信を検出",
+        "ko": "새 프롬프트와 최근 대화 문맥을 비교해 잘못된 코딩 세션 메시지 탐지",
+        "es": "Comparar prompts nuevos con el contexto reciente para detectar mensajes en la sesión equivocada",
+        "pt-br": "Comparar novos prompts com o contexto recente para detectar mensagens na sessão errada"
+      },
+      "postText": "jev (@typesafeai ) saves me from the worst part of coding with frontier models.\n\nrunning multiple sessions in multiple terminals simultaneously i tend to shot a wrong prompt at wrong terminal. coding agents are pleasers they'll never tell you \"wrong chat buddy\". \n\nsometimes ill spend hours reexplaining to a wrong chat cause it acts if its knows.\n\ni built a jev guard that will stop me before harming a good chat and waisting time simply by comparing the recent chat context to the newly sent prompt.",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "adin_ron",
+        "name": "Ron Adin"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103160532333207929",
+      "videoUrl": "https://media.jevbest.com/videos/2103027240799973376.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103027240799973376.jpg",
+      "duration": 37.15,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103158816481202176",
+      "title": "A whole world in seconds 🕹️",
+      "description": "Generate a game world with Opus 5.5 and improvise NPC behavior with Jev",
+      "descriptions": {
+        "en": "Generate a game world with Opus 5.5 and improvise NPC behavior with Jev",
+        "zh": "用 Opus 5.5 生成游戏世界，由 Jev 即时决定 NPC 行为",
+        "ja": "Opus 5.5でゲーム世界を作りJevでNPCの行動を即興決定",
+        "ko": "Opus 5.5로 게임 세계를 만들고 Jev로 NPC 행동 즉석 결정",
+        "es": "Generar un mundo con Opus 5.5 e improvisar comportamientos de NPC con Jev",
+        "pt-br": "Gerar um mundo com Opus 5.5 e improvisar comportamentos de NPCs com Jev"
+      },
+      "postText": "A whole world in seconds 🕹️\nEvery character in milliseconds.\nNone of it existed before you typed a sentence.\n\nClaude Opus 5.5 writes the world for that one game from your sentence and Jev improvises every NPC live as you meet them🚶🏽\n\nNo two players ever see the same thing ⤵ https://t.co/wfO7RmA5w4",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "eachlabs",
+        "name": "each::labs"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103160314795532645",
+      "videoUrl": "https://media.jevbest.com/videos/2103158816481202176.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103158816481202176.jpg",
+      "duration": 83.285333,
+      "width": 1708,
+      "height": 1080,
+      "aspectRatio": 1.5815,
+      "tags": []
+    },
+    {
+      "id": "2103149965102997504",
+      "title": "Jev just made the Claude Code vs Codex debate obsolete",
+      "description": "Route coding tasks between Claude Code and Codex and gate risky tool execution",
+      "descriptions": {
+        "en": "Route coding tasks between Claude Code and Codex and gate risky tool execution",
+        "zh": "在 Claude Code 和 Codex 之间分派编码任务，并控制高风险工具执行",
+        "ja": "Claude CodeとCodexへ作業を振り分け危険なツール実行を判定",
+        "ko": "Claude Code와 Codex 간 코딩 작업을 분배하고 위험 도구 실행 제어",
+        "es": "Repartir tareas entre Claude Code y Codex y controlar herramientas de riesgo",
+        "pt-br": "Distribuir tarefas entre Claude Code e Codex e controlar ferramentas de risco"
+      },
+      "postText": "Jev just made the Claude Code vs Codex debate obsolete\n\nI connected both to Jev - now the best coding agent is selected for every task, and neither can cross a risky tool boundary without a typed decision\n\nin one run it scanned 247 files, routed the security audit to Claude Code, routed the patch to Codex, passed 18/18 tests and stopped npm publish before execution\n\nhere’s how to set it up in 10 min:\n\ntask → Jev decision → Claude Code / Codex → tool execution → fresh verification\n\nstep 1 → open @typesafeai and create your Jev API key (never paste it into chat)\n\nstep 2 → clone and verify the complete agent switch\n\nstep 3 → export the key before starting either agent:\n\nexport TYPESAFE_API_KEY=\"YOUR_KEY\"\n\nstep 4 → test the full decision layer before connecting a live agent:\n\nnpm run doctor && npm run check:claude && npm run check:codex\n\nstep 5 → connect Claude Code directly from the repository:\n\nclaude --plugin-dir .\n\nClaude discovers the plugin and turns Jev review decisions into real confirmation requests\n\nstep 6 → for Codex, install the same folder through your local plugin marketplace, open /hooks and trust the exact PreToolUse hook\n\nCodex uses the same policy and safely stops calls that need human review\n\nstep 7 → keep agent: auto and the plugin detects Claude Code or Codex automatically - or set agent: claude / codex when you want to lock one runtime\n\nstep 8 → start in shadow mode for 20–50 real decisions:\n\nexport JEV_AGENT_SWITCH_MODE=\"shadow\" && export JEV_AGENT_SWITCH_LOGGING=\"true\"\n\nyour agent keeps working normally while Jev records the route, confidence and outcome without blocking anything\n\nstep 9 → switch to enforce only after the decisions look reliable:\n\nexport JEV_AGENT_SWITCH_MODE=\"enforce\"\n\nsafe calls pass, uncertain calls stop for review, dangerous calls are denied\n\nthe default boundary is 0.62 minimum confidence and 0.86 harmful-action probability\n\nstep 10 → use it normally - ask Claude Code or Codex to inspect, patch, test or prepare a release; the same Jev layer stays in front of both\n\nthe result: Claude Code handles deep repository context, Codex handles fast patches and verification, and Jev decides which worker gets the task - while keeping publishing, production and irreversible actions behind a human boundary\n\nunfortunately, most people are still comparing coding models as if one model needs to win forever\n\nthe actual 2030 setup makes the model replaceable: one task enters, Jev selects the best worker, code enforces the decision and every action leaves a receipt\n\nSteal the agent setup everyone will use by 2028, copy the repo below - then read the full Jev Engineering playbook ↓",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "elune0x",
+        "name": "elune"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103160054895505603",
+      "videoUrl": "https://media.jevbest.com/videos/2103149965102997504.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103149965102997504.jpg",
+      "duration": 16.256,
+      "width": 2032,
+      "height": 1080,
+      "aspectRatio": 1.8815,
+      "tags": []
+    },
+    {
+      "id": "2103159286649991168",
+      "title": "i put Jev in a sim, gave it controls to a drone, and gave it a mission",
+      "description": "Navigate a simulated drone from camera-derived state and mission goals",
+      "descriptions": {
+        "en": "Navigate a simulated drone from camera-derived state and mission goals",
+        "zh": "根据相机提取的状态和任务目标操纵模拟无人机",
+        "ja": "カメラから得た状態と任務目標で模擬ドローンを操縦",
+        "ko": "카메라에서 얻은 상태와 임무 목표로 모의 드론 탐색",
+        "es": "Navegar un dron simulado desde el estado obtenido por cámara y los objetivos de misión",
+        "pt-br": "Navegar um drone simulado com estado obtido por câmera e objetivos da missão"
+      },
+      "postText": "i put Jev in a sim, gave it controls to a drone, and gave it a mission\n\ncameras → perception pipeline → Jev decides where to go → decides where to look/when to move on → sends controls to the drone → win https://t.co/WrCYAiJfeH",
+      "category": "Robotics & devices",
+      "language": "en",
+      "creator": {
+        "handle": "raghavp",
+        "name": "raghav"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103159699571171419",
+      "videoUrl": "https://media.jevbest.com/videos/2103159286649991168.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103159286649991168.jpg",
+      "duration": 43.833333,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103158407448363008",
+      "title": "apparently the thing we needed Jev for was yelling 'left hook' at a tiny guy on a screen",
+      "description": "Select pregenerated character animations from live voice commands with Pinoc MCP",
+      "descriptions": {
+        "en": "Select pregenerated character animations from live voice commands with Pinoc MCP",
+        "zh": "用 Pinoc MCP 根据实时语音命令选择预生成角色动画",
+        "ja": "Pinoc MCPで音声指示から事前生成したキャラクター動作を選択",
+        "ko": "Pinoc MCP로 실시간 음성 명령에 맞는 사전 생성 캐릭터 애니메이션 선택",
+        "es": "Elegir animaciones de personajes pregeneradas mediante órdenes de voz con Pinoc MCP",
+        "pt-br": "Escolher animações de personagens pré-geradas por comandos de voz com Pinoc MCP"
+      },
+      "postText": "apparently the thing we needed Jev for was yelling 'left hook' at a tiny guy on a screen\n\nour designer made this character animation voice-controller with Pinoc MCP’s text-to-animation + Jev from @typesafeai\n\nthe moves are generated ahead of time. Jev then picks them as you speak. feels almost instant 👀\n\n#gamedev",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "Viggle_PINOC",
+        "name": "PINOC"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103158570372026410",
+      "videoUrl": "https://media.jevbest.com/videos/2103158407448363008.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103158407448363008.jpg",
+      "duration": 36.432109,
+      "width": 2160,
+      "height": 3840,
+      "aspectRatio": 0.5625,
+      "tags": []
+    },
+    {
+      "id": "2103154995495665664",
+      "title": "I've built an open-source coding agent tool!",
+      "description": "Classify multiplayer chat messages and trigger coding agents only for relevant requests",
+      "descriptions": {
+        "en": "Classify multiplayer chat messages and trigger coding agents only for relevant requests",
+        "zh": "分类多人聊天消息，仅为相关请求触发编码智能体",
+        "ja": "複数人のチャットを分類し関連する依頼だけでコーディングエージェントを起動",
+        "ko": "다중 사용자 채팅 메시지를 분류하고 관련 요청에만 코딩 에이전트 실행",
+        "es": "Clasificar mensajes de chat grupal y activar agentes de código solo para solicitudes pertinentes",
+        "pt-br": "Classificar mensagens de chat em grupo e ativar agentes de código apenas para solicitações pertinentes"
+      },
+      "postText": "I've built an open-source coding agent tool!\n\nJev classifies every message—the chats are multiplayer, and humans can talk normally, but if Jev recognises a coding request or question, it hops in and triggers the correct agent.\n\nGet it + info ↓ https://t.co/baIOzDOq3i",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "ctnicholasdev",
+        "name": "Chris Nicholas"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103155013841563702",
+      "videoUrl": "https://media.jevbest.com/videos/2103154995495665664.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103154995495665664.jpg",
+      "duration": 23.35,
+      "width": 1060,
+      "height": 720,
+      "aspectRatio": 1.4722,
+      "tags": []
+    },
+    {
+      "id": "2103137754368401408",
+      "title": "Jev said contradict. Laya said agree. Same fictional note, same question.",
+      "description": "Compare Jev and Laya on 16 labeled decisions across four fictional clinical notes",
+      "descriptions": {
+        "en": "Compare Jev and Laya on 16 labeled decisions across four fictional clinical notes",
+        "zh": "用四份虚构临床记录中的 16 个标注判断比较 Jev 与 Laya",
+        "ja": "4つの架空診療記録の16個のラベル付き判断でJevとLayaを比較",
+        "ko": "가상 임상 기록 네 개의 라벨 판단 16개로 Jev와 Laya 비교",
+        "es": "Comparar Jev y Laya en 16 decisiones etiquetadas de cuatro notas clínicas ficticias",
+        "pt-br": "Comparar Jev e Laya em 16 decisões rotuladas de quatro notas clínicas fictícias"
+      },
+      "postText": "Jev said contradict. Laya said agree. Same fictional note, same question.\n\nActive list: ramipril 5 mg daily. Signed discharge: stop ramipril. Both real calls are in the video. Across 4 authored notes and 16 prelabelled decisions: Jev 16/16, Laya 13/16. https://t.co/AOeUrifYkz",
+      "category": "Research & data",
+      "language": "en",
+      "creator": {
+        "handle": "OpenMed_AI",
+        "name": "OpenMed"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103154995139137539",
+      "videoUrl": "https://media.jevbest.com/videos/2103137754368401408.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103137754368401408.jpg",
+      "duration": 13.166667,
+      "width": 1080,
+      "height": 1350,
+      "aspectRatio": 0.8,
+      "tags": []
+    },
+    {
+      "id": "2102985044617031680",
+      "title": "Jev made competitor ad research 30x faster and ~90% cheaper.",
+      "description": "Score hooks, formats and trust signals across 294 TikTok ads from 68 brands",
+      "descriptions": {
+        "en": "Score hooks, formats and trust signals across 294 TikTok ads from 68 brands",
+        "zh": "为 68 个品牌的 294 条 TikTok 广告评估开头、形式和信任信号",
+        "ja": "68ブランドのTikTok広告294本で導入・形式・信頼性を採点",
+        "ko": "브랜드 68개의 TikTok 광고 294개에서 도입, 형식, 신뢰 신호 평가",
+        "es": "Puntuar ganchos, formatos y señales de confianza en 294 anuncios de TikTok de 68 marcas",
+        "pt-br": "Pontuar chamadas, formatos e sinais de confiança em 294 anúncios do TikTok de 68 marcas"
+      },
+      "postText": "Jev made competitor ad research 30x faster and ~90% cheaper.\n\nTyped “game” as the category.\n20 seconds later: 294 top TikTok ads across 68 brands analyzed.\n\nJev:\n1/ pulled the top ads from the past 180 days\n\n2/ scored every ad on stop-scroll, hook, format + trust\n\n3/ clustered them into creative patterns\n\n4/ classified winners, watches + dogs\n\n5/ built a leaderboard of what’s winning\n\n6/ recommended what to make next\n\n20 sec · ~$0.02\n\nFor gaming:\nWinning hooks: offer/promo, challenge accepted\nWinning format: gameplay + UGC\n\nThis is what we’re building at @frevana_ai with Jev:\ndecode your category’s ads → know what to make next, in seconds.\n\nTry it free. Link in the first comment 👇",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "frevana_ai",
+        "name": "frevana"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103152485372485703",
+      "videoUrl": "https://media.jevbest.com/videos/2102985044617031680.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2102985044617031680.jpg",
+      "duration": 10.483333,
+      "width": 2000,
+      "height": 1080,
+      "aspectRatio": 1.8519,
+      "tags": []
+    },
+    {
+      "id": "2102184016959119360",
+      "title": "Jev for Marketing: Find Clips That Deliver a Complete Point",
+      "description": "Select clips whose argument, context and evidence survive the cut",
+      "descriptions": {
+        "en": "Select clips whose argument, context and evidence survive the cut",
+        "zh": "筛选剪辑后仍保留完整论点、上下文和证据的片段",
+        "ja": "編集後も論点・文脈・証拠が残るクリップを選択",
+        "ko": "편집 후에도 논점, 문맥, 근거가 남는 클립 선택",
+        "es": "Seleccionar clips que conserven argumento, contexto y pruebas tras el corte",
+        "pt-br": "Selecionar clipes que preservem argumento, contexto e evidências após o corte"
+      },
+      "postText": "Jev for Marketing: Find Clips That Deliver a Complete Point\n\nA punchy line is not a complete clip. Check whether the thought finishes, the viewer has enough context and the proof survives the cut. Here is how I am testing Jev for clip selection. https://t.co/ItV0Pnezum",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "ericosiu",
+        "name": "ericosiu"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103152482771701877",
+      "videoUrl": "https://media.jevbest.com/videos/2102184016959119360.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2102184016959119360.jpg",
+      "duration": 146.005333,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103150740344868864",
+      "title": "Messing around with Jev on reverser space.",
+      "description": "Label functions in a stripped binary and compare them with their original names",
+      "descriptions": {
+        "en": "Label functions in a stripped binary and compare them with their original names",
+        "zh": "为去符号二进制中的函数添加标签，并与原始名称对比",
+        "ja": "シンボル除去済みバイナリの関数にラベルを付け元の名前と比較",
+        "ko": "심볼이 제거된 바이너리 함수에 라벨을 붙이고 원래 이름과 비교",
+        "es": "Etiquetar funciones de un binario sin símbolos y compararlas con sus nombres originales",
+        "pt-br": "Rotular funções de um binário sem símbolos e comparar com seus nomes originais"
+      },
+      "postText": "Messing around with Jev on reverser space.\n\nI took a stripped binary, ask jev to generate labels. For comparison the function column shows their real name.\n\nI really like the speed. Using multiple model for different tasks really eases the entire process of reversing fat binaries.",
+      "category": "Dev tools",
+      "language": "en",
+      "creator": {
+        "handle": "n0tduck1e",
+        "name": "duckie"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103151347675893828",
+      "videoUrl": "https://media.jevbest.com/videos/2103150740344868864.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103150740344868864.jpg",
+      "duration": 13.866667,
+      "width": 3840,
+      "height": 2160,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103147385102757888",
+      "title": "🚀 $200 a clip. $347k of flow. Half the taker comes back.",
+      "description": "Inspect fixed-size paper trades and fee rebates in Jev Pulse",
+      "descriptions": {
+        "en": "Inspect fixed-size paper trades and fee rebates in Jev Pulse",
+        "zh": "在 Jev Pulse 中查看固定金额模拟交易和手续费返还",
+        "ja": "Jev Pulseで固定サイズの模擬取引と手数料還元を確認",
+        "ko": "Jev Pulse에서 고정 크기 모의 거래와 수수료 환급 확인",
+        "es": "Inspeccionar operaciones simuladas de tamaño fijo y devoluciones de comisiones en Jev Pulse",
+        "pt-br": "Inspecionar operações simuladas de tamanho fixo e rebates de taxas no Jev Pulse"
+      },
+      "postText": "🚀 $200 a clip. $347k of flow. Half the taker comes back.\n\nJev Pulse. $10k on the sleeve. We are not firing the whole account. ⚡\n\nEach trade is $200. 1,737 paper fills this morning. That is $347,394 crossed for the exchange, 2% of the book at a time.\n\n0.06% taker. 50% rebate. Paid back into the account every day. On this run the taker is $208 and $104 comes home. 💸\n\nSmall size. Real volume. Half the fee back, daily.\n\nPaper. No return promise. 🤖\n\n@Bitget_AI #BitgetHackathon #AgenticUEX\n@typesafeai #Jev",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "CryptoCT01",
+        "name": "Crypto T"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103151026635243592",
+      "videoUrl": "https://media.jevbest.com/videos/2103147385102757888.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103147385102757888.jpg",
+      "duration": 11.818957,
+      "width": 1920,
+      "height": 984,
+      "aspectRatio": 1.9512,
+      "tags": []
+    },
+    {
+      "id": "2103148235841839104",
+      "title": "OPENCLAW + CLAUDE OPUS 5.5 + JEV CAN TURN YOUR ENTIRE SALES PROCESS INTO AN AUTOMATED AGENT SYSTEM.",
+      "description": "Identify missed sales follow-ups and route qualified roofing leads to the owner",
+      "descriptions": {
+        "en": "Identify missed sales follow-ups and route qualified roofing leads to the owner",
+        "zh": "识别销售跟进遗漏，将合格屋顶业务线索转给负责人",
+        "ja": "営業の追客漏れを見つけ屋根工事の有望な見込み客を担当者へ渡す",
+        "ko": "영업 후속 연락 누락을 찾고 적격 지붕 공사 리드를 담당자에게 전달",
+        "es": "Detectar seguimientos comerciales omitidos y dirigir prospectos de techado al responsable",
+        "pt-br": "Detectar acompanhamentos comerciais perdidos e encaminhar leads de telhados ao responsável"
+      },
+      "postText": "OPENCLAW + CLAUDE OPUS 5.5 + JEV CAN TURN YOUR ENTIRE SALES PROCESS INTO AN AUTOMATED AGENT SYSTEM.\n\nFIND LEAKS → PRICE THE GAPS → BUILD THE WORKFLOW → RESPOND 24/7 → FOLLOW UP → HAND QUALIFIED LEADS TO THE OWNER.\n\nTHE DASHBOARD BELOW IS THE LIVE RUN ON A ROOFING SHOP. https://t.co/3NIZ3SfOOx",
+      "category": "Content & growth",
+      "language": "en",
+      "creator": {
+        "handle": "merccante",
+        "name": "mercante"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103149335345291480",
+      "videoUrl": "https://media.jevbest.com/videos/2103148235841839104.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103148235841839104.jpg",
+      "duration": 39.148844,
+      "width": 2198,
+      "height": 1080,
+      "aspectRatio": 2.0352,
+      "tags": []
+    },
+    {
+      "id": "2103148997103808512",
+      "title": "JEV + OPUS 5.5 is insane...",
+      "description": "Screen new token launches for risk signals and gate action by confidence",
+      "descriptions": {
+        "en": "Screen new token launches for risk signals and gate action by confidence",
+        "zh": "筛查新代币发布中的风险信号，按置信度控制后续行动",
+        "ja": "新規トークンの危険信号を調べ確信度で行動を制限",
+        "ko": "신규 토큰 출시의 위험 신호를 검사하고 신뢰도로 후속 행동 제어",
+        "es": "Filtrar lanzamientos de tokens por señales de riesgo y condicionar acciones a la confianza",
+        "pt-br": "Filtrar lançamentos de tokens por sinais de risco e condicionar ações à confiança"
+      },
+      "postText": "JEV + OPUS 5.5 is insane...\n\nI built a gem-or-rug scanner with JEV + Opus 5.5\n\nA new token launches → Jev scores it GEM or RUG before you've even opened the chart\n\nFull production ship in 11 minutes:\n\n> Jev reads every fresh launch the moment it hits the chain\n\n> Checks 7 signals: honeypot, dev wallet %, top-10 holders, LP lock, renounced contract, socials age\n\n> Returns a verdict + confidence + the reason in ~400ms, for a fraction of a cent\n\n> A policy gate sits between the verdict and any action\n\n> Only GEMs above 0.85 confidence get through, everything else is logged and suppressed\n\nOutput: $GIGA → GEM 0.92 · lock 391d · top10 6% · 414ms · $0.00024\n\nShips in shadow mode, so it scores and logs every launch but doesn't act on anything until the log convinces you\n\nOne flag is a kill switch that stops Jev from being called at all\n\nJev decides fast, the gate decides if it matters",
+      "category": "Safety & moderation",
+      "language": "en",
+      "creator": {
+        "handle": "0niheei",
+        "name": "Onihei"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103149067513573413",
+      "videoUrl": "https://media.jevbest.com/videos/2103148997103808512.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103148997103808512.jpg",
+      "duration": 25.123991,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103149021623885824",
+      "title": "I built an AI trading bot with Jev + Opus 5.5, and it's actually insane.",
+      "description": "Demonstrate a HYPE trading framework built with Jev and Opus 5.5",
+      "descriptions": {
+        "en": "Demonstrate a HYPE trading framework built with Jev and Opus 5.5",
+        "zh": "演示用 Jev 和 Opus 5.5 构建的 HYPE 交易框架",
+        "ja": "JevとOpus 5.5で作ったHYPE取引フレームワークを実演",
+        "ko": "Jev와 Opus 5.5로 만든 HYPE 거래 프레임워크 시연",
+        "es": "Mostrar un marco de trading de HYPE creado con Jev y Opus 5.5",
+        "pt-br": "Apresentar um framework de negociação de HYPE criado com Jev e Opus 5.5"
+      },
+      "postText": "I built an AI trading bot with Jev + Opus 5.5, and it's actually insane.\n\nIt's a high-frequency algo trading framework (trading $HYPE below).\n\nI break down everything in my latest video.\n\nWatch now 👉 https://t.co/t0K07yt1vP https://t.co/30rHqMyKIH",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "milesdeutscher",
+        "name": "Miles Deutscher"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103149036933165110",
+      "videoUrl": "https://media.jevbest.com/videos/2103149021623885824.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103149021623885824.jpg",
+      "duration": 13.333333,
+      "width": 914,
+      "height": 720,
+      "aspectRatio": 1.2694,
+      "tags": []
+    },
+    {
+      "id": "2103145476044566528",
+      "title": "I built Jev Router",
+      "description": "Route terminal tasks to installed agents while preserving the follow-up thread",
+      "descriptions": {
+        "en": "Route terminal tasks to installed agents while preserving the follow-up thread",
+        "zh": "将终端任务分派给已安装智能体，同时保留后续对话",
+        "ja": "会話を引き継ぎながら端末のタスクを導入済みエージェントへ振り分け",
+        "ko": "후속 대화를 유지하며 터미널 작업을 설치된 에이전트에 분배",
+        "es": "Enrutar tareas del terminal a agentes instalados manteniendo el hilo de seguimiento",
+        "pt-br": "Rotear tarefas do terminal para agentes instalados preservando a conversa de acompanhamento"
+      },
+      "postText": "I built Jev Router\n\nJev Router is a terminal client that sends each task to the right agent on your machine\n\nHere's how it works:\n- Reads your request and returns a probability per installed agent\n- The chosen agent runs in your directory, and follow-ups stay with whoever has the context\n- All agents share one thread, and /criteria lets you edit the rules that decide\n\nlink to the code below",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "prathitjoshi_",
+        "name": "Prathit"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103145907734880747",
+      "videoUrl": "https://media.jevbest.com/videos/2103145476044566528.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103145476044566528.jpg",
+      "duration": 28.3,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103143852421136384",
+      "title": "Jevでテロップの話者分離(＋演出)振り分けツールを作ってみたけど、なんかいいかもしれない",
+      "description": "Assign subtitle speakers and presentation effects with Jev",
+      "descriptions": {
+        "en": "Assign subtitle speakers and presentation effects with Jev",
+        "zh": "用 Jev 分配字幕说话人和演出效果",
+        "ja": "Jevでテロップの話者と演出を振り分け",
+        "ko": "Jev로 자막 화자와 연출 효과 배정",
+        "es": "Asignar hablantes de subtítulos y efectos de presentación con Jev",
+        "pt-br": "Atribuir falantes de legendas e efeitos de apresentação com Jev"
+      },
+      "postText": "Jevでテロップの話者分離(＋演出)振り分けツールを作ってみたけど、なんかいいかもしれない https://t.co/l7sSKUY6M7",
+      "category": "Content & growth",
+      "language": "ja",
+      "creator": {
+        "handle": "omesis_ray",
+        "name": "おめがレイ"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103145186050351209",
+      "videoUrl": "https://media.jevbest.com/videos/2103143852421136384.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103143852421136384.jpg",
+      "duration": 13.746213,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2102992280445726720",
+      "title": "Apple pays Google $1 billion a year for Siri. I rebuilt it over the weekend with Jev.",
+      "description": "Route iPhone assistant requests to actions using an on-device fine-tuned Laya model",
+      "descriptions": {
+        "en": "Route iPhone assistant requests to actions using an on-device fine-tuned Laya model",
+        "zh": "用设备端微调 Laya 模型将 iPhone 助手请求路由到具体操作",
+        "ja": "端末内で微調整したLayaでiPhoneへの依頼を操作へ振り分け",
+        "ko": "온디바이스 미세 조정 Laya 모델로 iPhone 도우미 요청을 동작에 연결",
+        "es": "Enrutar solicitudes del asistente de iPhone a acciones con Laya ajustado en el dispositivo",
+        "pt-br": "Rotear solicitações do assistente do iPhone para ações com Laya ajustado no dispositivo"
+      },
+      "postText": "Apple pays Google $1 billion a year for Siri. I rebuilt it over the weekend with Jev.\n\nMeet Jav, an assistant that makes decisions faster thanks to Laya, the open-weight alternative to Jev, running entirely on-device with CoreAI.\n\nI fine-tuned it on 10,000 intent samples covering around 100 different actions an iPhone assistant might need to take.\n\nIt takes a request and decides what should happen: timer, reminder, calendar event, music, weather...\n\nLaya makes the routing decision in around 100 ms.\n\nSurprisingly, the bottleneck comes from Apple's own Foundation Model and App Intents APIs.\n\nDecisions are solved, now let's make actions smarter and faster with another on device model.",
+      "category": "Triage & routing",
+      "language": "en",
+      "creator": {
+        "handle": "sa_mous",
+        "name": "sami"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103144930377891912",
+      "videoUrl": "https://media.jevbest.com/videos/2102992280445726720.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2102992280445726720.jpg",
+      "duration": 15.975329,
+      "width": 1180,
+      "height": 2556,
+      "aspectRatio": 0.4617,
+      "tags": []
+    },
+    {
+      "id": "2103143706165710848",
+      "title": "今更ながら（Claude Codeと）Jev検証を始めた。",
+      "description": "Plot binary preference judgments by Japanese prefecture on a heatmap",
+      "descriptions": {
+        "en": "Plot binary preference judgments by Japanese prefecture on a heatmap",
+        "zh": "将日本各都道府县的二选一偏好判断绘制为热力图",
+        "ja": "都道府県ごとの二択の好み判断をヒートマップに表示",
+        "ko": "일본 도도부현별 양자택일 선호 판단을 히트맵으로 표시",
+        "es": "Representar decisiones binarias de preferencias por prefectura japonesa en un mapa de calor",
+        "pt-br": "Representar julgamentos binários de preferência por prefeitura japonesa em um mapa de calor"
+      },
+      "postText": "今更ながら（Claude Codeと）Jev検証を始めた。\n「日本地図 二択ヒートマップ」\n各県ごとにうどん派 or そば派？（豚骨派 or 醤油派？）を質問した例。\nめっちゃ返答早い。知識ベースそこそこ。\nLLMと同じくポジションバイアスは普通にありそう。\n\n※地図：地球地図日本（国土地理院）を加工して作成 https://t.co/g0YkBOj1vx",
+      "category": "Research & data",
+      "language": "ja",
+      "creator": {
+        "handle": "3kwm",
+        "name": "kawamou"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103144831271027085",
+      "videoUrl": "https://media.jevbest.com/videos/2103143706165710848.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103143706165710848.jpg",
+      "duration": 15.641667,
+      "width": 2860,
+      "height": 1532,
+      "aspectRatio": 1.8668,
+      "tags": []
+    },
+    {
+      "id": "2103143214089977856",
+      "title": "We replaced the LLM behind AI text-to-strategy on Miramarket with Jev.",
+      "description": "Convert natural-language prompts into prediction-market strategies in Miramarket",
+      "descriptions": {
+        "en": "Convert natural-language prompts into prediction-market strategies in Miramarket",
+        "zh": "在 Miramarket 中将自然语言提示转成预测市场策略",
+        "ja": "Miramarketで自然言語の依頼を予測市場の戦略へ変換",
+        "ko": "Miramarket에서 자연어 프롬프트를 예측 시장 전략으로 변환",
+        "es": "Convertir instrucciones naturales en estrategias de mercados predictivos en Miramarket",
+        "pt-br": "Converter instruções naturais em estratégias de mercados de previsão no Miramarket"
+      },
+      "postText": "We replaced the LLM behind AI text-to-strategy on Miramarket with Jev.\nIt is much faster, and even more precise at building prediction market strategies.\nLive on the app now. what would you prompt first? https://t.co/KVXTuPjgnq",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "miramarket_org",
+        "name": "Miramarket"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103144395113697506",
+      "videoUrl": "https://media.jevbest.com/videos/2103143214089977856.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103143214089977856.jpg",
+      "duration": 10.8,
+      "width": 3840,
+      "height": 2160,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103142349459083264",
+      "title": "One of the immediate use case for System One models for users is context aware search queries.",
+      "description": "Retrieve relevant mathematics lessons with context-aware semantic judgments",
+      "descriptions": {
+        "en": "Retrieve relevant mathematics lessons with context-aware semantic judgments",
+        "zh": "通过感知上下文的语义判断检索相关数学课程",
+        "ja": "文脈を踏まえた意味判断で関連する数学の授業を検索",
+        "ko": "문맥 기반 의미 판단으로 관련 수학 수업 검색",
+        "es": "Recuperar lecciones de matemáticas pertinentes con juicios semánticos contextuales",
+        "pt-br": "Recuperar aulas de matemática relevantes com avaliações semânticas contextuais"
+      },
+      "postText": "One of the immediate use case for System One models for users is context aware search queries.\n\nIn mathematics many topics circulate even if they aren’t learned chronologically.\n\nJev provides a way to retrieve all relevant lessons without the overhead of LLM’s.\n\nJev - @typesafeai https://t.co/mfhdHRjPnF",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "datagoggins",
+        "name": "datagoggings"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103142378706214923",
+      "videoUrl": "https://media.jevbest.com/videos/2103142349459083264.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103142349459083264.jpg",
+      "duration": 18.44,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103139096529141761",
+      "title": "AX8850 | Jev open-source Laya alt 🏓",
+      "description": "Choose left, right or hold for an AX8850 paddle duel using Laya",
+      "descriptions": {
+        "en": "Choose left, right or hold for an AX8850 paddle duel using Laya",
+        "zh": "用 Laya 为 AX8850 球拍对决选择左移、右移或保持",
+        "ja": "LayaでAX8850のパドル対戦の左・右・維持を選択",
+        "ko": "Laya로 AX8850 패들 대결에서 왼쪽, 오른쪽, 유지 선택",
+        "es": "Elegir izquierda, derecha o mantener en un duelo de palas AX8850 con Laya",
+        "pt-br": "Escolher esquerda, direita ou manter em um duelo de raquetes AX8850 com Laya"
+      },
+      "postText": "AX8850 | Jev open-source Laya alt 🏓\nPaddle duel: 1st-person human vs AI.\nLeft/right/hold actions; paddle glides to target. Latency slows, no jitter.\n \nRepo: https://t.co/VDcHEYTyFQ\n#AXERA #AX8850 #EdgeAI https://t.co/zCnzIlL6Wd",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "qqc1989",
+        "name": "qqc"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103139236778008938",
+      "videoUrl": "https://media.jevbest.com/videos/2103139096529141761.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103139096529141761.jpg",
+      "duration": 22.966667,
+      "width": 1110,
+      "height": 720,
+      "aspectRatio": 1.5417,
+      "tags": []
+    },
+    {
+      "id": "2103137704846168064",
+      "title": "Here is another use case for Jev in DeFi.",
+      "description": "Classify risk across 50 Morpho vaults on Base using allocation, liquidity and oracle signals",
+      "descriptions": {
+        "en": "Classify risk across 50 Morpho vaults on Base using allocation, liquidity and oracle signals",
+        "zh": "根据配置、流动性和预言机信号，对 Base 上 50 个 Morpho 金库分类风险",
+        "ja": "配分・流動性・オラクルの情報からBase上のMorpho金庫50件のリスクを分類",
+        "ko": "배분, 유동성, 오라클 신호로 Base의 Morpho 금고 50개 위험 분류",
+        "es": "Clasificar riesgos de 50 bóvedas Morpho en Base según asignación, liquidez y oráculos",
+        "pt-br": "Classificar riscos de 50 cofres Morpho na Base segundo alocação, liquidez e oráculos"
+      },
+      "postText": "Here is another use case for Jev in DeFi.\n\nVault risk classification.\n\nI pulled the signals that matter for Morpho vault risk (allocations, LLTV, utilization, idle, oracle, curator, APY sanity, liquidity and more) across 50 @Morpho vaults on Base, then asked Jev to score each one LOW / MEDIUM / HIGH / EXTREME.\n\n50 judgments in 22.6s, ~452ms avg, ~60% median confidence, around $0.006 in costs\n\nResult mix: 30 MEDIUM - 12 HIGH - 8 EXTREME - 0 LOW.\n\nJev also ranked curators and vaults by trust, who looks safest, who looks riskiest. \n\nClaude, Codex and other models can do this as well but it takes much more time and money.",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "GabiDev98",
+        "name": "gabidev"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103139199155064921",
+      "videoUrl": "https://media.jevbest.com/videos/2103137704846168064.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103137704846168064.jpg",
+      "duration": 28.916667,
+      "width": 1516,
+      "height": 1080,
+      "aspectRatio": 1.4037,
+      "tags": []
+    },
+    {
+      "id": "2103138594307366912",
+      "title": "AX8850 | Jev open-source Laya alternative 🚀",
+      "description": "Control tank movement and firing with three decision intervals in an AX8850 arena",
+      "descriptions": {
+        "en": "Control tank movement and firing with three decision intervals in an AX8850 arena",
+        "zh": "在 AX8850 竞技场中用三档决策间隔控制坦克移动和射击",
+        "ja": "AX8850のアリーナで3段階の判断間隔によって戦車の移動と射撃を制御",
+        "ko": "AX8850 경기장에서 세 판단 간격으로 탱크 이동과 사격 제어",
+        "es": "Controlar movimiento y disparos de tanques con tres intervalos de decisión en AX8850",
+        "pt-br": "Controlar movimento e disparos de tanques com três intervalos de decisão no AX8850"
+      },
+      "postText": "AX8850 | Jev open-source Laya alternative 🚀\nTank duel: Real-time human vs AI. Browser-based arena. AI actions via  /api/tank/decide .\n3 difficulty tiers (Easy/Hard/Hell): AI decision interval 900/450/220ms, controls movement &amp; fire speed.\n \nRepo: https://t.co/VDcHEYU6vo\n#AXERA https://t.co/slSuM6wWvb",
+      "category": "Games & real time",
+      "language": "en",
+      "creator": {
+        "handle": "qqc1989",
+        "name": "qqc"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103138735684747712",
+      "videoUrl": "https://media.jevbest.com/videos/2103138594307366912.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103138594307366912.jpg",
+      "duration": 28.333333,
+      "width": 1100,
+      "height": 720,
+      "aspectRatio": 1.5278,
+      "tags": []
+    },
+    {
+      "id": "2103136589241020417",
+      "title": "just built a TUI that trades LTC/USD",
+      "description": "Filter LTC/USD trading signals with Laya in an out-of-sample terminal experiment",
+      "descriptions": {
+        "en": "Filter LTC/USD trading signals with Laya in an out-of-sample terminal experiment",
+        "zh": "在样本外终端实验中用 Laya 过滤 LTC/USD 交易信号",
+        "ja": "学習外データの端末実験でLayaがLTC/USDの取引信号を選別",
+        "ko": "표본 외 터미널 실험에서 Laya로 LTC/USD 거래 신호 필터링",
+        "es": "Filtrar señales de LTC/USD con Laya en un experimento de terminal fuera de muestra",
+        "pt-br": "Filtrar sinais de LTC/USD com Laya em um experimento de terminal fora da amostra"
+      },
+      "postText": "just built a TUI that trades LTC/USD\n\nit uses HTT + Jev AI (laya) as final filtering\n\nthose decision/classifier models fail bad at math stuff\n\ncoupling them with some tailored indicators could make some difference (?)\n\n100% out-sample with 0.2% trading fee https://t.co/Kc9t4SWdPN",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "flof_fly",
+        "name": "Florian"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103138113384292825",
+      "videoUrl": "https://media.jevbest.com/videos/2103136589241020417.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103136589241020417.jpg",
+      "duration": 237.233333,
+      "width": 1890,
+      "height": 720,
+      "aspectRatio": 2.625,
+      "tags": []
+    },
+    {
+      "id": "2103137497375215616",
+      "title": "CoinGecko API + Jev AI = Live Scores &amp; Signals ⚡",
+      "description": "Rescore pump and dump pressure from CoinGecko's live WebSocket trade stream",
+      "descriptions": {
+        "en": "Rescore pump and dump pressure from CoinGecko's live WebSocket trade stream",
+        "zh": "根据 CoinGecko 实时 WebSocket 交易流重新评估拉升和抛售压力",
+        "ja": "CoinGeckoのリアルタイムWebSocket取引から急騰・売却圧力を再評価",
+        "ko": "CoinGecko 실시간 WebSocket 거래 흐름에서 급등 및 매도 압력 재평가",
+        "es": "Reevaluar presión de subidas y ventas desde el flujo WebSocket de CoinGecko",
+        "pt-br": "Reavaliar pressão de alta e venda a partir do fluxo WebSocket do CoinGecko"
+      },
+      "postText": "CoinGecko API + Jev AI = Live Scores &amp; Signals ⚡\n\nWe gave Jev real-time crypto market data to see what it could do 🧵👇\n\nFirst: @typesafeai's Jev re-scores pump/dump pressure every second from our WebSocket trade stream, while analyzing real-time smart money flow. https://t.co/MOGh9Z1wjw",
+      "category": "Trading & markets",
+      "language": "en",
+      "creator": {
+        "handle": "coingecko",
+        "name": "CoinGecko"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103137525720375540",
+      "videoUrl": "https://media.jevbest.com/videos/2103137497375215616.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103137497375215616.jpg",
+      "duration": 26.416667,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
+    {
+      "id": "2103137428383105024",
+      "title": "tried to use jev for coffee shop recommendation system",
+      "description": "Choose coffee shop recommendations with Jev",
+      "descriptions": {
+        "en": "Choose coffee shop recommendations with Jev",
+        "zh": "用 Jev 选择咖啡店推荐",
+        "ja": "Jevでおすすめのコーヒー店を選択",
+        "ko": "Jev로 추천 커피숍 선택",
+        "es": "Elegir recomendaciones de cafeterías con Jev",
+        "pt-br": "Escolher recomendações de cafeterias com Jev"
+      },
+      "postText": "tried to use jev for coffee shop recommendation system https://t.co/k3nsqvjnrb",
+      "category": "Tools & apps",
+      "language": "en",
+      "creator": {
+        "handle": "samidoribuilds",
+        "name": "fauzan a"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103137454492381263",
+      "videoUrl": "https://media.jevbest.com/videos/2103137428383105024.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103137428383105024.jpg",
+      "duration": 76.885333,
+      "width": 1152,
+      "height": 720,
+      "aspectRatio": 1.6,
+      "tags": []
+    },
+    {
+      "id": "2103136024763465728",
+      "title": "YouWareでソニック風のランアクションゲームを作ってみたら、楽しすぎてやめどきがわからない。⚡",
+      "description": "Switch a Sonic-style runner between human play and AI-controlled Jev Mode",
+      "descriptions": {
+        "en": "Switch a Sonic-style runner between human play and AI-controlled Jev Mode",
+        "zh": "在索尼克风格跑酷中切换手动游玩和 AI 控制的 Jev 模式",
+        "ja": "ソニック風ランゲームで手動操作とAIのJevモードを切り替える",
+        "ko": "소닉 스타일 러너에서 직접 플레이와 AI 제어 Jev 모드 전환",
+        "es": "Alternar un juego de carreras al estilo Sonic entre control humano y modo Jev",
+        "pt-br": "Alternar um jogo de corrida no estilo Sonic entre controle humano e modo Jev"
+      },
+      "postText": "YouWareでソニック風のランアクションゲームを作ってみたら、楽しすぎてやめどきがわからない。⚡\n\n中国語・英語・日本語・韓国語に対応。自分でジャンプ、ローリング、ブーストを駆使してアイテムを集めるもよし。\n\nJevモードに切り替えて、AIのコース攻略を眺めるもよし。走るたびに世界ランキング上位を狙えます。\n\n現在1位の記録、超えられる？ 👀\n\nプレイはこちら：https://t.co/lKdXjfq68v",
+      "category": "Games & real time",
+      "language": "ja",
+      "creator": {
+        "handle": "YouWareJP",
+        "name": "YouWare Japan"
+      },
+      "publishedAt": "2026-09-24",
+      "sourceUrl": "https://x.com/i/web/status/2103136222831116740",
+      "videoUrl": "https://media.jevbest.com/videos/2103136024763465728.mp4",
+      "posterUrl": "https://media.jevbest.com/posters/2103136024763465728.jpg",
+      "duration": 40.192,
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": 1.7778,
+      "tags": []
+    },
     {
       "id": "2102967057650429952",
       "title": "LLM をゲームで使ってて一番困ってたのが、考える時間の長さ。Agent 同士でリアルタイムに戦わせるのが、なかなか難しかったんですよね。 今回、typesafeai の Jev にアクセスできるようになったので、ゲームに組み込んで…",
